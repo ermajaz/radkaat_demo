@@ -2,7 +2,7 @@
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { TestRideRoadmapDesktop } from "./TestRideRoadmapDesktop";
-import { HoverBorderGradient } from "@/components/ui/hover-border-gradient";
+import { HoverButton } from "./AnimatedButton";
 
 export function TestRideHeroDesktop() {
   const router = useRouter();
@@ -27,18 +27,11 @@ export function TestRideHeroDesktop() {
           # No commitment, No catch!
         </p>
 
-        {/* HoverGradient Button */}
-        <HoverBorderGradient
-          containerClassName="rounded-full overflow-hidden relative"
-          as="button"
-          className="bg-white dark:bg-black text-black dark:text-white relative flex items-center space-x-2 px-6 py-2 text-lg font-semibold tracking-wider cursor-pointer
-            before:absolute before:inset-0 before:left-[-100%] before:bg-gradient-to-r before:from-sandstorm before:to-sandstorm-1
-            before:z-0 before:transition-all before:duration-500 hover:before:left-0"
-          onClick={() => router.push("/experience")}
-        >
-          <AceternityLogo />
-          <span className="relative z-10">Live the Experience</span>
-        </HoverBorderGradient>
+        <h2>
+          <HoverButton onClick={() => router.push("/experience")}>
+            Live the Experience
+          </HoverButton>
+        </h2>
       </div>
 
       {/* Roadmap below */}
@@ -46,24 +39,3 @@ export function TestRideHeroDesktop() {
     </div>
   );
 }
-
-const AceternityLogo = () => {
-  return (
-    <svg
-      width="66"
-      height="65"
-      viewBox="0 0 66 65"
-      fill="none"
-      xmlns="http://www.w3.org/2000/svg"
-      className="h-4 w-4 text-black dark:text-white relative z-10"
-    >
-      <path
-        d="M8 8.05571C8 8.05571 54.9009 18.1782 57.8687 30.062C60.8365 41.9458 9.05432 57.4696 9.05432 57.4696"
-        stroke="currentColor"
-        strokeWidth="15"
-        strokeMiterlimit="3.86874"
-        strokeLinecap="round"
-      />
-    </svg>
-  );
-};

@@ -3,8 +3,9 @@
 import { useEffect, useRef, useState } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { bikesData } from "@/utils/data"; // your 3 bikes data
+import { bikesData } from "@/utils/data";
 import Showcase from "./Showcase";
+import BikesStrip from "./BikesStrip";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -34,14 +35,17 @@ export default function BikesShowcase() {
 
   return (
     <div ref={containerRef} className="relative">
-      {/* Sticky showcase */}
-      <div className="sticky w-full top-0 h-screen">
+      {/* Bikes Strip carousel at top */}
+      <BikesStrip />
+
+      {/* Sticky showcase below the strip */}
+      <div className="sticky w-full top-15 h-[calc(100vh-60px)]">
         <Showcase bike={bikesData[currentIndex]} />
       </div>
 
       {/* Fake sections to trigger scroll */}
       {bikesData.map((_, i) => (
-        <div key={i} className="bike-section h-screen w-full" />
+        <div key={i} className="bike-section h-[150vh] w-full" />
       ))}
     </div>
   );

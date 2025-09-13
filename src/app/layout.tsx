@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import SmoothScroll from "@/components/SmoothScroll";
+import "slick-carousel/slick/slick.css"; 
+import "slick-carousel/slick/slick-theme.css";
 
 import { Red_Hat_Display } from "@next/font/google";
 

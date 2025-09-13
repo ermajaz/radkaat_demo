@@ -6,7 +6,6 @@ import Footer from "@/components/Footer/Footer";
 import Header from "@/components/header/Header";
 import HeroSection from "@/components/heroSection/HeroSection";
 import OurProducts from "@/components/ourProducts/OurProducts";
-// import Stories from "@/components/stories/Stories";
 import StoriesSection from "@/components/StoriesSection";
 import TestRideSection from "@/components/testRide/TestRideSection";
 
@@ -22,7 +21,6 @@ export default function Home() {
       <OurProducts />
       <AdventureSection />
       <StoriesSection />
-      {/* <Stories/> */}
       <Footer />
     </main>
   );

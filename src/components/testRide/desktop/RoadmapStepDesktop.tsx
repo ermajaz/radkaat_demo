@@ -67,7 +67,7 @@ export function RoadmapStepDesktop({
         </h4>
         <p
           className={`text-xs mt-1 ${
-            active ? "text-gray-400" : "text-white/40"
+            active ? "text-gray-300" : "text-white/40"
           }`}
         >
           {step.desc}

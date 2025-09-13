@@ -41,13 +41,13 @@ export default function OurProducts() {
       <BackgroundBeams className="absolute inset-0 z-0" />
 
       <div className="grid grid-cols-1 md:grid-cols-3 gap-10 max-w-7xl w-full">
-               {ourProducts.map((product, index) => (
+        {ourProducts.map((product, index) => (
           <div
             key={product.id}
             ref={(el) => {
               if (el) cardsRef.current[index] = el;
             }}
-            className="relative will-change-transform"
+            className="relative will-change-transform cursor-pointer"
           >
             {/* Direction Aware Hover Card */}
             <DirectionAwareHover imageUrl={product.image}>
@@ -57,7 +57,6 @@ export default function OurProducts() {
             </DirectionAwareHover>
           </div>
         ))}
-
       </div>
     </section>
   );

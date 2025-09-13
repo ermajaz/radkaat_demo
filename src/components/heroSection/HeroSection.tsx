@@ -66,7 +66,7 @@ export default function HeroSection() {
     ));
 
   return (
-    <section ref={heroRef} className="relative w-full overflow-hidden">
+    <div ref={heroRef} className="relative w-full overflow-hidden">
       <div className="pin-wrapper">
         <div className="relative h-screen flex items-center justify-center">
           {/* Background Image */}
@@ -90,6 +90,6 @@ export default function HeroSection() {
           </div>
         </div>
       </div>
-    </section>
+    </div>
   );
 }

@@ -244,3 +244,30 @@ h6 {
   -webkit-text-stroke: 2px black;
   paint-order: stroke fill;
 }
+
+
+
+/* Make slick slides center their content */
+.bikes-slider .slick-slide {
+  display: flex !important;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Make slick track take full width */
+.bikes-slider .slick-track {
+  display: flex !important;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Optional: remove overflow clipping */
+.bikes-slider .slick-list {
+  overflow: visible !important;
+}
+
+/* Optional: style dots */
+.bikes-slider .slick-dots {
+  bottom: -20px;
+}
+
