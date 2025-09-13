@@ -17,26 +17,39 @@ export default function HeroSection() {
       const firstLine = heroRef.current!.querySelectorAll<HTMLElement>(
         ".hero-line.first span"
       );
+      const secondLine = heroRef.current!.querySelector<HTMLElement>(
+        ".hero-line.second"
+      );
       const pinTarget = heroRef.current!.querySelector(".pin-wrapper");
 
-      // Timeline only for the first line
-      gsap
-        .timeline({
-          scrollTrigger: {
-            trigger: pinTarget,
-            start: "top top",
-            end: "+=1200",
-            scrub: true,
-            pin: true,
-            pinSpacing: true,
-          },
-        })
-        .to(firstLine, {
-          y: -100,
-          opacity: 0,
-          stagger: 0.08,
-          ease: "power3.inOut",
-        });
+      const totalSpans = firstLine.length;
+      const hideIndex = totalSpans - 2; // hide second line when last 2 letters remain
+
+      const tl = gsap.timeline({
+        scrollTrigger: {
+          trigger: pinTarget,
+          start: "top top",
+          end: "+=1200",
+          scrub: true,
+          pin: true,
+          pinSpacing: true,
+        },
+      });
+
+      // Animate first line letters
+      tl.to(firstLine, {
+        y: -100,
+        opacity: 0,
+        stagger: 0.08,
+        ease: "power3.inOut",
+      });
+
+      // Hide second line when only last 2 letters are left
+      tl.to(
+        secondLine,
+        { opacity: 0, ease: "power3.inOut" },
+        hideIndex * 0.08 // match stagger timing
+      );
     }, heroRef);
 
     return () => ctx.revert();

@@ -1,5 +1,4 @@
-// components/BikeComparison/RadarChart.tsx
-import { BikeStats } from "@/types";
+import { Bikee } from "@/types";
 import {
   Radar,
   RadarChart,
@@ -9,51 +8,84 @@ import {
 } from "recharts";
 
 interface Props {
-  stats: BikeStats;
+  allBikes: Bikee[];
+  selectedBike: Bikee;
 }
 
-export default function RadarChartComp({ stats }: Props) {
-  const statColors = {
-    Suspension: "#8d363b", // rust
-    "Braking Power": "#516316", // army green
-    "Frame Strength": "#003a5d", // petrol blue
-    "Tire Grip": "#5a90c6", // airforce blue
-    Weight: "#c6b783", // sandstorm
-    Comfort: "#001644", // navy
+interface RadarEntry {
+  subject: string;
+  [bikeName: string]: string | number; // subject is string, stats are numbers
+}
+
+export default function RadarChartComp({ allBikes, selectedBike }: Props) {
+  const bikeColors: Record<string, string> = {
+    SEROW: "#ddb61a",
+    SAOLA: "red",
+    TAKIN: "green",
   };
 
-  const data = [
-    { subject: "Suspension", value: stats.suspension },
-    { subject: "Braking Power", value: stats.braking },
-    { subject: "Frame Strength", value: stats.frame },
-    { subject: "Tire Grip", value: stats.tire },
-    { subject: "Weight", value: stats.weight },
-    { subject: "Comfort", value: stats.comfort },
+  const stats = [
+    "Suspension",
+    "Braking Power",
+    "Frame Strength",
+    "Tire Grip",
+    "Weight",
+    "Comfort",
   ];
+
+  const data: RadarEntry[] = stats.map((stat) => {
+    const entry: RadarEntry = { subject: stat };
+
+    allBikes.forEach((bike) => {
+      switch (stat) {
+        case "Suspension":
+          entry[bike.name] = bike.stats.suspension;
+          break;
+        case "Braking Power":
+          entry[bike.name] = bike.stats.braking;
+          break;
+        case "Frame Strength":
+          entry[bike.name] = bike.stats.frame;
+          break;
+        case "Tire Grip":
+          entry[bike.name] = bike.stats.tire;
+          break;
+        case "Weight":
+          entry[bike.name] = bike.stats.weight;
+          break;
+        case "Comfort":
+          entry[bike.name] = bike.stats.comfort;
+          break;
+      }
+    });
+
+    return entry;
+  });
 
   return (
     <ResponsiveContainer width="100%" height="100%">
       <RadarChart data={data}>
-        <PolarGrid stroke="#88888830" />
+        <PolarGrid stroke="#88888880" />
         <PolarAngleAxis dataKey="subject" />
-        {/* <PolarRadiusAxis domain={[0, 10]} tick={false} /> */}
 
-        <Radar
-          dataKey="value"
-          stroke="#facc15"
-          fill="#facc15"
-          fillOpacity={0.3}
-          dot={({ cx, cy, payload, index }) => (
-            <g key={`${payload.subject}-${index}`}>
-              <circle
-                cx={cx}
-                cy={cy}
-                r={6}
-                fill={statColors[payload.subject as keyof typeof statColors]}
-              />
-            </g>
-          )}
-        />
+        {allBikes.map((bike) => {
+          const isSelected = bike.id === selectedBike.id;
+          const color = bikeColors[bike.name.toUpperCase()] || "#facc15";
+
+          return (
+            <Radar
+              key={bike.id}
+              name={bike.name}
+              dataKey={bike.name}
+              stroke={color}
+              fill={color}
+              fillOpacity={isSelected ? 0.5 : 0.2}
+              strokeOpacity={isSelected ? 1 : 0.3}
+              strokeWidth={isSelected ? 2 : 1}
+              dot={isSelected ? true : false} 
+            />
+          );
+        })}
       </RadarChart>
     </ResponsiveContainer>
   );

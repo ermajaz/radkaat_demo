@@ -1,14 +1,14 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import { Search, X } from "lucide-react";
+import { Search } from "lucide-react";
 import gsap from "gsap";
 import NavItem from "./NavItem";
 import SearchOverlay from "../search/SearchOverlay";
 import ProductsOverlay from "../productOverlay/ProductsOverlay";
 import Logo from "./Logo";
 
-const navItems = ["Products", "Experience", "Community"];
+const navItems = ["Products", "Experiences", "Community"];
 
 export default function Header() {
   const headerRef = useRef<HTMLDivElement>(null);
@@ -22,15 +22,20 @@ export default function Header() {
   useEffect(() => {
     const handleScroll = () => {
       const currentScrollY = window.scrollY;
+
+      // scrolling down → hide
       if (currentScrollY > lastScrollY.current && currentScrollY > 50) {
-        // scrolling down
         setShowHeader(false);
-      } else {
+      }
+      // scrolling up → show
+      else if (currentScrollY < lastScrollY.current) {
         setShowHeader(true);
       }
+
       lastScrollY.current = currentScrollY;
     };
-    window.addEventListener("scroll", handleScroll);
+
+    window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
@@ -48,7 +53,7 @@ export default function Header() {
     <>
       <header
         ref={headerRef}
-        className="fixed top-0 left-0 w-full z-50 flex items-center justify-between px-6 py-4 transition-all"
+        className="fixed top-0 left-0 w-full z-50 flex items-center justify-between px-6 py-4"
       >
         {/* Logo */}
         <div className="flex items-center">
@@ -68,8 +73,11 @@ export default function Header() {
 
         {/* Search Icon */}
         <div className="flex items-center">
-          <button onClick={() => setSearchOpen(true)} className="hover:text-rust cursor-pointer">
-            <Search size={24}/>
+          <button
+            onClick={() => setSearchOpen(true)}
+            className="hover:text-rust cursor-pointer"
+          >
+            <Search size={24} />
           </button>
         </div>
       </header>

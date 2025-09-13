@@ -7,7 +7,7 @@ export interface BikeStats {
   comfort: number;
 }
 
-export interface Bike {
+export interface Bikee {
   id: string;
   name: string;
   logo: string;

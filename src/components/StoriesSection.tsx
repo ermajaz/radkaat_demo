@@ -2,8 +2,12 @@
 
 import { useEffect, useRef } from "react";
 import { stories } from "@/utils/data";
-import Image from "next/image";
 import Lenis from "@studio-freight/lenis";
+import {
+  DraggableCardBody,
+  DraggableCardContainer,
+} from "@/components/ui/draggable-card";
+import Image from "next/image";
 
 export default function StoriesSection() {
   const scrollRef = useRef<HTMLDivElement>(null);
@@ -17,7 +21,6 @@ export default function StoriesSection() {
       lerp: 0.1,
     });
 
-    // Sync RAF
     function raf(time: number) {
       lenis.raf(time);
       requestAnimationFrame(raf);
@@ -28,58 +31,34 @@ export default function StoriesSection() {
   }, []);
 
   return (
-    <section className="py-16 px-6 overflow-hidden">
-      {/* Section Title */}
-      <h2 className="text-white text-xl md:text-3xl font-display font-semibold uppercase tracking-wide mb-8">
-        <span className="relative inline-block leading-tight">
-          Our Stories
-          <span
-            aria-hidden
-            className="pointer-events-none absolute left-0 -bottom-3 h-4.5 w-full bg-no-repeat bg-cover"
-            style={{
-              backgroundImage:
-                "url('https://yeticycles.com/textHighlights/word-underline.png')",
-              filter: "brightness(0) invert(1)",
-            }}
-          />
-        </span>
-      </h2>
+    <section className="relative py-10 sm:py-20 px-6 overflow-hidden">
+      <DraggableCardContainer className="relative flex min-h-[90vh] w-full items-center justify-center overflow-clip">
+        <p className="absolute top-1/2 mx-auto max-w-lg -translate-y-1/2 text-center text-xl sm:text-3xl font-black text-neutral-400 md:text-4xl dark:text-neutral-800 z-0">
+          Explore our community stories
+        </p>
 
-      {/* Horizontal Scroll with native overflow + Lenis smoothing */}
-      <div
-        ref={scrollRef}
-        className="overflow-x-auto scrollbar-hide flex space-x-8 snap-x snap-mandatory"
-      >
         {stories.map((story, index) => (
-          <figure
-            key={index}
-            className="min-w-[500px] max-w-[650px] flex-shrink-0 snap-start"
-          >
-            {/* Image Wrapper with Hover Zoom */}
-            <div className="relative w-full h-[450px] mb-4 overflow-hidden group">
+          <DraggableCardBody key={index} className={story.className}>
+            <div className="relative z-10 w-full h-80 rounded-xl overflow-hidden shadow-xl">
               <Image
                 src={story.img}
                 alt={story.title}
                 fill
-                sizes="(max-width: 768px) 100vw,
-           (max-width: 1024px) 50vw,
-           33vw"
-                className="object-cover cursor-pointer transform transition-transform duration-500 group-hover:scale-110"
+                className="object-cover  pointer-events-none"
               />
             </div>
-            {/* Caption */}
-            <figcaption className="p-10">
-              <h3 className="text-white text-2xl tracking-[5px] font-bold uppercase mb-2 cursor-pointer">
+
+            <div className="mt-4 text-center">
+              <h3 className="text-2xl font-bold text-white uppercase tracking-wide">
                 {story.title}
               </h3>
-              <div className="w-10 h-[2px] bg-white mb-3"></div>
-              <p className="text-white/90 pr-20 text-sm leading-relaxed cursor-pointer">
+              <p className="mt-2 text-sm text-neutral-300 px-4 leading-relaxed line-clamp-2">
                 {story.excerpt}
               </p>
-            </figcaption>
-          </figure>
+            </div>
+          </DraggableCardBody>
         ))}
-      </div>
+      </DraggableCardContainer>
     </section>
   );
 }

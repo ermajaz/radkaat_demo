@@ -1,14 +1,14 @@
 "use client";
 import { steps } from "@/utils/data";
-import { RoadmapStep } from "./RoadmapStep";
 import { useEffect, useRef, useState } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { RoadmapStepDesktop } from "./RoadmapStepDesktop";
 
 gsap.registerPlugin(ScrollTrigger);
 
-export function TestRideRoadmap() {
-  const roadmapRef = useRef<HTMLDivElement>(null);
+export function TestRideRoadmapDesktop() {
+    const roadmapRef = useRef<HTMLDivElement>(null);
   const [activeIndex, setActiveIndex] = useState(0);
 
   useEffect(() => {
@@ -51,7 +51,7 @@ export function TestRideRoadmap() {
       className="w-full absolute bottom-0 left-0 py-16 flex flex-wrap justify-center gap-12"
     >
       {steps.map((step, i) => (
-        <RoadmapStep
+        <RoadmapStepDesktop
           key={i}
           step={step}
           index={i}

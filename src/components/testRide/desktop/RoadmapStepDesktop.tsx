@@ -1,15 +1,15 @@
 "use client";
 import { useEffect, useRef } from "react";
-import { CheckCircle } from "lucide-react";
+import { CheckCircle, LucideIcon } from "lucide-react";
 import gsap from "gsap";
 
-export function RoadmapStep({
+export function RoadmapStepDesktop({
   step,
   index,
   active,
   isLast,
 }: {
-  step: { title: string; desc: string };
+  step: { title: string; desc: string; icon: LucideIcon };
   index: number;
   active: boolean;
   isLast: boolean;
@@ -42,7 +42,7 @@ export function RoadmapStep({
             : "border-white/40 text-white/40"
         }`}
       >
-        <CheckCircle size={20} />
+        {step.icon && <step.icon className="w-[26px] h-[26px]" />}
       </div>
 
       {/* Connector line (only if not last step) */}
