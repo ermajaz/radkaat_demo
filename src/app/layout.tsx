@@ -1,10 +1,11 @@
 import type { Metadata } from "next";
 import "./globals.css";
-import SmoothScroll from "@/components/SmoothScroll";
+import SmoothScroll from "@/components/common/SmoothScroll";
 import "slick-carousel/slick/slick.css"; 
 import "slick-carousel/slick/slick-theme.css";
 
 import { Red_Hat_Display } from "@next/font/google";
+import Header from "@/components/common/Header";
 
 
 const redHatDisplay = Red_Hat_Display({
@@ -30,6 +31,7 @@ export default function RootLayout({
         className={`${redHatDisplay.variable} antialiased`}
       >
         <SmoothScroll />
+        <Header />
         {children}
       </body>
     </html>

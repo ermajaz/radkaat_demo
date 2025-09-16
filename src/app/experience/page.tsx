@@ -1,6 +1,7 @@
 "use client";
 
-import ExperienceFlow from "@/components/experience/ExperienceFlow";
+import ExperienceFlow from "@/components/landing/experience/ExperienceFlow";
+
 
 export default function ExperiencePage() {
   return (

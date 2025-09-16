@@ -1,18 +1,17 @@
-import AdventureSection from "@/components/adventures/AdventureSection";
-import BikeComparison from "@/components/bikeComparison/BikeComparison";
-import BikesShowcase from "@/components/bikeSection/BikesShowcase";
-import FlagSection from "@/components/flagSection/FlagSection";
-import Footer from "@/components/Footer/Footer";
-import Header from "@/components/header/Header";
-import HeroSection from "@/components/heroSection/HeroSection";
-import OurProducts from "@/components/ourProducts/OurProducts";
-import StoriesSection from "@/components/StoriesSection";
-import TestRideSection from "@/components/testRide/TestRideSection";
+import Footer from "@/components/common/Footer";
+import AdventureSection from "@/components/landing/adventure/AdventureSection";
+import BikeComparison from "@/components/landing/bikeComparison/BikeComparison";
+import BikesShowcase from "@/components/landing/bikeSection/BikesShowcase";
+import FlagSection from "@/components/landing/flag/FlagSection";
+import HeroSection from "@/components/landing/hero/HeroSection";
+import OurProducts from "@/components/landing/ourProduct/OurProducts";
+import StoriesSection from "@/components/landing/storySection/StoriesSection";
+import TestRideSection from "@/components/landing/testRide/TestRideSection";
+
 
 export default function Home() {
   return (
     <main>
-      <Header />
       <HeroSection />
       <BikesShowcase />
       <BikeComparison />

@@ -234,7 +234,7 @@ export const ourProducts = [
     id: "apparel",
     title: "APPAREL",
     image:
-      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRrhQa7z0X9GcmaJkfEkzkmjmayEOdkoudJyg&s",
+      "https://images.pexels.com/photos/19431224/pexels-photo-19431224/free-photo-of-a-man-riding-a-bike-on-a-road.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500",
     link: "/apparel",
   },
   {
