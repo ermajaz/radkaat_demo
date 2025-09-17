@@ -7,6 +7,7 @@ import NavItem from "./NavItem";
 import Logo from "./Logo";
 import SearchOverlay from "./search/SearchOverlay";
 import ProductsOverlay from "./productOverlay/ProductsOverlay";
+import Link from "next/link";
 
 const navItems = ["Products", "Experiences", "Community"];
 
@@ -56,9 +57,9 @@ export default function Header() {
         className="fixed top-0 left-0 w-full z-50 flex items-center justify-between px-6 py-4"
       >
         {/* Logo */}
-        <div className="flex items-center">
+        <Link href="/" className="flex items-center">
           <Logo />
-        </div>
+        </Link>
 
         {/* Navigation */}
         <nav className="flex gap-8">

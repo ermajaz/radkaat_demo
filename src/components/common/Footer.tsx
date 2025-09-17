@@ -7,18 +7,20 @@ import { Facebook, Instagram, Youtube } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 
 export default function Footer() {
-  const [hoveredMenu, setHoveredMenu] = useState<"support" | "about" | null>(null);
+  const [hoveredMenu, setHoveredMenu] = useState<"support" | "about" | null>(
+    null
+  );
 
   const menuItems = {
     support: [
-      { name: "FAQ", href: "/faq" },
-      { name: "Shipping", href: "/shipping" },
-      { name: "Returns", href: "/returns" },
+      { name: "Contact Us", href: "/support/contact" },
+      { name: "Help & FAQ", href: "/support/help" },
+      { name: "Support Center", href: "/support/supportcenter" },
     ],
     about: [
-      { name: "Our Story", href: "/our-story" },
-      { name: "Team", href: "/team" },
-      { name: "Careers", href: "/careers" },
+      { name: "Contact Us", href: "/support/contact" },
+      { name: "Help & FAQ", href: "/support/help" },
+      { name: "Support Center", href: "/support/supportcenter" },
     ],
   };
 
@@ -115,9 +117,15 @@ export default function Footer() {
               <h3 className="uppercase text-base font-bold tracking-wider text-white">
                 Contact Us
               </h3>
-              <p className="font-semibold text-[13px]">RADKAAT VENTURES PRIVATE LIMITED</p>
-              <p className="text-[12px]">1st Floor, Unit no.124, Paras Trade Centre,</p>
-              <p className="text-[12px]">Gurgaon Faridabad Road, Gwal Pahari, Gurugram,</p>
+              <p className="font-semibold text-[13px]">
+                RADKAAT VENTURES PRIVATE LIMITED
+              </p>
+              <p className="text-[12px]">
+                1st Floor, Unit no.124, Paras Trade Centre,
+              </p>
+              <p className="text-[12px]">
+                Gurgaon Faridabad Road, Gwal Pahari, Gurugram,
+              </p>
               <p className="text-[12px]">District, Gurugram, Haryana 122003</p>
               <p className="font-medium text-[12px]">GST: 02AAMCR8372H1Z4</p>
               <p className="font-medium text-[12px]">+91-9429693000</p>
@@ -158,11 +166,14 @@ export default function Footer() {
               © Radkaat {new Date().getFullYear()} All Rights Reserved
             </p>
             <div className="flex justify-center sm:justify-end gap-4">
-              <Link href="/terms" className="hover:text-rust transition-colors">
+              <Link
+                href="/support/terms"
+                className="hover:text-rust transition-colors"
+              >
                 Terms & Conditions
               </Link>
               <Link
-                href="/privacy"
+                href="support/privacy"
                 className="hover:text-rust transition-colors"
               >
                 Privacy Policy
