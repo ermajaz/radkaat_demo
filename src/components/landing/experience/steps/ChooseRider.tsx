@@ -1,9 +1,11 @@
 "use client";
+
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import Image from "next/image";
 import { motion, Variants } from "framer-motion";
 import { useState } from "react";
+import { MoveRight } from "lucide-react";
 
 interface Rider {
   id: number;
@@ -40,7 +42,6 @@ const riders: Rider[] = [
     discipline: "Gravel",
     img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRG3Q_pMPv6dOeDEZG8C-zwOxZHrNhSZB7LSRxNnrymNO2O_xoG5CdjolnrMLDcNoaI7j0&usqp=CAU",
   },
-  // Add more riders...
 ];
 
 export default function ChooseRider({ onNext, onBack }: ChooseRiderProps) {
@@ -57,11 +58,11 @@ export default function ChooseRider({ onNext, onBack }: ChooseRiderProps) {
   };
 
   const cardVariants: Variants = {
-    hidden: { opacity: 0, y: 20 },
+    hidden: { opacity: 0, y: 30 },
     visible: {
       opacity: 1,
       y: 0,
-      transition: { type: "spring", stiffness: 300, damping: 25 },
+      transition: { type: "spring", stiffness: 200, damping: 20 },
     },
   };
 
@@ -76,38 +77,53 @@ export default function ChooseRider({ onNext, onBack }: ChooseRiderProps) {
         Choose Your Rider
       </h2>
 
+      {/* Rider Grid */}
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6 w-full max-w-6xl">
-        {riders.map((rider) => (
-          <motion.div key={rider.id} variants={cardVariants}>
-            <Card
-              onClick={() => setSelectedId(rider.id)}
-              className={`cursor-pointer pt-0 transform transition-all duration-300 rounded-2xl overflow-hidden border-2 hover:scale-105 ${
-                selectedId === rider.id
-                  ? "border-rust shadow-[0_0_25px_rgba(141,54,59,0.6)] scale-105"
-                  : "border-white/20 hover:shadow-lg"
-              }`}
-            >
-              {/* Rider Image */}
-              <div className="relative w-full h-56">
-                <Image
-                  src={rider.img}
-                  alt={rider.name}
-                  fill
-                  className="object-cover rounded-t-2xl"
-                  sizes="(max-width: 768px) 100vw, 50vw"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent rounded-t-2xl" />
-              </div>
+        {riders.length > 0 ? (
+          riders.map((rider) => (
+            <motion.div key={rider.id} variants={cardVariants}>
+              <Card
+                onClick={() => setSelectedId(rider.id)}
+                className={`cursor-pointer pt-0 group rounded-2xl overflow-hidden border-2 transition-all duration-300 ${
+                  selectedId === rider.id
+                    ? "border-rust shadow-[0_0_30px_rgba(141,54,59,0.6)] scale-105"
+                    : "border-white/20 hover:border-rust/60 hover:shadow-lg"
+                }`}
+              >
+                {/* Rider Image */}
+                <div className="relative w-full h-56 overflow-hidden">
+                  <Image
+                    src={rider.img}
+                    alt={rider.name}
+                    fill
+                    className="object-cover group-hover:scale-110 transition-transform duration-500"
+                    sizes="(max-width: 768px) 100vw, 50vw"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent" />
 
-              {/* Rider Info */}
-              <CardContent className="p-4 text-center bg-black/70 flex flex-col gap-1">
-                <p className="font-semibold text-white text-lg">{rider.name}</p>
-                <p className="text-sm text-rust font-semibold">{rider.discipline}</p>
-                <p className="text-xs text-gray-300">{rider.desc}</p>
-              </CardContent>
-            </Card>
-          </motion.div>
-        ))}
+                  {/* Discipline Badge */}
+                  <span className="absolute top-3 left-3 bg-rust/90 text-white text-xs font-medium px-3 py-1 rounded-full shadow-md">
+                    {rider.discipline}
+                  </span>
+                </div>
+
+                {/* Rider Info */}
+                <CardContent className="p-4 text-center flex flex-col gap-2">
+                  <p className="font-semibold text-white text-lg">
+                    {rider.name}
+                  </p>
+                  <p className="text-xs text-gray-300 leading-snug">
+                    {rider.desc}
+                  </p>
+                </CardContent>
+              </Card>
+            </motion.div>
+          ))
+        ) : (
+          <p className="text-gray-400 italic text-center col-span-3">
+            No riders available at the moment.
+          </p>
+        )}
       </div>
 
       {/* Navigation Buttons */}
@@ -115,20 +131,20 @@ export default function ChooseRider({ onNext, onBack }: ChooseRiderProps) {
         <Button
           variant="outline"
           onClick={onBack}
-          className="border-white/40 text-white cursor-pointer w-full md:w-auto"
+          className="border-white/40 rounded-full text-white cursor-pointer w-full md:w-auto"
         >
           Back
         </Button>
         <Button
           onClick={handleNext}
           disabled={selectedId === null}
-          className={`py-3 px-6 font-semibold w-full md:w-auto cursor-pointer transition-colors duration-300 ${
+          className={`py-3 px-6 font-semibold rounded-full w-full md:w-auto transition-transform duration-300 ${
             selectedId
-              ? "bg-rust hover:bg-rust text-white"
+              ? "bg-gradient-to-r from-rust to-rust/80 hover:scale-110 hover:shadow-2xl transition-transform cursor-pointer text-white"
               : "bg-gray-700 text-gray-400 cursor-not-allowed"
           }`}
         >
-          Next
+          Next <MoveRight/>
         </Button>
       </div>
     </motion.div>

@@ -1,33 +1,32 @@
 "use client";
 
-import { useState, useEffect, useRef } from "react";
-import { motion } from "framer-motion";
+import { useState, useEffect } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Calendar } from "@/components/ui/calendar";
-import { MapPin, Search, ChevronRight } from "lucide-react";
+import { MapPin, Search, Check, MoveRight } from "lucide-react";
 import { Store } from "@/types";
 import { stores } from "@/utils/data";
+import { ScrollArea } from "@/components/ui/scroll-area";
 
 interface ChooseStoreProps {
-  onNext: (store: { name: string; date: string }) => void;
+  onNext: (store: { store: Store; date: string }) => void;
   onBack: () => void;
 }
 
 export default function ChooseStore({ onNext, onBack }: ChooseStoreProps) {
   const [search, setSearch] = useState("");
-  const [filteredStores, setFilteredStores] = useState<Store[]>([]);
+  const [filteredStores, setFilteredStores] = useState<Store[]>(stores);
   const [selectedStore, setSelectedStore] = useState<Store | null>(null);
   const [date, setDate] = useState<Date | undefined>(undefined);
-  const debounceRef = useRef<NodeJS.Timeout | null>(null);
 
+  // Debounced search
   useEffect(() => {
-    if (debounceRef.current) clearTimeout(debounceRef.current);
-    debounceRef.current = setTimeout(() => {
+    const handler = setTimeout(() => {
       const input = search.trim().toLowerCase();
       if (!input) {
-        setFilteredStores([]);
-        setSelectedStore(null);
+        setFilteredStores(stores);
         return;
       }
       const matches = stores.filter(
@@ -39,7 +38,8 @@ export default function ChooseStore({ onNext, onBack }: ChooseStoreProps) {
       );
       setFilteredStores(matches);
       setSelectedStore(null);
-    }, 250);
+    }, 300);
+    return () => clearTimeout(handler);
   }, [search]);
 
   const useCurrentLocation = () => {
@@ -66,7 +66,7 @@ export default function ChooseStore({ onNext, onBack }: ChooseStoreProps) {
 
   const handleNext = () => {
     if (!selectedStore || !date) return;
-    onNext({ name: selectedStore.name, date: date.toDateString() });
+    onNext({ store: selectedStore, date: date.toDateString() });
   };
 
   return (
@@ -80,13 +80,13 @@ export default function ChooseStore({ onNext, onBack }: ChooseStoreProps) {
         Choose Your Store
       </h2>
 
-      <div className="flex flex-col md:flex-row gap-6 w-full">
-        {/* Left: Search + Stores */}
+      <div className="flex flex-col md:flex-row gap-8 w-full">
+        {/* Left: Search + Store List */}
         <div className="w-full md:w-1/2 flex flex-col gap-4">
           <div className="flex gap-2">
             <div className="relative flex-1">
               <Input
-                placeholder="Enter city, state, store name..."
+                placeholder="Search by city, state, or store name..."
                 className="bg-white/10 text-white pl-10 focus:ring-rust focus:border-rust placeholder:text-white/60"
                 value={search}
                 onChange={(e) => setSearch(e.target.value)}
@@ -102,31 +102,48 @@ export default function ChooseStore({ onNext, onBack }: ChooseStoreProps) {
             </Button>
           </div>
 
-          {filteredStores.length > 0 && (
-            <div className="space-y-2 mt-2 max-h-[400px] overflow-y-auto">
-              {filteredStores.map((store) => (
-                <div
-                  key={store.id}
-                  onClick={() => setSelectedStore(store)}
-                  className={`flex justify-between items-center p-3 rounded-lg cursor-pointer transition-colors border-2 ${
-                    selectedStore?.id === store.id
-                      ? "border-rust bg-rust/20"
-                      : "border-white/20 hover:bg-white/10"
-                  }`}
-                >
-                  <div>
-                    <p className="font-semibold text-white">{store.name}</p>
-                    <p className="text-white/70 text-sm">
-                      {store.address}, {store.city}, {store.state}
-                    </p>
-                  </div>
-                  {selectedStore?.id === store.id && (
-                    <ChevronRight className="w-5 h-5 text-rust" />
-                  )}
-                </div>
-              ))}
+          {/* Store List */}
+          <ScrollArea className="h-[400px] w-full pr-1">
+            <div className="space-y-3">
+              <AnimatePresence>
+                {filteredStores.length > 0 ? (
+                  filteredStores.map((store, i) => (
+                    <motion.div
+                      key={store.id}
+                      initial={i === 0 ? false : { opacity: 0, y: 20 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      exit={{ opacity: 0, y: 20 }}
+                      transition={{ delay: i === 0 ? 0 : i * 0.05 }}
+                      onClick={() => setSelectedStore(store)}
+                      className={`flex justify-between items-center p-4 rounded-xl cursor-pointer border-2 transition-all ${
+                        selectedStore?.id === store.id
+                          ? "border-rust bg-rust/20 shadow-lg"
+                          : "border-white/20 hover:bg-white/10"
+                      }`}
+                    >
+                      <div>
+                        <p className="font-semibold text-white">{store.name}</p>
+                        <p className="text-white/70 text-sm">
+                          {store.address}, {store.city}, {store.state}
+                        </p>
+                      </div>
+                      {selectedStore?.id === store.id && (
+                        <Check className="w-6 h-6 text-rust" />
+                      )}
+                    </motion.div>
+                  ))
+                ) : (
+                  <motion.p
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    className="text-white/60 italic mt-4"
+                  >
+                    No stores found for “{search}”
+                  </motion.p>
+                )}
+              </AnimatePresence>
             </div>
-          )}
+          </ScrollArea>
         </div>
 
         {/* Right: Calendar */}
@@ -138,6 +155,7 @@ export default function ChooseStore({ onNext, onBack }: ChooseStoreProps) {
             mode="single"
             selected={date}
             onSelect={setDate}
+            disabled={(day) => day < new Date()}
             className="rounded-xl border border-rust bg-white/5 text-white shadow-md p-2"
           />
         </div>
@@ -148,20 +166,20 @@ export default function ChooseStore({ onNext, onBack }: ChooseStoreProps) {
         <Button
           variant="outline"
           onClick={onBack}
-          className="border-white/40 text-white w-full cursor-pointer md:w-auto"
+          className="border-white/40 text-white w-full cursor-pointer rounded-full md:w-auto"
         >
           Back
         </Button>
         <Button
           onClick={handleNext}
           disabled={!selectedStore || !date}
-          className={`py-3 px-6 font-semibold w-full md:w-auto transition-colors duration-300 ${
+          className={`py-3 px-6 font-semibold w-full rounded-full md:w-auto transition-colors duration-300 ${
             selectedStore && date
-              ? "bg-rust hover:bg-rust cursor-pointer text-white"
+              ? "bg-gradient-to-r from-rust to-rust/80 hover:scale-110 hover:shadow-2xl transition-transform cursor-pointer text-white"
               : "bg-gray-700 text-gray-400 cursor-not-allowed"
           }`}
         >
-          Next
+          Next <MoveRight />
         </Button>
       </div>
     </motion.div>

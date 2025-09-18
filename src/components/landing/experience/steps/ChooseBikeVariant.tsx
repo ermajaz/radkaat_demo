@@ -5,6 +5,7 @@ import { motion, Variants } from "framer-motion";
 import Image from "next/image";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
+import { MoveRight } from "lucide-react";
 
 interface Bike {
   id: number;
@@ -33,116 +34,148 @@ export default function ChooseBikeVariant({ onNext }: ChooseBikeVariantProps) {
   const [wheelSize, setWheelSize] = useState("");
   const [frameSize, setFrameSize] = useState("");
 
+  const isNextEnabled = selectedBike && wheelSize && frameSize;
+
   const optionVariants: Variants = {
-    hidden: { opacity: 0, y: 20 },
+    hidden: { opacity: 0, y: 30 },
     visible: {
       opacity: 1,
       y: 0,
-      transition: { type: "spring", stiffness: 300, damping: 20 },
+      transition: { type: "spring", stiffness: 200, damping: 20 },
     },
   };
 
-  const isNextEnabled = selectedBike && wheelSize && frameSize;
-
   return (
-    <div className="flex flex-col items-center mt-5 gap-8 w-full">
-      <h2 className="text-3xl font-bold text-white text-center">
-        Choose Your Bike & Variant
-      </h2>
+    <div className="flex flex-col items-center gap-10 w-full">
+      {/* Title */}
+      <motion.h2
+        initial={{ opacity: 0, y: -20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.6 }}
+        className="text-3xl md:text-4xl font-extrabold text-center text-white tracking-wide"
+      >
+        🚴 Choose Your Bike <span className="text-rust">& Variant</span>
+      </motion.h2>
 
-      {/* Bikes */}
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-6 w-full max-w-4xl">
+      {/* Bikes Grid */}
+      <motion.div
+        initial="hidden"
+        animate="visible"
+        className="grid grid-cols-1 md:grid-cols-3 gap-6 w-full max-w-5xl"
+      >
         {bikes.map((bike, i) => (
           <motion.div
             key={bike.id}
-            initial={{ opacity: 0, y: 40 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: i * 0.2, type: "spring", stiffness: 120 }}
+            variants={optionVariants}
+            transition={{ delay: i * 0.15 }}
           >
             <Card
               onClick={() => setSelectedBike(bike)}
-              className={`cursor-pointer transform transition-all duration-300 p-0 overflow-hidden rounded-xl border-2 ${
+              className={`cursor-pointer transform transition-all duration-300 overflow-hidden rounded-2xl border-2 relative group ${
                 selectedBike?.id === bike.id
-                  ? "border-rust scale-105 shadow-2xl"
+                  ? "border-rust shadow-[0_0_30px_rgba(141,54,59,0.6)] scale-105"
                   : "border-white/10 hover:scale-105 hover:shadow-lg"
               }`}
             >
-              <CardContent className="p-4 flex flex-col items-center">
-                <Image
-                  src={bike.img}
-                  alt={bike.name}
-                  width={200}
-                  height={150}
-                  className="rounded-lg w-auto h-auto"
-                />
-                <p className="mt-2 font-semibold text-white">{bike.name}</p>
+              <CardContent className="p-6 flex flex-col items-center">
+                <motion.div
+                  whileHover={{ scale: 1.05, rotate: 1 }}
+                  className="relative"
+                >
+                  <Image
+                    src={bike.img}
+                    alt={bike.name}
+                    width={220}
+                    height={150}
+                    className="rounded-lg drop-shadow-xl"
+                  />
+                </motion.div>
+                <p className="mt-3 font-semibold text-white text-lg group-hover:text-rust transition-colors">
+                  {bike.name}
+                </p>
               </CardContent>
             </Card>
           </motion.div>
         ))}
-      </div>
+      </motion.div>
 
-      {/* Show Variant Selection only if a bike is selected */}
+      {/* Variant Selection */}
       {selectedBike && (
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 w-full max-w-4xl mt-6">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
+          className="grid grid-cols-1 md:grid-cols-2 gap-10 w-full max-w-5xl mt-10"
+        >
           {/* Wheel Size */}
           <div>
-            <p className="mb-4 text-white/80 font-medium">Select Wheel Size</p>
-            <div className="grid grid-cols-3 gap-4">
+            <p className="mb-4 text-white/80 font-medium tracking-wide">
+              Select <span className="text-rust">Wheel Size</span>
+            </p>
+            <div className="flex gap-4">
               {wheelOptions.map((wheel) => (
-                <motion.div
+                <motion.button
                   key={wheel}
-                  variants={optionVariants}
-                  whileHover={{ scale: 1.05, boxShadow: "0 8px 20px rgba(141, 54, 59, 0.4)" }}
-                  whileTap={{ scale: 0.95 }}
+                  whileHover={{ scale: 1.08 }}
+                  whileTap={{ scale: 0.92 }}
                   onClick={() => setWheelSize(wheel)}
-                  className={`cursor-pointer rounded-lg p-4 text-center font-semibold transition-colors 
-                    ${wheelSize === wheel ? "bg-rust text-white shadow-lg" : "bg-white/10 text-white"}`}
+                  className={`px-5 py-3 rounded-full font-semibold transition-all text-sm md:text-base 
+                    ${
+                      wheelSize === wheel
+                        ? "bg-rust text-white shadow-lg shadow-rust/40"
+                        : "bg-white/10 text-white hover:bg-white/20"
+                    }`}
                 >
                   {wheel}
-                </motion.div>
+                </motion.button>
               ))}
             </div>
           </div>
 
           {/* Frame Size */}
           <div>
-            <p className="mb-4 text-white/80 font-medium">Select Frame Size</p>
-            <div className="grid grid-cols-3 gap-4">
+            <p className="mb-4 text-white/80 font-medium tracking-wide">
+              Select <span className="text-rust">Frame Size</span>
+            </p>
+            <div className="flex gap-4">
               {frameOptions.map((frame) => (
-                <motion.div
+                <motion.button
                   key={frame}
-                  variants={optionVariants}
-                  whileHover={{ scale: 1.05, boxShadow: "0 8px 20px rgba(141, 54, 59, 0.4)" }}
-                  whileTap={{ scale: 0.95 }}
+                  whileHover={{ scale: 1.08 }}
+                  whileTap={{ scale: 0.92 }}
                   onClick={() => setFrameSize(frame)}
-                  className={`cursor-pointer rounded-lg p-4 text-center font-semibold transition-colors 
-                    ${frameSize === frame ? "bg-rust text-white shadow-lg" : "bg-white/10 text-white"}`}
+                  className={`px-5 py-3 rounded-full font-semibold transition-all text-sm md:text-base 
+                    ${
+                      frameSize === frame
+                        ? "bg-rust text-white shadow-lg shadow-rust/40"
+                        : "bg-white/10 text-white hover:bg-white/20"
+                    }`}
                 >
                   {frame}
-                </motion.div>
+                </motion.button>
               ))}
             </div>
           </div>
-        </div>
-      )}
-
-      {/* Next Button */}
-      {selectedBike && (
-        <motion.div className="w-full max-w-4xl mt-6 flex justify-end">
-          <Button
-            onClick={() => selectedBike && onNext({ bike: selectedBike, variant: { wheelSize, frameSize } })}
-            disabled={!isNextEnabled}
-            className={`py-3 px-6 font-semibold text-white cursor-pointer transition-transform duration-300 ${
-              isNextEnabled
-                ? "bg-rust hover:bg-rust hover:scale-105 hover:shadow-2xl"
-                : "bg-white/10 cursor-not-allowed"
-            }`}
-          >
-            Next
-          </Button>
         </motion.div>
       )}
+
+      {/* Navigation */}
+      <div className="w-full flex justify-end gap-4">
+        <Button
+          onClick={() =>
+            selectedBike &&
+            onNext({ bike: selectedBike, variant: { wheelSize, frameSize } })
+          }
+          disabled={!isNextEnabled}
+          className={`py-3 px-6 font-semibold w-full rounded-full md:w-auto transition-colors duration-300 ${
+            isNextEnabled
+              ? "bg-gradient-to-r from-rust to-rust/80 hover:scale-110 hover:shadow-2xl transition-transform cursor-pointer text-white"
+              : "bg-gray-700 text-gray-400 cursor-not-allowed"
+          }`}
+        >
+          Next <MoveRight />
+        </Button>
+      </div>
     </div>
   );
 }
