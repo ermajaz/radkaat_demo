@@ -1,5 +1,5 @@
 "use client";
-import { motion } from "motion/react";
+import { easeInOut, motion } from "motion/react";
 import React from "react";
 
 export const LoaderOne = () => {
@@ -9,7 +9,7 @@ export const LoaderOne = () => {
       repeat: Infinity,
       repeatType: "loop" as const,
       delay: x * 0.2,
-      ease: "easeInOut",
+      ease: easeInOut, // ✅ use the imported easing function
     };
   };
   return (
@@ -51,11 +51,11 @@ export const LoaderOne = () => {
 export const LoaderTwo = () => {
   const transition = (x: number) => {
     return {
-      duration: 2,
+      duration: 1,
       repeat: Infinity,
       repeatType: "loop" as const,
       delay: x * 0.2,
-      ease: "easeInOut",
+      ease: easeInOut, // ✅ use the imported easing function
     };
   };
   return (
@@ -129,21 +129,19 @@ export const LoaderFour = ({ text = "Loading..." }: { text?: string }) => {
     <div className="relative font-bold text-black [perspective:1000px] dark:text-white">
       <motion.span
         animate={{
-          skew: [0, -40, 0],
+          rotate: [0, -10, 0], // instead of skew
           scaleX: [1, 2, 1],
         }}
         transition={{
-          duration: 0.05,
+          duration: 0.5,
           repeat: Infinity,
           repeatType: "reverse",
-          repeatDelay: 2,
           ease: "linear",
-          times: [0, 0.2, 0.5, 0.8, 1],
         }}
-        className="relative z-20 inline-block"
       >
         {text}
       </motion.span>
+
       <motion.span
         className="absolute inset-0 text-[#00e571]/50 blur-[0.5px] dark:text-[#00e571]"
         animate={{
