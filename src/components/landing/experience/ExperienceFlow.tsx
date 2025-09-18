@@ -155,7 +155,7 @@ export default function ExperienceFlow() {
               >
                 <p className="text-white font-semibold mb-1">Variant</p>
                 <p className="text-white/70 text-sm">
-                  Wheel: {selection.variant.wheelSize}"
+                  Wheel: {selection.variant.wheelSize}&quot;
                 </p>
                 <p className="text-white/70 text-sm">
                   Frame: {selection.variant.frameSize}
