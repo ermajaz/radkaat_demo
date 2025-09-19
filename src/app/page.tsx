@@ -4,7 +4,8 @@ import BikeComparison from "@/components/landing/bikeComparison/BikeComparison";
 import BikesShowcase from "@/components/landing/bikeSection/BikesShowcase";
 import FlagSection from "@/components/landing/flag/FlagSection";
 import HeroSection from "@/components/landing/hero/HeroSection";
-import OurProducts from "@/components/landing/ourProduct/OurProducts";
+import GridProduct from "@/components/landing/ourProduct/GridProduct";
+// import OurProducts from "@/components/landing/ourProduct/OurProducts";
 import StoriesSection from "@/components/landing/storySection/StoriesSection";
 import TestRideSection from "@/components/landing/testRide/TestRideSection";
 
@@ -17,9 +18,10 @@ export default function Home() {
       <BikeComparison />
       <TestRideSection />
       <FlagSection />
-      <OurProducts />
-      <AdventureSection />
+      {/* <OurProducts /> */}
+      <GridProduct/>
       <StoriesSection />
+      <AdventureSection />
       <Footer />
     </main>
   );

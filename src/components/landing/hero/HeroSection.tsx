@@ -81,10 +81,10 @@ export default function HeroSection() {
 
           {/* Content */}
           <div className="relative z-10 flex flex-col items-center text-center px-4 -mt-20 md:-mt-48">
-            <h1 className="hero-line first text-5xl md:text-7xl font-extrabold uppercase text-sandstorm tracking-widest mb-6 text-stroke-yellow">
+            <h1 className="hero-line first text-5xl md:text-7xl font-extrabold uppercase text-sandstorm !tracking-[15px] mb-6 text-stroke-yellow">
               {splitText("#NOTHINGBUTNOW", "text-[sandstorm] text-stroke")}
             </h1>
-            <h2 className="hero-line second text-xl md:text-3xl font-medium text-white/90 text-stroke-yellow-second">
+            <h2 className="hero-line second text-xl md:text-3xl font-medium text-white/90 text-stroke-yellow-second !tracking-[5px]">
               Every trail. Every peak. Every now.
             </h2>
           </div>

@@ -5,6 +5,7 @@ import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { bikesData } from "@/utils/data";
 import Showcase from "./Showcase";
+import BikesStrip from "./BikesStrip";
 // import BikesStrip from "./BikesStrip";
 
 gsap.registerPlugin(ScrollTrigger);
@@ -35,11 +36,10 @@ export default function BikesShowcase() {
 
   return (
     <div ref={containerRef} className="relative">
-      {/* Bikes Strip carousel at top */}
-      {/* <BikesStrip /> */}
 
       {/* Sticky showcase below the strip */}
       <div className="sticky w-full top-0 h-screen">
+        <BikesStrip />
         <Showcase bike={bikesData[currentIndex]} bikes={bikesData}/>
       </div>
 

@@ -17,7 +17,6 @@ const StickySidebarLayout: React.FC<StickySidebarLayoutProps> = ({
 }) => {
   const sectionRefs = useRef<(HTMLDivElement | null)[]>([]);
   const [activeIdx, setActiveIdx] = useState(0);
-  const [mounted, setMounted] = useState(false); // track first mount
 
   // 🔹 Scrollspy effect
   useEffect(() => {
@@ -29,27 +28,36 @@ const StickySidebarLayout: React.FC<StickySidebarLayoutProps> = ({
       });
       setActiveIdx(offsets.indexOf(Math.min(...offsets)));
     };
+
     window.addEventListener("scroll", handleScroll, { passive: true });
     handleScroll();
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, [sections.length]);
 
-  // 🔹 Track mount
-  useEffect(() => {
-    setMounted(true);
+    return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  // 🔹 Scroll to first section only on tab switch, NOT on initial mount
-  useEffect(() => {
-    if (!mounted) return; // skip on first render
-    if (sectionRefs.current[0]) {
-      sectionRefs.current[0].scrollIntoView({
-        behavior: "smooth",
-        block: "start",
-      });
-    }
-    setActiveIdx(0); // reset highlight
-  }, [sections, mounted]);
+  // 🔹 Reset to first section when tab/sections change
+  // useEffect(() => {
+  //   if (sections.length > 0 && sectionRefs.current[0]) {
+  //     const el = sectionRefs.current[0];
+  //     const yOffset = -120;
+  //     const y = el.getBoundingClientRect().top + window.scrollY + yOffset;
+
+  //     window.scrollTo({ top: y, behavior: "smooth" });
+  //     setActiveIdx(0);
+  //   }
+  // }, [sections]);
+
+  // 🔹 Scroll to clicked section
+  const handleClick = (idx: number) => {
+    const el = sectionRefs.current[idx];
+    if (!el) return;
+
+    const yOffset = -120;
+    const y = el.getBoundingClientRect().top + window.scrollY + yOffset;
+
+    window.scrollTo({ top: y, behavior: "smooth" });
+    setActiveIdx(idx);
+  };
 
   return (
     <div className="flex flex-col md:flex-row mx-auto w-full min-h-[60vh] gap-8">
@@ -64,12 +72,7 @@ const StickySidebarLayout: React.FC<StickySidebarLayoutProps> = ({
                 : "text-gray-400 hover:text-white"
             }`}
             whileHover={{ x: 4 }}
-            onClick={() =>
-              sectionRefs.current[idx]?.scrollIntoView({
-                behavior: "smooth",
-                block: "start",
-              })
-            }
+            onClick={() => handleClick(idx)}
           >
             {section.title}
           </motion.h2>

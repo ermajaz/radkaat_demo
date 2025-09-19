@@ -59,7 +59,7 @@ html {
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: #0a0a0a;
+    --background: #0f0708;
     --foreground: #ededed;
   }
 }
@@ -152,8 +152,8 @@ h6 {
    Hover Color Utilities
    ================================ */
 
-.bg-superblack:hover {
-  background-color: #1a1a1a; /* slightly lighter than super black */
+/* .bg-superblack:hover {
+  background-color: #1a1a1a; 
   transition: background-color 0.3s ease;
 }
 .text-superblack:hover {
@@ -162,25 +162,25 @@ h6 {
 }
 
 .bg-navy:hover {
-  background-color: #002080; /* slightly lighter navy */
+  background-color: #002080; 
   transition: background-color 0.3s ease;
 }
 .text-navy:hover {
   color: #002080;
   transition: color 0.3s ease;
-}
+} */
 
-.bg-petrol:hover {
-  background-color: #005a80; /* lighter petrol */
+/* .bg-petrol:hover {
+  background-color: #005a80; 
   transition: background-color 0.3s ease;
-}
-.text-petrol:hover {
+} */
+/* .text-petrol:hover {
   color: #005a80;
   transition: color 0.3s ease;
 }
 
 .bg-airforce:hover {
-  background-color: #7aa6e0; /* lighter airforce blue */
+  background-color: #7aa6e0;
   transition: background-color 0.3s ease;
 }
 .text-airforce:hover {
@@ -189,7 +189,7 @@ h6 {
 }
 
 .bg-army:hover {
-  background-color: #6b7a20; /* slightly brighter army green */
+  background-color: #6b7a20; 
   transition: background-color 0.3s ease;
 }
 .text-army:hover {
@@ -198,7 +198,7 @@ h6 {
 }
 
 .bg-sandstorm:hover {
-  background-color: #d6c28c; /* lighter sandstorm */
+  background-color: #d6c28c; 
   transition: background-color 0.3s ease;
 }
 .text-sandstorm:hover {
@@ -207,16 +207,16 @@ h6 {
 }
 
 .bg-sandstorm-1:hover {
-  background-color: #d1aa00; /* brighter sandstorm-1 */
+  background-color: #d1aa00; 
   transition: background-color 0.3s ease;
 }
 .text-sandstorm-1:hover {
   color: #d1aa00;
   transition: color 0.3s ease;
-}
+} */
 
-.bg-rust:hover {
-  background-color: #a73d40; /* brighter rust */
+/* .bg-rust:hover {
+  background-color: #a73d40; 
   transition: background-color 0.3s ease;
 }
 .text-rust:hover {
@@ -225,13 +225,13 @@ h6 {
 }
 
 .bg-stone:hover {
-  background-color: #f0f0f0; /* lighter stone */
+  background-color: #f0f0f0;
   transition: background-color 0.3s ease;
 }
 .text-stone:hover {
   color: #f0f0f0;
   transition: color 0.3s ease;
-}
+} */
 
 
 .text-stroke-yellow {

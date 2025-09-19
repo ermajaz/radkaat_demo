@@ -11,6 +11,7 @@ export interface Bikee {
   id: string;
   name: string;
   logo: string;
+  logoBlack: string;
   img: string;
   stats: BikeStats;
   description: string[];

@@ -9,7 +9,7 @@ interface HoverButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement>
 
 export const HoverButton: React.FC<HoverButtonProps> = ({ children, ...props }) => {
   return (
-    <button className={styles.button} {...props}>
+    <button className={`${styles.button} font-bold tracking-[1px]`} {...props}>
       {children}
     </button>
   );

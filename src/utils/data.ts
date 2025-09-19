@@ -74,6 +74,7 @@ export const bikes: Bikee[] = [
     id: "serow",
     name: "SEROW",
     logo: "/images/serow-logo.png",
+    logoBlack: "/images/serow-black.png",
     img: "/images/bike-front.png",
     stats: {
       suspension: 9,
@@ -94,6 +95,7 @@ export const bikes: Bikee[] = [
     id: "saola",
     name: "SAOLA",
     logo: "/images/saola-logo.png",
+    logoBlack: "/images/saola-black.png",
     img: "/images/bike-front.png",
     stats: {
       suspension: 7,
@@ -114,6 +116,7 @@ export const bikes: Bikee[] = [
     id: "takin",
     name: "TAKIN",
     logo: "/images/takin-logo.png",
+    logoBlack: "/images/takin-black.png",
     img: "/images/bike-front.png",
     stats: {
       suspension: 8,
@@ -234,14 +237,14 @@ export const ourProducts = [
     id: "apparel",
     title: "APPAREL",
     image:
-      "https://images.pexels.com/photos/19431224/pexels-photo-19431224/free-photo-of-a-man-riding-a-bike-on-a-road.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500",
+      "/images/apparel.png",
     link: "/apparel",
   },
   {
     id: "accessories",
     title: "ACCESSORIES",
     image:
-      "https://png.pngtree.com/thumb_back/fh260/background/20240401/pngtree-bicycle-spare-parts-and-accessories-image_15648878.jpg",
+      "/images/accessories.jpg",
     link: "/accessories",
   },
 ];
@@ -276,7 +279,7 @@ export const bikesData = [
     image: "/images/bike-curve-view.png",
     features: [
       { label: "Internal Cable", value: "Routing" },
-      { label: "Mechanical Suspension", value: "Suspension Fork" },
+      { label: "Mechanical Suspension", value: "Fork" },
       { label: "Mechanical Disc", value: "Brake" },
     ],
     specs: {
@@ -314,7 +317,7 @@ export const bikesData = [
     image: "/images/bike-curve-view.png",
     features: [
       { label: "Internal Cable", value: "Routing" },
-      { label: "Mechanical Suspension", value: "Suspension Fork" },
+      { label: "Mechanical Suspension", value: "Fork" },
       { label: "Mechanical Disc", value: "Brake" },
     ],
     specs: {

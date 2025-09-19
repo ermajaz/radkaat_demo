@@ -4,6 +4,7 @@ import React, { useRef, useEffect } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { HoverButton } from "../testRide/desktop/AnimatedButton";
+import { MoveRight } from "lucide-react";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -14,9 +15,9 @@ export default function AdventureSection() {
     <section
       ref={ref}
       className="relative w-full min-h-screen flex items-center justify-center overflow-hidden bg-fixed bg-center bg-cover"
-      style={{ backgroundImage: "url('/images/parallex.jpeg')" }}
+      style={{ backgroundImage: "url('/images/contour.png')" }}
     >
-      <div className="absolute inset-0 bg-black/30 z-5 pointer-events-none"></div>
+      {/* <div className="absolute inset-0 bg-black/30 z-5 pointer-events-none"></div> */}
       <div className="relative z-20 flex flex-col items-center justify-center text-center px-4 py-8">
         <h1 className="text-4xl md:text-6xl font-bold text-white mb-4 drop-shadow-lg">
           Bicycle Adventures, Tours, Maps
@@ -26,7 +27,7 @@ export default function AdventureSection() {
           curated by experts.
         </p>
         <h2>
-          <HoverButton>Explore Adventures</HoverButton>
+          <HoverButton className="rounded-none bg-white text-black py-3 px-6 !tracking-[3px] flex items-center gap-2 cursor-pointer">Explore Adventures <MoveRight/></HoverButton>
         </h2>
       </div>
     </section>

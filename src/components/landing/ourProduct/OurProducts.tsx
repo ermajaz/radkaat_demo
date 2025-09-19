@@ -42,8 +42,22 @@ export default function OurProducts() {
   }, []);
 
   return (
-    <section className="relative w-full min-h-screen flex items-center justify-center bg-gradient-to-b from-[#0a0a0a] via-[#111] to-black text-white px-6 md:px-8 py-10">
+    <section className="relative w-full min-h-screen flex items-center justify-center text-white px-6 md:px-8 py-10">
       <div className="w-full mx-auto flex flex-col items-center">
+        <h2 className="w-full text-start text-xl md:text-4xl font-display font-bold uppercase tracking-wider mb-14">
+          <span className="relative inline-block leading-tight">
+            Our Products
+            <span
+              aria-hidden
+              className="absolute left-0 -bottom-2 h-[10px] w-full bg-no-repeat bg-[length:100%_100%]"
+              style={{
+                backgroundImage:
+                  "url('https://yeticycles.com/textHighlights/word-underline.png')",
+                filter: "brightness(0) invert(1)",
+              }}
+            />
+          </span>
+        </h2>
         {/* Cards Grid */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-0 w-full place-items-center">
           {ourProducts.map((product, index) => (
@@ -59,7 +73,7 @@ export default function OurProducts() {
                 <DirectionAwareHover
                   imageUrl={product.image}
                   title={product.title}
-                  className="h-[32rem] md:h-[36rem] w-[24rem] md:w-[26rem]"
+                  className="h-[32rem] md:h-[26rem] w-[24rem] md:w-[26rem]"
                 />
               </div>
             </div>

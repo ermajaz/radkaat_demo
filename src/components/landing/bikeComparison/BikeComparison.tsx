@@ -93,18 +93,18 @@ export default function BikeComparison() {
 
   return (
     <section ref={sectionRef} className="relative w-full">
-      <div className="w-full h-screen flex flex-col lg:flex-row items-center justify-between gap-10 p-6">
+      <div className="w-full h-screen flex flex-col lg:flex-row items-center justify-between gap-10">
         {/* Left: Bike Cards */}
-        <div className="flex flex-col lg:flex-row w-[55%] h-[80vh] justify-between relative overflow-hidden">
+        <div className="flex flex-col lg:flex-row w-[60%] h-full justify-between relative overflow-hidden">
           {bikes.map((bike, index) => (
             <div
               key={bike.id}
-              className="cursor-pointer flex flex-col items-center relative w-full"
+              className="w-1/3 cursor-pointer flex flex-col items-center relative"
               onClick={() => selectIndex(index)}
             >
               <BikeCard bike={bike} isActive={selectedBike.id === bike.id} />
-              {index < bikes.length - 1 && (
-                <div className="absolute right-0 h-full border-r border-gray-400" />
+              {index <= bikes.length - 1 && (
+                <div className="absolute right-0 h-full border-r border-gray-500" />
               )}
             </div>
           ))}

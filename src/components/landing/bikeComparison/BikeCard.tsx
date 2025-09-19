@@ -4,7 +4,7 @@ import clsx from "clsx";
 import { Bikee } from "@/types";
 
 interface Props {
-  bike: Bikee;
+  bike: Bikee & { logoBlack?: string }; // logoBlack optional: supply a ready-made black logo for best results
   isActive: boolean;
 }
 
@@ -17,34 +17,46 @@ export default function BikeCard({ bike, isActive }: Props) {
 
   const activeBg = bikeBgColors[bike.name] || "bg-transparent";
 
+  // Prefer a pre-made black logo if available. If not, we'll apply CSS filter to force black.
+  const logoSrc = isActive && bike.logoBlack ? bike.logoBlack : bike.logo;
+
   return (
     <div
       className={clsx(
         "flex flex-col px-5 gap-6 items-center justify-center w-full h-full",
-        isActive ? `${activeBg} ` : "bg-transparent"
+        isActive ? activeBg : "bg-transparent"
       )}
     >
       {/* Bike Image */}
-      <div className="relative w-full h-[40%]">
-        <Image
-          src={bike.img}
-          alt={bike.name}
-          fill
-          className="object-contain"
-        />
+      <div className="relative w-full h-[33%]">
+        <Image src={bike.img} alt={bike.name} fill className="object-contain" />
       </div>
 
       {/* Bike Logo & Name */}
-      <div className="flex items-center gap-3 mt-4">
-        <div className="relative w-20 h-20 flex-shrink-0">
+      <div className="absolute left-1/2 top-[85%] -translate-y-[85%] -translate-x-1/2 -ml-2 flex items-center gap-3">
+        <div className="relative w-16 h-16 flex-shrink-0">
           <Image
-            src={bike.logo}
+            src={logoSrc}
             alt={`${bike.name} logo`}
             fill
-            className="object-contain"
+            // Important: include `filter` so brightness/invert utilities actually work.
+            // If we are using the fallback filter (no `logoBlack`), then apply `filter brightness-0`.
+            className={clsx(
+              "object-contain",
+              
+            )}
           />
         </div>
-        <h2 className="text-4xl font-bold">{bike.name}</h2>
+
+        <h2
+          className={clsx(
+            "text-[38px] font-bold !tracking-[5px] transition-all duration-300",
+            // selected card name should be black; otherwise keep default (adjust as needed)
+            isActive ? "text-black" : "text-white"
+          )}
+        >
+          {bike.name}
+        </h2>
       </div>
     </div>
   );

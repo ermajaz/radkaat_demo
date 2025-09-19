@@ -19,9 +19,9 @@ interface RadarEntry {
 
 export default function RadarChartComp({ allBikes, selectedBike }: Props) {
   const bikeColors: Record<string, string> = {
-    SEROW: "#ddb61a",
-    SAOLA: "red",
-    TAKIN: "green",
+    SEROW: "var(--color-sandstorm)",
+    SAOLA: "var(--color-rust)",
+    TAKIN: "var(--color-army)",
   };
 
   const stats = [

@@ -3,8 +3,6 @@
 import { useRef } from "react";
 import RadarChartComp from "./RadarChart";
 import { Bikee } from "@/types";
-import Image from "next/image";
-import { Check, ArrowUp, ArrowDown } from "lucide-react";
 
 interface Props {
   bike: Bikee; // selected bike
@@ -24,12 +22,11 @@ export default function BikeDetails({ bike, allBikes }: Props) {
     { label: "Comfort", value: bike.stats.comfort },
   ];
 
-  const getBadge = (value: number) => {
-    if (value >= 8)
-      return <span className="text-green-400 font-semibold">Excellent</span>;
-    if (value >= 6)
-      return <span className="text-yellow-400 font-semibold">Good</span>;
-    return <span className="text-red-400 font-semibold">Average</span>;
+  // return plain label (no color classes) — container controls color
+  const getBadgeLabel = (value: number) => {
+    if (value >= 8) return "Excellent";
+    if (value >= 6) return "Good";
+    return "Average";
   };
 
   return (
@@ -41,53 +38,48 @@ export default function BikeDetails({ bike, allBikes }: Props) {
 
       {/* Advanced Info Card */}
       <div
-  ref={textRef}
-  className="flex flex-col items-start gap-4 w-full max-w-[400px] py-5 px-6 rounded-2xl bg-gradient-to-br from-white/10 to-white/5 backdrop-blur-xl border border-white/20 shadow-lg hover:shadow-xl transition-all duration-300"
->
-  {/* Right: Stats & Highlights */}
-  <div className="flex-1 flex flex-col gap-3 w-full">
-    {statData.map((stat, idx) => (
-      <div
-        key={idx}
-        className="flex items-center justify-between gap-3 w-full"
+        ref={textRef}
+        className="flex flex-col items-start gap-4 w-full max-w-[400px] py-5 px-6 rounded-2xl bg-gradient-to-br from-white/10 to-white/5 backdrop-blur-xl border border-white/20 shadow-lg hover:shadow-xl transition-all duration-300"
       >
-        {/* Stat Name */}
-        <span className="text-white font-medium w-28 text-sm">
-          {stat.label}
-        </span>
+        {/* Right: Stats & Highlights */}
+        <div className="flex-1 flex flex-col gap-3 w-full">
+          {statData.map((stat, idx) => (
+            <div key={idx} className="flex items-center justify-between gap-3 w-full">
+              {/* Stat Name */}
+              <span className="text-white font-medium w-28 text-sm">
+                {stat.label}
+              </span>
 
-        {/* Progress Bar */}
-        <div className="flex-1 h-1.5 rounded-full bg-gray-700/30 overflow-hidden relative">
-          <div
-            className={`h-full rounded-full transition-all duration-500 ${
-              stat.value >= 8
-                ? "bg-gradient-to-r from-green-400 to-emerald-500"
-                : stat.value >= 6
-                ? "bg-gradient-to-r from-yellow-400 to-amber-500"
-                : "bg-gradient-to-r from-red-400 to-pink-500"
-            }`}
-            style={{ width: `${(stat.value / 10) * 100}%` }}
-          ></div>
-        </div>
+              {/* Progress Bar */}
+              <div className="flex-1 h-1.5 rounded-full bg-gray-700/30 overflow-hidden relative">
+                <div
+                  className={`h-full rounded-full transition-all duration-500 ${
+                    stat.value >= 8
+                      ? "bg-gradient-to-r from-army/80 to-army"
+                      : stat.value >= 6
+                      ? "bg-gradient-to-r from-sandstorm/80 to-sandstorm"
+                      : "bg-gradient-to-r from-rust/80 to-rust"
+                  }`}
+                  style={{ width: `${(stat.value / 10) * 100}%` }}
+                ></div>
+              </div>
 
-        {/* Value Badge */}
-        <div
-          className={`px-2 py-0.5 rounded-md text-xs font-semibold text-white shadow-sm ${
-            stat.value >= 8
-              ? "bg-green-500/30 border border-green-400/50"
-              : stat.value >= 6
-              ? "bg-yellow-500/30 border border-yellow-400/50"
-              : "bg-red-500/30 border border-red-400/50"
-          }`}
-        >
-          {getBadge(stat.value)}
+              {/* Value Badge */}
+              <div
+                className={`px-2 py-0.5 rounded-md text-xs font-semibold text-white shadow-sm ${
+                  stat.value >= 8
+                    ? "bg-army border border-army"
+                    : stat.value >= 6
+                    ? "bg-sandstorm border border-sandstorm"
+                    : "bg-rust border border-rust"
+                }`}
+              >
+                {getBadgeLabel(stat.value)}
+              </div>
+            </div>
+          ))}
         </div>
       </div>
-    ))}
-
-  </div>
-</div>
-
     </div>
   );
 }

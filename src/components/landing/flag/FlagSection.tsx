@@ -66,8 +66,6 @@ export default function FlagSection() {
           priority
           className="object-cover"
         />
-        {/* Gradient overlay on right edge */}
-        <div className="absolute inset-y-0 right-0 w-[30%] bg-gradient-to-r from-transparent to-[#0a2440]" />
 
         <Image
           src="/gif/flag.gif"
@@ -78,44 +76,47 @@ export default function FlagSection() {
         />
       </div>
 
+      {/* Overlay above separation */}
+      <div className="absolute inset-y-0 left-1/2 -translate-x-[100%] w-[20vw] bg-gradient-to-r from-transparent to-petrol z-20 pointer-events-none" />
+
       {/* Right: Text on solid background */}
-      <div className="w-full lg:w-1/2 h-1/2 lg:h-full flex items-center px-6 sm:px-12 lg:px-16 bg-[#0a2440]">
+      {/* Right: Text on solid background */}
+      <div className="relative w-full lg:w-1/2 h-1/2 lg:h-full flex items-center px-6 sm:px-12 lg:px-16 bg-petrol hover:bg-petrol z-10 transition-none">
         <div className="flex flex-col items-start text-left max-w-2xl space-y-6">
           {/* Heading */}
-          <h1 className="heading text-4xl sm:text-5xl lg:text-6xl font-extrabold text-white leading-tight uppercase">
-            <span className="bg-gradient-to-r from-sandstorm via-sandstorm to-sandstorm-1 bg-clip-text text-transparent">
-              THE FLAG
-            </span>{" "}
-            WE CARRY
+          <h1
+            className="heading text-4xl sm:text-5xl lg:text-5xl font-extrabold text-white leading-tight uppercase tracking-wide"
+            style={{
+              textShadow: "2px 2px 6px rgba(0,0,0,0.6)", // heading shadow
+            }}
+          >
+            THE FLAG WE CARRY
           </h1>
 
           {/* Subheading */}
-          <h2 className="subheading text-xl sm:text-2xl lg:text-xl text-sandstorm font-medium tracking-wide">
+          <span className="subheading text-lg sm:text-xl lg:text-2xl text-sandstorm font-semibold tracking-wide">
             They call us different; we call it making a difference.
-          </h2>
-
-          {/* Divider / Accent Line */}
-          <div className="w-20 h-1 bg-sandstorm rounded-full"></div>
+          </span>
 
           {/* Body */}
-          <p className="body-text text-white/80 text-lg lg:text-xl leading-relaxed">
+          <div className="body-text text-white/90 text-base sm:text-lg lg:text-xl leading-relaxed space-y-4">
             The Himalayas are our playground, the world our canvas, Mother
             Nature our compass.
             <br />
             We don’t stand still. We move forward. We move together.
             <br />
-            We are{" "}
-            <span className="text-rust font-semibold">Radkaat</span> – a
-            fierce community of homegrown athletes, adventurers, seekers, and
-            believers from the Indian Himalaya, crafting world-class products
-            and experiences.
+            We are <span className="text-sandstorm font-semibold">
+              Radkaat
+            </span>{" "}
+            – a fierce community of homegrown athletes, adventurers, seekers,
+            and believers from the Indian Himalaya, crafting world-class
+            products and experiences.
             <br />
-            <span className="text-white font-bold">
-              Every trail. Every peak. Every now.
-            </span>
-          </p>
+            <p className="text-white font-bold text-2xl mt-3">
+              Every trail. Every peak. Every now
+            </p>
+          </div>
         </div>
-        <div className="absolute -right-40 -bottom-40 w-[400px] h-[400px] bg-sandstorm/20 blur-3xl rounded-full" />
       </div>
     </section>
   );
