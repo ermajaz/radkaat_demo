@@ -58,3 +58,21 @@ export interface Store {
   lng: number;
   address: string;
 }
+
+
+export interface Destination {
+  id: string;
+  title: string;
+  subtitle: string;
+  description: string;
+  leftImage: string;
+  mapImage: string;
+  contourImage: string;
+  source: {lat:number; lng:number};
+  destination:{lat:number; lng:number};
+  reviews: {
+    category: string;
+    rating: number;
+    max: number;
+  }[];
+}

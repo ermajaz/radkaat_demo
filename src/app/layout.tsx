@@ -4,6 +4,7 @@ import SmoothScroll from "@/components/common/SmoothScroll";
 import "slick-carousel/slick/slick.css"; 
 import "slick-carousel/slick/slick-theme.css";
 
+
 import { Red_Hat_Display } from "@next/font/google";
 import Header from "@/components/common/Header";
 import { LoaderOne } from "@/components/common/LoaderOne";

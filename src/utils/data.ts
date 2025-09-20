@@ -73,7 +73,7 @@ export const bikes: Bikee[] = [
   {
     id: "serow",
     name: "SEROW",
-    logo: "/images/serow-logo.png",
+    logo: "/images/serow-white.png",
     logoBlack: "/images/serow-black.png",
     img: "/images/bike-front.png",
     stats: {
@@ -94,7 +94,7 @@ export const bikes: Bikee[] = [
   {
     id: "saola",
     name: "SAOLA",
-    logo: "/images/saola-logo.png",
+    logo: "/images/saola-white.png",
     logoBlack: "/images/saola-black.png",
     img: "/images/bike-front.png",
     stats: {
@@ -115,7 +115,7 @@ export const bikes: Bikee[] = [
   {
     id: "takin",
     name: "TAKIN",
-    logo: "/images/takin-logo.png",
+    logo: "/images/takin-white.png",
     logoBlack: "/images/takin-black.png",
     img: "/images/bike-front.png",
     stats: {
@@ -139,7 +139,7 @@ export const overlayBikes: OverlayBike[] = [
   {
     id: "serow",
     name: "Serow-1",
-    logo: "/images/serow-logo.png",
+    logo: "/images/serow-white.png",
     image: "/images/serow-big-img.png",
     details: {
       size: "M, L, XL",
@@ -168,7 +168,7 @@ export const overlayBikes: OverlayBike[] = [
   {
     id: "saola",
     name: "Saola-2",
-    logo: "/images/saola-logo.png",
+    logo: "/images/saola-white.png",
     image: "/images/saola-big-img.png",
     details: {
       size: "S, M, L",
@@ -197,7 +197,7 @@ export const overlayBikes: OverlayBike[] = [
   {
     id: "takin",
     name: "Takin-3",
-    logo: "/images/takin-logo.png",
+    logo: "/images/takin-white.png",
     image: "/images/takin-big-img.png",
     details: {
       size: "L, XL",
@@ -275,7 +275,7 @@ export const steps = [
 export const bikesData = [
   {
     name: "Serow",
-    logo: "/images/serow-logo.png",
+    logo: "/images/serow-white.png",
     image: "/images/bike-curve-view.png",
     features: [
       { label: "Internal Cable", value: "Routing" },
@@ -294,7 +294,7 @@ export const bikesData = [
   },
   {
     name: "Saola",
-    logo: "/images/saola-logo.png",
+    logo: "/images/saola-white.png",
     image: "/images/bike-curve-view.png",
     features: [
       { label: "Hydraulic Brake", value: "Disc Brake" },
@@ -313,7 +313,7 @@ export const bikesData = [
   },
   {
     name: "Takin",
-    logo: "/images/takin-logo.png",
+    logo: "/images/takin-white.png",
     image: "/images/bike-curve-view.png",
     features: [
       { label: "Internal Cable", value: "Routing" },
