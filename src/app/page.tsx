@@ -8,11 +8,13 @@ import GridProduct from "@/components/landing/ourProduct/GridProduct";
 import StoriesSection from "@/components/landing/storySection/StoriesSection";
 import TestRideSection from "@/components/landing/testRide/TestRideSection";
 import ParallaxWrapper from "@/components/common/ParallaxWrapper";
+// import UpdatedHero from "@/components/landing/hero/UpdatedHero";
 
 export default function Home() {
   return (
     <main>
       <HeroSection />
+      {/* <UpdatedHero/> */}
       <BikesShowcase />
       <BikeComparison />
 
