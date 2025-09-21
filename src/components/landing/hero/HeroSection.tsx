@@ -23,7 +23,9 @@ export default function HeroSection() {
       const pinTarget = heroRef.current!.querySelector(".pin-wrapper");
 
       const totalSpans = firstLine.length;
-      const hideIndex = totalSpans - 2; // hide second line when last 2 letters remain
+
+      const staggerTime = 0.08; // must match stagger
+      const lastLetterTime = totalSpans * staggerTime; // when last letter finishes
 
       const tl = gsap.timeline({
         scrollTrigger: {
@@ -36,19 +38,19 @@ export default function HeroSection() {
         },
       });
 
-      // Animate first line letters
+      // Animate first line letters upward
       tl.to(firstLine, {
         y: -100,
         opacity: 0,
-        stagger: 0.08,
+        stagger: staggerTime,
         ease: "power3.inOut",
       });
 
-      // Hide second line when only last 2 letters are left
+      // Hide second line right after the first line finishes
       tl.to(
         secondLine,
         { opacity: 0, ease: "power3.inOut" },
-        hideIndex * 0.08 // match stagger timing
+        lastLetterTime - staggerTime // aligns with last letter finishing
       );
     }, heroRef);
 
@@ -66,7 +68,7 @@ export default function HeroSection() {
     ));
 
   return (
-    <div ref={heroRef} className="relative w-full overflow-hidden">
+    <div ref={heroRef} className="relative w-full overflow-hidden z-10">
       <div className="pin-wrapper">
         <div className="relative h-screen flex items-center justify-center">
           {/* Background Image */}
@@ -82,11 +84,17 @@ export default function HeroSection() {
           {/* Content */}
           <div className="relative z-10 flex flex-col items-center text-center px-4 -mt-20 md:-mt-48">
             <h1 className="hero-line first text-5xl md:text-7xl font-extrabold uppercase text-sandstorm !tracking-[15px] mb-6 text-stroke-yellow">
-              {splitText("#NOTHINGBUTNOW", "text-[sandstorm] text-stroke")}
+              {splitText("NOTHING BUT NOW", "text-[sandstorm] text-stroke")}
             </h1>
-            <h2 className="hero-line second text-xl md:text-3xl font-medium text-white/90 text-stroke-yellow-second !tracking-[5px]">
+            <span
+              className="hero-line second text-xl md:text-3xl !font-extrabold text-white/90 text-stroke-yellow-second !tracking-[2.5px]"
+              style={{
+                textShadow:
+                  "0px 3px 5px rgba(0,0,0,0.5), 0px 0px 4px rgba(0,0,0,0.5)",
+              }}
+            >
               Every trail. Every peak. Every now.
-            </h2>
+            </span>
           </div>
         </div>
       </div>

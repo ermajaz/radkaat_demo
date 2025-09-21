@@ -5,7 +5,7 @@ import { destinations } from "@/utils/destinations";
 
 const DestinationSection = () => {
   return (
-    <div className="w-full">
+    <div className="w-full space-y-16"> {/* ⬅️ gap between cards */}
       {destinations.map((destination) => (
         <DestinationCard key={destination.id} destination={destination} />
       ))}

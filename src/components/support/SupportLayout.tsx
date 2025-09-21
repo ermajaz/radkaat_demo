@@ -10,7 +10,7 @@ const SupportLayout = ({
   children: React.ReactNode;
   image: string;
 }) => (
-  <div className="w-full min-h-screen bg-black flex flex-col">
+  <div className="w-full min-h-screen bg-superblack flex flex-col">
     <SupportParallax image={image} />
     <SupportNav />
     <div className="w-full max-w-7xl mx-auto py-8 px-4 md:px-8 pb-[30vh] flex-1">

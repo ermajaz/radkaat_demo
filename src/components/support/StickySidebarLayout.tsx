@@ -69,7 +69,7 @@ const StickySidebarLayout: React.FC<StickySidebarLayoutProps> = ({
             className={`text-base md:text-xl !tracking-[3px] font-bold cursor-pointer transition-all ${
               activeIdx === idx
                 ? "text-rust scale-105"
-                : "text-gray-400 hover:text-white"
+                : "text-gray hover:text-white"
             }`}
             whileHover={{ x: 4 }}
             onClick={() => handleClick(idx)}

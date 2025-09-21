@@ -40,7 +40,7 @@ export default function Footer() {
         </div>
 
         {/* Right Content */}
-        <div className="flex flex-col justify-between px-6 sm:pl-10 md:px-14 lg:px-16 sm:pt-10 pb-6">
+        <div className="flex flex-col justify-between px-6 sm:pl-10 md:px-14 lg:px-16 sm:pt-10 pb-6 z-10 bg-superblack">
           {/* Logo + Heading */}
           <div className="flex flex-row items-center gap-2 mb-10">
             <div className="relative w-16 h-16 sm:w-24 sm:h-24 shrink-0">
@@ -161,7 +161,7 @@ export default function Footer() {
           </div>
 
           {/* Bottom Bar */}
-          <div className="flex flex-col sm:flex-row sm:items-center justify-between text-xs text-gray-400 border-t border-gray-800 pt-4 gap-2">
+          <div className="flex flex-col sm:flex-row sm:items-center justify-between text-xs text-gray border-t border-gray-800 pt-4 gap-2">
             <p className="text-center sm:text-left">
               © Radkaat {new Date().getFullYear()} All Rights Reserved
             </p>

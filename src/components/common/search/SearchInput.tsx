@@ -15,7 +15,7 @@ export default function SearchInput() {
       {/* Search Icon (left) */}
       <Search
         size={28}
-        className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400"
+        className="absolute left-4 top-1/2 -translate-y-1/2 text-gray"
       />
 
       {/* Input */}
@@ -31,7 +31,7 @@ export default function SearchInput() {
       {query && (
         <button
           onClick={handleClear}
-          className="absolute right-4 top-1/2 -translate-y-1/2 cursor-pointer text-gray-400 tracking-wider hover:text-white transition"
+          className="absolute right-4 top-1/2 -translate-y-1/2 cursor-pointer text-gray tracking-wider hover:text-white transition"
         >
           clear
         </button>

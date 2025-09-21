@@ -12,7 +12,7 @@ export default function BikeOverlayDetails({ details }: Props) {
   return (
     <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
       {/* Semi-transparent overlay behind table */}
-      <div className="absolute inset-0 bg-black/30 rounded-xl pointer-events-auto" />
+      <div className="absolute inset-0 bg-superblack/30 rounded-xl pointer-events-auto" />
 
       {/* Table container */}
       <div className="relative w-96 pointer-events-auto">

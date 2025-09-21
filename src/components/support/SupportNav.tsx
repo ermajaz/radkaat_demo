@@ -18,7 +18,7 @@ const SupportNav = () => {
   const [open, setOpen] = useState(false);
 
   return (
-    <nav className="sticky top-0 z-60 w-full bg-black/60 backdrop-blur-md border-b border-gray-800">
+    <nav className="sticky top-0 z-60 w-full bg-superblack/60 backdrop-blur-md border-b border-gray-800">
       <div className="max-w-7xl mx-auto flex justify-between items-center p-4">
         <h2 className="text-white font-bold text-lg">Support</h2>
         <button
@@ -55,7 +55,7 @@ const SupportNav = () => {
         <motion.div
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
-          className="md:hidden bg-black/90 p-4 flex flex-col gap-4"
+          className="md:hidden bg-superblack/90 p-4 flex flex-col gap-4"
         >
           {routes.map((route) => (
             <Link

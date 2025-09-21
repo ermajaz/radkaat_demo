@@ -1,6 +1,8 @@
-"use client"
+"use client";
 import { useEffect } from "react";
 import Lenis from "@studio-freight/lenis";
+
+export const lenisRef = { current: null as Lenis | null };
 
 const SmoothScroll = () => {
   useEffect(() => {
@@ -13,6 +15,8 @@ const SmoothScroll = () => {
       syncTouchLerp: 0.1,
     });
 
+    lenisRef.current = lenis;
+
     function raf(time: number) {
       lenis.raf(time);
       requestAnimationFrame(raf);
@@ -21,6 +25,7 @@ const SmoothScroll = () => {
 
     return () => {
       lenis.destroy();
+      lenisRef.current = null;
     };
   }, []);
 

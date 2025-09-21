@@ -33,21 +33,21 @@ export function RoadmapStepDesktop({
   }, [active]);
 
   return (
-    <div className="flex flex-col items-center text-center w-56 relative z-10">
+    <div className="flex flex-col items-center text-center w-56 gap-2 relative z-10">
       {/* Icon */}
       <div
-        className={`w-12 h-12 flex items-center justify-center rounded-full border-2 z-10 transition ${
+        className={`w-[70px] h-[70px] p-[10px] flex items-center justify-center rounded-full border-2 z-10 transition ${
           active
             ? "bg-sandstorm border-sandstorm text-white"
             : "border-white/40 text-white/40"
         }`}
       >
-        {step.icon && <step.icon className="w-[26px] h-[26px]" />}
+        {step.icon && <step.icon className="w-[32px] h-[32px]" />}
       </div>
 
       {/* Connector line (only if not last step) */}
       {!isLast && (
-        <div className="absolute top-6 left-[calc(50%+24px)] w-[calc(100%)] h-[2px] bg-gray-600 -z-10 overflow-hidden">
+        <div className="absolute top-[35px] left-[calc(50%+14px)] w-[calc(100%)] h-[2px] bg-gray-600 -z-10 overflow-hidden">
           {/* animated progress line */}
           <div
             id={`progress-line-${index}`}
@@ -58,16 +58,16 @@ export function RoadmapStepDesktop({
 
       {/* Text */}
       <div ref={textRef}>
-        <h4
-          className={`mt-4 text-sm font-bold ${
-            active ? "text-white" : "text-white/40"
+        <span
+          className={`mt-4 text-[19px] font-bold whitespace-nowrap ${
+            active ? "text-stone" : "text-stone/40"
           }`}
         >
           {step.title}
-        </h4>
+        </span>
         <p
-          className={`text-xs mt-1 ${
-            active ? "text-gray-300" : "text-white/40"
+          className={`text-[16px] mt-1 font-medium ${
+            active ? "text-stone" : "text-stone/40"
           }`}
         >
           {step.desc}

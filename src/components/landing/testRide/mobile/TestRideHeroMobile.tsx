@@ -37,7 +37,7 @@ export default function TestRideHeroMobile() {
   return (
     <div
       ref={heroRef}
-      className="relative w-full min-h-screen h-screen bg-black text-white overflow-hidden"
+      className="relative w-full min-h-screen h-screen bg-superblack text-white overflow-hidden"
     >
       {/* Background */}
       <div className="absolute inset-0 z-0">
@@ -48,7 +48,7 @@ export default function TestRideHeroMobile() {
           priority
           className="object-cover object-[25%_center]"
         />
-        <div className="absolute inset-0 bg-black/20" />
+        <div className="absolute inset-0 bg-superblack/20" />
       </div>
 
       {/* Header */}

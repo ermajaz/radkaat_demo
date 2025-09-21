@@ -63,7 +63,7 @@ export default function TestRideRoadmapMobile({
   const { x, y } = getIndicatorPos();
 
   return (
-    <div className="w-full h-[450px] relative overflow-visible bg-black/20">
+    <div className="w-full h-[450px] relative overflow-visible bg-superblack/20">
       <svg className="absolute inset-0 w-full h-full">
         <defs>
           <pattern

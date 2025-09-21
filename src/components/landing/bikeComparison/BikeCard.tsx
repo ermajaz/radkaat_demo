@@ -28,13 +28,13 @@ export default function BikeCard({ bike, isActive }: Props) {
       )}
     >
       {/* Bike Image */}
-      <div className="relative w-full h-[33%]">
+      <div className="relative w-[180px] h-[250px]">
         <Image src={bike.img} alt={bike.name} fill className="object-contain" />
       </div>
 
       {/* Bike Logo & Name */}
-      <div className="absolute left-1/2 top-[85%] -translate-y-[85%] -translate-x-1/2 -ml-2 flex items-center gap-3">
-        <div className="relative w-16 h-16 flex-shrink-0">
+      <div className="absolute left-1/2 bottom-[15%] -translate-x-1/2 -ml-2 flex items-center gap-3">
+        <div className="relative w-[48px] h-[68px] flex-shrink-0">
           <Image
             src={logoSrc}
             alt={`${bike.name} logo`}
@@ -50,7 +50,7 @@ export default function BikeCard({ bike, isActive }: Props) {
 
         <h2
           className={clsx(
-            "text-[38px] font-bold !tracking-[5px] transition-all duration-300",
+            "text-[42px] font-bold transition-all duration-300",
             // selected card name should be black; otherwise keep default (adjust as needed)
             isActive ? "text-black" : "text-white"
           )}

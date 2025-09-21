@@ -24,7 +24,7 @@ export default function BikeText({ bike }: Props) {
       <ul className="text-lg space-y-4">
         {bike.features.map((f, idx) => (
           <li key={idx} className="flex flex-col">
-            <span className="text-gray-400">{f.label}</span>
+            <span className="text-gray">{f.label}</span>
             <span className="font-semibold">{f.value}</span>
           </li>
         ))}

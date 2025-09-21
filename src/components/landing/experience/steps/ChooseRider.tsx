@@ -120,7 +120,7 @@ export default function ChooseRider({ onNext, onBack }: ChooseRiderProps) {
             </motion.div>
           ))
         ) : (
-          <p className="text-gray-400 italic text-center col-span-3">
+          <p className="text-gray italic text-center col-span-3">
             No riders available at the moment.
           </p>
         )}
@@ -141,7 +141,7 @@ export default function ChooseRider({ onNext, onBack }: ChooseRiderProps) {
           className={`py-3 px-6 font-semibold rounded-full w-full md:w-auto transition-transform duration-300 ${
             selectedId
               ? "bg-gradient-to-r from-rust to-rust/80 hover:scale-110 hover:shadow-2xl transition-transform cursor-pointer text-white"
-              : "bg-gray-700 text-gray-400 cursor-not-allowed"
+              : "bg-gray-700 text-gray cursor-not-allowed"
           }`}
         >
           Next <MoveRight/>

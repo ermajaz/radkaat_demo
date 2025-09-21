@@ -55,37 +55,29 @@ export default function FlagSection() {
   return (
     <section
       ref={sectionRef}
-      className="relative w-full h-screen flex flex-col lg:flex-row overflow-hidden"
+      className="relative w-full h-[522px] flex flex-col lg:flex-row overflow-hidden"
     >
       {/* Left: Flag image only (half width) */}
-      <div className="relative w-full lg:w-1/2 h-1/2 lg:h-full flag-img overflow-hidden">
-        <Image
-          src="/images/flag-bg.png"
-          alt="The Flag We Carry"
-          fill
-          priority
-          className="object-cover"
-        />
-
-        <Image
-          src="/gif/flag.gif"
-          alt="Flag Animation"
-          width={600}
-          height={600}
-          className="absolute inset-0 w-full h-full object-contain pointer-events-none translate-y-16"
-        />
+      <div className="relative w-full lg:w-[46%] h-1/2 lg:h-full flag-img overflow-hidden">
+        <div className="absolute inset-0 w-full h-full overflow-hidden">
+          <Image
+            src="/videos/flag1.gif"
+            alt="Flag"
+            fill
+            className="w-full h-full object-cover object-[88%_12%]"
+          />
+        </div>
       </div>
 
       {/* Overlay above separation */}
-      <div className="absolute inset-y-0 left-1/2 -translate-x-[100%] w-[20vw] bg-gradient-to-r from-transparent to-petrol z-20 pointer-events-none" />
+      <div className="absolute inset-y-0 left-[46%] -translate-x-[100%] w-[18vw] bg-gradient-to-r from-transparent via-petrol/60 to-petrol z-20 pointer-events-none" />
 
       {/* Right: Text on solid background */}
-      {/* Right: Text on solid background */}
-      <div className="relative w-full lg:w-1/2 h-1/2 lg:h-full flex items-center px-6 sm:px-12 lg:px-16 bg-petrol hover:bg-petrol z-10 transition-none">
-        <div className="flex flex-col items-start text-left max-w-2xl space-y-6">
+      <div className="relative w-full lg:w-[54%] h-1/2 lg:h-full flex items-center bg-petrol hover:bg-petrol z-10 transition-none">
+        <div className="flex flex-col items-start text-left max-w-2xl space-y-[5px]">
           {/* Heading */}
           <h1
-            className="heading text-4xl sm:text-5xl lg:text-5xl font-extrabold text-white leading-tight uppercase tracking-wide"
+            className="heading text-4xl sm:text-5xl lg:text-[48px] font-bold text-white leading-tight uppercase tracking-wide"
             style={{
               textShadow: "2px 2px 6px rgba(0,0,0,0.6)", // heading shadow
             }}
@@ -94,12 +86,12 @@ export default function FlagSection() {
           </h1>
 
           {/* Subheading */}
-          <span className="subheading text-lg sm:text-xl lg:text-2xl text-sandstorm font-semibold tracking-wide">
+          <span className="subheading text-lg sm:text-xl lg:text-[24px] mt-2 text-sandstorm font-semibold tracking-wide">
             They call us different; we call it making a difference.
           </span>
 
           {/* Body */}
-          <div className="body-text text-white/90 text-base sm:text-lg lg:text-xl leading-relaxed space-y-4">
+          <div className="body-text text-white text-base sm:text-lg lg:text-[20px] leading-[36px] font-semibold space-y-4">
             The Himalayas are our playground, the world our canvas, Mother
             Nature our compass.
             <br />
@@ -112,7 +104,7 @@ export default function FlagSection() {
             and believers from the Indian Himalaya, crafting world-class
             products and experiences.
             <br />
-            <p className="text-white font-bold text-2xl mt-3">
+            <p className="text-stone font-bold tracking-[1px] leading-[46px] text-[32px] mt-3">
               Every trail. Every peak. Every now
             </p>
           </div>

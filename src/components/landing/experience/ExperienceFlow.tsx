@@ -61,7 +61,7 @@ export default function ExperienceFlow() {
       />
 
       {/* Header */}
-      <header className="h-20 fixed top-0 left-0 w-full bg-black/80 backdrop-blur-xl border-b border-white/10 z-50 px-6 md:px-10 flex items-center justify-between">
+      <header className="h-20 fixed top-0 left-0 w-full bg-superblack/80 backdrop-blur-xl border-b border-white/10 z-50 px-6 md:px-10 flex items-center justify-between">
         {/* Logo + Title */}
         <div className="flex items-center gap-3">
           <Link href="/" className="mr-4">
@@ -84,14 +84,14 @@ export default function ExperienceFlow() {
             <motion.span
               key={s}
               className={`${
-                i === stepIndex ? "text-rust font-semibold" : "text-gray-500"
+                i === stepIndex ? "text-rust font-semibold" : "text-gray"
               }`}
               animate={i === stepIndex ? { scale: 1.1 } : { scale: 1 }}
               transition={{ duration: 0.3 }}
             >
               {s}
               {i < steps.length - 1 && (
-                <span className="mx-2 text-gray-600">/</span>
+                <span className="mx-2 text-gray">/</span>
               )}
             </motion.span>
           ))}
@@ -133,7 +133,7 @@ export default function ExperienceFlow() {
                   height={180}
                   className="object-cover w-full h-40"
                 />
-                <div className="absolute bottom-0 left-0 w-full bg-black/60 p-3 flex justify-between items-center">
+                <div className="absolute bottom-0 left-0 w-full bg-superblack/60 p-3 flex justify-between items-center">
                   <p className="text-white font-semibold">
                     {selection.bike.name}
                   </p>
@@ -151,7 +151,7 @@ export default function ExperienceFlow() {
                 animate={{ opacity: 1, x: 0 }}
                 exit={{ opacity: 0, x: -20 }}
                 whileHover={{ scale: 1.02 }}
-                className="p-3 rounded-xl border-2 border-white/20 bg-black/30 shadow-md cursor-pointer"
+                className="p-3 rounded-xl border-2 border-white/20 bg-superblack/30 shadow-md cursor-pointer"
               >
                 <p className="text-white font-semibold mb-1">Variant</p>
                 <p className="text-white/70 text-sm">
@@ -172,7 +172,7 @@ export default function ExperienceFlow() {
                 animate={{ opacity: 1, x: 0 }}
                 exit={{ opacity: 0, x: -20 }}
                 whileHover={{ scale: 1.02 }}
-                className="p-3 rounded-xl border-2 border-white/20 bg-black/30 shadow-md cursor-pointer flex justify-between items-center"
+                className="p-3 rounded-xl border-2 border-white/20 bg-superblack/30 shadow-md cursor-pointer flex justify-between items-center"
               >
                 <div>
                   <p className="text-white font-semibold">Store</p>
@@ -196,7 +196,7 @@ export default function ExperienceFlow() {
                 animate={{ opacity: 1, x: 0 }}
                 exit={{ opacity: 0, x: -20 }}
                 whileHover={{ scale: 1.02 }}
-                className="flex items-center gap-3 p-3 border-2 border-white/20 rounded-xl bg-black/30 shadow-md cursor-pointer"
+                className="flex items-center gap-3 p-3 border-2 border-white/20 rounded-xl bg-superblack/30 shadow-md cursor-pointer"
               >
                 <Image
                   src={selection.rider.img}
@@ -224,7 +224,7 @@ export default function ExperienceFlow() {
                 animate={{ opacity: 1, x: 0 }}
                 exit={{ opacity: 0, x: -20 }}
                 whileHover={{ scale: 1.02 }}
-                className="p-3 rounded-xl border-2 border-white/20 bg-black/30 shadow-md cursor-pointer"
+                className="p-3 rounded-xl border-2 border-white/20 bg-superblack/30 shadow-md cursor-pointer"
               >
                 <p className="text-white font-semibold mb-1">Contact Info</p>
                 <p className="text-white/70 text-sm">

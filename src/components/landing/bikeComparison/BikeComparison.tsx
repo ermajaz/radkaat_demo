@@ -92,7 +92,7 @@ export default function BikeComparison() {
   }, []);
 
   return (
-    <section ref={sectionRef} className="relative w-full">
+    <section ref={sectionRef} className="relative w-full z-10 bg-superblack">
       <div className="w-full h-screen flex flex-col lg:flex-row items-center justify-between gap-10">
         {/* Left: Bike Cards */}
         <div className="flex flex-col lg:flex-row w-[60%] h-full justify-between relative overflow-hidden">

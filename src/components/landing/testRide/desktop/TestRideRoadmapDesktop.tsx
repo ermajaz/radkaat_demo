@@ -48,7 +48,7 @@ export function TestRideRoadmapDesktop() {
   return (
     <div
       ref={roadmapRef}
-      className="w-full absolute bottom-0 left-0 py-16 flex flex-wrap justify-center gap-12"
+      className="w-full pt-10 flex flex-wrap justify-center gap-12"
     >
       {steps.map((step, i) => (
         <RoadmapStepDesktop

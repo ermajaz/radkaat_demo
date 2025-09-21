@@ -39,7 +39,7 @@ export default function CardWide({ rec }: { rec: Recommendation }) {
                   className={`${
                     i < Math.round(rec.rating ?? 0)
                       ? "fill-yellow-400 text-yellow-400"
-                      : "text-gray-500"
+                      : "text-gray"
                   }`}
                 />
               ))}

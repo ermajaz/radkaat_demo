@@ -64,7 +64,7 @@ export default function ContactDetails({
   return (
     <motion.form
       onSubmit={handleSubmit(onSubmit)}
-      className="relative w-full max-w-lg p-10 rounded-3xl space-y-8 overflow-hidden bg-black/50"
+      className="relative w-full max-w-lg p-10 rounded-3xl space-y-8 overflow-hidden bg-superblack/50"
       initial="hidden"
       animate="visible"
       variants={containerVariants}
@@ -193,7 +193,7 @@ export default function ContactDetails({
           className={`w-full md:w-auto py-4 px-8 text-lg font-semibold rounded-full transition-all duration-300 ${
             termsChecked && !submitting
               ? "bg-gradient-to-r from-rust to-rust/80 hover:scale-110 hover:shadow-2xl cursor-pointer text-white"
-              : "bg-gray-700 text-gray-400 cursor-not-allowed"
+              : "bg-gray-700 text-gray cursor-not-allowed"
           }`}
         >
           {submitting ? "Booking..." : "Book Your Ride"}{" "}

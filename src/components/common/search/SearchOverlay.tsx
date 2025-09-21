@@ -35,7 +35,7 @@ export default function SearchOverlay({ onClose }: Props) {
   return (
     <div
       ref={overlayRef}
-      className="fixed bg-black top-0 left-0 w-full h-full z-50 flex flex-col text-white overflow-hidden"
+      className="fixed bg-superblack top-0 left-0 w-full h-full z-50 flex flex-col text-white overflow-hidden"
     >
       {/* Background splash */}
       <div className="absolute inset-0 -z-10">
@@ -51,7 +51,7 @@ export default function SearchOverlay({ onClose }: Props) {
         <div className="absolute inset-0 bg-gradient-to-r from-black via-black/80 to-transparent" />
 
         {/* Subtle dark glass for readability */}
-        <div className="absolute inset-0 bg-black/10" />
+        <div className="absolute inset-0 bg-superblack/10" />
       </div>
 
       {/* Header */}

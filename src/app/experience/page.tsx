@@ -5,7 +5,7 @@ import ExperienceFlow from "@/components/landing/experience/ExperienceFlow";
 
 export default function ExperiencePage() {
   return (
-    <div className="h-screen bg-black text-white flex items-center justify-center px-4 py-10">
+    <div className="h-screen bg-superblack text-white flex items-center justify-center px-4 py-10">
       <ExperienceFlow />
     </div>
   );

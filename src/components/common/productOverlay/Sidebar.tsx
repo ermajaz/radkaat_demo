@@ -25,7 +25,7 @@ export default function Sidebar({ bikes, selected, onSelect }: Props) {
   }, [selected]);
 
   return (
-    <div className="w-80 bg-black text-white flex flex-col items-start justify-center gap-16 px-8 h-screen relative">
+    <div className="w-80 bg-superblack text-white flex flex-col items-start justify-center gap-16 px-8 h-screen relative">
       {bikes.map((bike) => (
         <button
           key={bike.id}
@@ -34,7 +34,7 @@ export default function Sidebar({ bikes, selected, onSelect }: Props) {
             ${
               selected === bike.id
                 ? "text-yellow-400"
-                : "text-gray-400 hover:text-white"
+                : "text-gray hover:text-white"
             }
           `}
         >
@@ -70,7 +70,7 @@ export default function Sidebar({ bikes, selected, onSelect }: Props) {
           ${
             selected === "all"
               ? "text-yellow-400"
-              : "text-gray-400 hover:text-white"
+              : "text-gray hover:text-white"
           }
         `}
         onClick={() => onSelect({ id: "all", name: "All", logo: "" } as OverlayBike)}

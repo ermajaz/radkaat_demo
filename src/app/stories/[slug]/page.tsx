@@ -102,7 +102,7 @@ export default function StoryPage() {
         <HeroTout title={story.heroTitle} />
 
         {/* Content overlays start here */}
-        <div className="bg-black relative">
+        <div className="bg-superblack relative">
 
           {/* Intro text */}
           <WarrenTextBlock />

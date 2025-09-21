@@ -170,7 +170,7 @@ export default function ChooseBikeVariant({ onNext }: ChooseBikeVariantProps) {
           className={`py-3 px-6 font-semibold w-full rounded-full md:w-auto transition-colors duration-300 ${
             isNextEnabled
               ? "bg-gradient-to-r from-rust to-rust/80 hover:scale-110 hover:shadow-2xl transition-transform cursor-pointer text-white"
-              : "bg-gray-700 text-gray-400 cursor-not-allowed"
+              : "bg-gray-700 text-gray cursor-not-allowed"
           }`}
         >
           Next <MoveRight />

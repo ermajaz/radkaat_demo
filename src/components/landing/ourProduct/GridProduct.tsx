@@ -42,26 +42,11 @@ export default function GridProduct() {
   }, []);
 
   return (
-    <section className="relative w-full min-h-screen py-16 px-6 text-white">
+    <section className="relative w-full py-6 px-10 text-white">
       <div className="w-full mx-auto flex flex-col items-center">
-        {/* Heading */}
-        <h2 className="w-full text-start text-xl md:text-4xl font-display font-bold uppercase tracking-wider mb-14">
-          <span className="relative inline-block leading-tight">
-            Our Products
-            <span
-              aria-hidden
-              className="absolute left-0 -bottom-2 h-[10px] w-full bg-no-repeat bg-[length:100%_100%]"
-              style={{
-                backgroundImage:
-                  "url('https://yeticycles.com/textHighlights/word-underline.png')",
-                filter: "brightness(0) invert(1)",
-              }}
-            />
-          </span>
-        </h2>
 
         {/* Cards Grid */}
-        <div className="mt-10 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 w-full place-items-center">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 w-full place-items-center">
           {ourProducts.map((product, index) => (
             <div
               key={product.id}
@@ -71,7 +56,7 @@ export default function GridProduct() {
               className="relative group perspective"
             >
               {/* Card */}
-              <div className="relative overflow-hidden rounded-3xl shadow-2xl w-[22rem] h-[28rem] md:w-[28rem] md:h-[32rem] transform transition-transform duration-700 group-hover:scale-[1.07] group-hover:rotate-[-2deg]">
+              <div className="relative overflow-hidden shadow-2xl w-[22rem] h-[28rem] md:w-[28rem] md:h-[28rem] transform transition-transform duration-700 group-hover:scale-[1.01] group-hover:rotate-[-2deg]">
                 {/* Background Image */}
                 <Image
                   src={product.image}
@@ -94,7 +79,7 @@ export default function GridProduct() {
                 {/* CTA on Hover */}
                 <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-500 z-30">
                   <Link href={product.link}>
-                    <HoverButton>Explore {product.title}</HoverButton>
+                    <HoverButton className="font-semibold !tracking-[1px]">Explore {product.title}</HoverButton>
                   </Link>
                 </div>
               </div>

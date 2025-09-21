@@ -22,10 +22,11 @@ export default function BikesShowcase() {
     sections.forEach((section, i) => {
       ScrollTrigger.create({
         trigger: section,
-        start: "top center",
-        end: "bottom center",
+        start: "top top",
+        end: "bottom top",
         onEnter: () => setCurrentIndex(i),
         onEnterBack: () => setCurrentIndex(i),
+        toggleActions: "play reverse play reverse",
       });
     });
 
@@ -35,12 +36,15 @@ export default function BikesShowcase() {
   }, []);
 
   return (
-    <div ref={containerRef} className="relative">
-
+    <div ref={containerRef} className="relative z-10 bg-superblack">
       {/* Sticky showcase below the strip */}
       <div className="sticky w-full top-0 h-screen">
         <BikesStrip />
-        <Showcase bike={bikesData[currentIndex]} bikes={bikesData}/>
+        <Showcase
+          bike={bikesData[currentIndex]}
+          bikes={bikesData}
+          setCurrentIndex={setCurrentIndex}
+        />
       </div>
 
       {/* Fake sections to trigger scroll */}

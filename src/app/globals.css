@@ -23,9 +23,10 @@
   --color-airforce-blue: #5a90c6;
   --color-army-green: #516316;
   --color-sandstorm: #c6b783;
-  --color-sandstorm-1: #ba9f33;
+  --color-sandstorm-1: #605940;
   --color-rust: #8d363b;
   --color-stone: #e6e7e8;
+  --color-gray: #666666;
 
   /* Fonts */
   --font-headline: "Oswald Stencil", sans-serif;
@@ -50,6 +51,7 @@ html {
   --color-sandstorm-1: var(--color-sandstorm-1);
   --color-rust: var(--color-rust);
   --color-stone: var(--color-stone);
+  --color-gray: var(--color-gray);
 
   /* Typography */
   --font-sans: var(--font-body);
@@ -80,7 +82,7 @@ h4,
 h5,
 h6 {
   font-family: var(--font-headline);
-  letter-spacing: 0.08em;
+  letter-spacing: 1.5px;
   text-transform: uppercase;
 }
 
@@ -146,6 +148,13 @@ h6 {
 }
 .text-stone {
   color: var(--color-stone);
+}
+
+.bg-gray {
+  background-color: var(--color-gray);
+}
+.text-gray {
+  color: var(--color-gray);
 }
 
 /* ================================
@@ -288,4 +297,14 @@ h6 {
     black 90%,
     transparent
   );
+}
+
+
+/* Hide scrollbar for all browsers */
+.hide-scrollbar {
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+}
+.hide-scrollbar::-webkit-scrollbar {
+  display: none; /* Chrome, Safari, Opera */
 }

@@ -83,7 +83,7 @@ export const DirectionAwareHover = ({
         </motion.div>
 
         {/* dark overlay */}
-        <div className="absolute inset-0 hidden group-hover:block bg-black/30 z-20 transition-opacity duration-300" />
+        <div className="absolute inset-0 hidden group-hover:block bg-superblack/30 z-20 transition-opacity duration-300" />
 
         {/* always-visible title with underline */}
         <div className={cn("absolute bottom-4 left-4 z-30", childrenClassName)}>

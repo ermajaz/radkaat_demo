@@ -1,73 +1,35 @@
 import { Bikee, OverlayBike, Store } from "@/types";
-import { Calendar, Clock,Truck,Bike } from "lucide-react";
+import { Calendar, Clock, Truck, Bike } from "lucide-react";
 
 export const stories = [
   {
-    title: "Manali Tours",
+    title: "Manali Adventures",
+    date: "20 September 2025",
     excerpt:
       "We visited Warren on his home trails in Santa Cruz, California, and caught up with what he has been up to lately.",
-    img: "https://yeticycles-prod.zaneray.com/cms/images/aAj43fIqRLdaBheS_WarrenKniss_CrankCase_Web-6.jpg?auto=format,compress&rect=0,159,2048,1366&w=1280&h=854",
+    img: "/images/manali.jpg",
     link: "#",
     className: "absolute top-20 left-[8%] rotate-[-5deg]",
   },
   {
-    title: "Spiti Tours",
+    title: "Sipping Chai At Spiti",
+    date: "20 September 2025",
     excerpt:
       "Wilson has been bringing the International Yeti Gatherings to life for ten years through H+I Adventures, a tour outfit co-founded by Wilson in 2007.",
-    img: "https://yeticycles-prod.zaneray.com/cms/images/Z1IBYZbqstJ98Fqh_Jake-Gasaway_bike_craigburn-7.jpg?auto=format%2Ccompress&rect=2%2C0%2C4768%2C3181&w=1280&h=854",
+    img: "/images/sipping.jpg",
     link: "#",
     className: "absolute top-25 left-[25%] rotate-[-7deg]",
   },
   {
-    title: "Manali Tours",
+    title: "Kali's Abode, Faridkots Reverence",
+    date: "20 September 2025",
     excerpt:
       "Sarah shares her incredible experience from the trails of British Columbia.",
-    img: "https://yeticycles-prod.zaneray.com/cms/images/Z1IBYZbqstJ98Fqh_Jake-Gasaway_bike_craigburn-7.jpg?auto=format%2Ccompress&rect=2%2C0%2C4768%2C3181&w=1280&h=854",
+    img: "/images/kali.png",
     link: "#",
     className: "absolute top-5 left-[40%] rotate-[8deg]",
   },
-  {
-    title: "Shimla Tours",
-    excerpt:
-      "Follow the adrenaline-packed journey of our riders through the toughest enduro races.",
-    img: "https://yeticycles-prod.zaneray.com/cms/images/Zw7GAYF3NbkBXejN_20241009_Powers_RedbullRampage-Day3_1397.jpg?auto=format,compress&rect=0%2C0%2C2999%2C2001&w=1280&h=854",
-    link: "#",
-    className: "absolute top-15 right-[10%] rotate-[10deg]",
-  },
-  {
-    title: "Manali Tours",
-    excerpt:
-      "A behind-the-scenes look at what goes into creating the perfect trail machine.",
-    img: "https://yeticycles-prod.zaneray.com/cms/images/ZxGHOYF3NbkBXsYZ_rampage-24_2017.jpg?auto=format,compress&rect=0%2C0%2C2879%2C1921&w=1280&h=854",
-    link: "#",
-    className: "absolute top-20 left-[35%] rotate-[2deg]",
-  },
-  {
-    title: "Shimla Tours",
-    excerpt:
-      "An adventure of a lifetime: riding through the stunning landscapes of Patagonia.",
-    img: "https://yeticycles-prod.zaneray.com/cms/images/ZzI-m68jQArT0tOx_Riding_2021_05_04_Smartwool_salida_mtb_IF-7980.jpg?auto=format%2Ccompress&rect=1%2C0%2C2878%2C1920&w=1280&h=854",
-    link: "#",
-    className: "absolute top-25 right-[25%] rotate-[-7deg]",
-  },
-  {
-    title: "Manali Tours",
-    excerpt:
-      "From rigid frames to modern marvels – the journey of MTB technology.",
-    img: "https://yeticycles-prod.zaneray.com/cms/images/Zxf9PYF3NbkBX3vv_A94A2229.jpg?auto=format%2Ccompress&rect=1%2C0%2C2878%2C1920&w=1280&h=854",
-    link: "#",
-    className: "absolute top-8 left-[30%] rotate-[4deg]",
-  },
-  {
-    title: "Shimla Tours",
-    excerpt:
-      "Tom takes us on a deep dive into some of the most scenic trails across Europe.",
-    img: "https://yeticycles-prod.zaneray.com/cms/images/ZsYP8UaF0TcGJLbJ_SturdyDirtyRTR2024-133.jpg?auto=format%2Ccompress&rect=0%2C0%2C2047%2C1366&w=1280&h=854",
-    link: "#",
-    className: "absolute top-40 right-[20%] rotate-[6deg]",
-  },
 ];
-
 
 export const bikes: Bikee[] = [
   {
@@ -236,15 +198,13 @@ export const ourProducts = [
   {
     id: "apparel",
     title: "APPAREL",
-    image:
-      "/images/apparel.png",
+    image: "/images/apparel.png",
     link: "/apparel",
   },
   {
     id: "accessories",
     title: "ACCESSORIES",
-    image:
-      "/images/accessories.jpg",
+    image: "/images/accessories.jpg",
     link: "/accessories",
   },
 ];
@@ -306,7 +266,7 @@ export const bikesData = [
       suspension: "FOX Float, 130MM, Hydraulic Lockout",
       braking: "Shimano XT Hydraulic Disc Brakes – 180MM",
     },
-     colors: {
+    colors: {
       gradient: "#0046D7, #FFFFFF",
       cta: "#0046D7",
     },

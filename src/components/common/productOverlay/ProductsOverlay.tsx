@@ -37,7 +37,7 @@ export default function ProductsOverlay({ onClose }: Props) {
   return (
     <div
       ref={overlayRef}
-      className="fixed top-0 left-0 w-full h-full bg-black z-50 flex overflow-hidden"
+      className="fixed top-0 left-0 w-full h-full bg-superblack z-50 flex overflow-hidden"
     >
       {/* Close button */}
       <button

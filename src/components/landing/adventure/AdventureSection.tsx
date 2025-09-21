@@ -15,24 +15,21 @@ export default function AdventureSection() {
   return (
     <section
       ref={ref}
-      className="relative w-full min-h-screen flex items-center justify-center overflow-hidden bg-fixed bg-center bg-cover"
-      style={{ backgroundImage: "url('/images/contour.png')" }}
+      className="relative px-10 w-full min-h-screen pb-40 flex items-center justify-center"
     >
       <div className="w-full h-full flex flex-col items-center justify-center">
-        {/* <div className="absolute inset-0 bg-black/30 z-5 pointer-events-none"></div> */}
-        <div className="relative h-screen z-20 flex flex-col items-center justify-center text-center px-4 py-8">
-          <h1 className="text-4xl md:text-6xl font-bold text-white mb-4 drop-shadow-lg">
+        {/* <div className="absolute inset-0 bg-superblack/30 z-5 pointer-events-none"></div> */}
+        <div className="relative h-[384px] z-20 flex flex-col items-center justify-center text-center gap-[14px]">
+          <h1 className="text-4xl md:text-[48px] font-bold text-stone mb-4 drop-shadow-lg">
             Bicycle Adventures, Tours, Maps
           </h1>
-          <p className="text-lg md:text-2xl text-white mb-8 max-w-2xl drop-shadow-md">
+          <p className="text-lg md:text-[24px] text-stone drop-shadow-md">
             Cycling adventures and cultural immersions across the Himalaya,
             curated by experts.
           </p>
-          <h2>
-            <HoverButton className="rounded-none bg-white text-black py-3 px-6 !tracking-[3px] flex items-center gap-2 cursor-pointer">
+            <HoverButton className="rounded-none h-[56px] !flex items-center font-semibold !tracking-[1px] gap-2 cursor-pointer !text-[18px]">
               Explore Adventures <MoveRight />
             </HoverButton>
-          </h2>
         </div>
         <DestinationSection />
       </div>

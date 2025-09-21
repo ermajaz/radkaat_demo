@@ -26,7 +26,7 @@ export const contactData: SupportSection[] = [
           just a click away. Our support team works tirelessly to ensure your
           experience is smooth and delightful.
         </p>
-        <blockquote className="border-l-4 border-rust pl-4 italic text-white bg-black/30 py-2 rounded">
+        <blockquote className="border-l-4 border-rust pl-4 italic text-white bg-superblack/30 py-2 rounded">
           &quot;Your satisfaction is not just a goal — it’s our mission.&quot;
         </blockquote>
         <p className="text-sm text-gray-300">
@@ -144,7 +144,7 @@ export const contactData: SupportSection[] = [
           <span className="font-medium text-white">latest tools and best practices</span>,
           ensuring world-class support every time.
         </p>
-        <p className="text-sm text-gray-400 flex items-center gap-2">
+        <p className="text-sm text-gray flex items-center gap-2">
           <Users className="w-4 h-4" /> Over{" "}
           <span className="font-semibold">50+ experts worldwide</span>.
         </p>
