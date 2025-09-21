@@ -36,7 +36,7 @@ export const bikes: Bikee[] = [
     id: "serow",
     name: "SEROW",
     logo: "/images/Serow-white.png",
-    logoBlack: "/images/Serow-black.png",
+    logoBlack: "/images/serow-black.png",
     img: "/images/bike-front.png",
     stats: {
       suspension: 9,
@@ -57,7 +57,7 @@ export const bikes: Bikee[] = [
     id: "saola",
     name: "SAOLA",
     logo: "/images/Saola-white.png",
-    logoBlack: "/images/Saola-black.png",
+    logoBlack: "/images/saola-black.png",
     img: "/images/bike-front.png",
     stats: {
       suspension: 7,
@@ -78,7 +78,7 @@ export const bikes: Bikee[] = [
     id: "takin",
     name: "TAKIN",
     logo: "/images/Takin-white.png",
-    logoBlack: "/images/Takin-black.png",
+    logoBlack: "/images/takin-black.png",
     img: "/images/bike-front.png",
     stats: {
       suspension: 8,
