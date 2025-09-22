@@ -24,6 +24,7 @@ export const metadata: Metadata = {
 };
 
 import { LoaderProvider } from "@/components/common/LoaderProvider";
+import Footer from "@/components/common/Footer";
 
 export default function RootLayout({
   children,
@@ -37,6 +38,7 @@ export default function RootLayout({
           <SmoothScroll />
           <Header />
           {children}
+          <Footer />
         </LoaderProvider>
       </body>
     </html>

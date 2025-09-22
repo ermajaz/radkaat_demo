@@ -10,7 +10,7 @@ import { Button } from "@/components/ui/button";
 export default function StoriesSection() {
   const scrollRef = useRef<HTMLDivElement>(null);
   const router = useRouter();
-  const [activeIndex, setActiveIndex] = useState(0);
+  const [activeIndex, setActiveIndex] = useState(0); // First story selected initially
 
   useEffect(() => {
     if (!scrollRef.current) return;
@@ -49,7 +49,7 @@ export default function StoriesSection() {
 
   return (
     <section
-      className="pt-10 px-0 flex flex-col gap-10 overflow-hidden relative"
+      className="pt-10 px-0 flex flex-col gap-8 overflow-hidden relative"
       style={{
         background: `linear-gradient(180deg, #001644 0%, #000206 100%)`,
       }}
@@ -62,7 +62,9 @@ export default function StoriesSection() {
         {stories.map((story, index) => (
           <figure
             key={index}
-            className={`w-[590px] h-[560px] flex-shrink-0 snap-start bg-[#1A1A1A] text-white rounded-b-[8px] shadow-2xl`}
+            className={`w-[590px] h-[560px] flex-shrink-0 snap-start rounded-b-[8px] hover:bg-[#1A1A1A] shadow-2xl text-white
+              ${activeIndex === index ? "bg-[#1A1A1A]" : "bg-transparent"}
+            `}
           >
             <div className="relative w-full h-[426px] overflow-hidden group">
               <Image
@@ -74,9 +76,10 @@ export default function StoriesSection() {
                   33vw"
                 className="object-cover cursor-pointer transform transition-transform duration-500 group-hover:scale-110"
               />
+
               <div className="absolute bottom-2 right-2 flex items-center justify-center w-[106px] h-[37px] border-[0.5px] border-white/50 rounded-[3px] bg-[#090909]/60 backdrop-blur-sm transition-all duration-300 hover:bg-[#090909]/80 hover:scale-105">
                 <Button
-                  onClick={() => router.push(`/stories/${story.title}`)}
+                  onClick={() => router.push(`/stories//${story.id}/${story.title}`)}
                   className="text-[16px] font-semibold text-stone cursor-pointer"
                 >
                   View Story
@@ -96,7 +99,7 @@ export default function StoriesSection() {
         ))}
       </div>
 
-      {/*  Bottom Strip */}
+      {/* Bottom Strip */}
       <div className="flex justify-between items-center h-[110px] p-10 bg-[#1A1A1A]">
         <h2 className="text-white text-[48px] font-bold tracking-wide">
           THE JUNGLE BOOK
@@ -106,27 +109,26 @@ export default function StoriesSection() {
             <div
               key={index}
               onClick={() => handleStoryClick(index)}
-              className={`cursor-pointer flex flex-col items-center gap-1 text-center transition-all duration-300
-                `}
+              className="cursor-pointer flex flex-col items-center gap-1 text-center transition-all duration-300"
             >
               <span
-                className={`uppercase text-[12px] ${
-                  activeIndex === index
-                    ? "text-sandstorm font-bold"
-                    : "text-white"
+                className={`uppercase text-[12px] font-bold ${
+                  activeIndex === index ? "text-stone" : "text-stone"
                 }`}
               >
                 {story.title}
               </span>
               <span
-                className={`text-[10px] mt-1 text-white/70 ${
-                  activeIndex === index
-                    ? "text-sandstorm font-bold"
-                    : "text-white"
+                className={`text-[10.5px] mt-1 font-semibold ${
+                  activeIndex === index ? "text-stone" : "text-stone"
                 }`}
               >
                 {story.date}
               </span>
+              {/* Horizontal line below date for selected story */}
+              {activeIndex === index && (
+                <span className="block w-full h-[2px] bg-stone mt-1"></span>
+              )}
             </div>
           ))}
         </div>
