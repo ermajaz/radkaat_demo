@@ -17,23 +17,16 @@ export interface Bikee {
   description: string[];
 }
 
+export type SKU = { id: string; name: string; image: string };
 
 export type OverlayBike = {
   id: string;
-  name: string;
-  logo: string;
-  image: string;
-  details: {
-    size: string;
-    color: string;
-    dimension: string;
-    material: string;
-  };
-  skus: {
-    id: string;
-    name: string;
-    image: string;
-  }[];
+  name: string; // e.g. "SEROW-1"
+  logo: string; // logo path
+  image: string; // main image path
+  skus: SKU[];
+  details: { size: string; color: string; dimension: string; material: string };
+  price: string;
 };
 
 export type Recommendation = {
@@ -59,7 +52,6 @@ export interface Store {
   address: string;
 }
 
-
 export interface Destination {
   id: string;
   title: string;
@@ -68,8 +60,8 @@ export interface Destination {
   leftImage: string;
   mapImage: string;
   contourImage: string;
-  source: {lat:number; lng:number};
-  destination:{lat:number; lng:number};
+  source: { lat: number; lng: number };
+  destination: { lat: number; lng: number };
   reviews: {
     category: string;
     rating: number;

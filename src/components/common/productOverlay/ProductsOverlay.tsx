@@ -1,63 +1,59 @@
 "use client";
 
-import { X } from "lucide-react";
-import { useRef, useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import gsap from "gsap";
-import { overlayBikes } from "@/utils/data";
+import BottomBar from "./BottomBar";
+import TopNav from "./TopNav";
 import Sidebar from "./Sidebar";
 import BikeDisplay from "./BikeDisplay";
-import RelatedSkus from "./RelatedSkus";
+import { OverlayBike } from "@/types";
+import { mockBikes } from "@/utils/data";
 
-type Props = {
-  onClose: () => void;
-};
-
-export default function ProductsOverlay({ onClose }: Props) {
-  const overlayRef = useRef<HTMLDivElement>(null);
-  const [selectedBike, setSelectedBike] = useState(overlayBikes[0]);
+export default function ProductsOverlay({ onClose }: { onClose: () => void }) {
+  const overlayRef = useRef<HTMLDivElement | null>(null);
+  const [bikes] = useState<OverlayBike[]>(mockBikes);
+  const [selectedBike, setSelectedBike] = useState<OverlayBike>(bikes[0]);
 
   useEffect(() => {
     if (!overlayRef.current) return;
-
+    // slide down animation
     gsap.fromTo(
       overlayRef.current,
       { y: "-100%" },
       { y: 0, duration: 0.6, ease: "power3.out" }
     );
 
-    // Disable background scroll
-    const originalOverflow = document.body.style.overflow;
+    const original = document.body.style.overflow;
     document.body.style.overflow = "hidden";
-
     return () => {
-      document.body.style.overflow = originalOverflow;
+      document.body.style.overflow = original;
     };
   }, []);
 
   return (
     <div
       ref={overlayRef}
-      className="fixed top-0 left-0 w-full h-full bg-superblack z-50 flex overflow-hidden"
+      className="fixed inset-0 z-50 flex flex-col bg-superblack text-white"
+      aria-modal
     >
-      {/* Close button */}
-      <button
-        className="absolute top-6 left-6 z-[60] text-white cursor-pointer transition"
-        onClick={onClose}
-      >
-        <X size={52} />
-      </button>
+      <TopNav onClose={onClose} />
 
-      {/* Sidebar */}
-      <Sidebar
-        bikes={overlayBikes}
-        selected={selectedBike.id}
-        onSelect={setSelectedBike}
-      />
+      {/* Full-height flex row */}
+      <div className="flex-1 py-8 flex overflow-hidden">
+        <Sidebar
+          bikes={bikes}
+          selected={selectedBike.id}
+          onSelect={(bike) => setSelectedBike(bike)}
+        />
 
-      {/* Main Display */}
-      <div className="w-full flex-1 p-20 flex flex-col items-center justify-center relative z-50">
-        <BikeDisplay bike={selectedBike} />
-        <RelatedSkus skus={selectedBike.skus} />
+        {/* BikeDisplay fills remaining space */}
+        <main className="flex-1 relative flex border border-white/20">
+          <BikeDisplay bike={selectedBike} />
+        </main>
+      </div>
+
+      <div className="w-full p-5 pt-0">
+        <BottomBar bike={selectedBike} />
       </div>
     </div>
   );

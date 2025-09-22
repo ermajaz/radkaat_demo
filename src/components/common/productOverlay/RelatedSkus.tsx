@@ -1,38 +1,23 @@
+import { SKU } from "@/types";
 import Image from "next/image";
 
-type Props = {
-  skus: { id: string; name: string; image: string }[];
-};
 
-export default function RelatedSkus({ skus }: Props) {
+export default function RelatedSkus({ skus }: { skus: SKU[] }) {
   return (
-    <div className="w-full mt-6 grid grid-cols-3 gap-6">
+    <div className="w-full grid grid-cols-3 gap-6">
       {skus.map((sku) => (
         <div
           key={sku.id}
-          className="relative overflow-hidden cursor-pointer group shadow-lg"
+          className="relative overflow-hidden rounded shadow-[0_6px_18px_rgba(0,0,0,0.6)] group bg-black/20"
         >
-          {/* SKU Image */}
-          <Image
-            src={sku.image}
-            alt={sku.name}
-            width={400}
-            height={280}
-            className="w-full h-48 object-cover transition-transform duration-500 group-hover:scale-105"
-          />
+          <Image src={sku.image} alt={sku.name} width={400} height={280} className="w-full h-44 object-cover" />
 
-          {/* Overlay */}
-          <div className="absolute inset-0 bg-superblack/30 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-            <span className="text-white text-lg font-bold text-center px-2">
-              {sku.name}
-            </span>
+          <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 bg-black/40">
+            <span className="text-white font-bold text-center px-3">{sku.name}</span>
           </div>
 
-          {/* Always show name centered over image */}
           <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
-            <span className="text-white text-lg font-bold text-center px-2">
-              {sku.name}
-            </span>
+            <span className="text-white font-bold text-center px-3">{sku.name}</span>
           </div>
         </div>
       ))}

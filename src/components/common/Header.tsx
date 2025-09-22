@@ -8,10 +8,12 @@ import Logo from "./Logo";
 import SearchOverlay from "./search/SearchOverlay";
 import ProductsOverlay from "./productOverlay/ProductsOverlay";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 
 const navItems = ["Products", "Experiences", "Community"];
 
 export default function Header() {
+  const pathname = usePathname();
   const headerRef = useRef<HTMLDivElement>(null);
   const lastScrollY = useRef(0);
   const [showHeader, setShowHeader] = useState(true);
@@ -57,9 +59,18 @@ export default function Header() {
         className="fixed top-0 left-0 w-full z-50 flex items-center justify-between px-6 py-4"
       >
         {/* Logo */}
-        <Link href="/" className="flex items-center">
-          <Logo />
-        </Link>
+        {pathname === "/" ? (
+          <button
+            onClick={() => setProductsOpen(true)}
+            className="flex items-center cursor-pointer"
+          >
+            <Logo />
+          </button>
+        ) : (
+          <Link href="/" className="flex items-center cursor-pointer">
+            <Logo />
+          </Link>
+        )}
 
         {/* Navigation */}
         <nav className="flex gap-8">
@@ -85,7 +96,9 @@ export default function Header() {
 
       {/* Overlays */}
       {searchOpen && <SearchOverlay onClose={() => setSearchOpen(false)} />}
-      {productsOpen && <ProductsOverlay onClose={() => setProductsOpen(false)} />}
+      {productsOpen && (
+        <ProductsOverlay onClose={() => setProductsOpen(false)} />
+      )}
     </>
   );
 }

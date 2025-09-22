@@ -97,93 +97,60 @@ export const bikes: Bikee[] = [
   },
 ];
 
-export const overlayBikes: OverlayBike[] = [
+export const mockBikes: OverlayBike[] = [
   {
-    id: "serow",
-    name: "Serow-1",
+    id: "serow-1",
+    name: "SEROW-1",
     logo: "/images/Serow-white.png",
     image: "/images/serow-big-img.png",
+    price: "₹10,000",
+    skus: [
+      { id: "s-1", name: "SEROW-1", image: "/images/serow-big-img.png" },
+      { id: "s-2", name: "SEROW-2", image: "/images/serow-big-img.png" },
+      { id: "s-3", name: "SEROW-3", image: "/images/serow-big-img.png" },
+    ],
     details: {
-      size: "M, L, XL",
+      size: "M / L",
       color: "Forest Green",
-      dimension: "29” Wheels, 1200mm wheelbase",
-      material: "Carbon Fiber Frame",
+      dimension: "120cm x 40cm x 80cm",
+      material: "Alloy Steel",
     },
-    skus: [
-      {
-        id: "serow-sku1",
-        name: "Serow Trail",
-        image: "/images/serow-big-img.png",
-      },
-      {
-        id: "serow-sku2",
-        name: "Serow XC",
-        image: "/images/saola-big-img.png",
-      },
-      {
-        id: "serow-sku3",
-        name: "Serow Enduro",
-        image: "/images/takin-big-img.png",
-      },
-    ],
   },
   {
-    id: "saola",
-    name: "Saola-2",
-    logo: "/images/Saola-white.png",
-    image: "/images/saola-big-img.png",
-    details: {
-      size: "S, M, L",
-      color: "Matte Black",
-      dimension: "27.5” Wheels, 1150mm wheelbase",
-      material: "Aluminum Alloy",
-    },
+    id: "saola-1",
+    name: "SAOLA-1",
+     logo: "/images/Saola-white.png",
+    image: "/images/serow-big-img.png",
+    price: "₹12,500",
     skus: [
-      {
-        id: "saola-sku1",
-        name: "Saola Pro",
-        image: "/images/serow-big-img.png",
-      },
-      {
-        id: "saola-sku2",
-        name: "Saola Comp",
-        image: "/images/saola-big-img.png",
-      },
-      {
-        id: "saola-sku3",
-        name: "Saola Elite",
-        image: "/images/takin-big-img.png",
-      },
+      { id: "s-4", name: "SAOLA-1", image: "/images/serow-big-img.png" },
+      { id: "s-5", name: "SAOLA-2", image: "/images/serow-big-img.png" },
+      { id: "s-6", name: "SAOLA-3", image: "/images/serow-big-img.png" },
     ],
+    details: {
+      size: "S / M",
+      color: "Sand",
+      dimension: "115cm x 38cm x 78cm",
+      material: "Carbon Fiber",
+    },
   },
   {
-    id: "takin",
-    name: "Takin-3",
-    logo: "/images/Takin-white.png",
-    image: "/images/takin-big-img.png",
-    details: {
-      size: "L, XL",
-      color: "Crimson Red",
-      dimension: "29” Wheels, 1250mm wheelbase",
-      material: "Steel Hardtail",
-    },
+    id: "takin-1",
+    name: "TAKIN-1",
+     logo: "/images/Takin-white.png",
+    image: "/images/serow-big-img.png",
+    price: "₹9,500",
     skus: [
-      {
-        id: "takin-sku1",
-        name: "Takin Downhill",
-        image: "/images/serow-big-img.png",
-      },
-      {
-        id: "takin-sku2",
-        name: "Takin Freeride",
-        image: "/images/saola-big-img.png",
-      },
-      {
-        id: "takin-sku3",
-        name: "Takin All-Mountain",
-        image: "/images/takin-big-img.png",
-      },
+      { id: "s-7", name: "TAKIN-1", image: "/images/serow-big-img.png" },
+      { id: "s-8", name: "TAKIN-2", image: "/images/serow-big-img.png" },
+      { id: "s-9", name: "TAKIN-3", image: "/images/serow-big-img.png" },
     ],
+    details: {
+      size: "M",
+      color: "Charcoal",
+      dimension: "122cm x 42cm x 82cm",
+      material: "Chromoly",
+    },
   },
 ];
 
