@@ -1,4 +1,4 @@
-import Footer from "@/components/common/Footer";
+
 import AdventureSection from "@/components/landing/adventure/AdventureSection";
 import BikeComparison from "@/components/landing/bikeComparison/BikeComparison";
 import BikesShowcase from "@/components/landing/bikeSection/BikesShowcase";
