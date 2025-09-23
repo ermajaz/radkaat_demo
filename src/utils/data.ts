@@ -3,7 +3,7 @@ import { Calendar, Clock, Truck, Bike } from "lucide-react";
 
 export const stories = [
   {
-    id:1,
+    id: 1,
     title: "Manali Adventures",
     date: "20 September 2025",
     excerpt:
@@ -12,7 +12,7 @@ export const stories = [
     link: "#",
     className: "absolute top-20 left-[8%] rotate-[-5deg]",
     images: [
-       "/images/manali/manali1.jpg",
+      "/images/manali/manali1.jpg",
       "/images/manali/manali2.jpeg",
       "/images/manali/manali3.jpeg",
       "/images/manali/manali4.jpg",
@@ -101,16 +101,16 @@ export const stories = [
     ],
   },
   {
-    id:2,
+    id: 2,
     title: "Sipping Chai At Spiti",
-    date: "20 September 2025",
+    date: "23 December 2023",
     excerpt:
       "Wilson has been bringing the International Yeti Gatherings to life for ten years through H+I Adventures, a tour outfit co-founded by Wilson in 2007.",
     img: "/images/sipping.jpg",
     link: "#",
     className: "absolute top-25 left-[25%] rotate-[-7deg]",
     images: [
-     "/images/manali/manali1.jpg",
+      "/images/manali/manali1.jpg",
       "/images/manali/manali2.jpeg",
       "/images/manali/manali3.jpeg",
       "/images/manali/manali4.jpg",
@@ -138,7 +138,7 @@ export const stories = [
           "Walking through the tea plantations was serene and calming. The aroma of fresh chai leaves made the whole experience magical.",
         author: "Irene Thomas",
         date: "21 September 2025",
-       author_img: "/images/manali/rider-img.jpg",
+        author_img: "/images/manali/rider-img.jpg",
       },
       {
         title: "Sunset Viewpoint",
@@ -199,16 +199,16 @@ export const stories = [
     ],
   },
   {
-    id:3,
+    id: 3,
     title: "Kali's Abode, Faridkots Reverence",
-    date: "20 September 2025",
+    date: "16 March 2021",
     excerpt:
       "Sarah shares her incredible experience from the trails of British Columbia and the spiritual journey in Faridkots.",
     img: "/images/kali.png",
     link: "#",
     className: "absolute top-5 left-[40%] rotate-[8deg]",
     images: [
-     "/images/manali/manali1.jpg",
+      "/images/manali/manali1.jpg",
       "/images/manali/manali2.jpeg",
       "/images/manali/manali3.jpeg",
       "/images/manali/manali4.jpg",
@@ -297,16 +297,16 @@ export const stories = [
     ],
   },
   {
-    id:4,
+    id: 4,
     title: "The Seven Hills",
-    date: "20 September 2025",
+    date: "15 August 2020",
     excerpt:
       "Experience the breathtaking landscapes and vibrant culture across the Seven Hills, capturing adventure, nature, and local traditions.",
     img: "/images/seven-hills.jpg",
     link: "#",
     className: "absolute top-20 left-[8%] rotate-[-5deg]",
     images: [
-     "/images/manali/manali1.jpg",
+      "/images/manali/manali1.jpg",
       "/images/manali/manali2.jpeg",
       "/images/manali/manali3.jpeg",
       "/images/manali/manali4.jpg",
@@ -389,6 +389,104 @@ export const stories = [
         user_experience:
           "Meditating on a quiet hilltop brought immense peace. The serenity and fresh air made it a spiritual experience.",
         author: "Hannah Joshi",
+        date: "21 September 2025",
+        author_img: "/images/manali/rider-img.jpg",
+      },
+    ],
+  },
+  {
+    id: 5,
+    title: "Ladakh Adventures",
+    date: "1 July 2024",
+    excerpt:
+      "We visited Warren on his home trails in Santa Cruz, California, and caught up with what he has been up to lately.",
+    img: "/images/manali.jpg",
+    link: "#",
+    className: "absolute top-20 left-[8%] rotate-[-5deg]",
+    images: [
+      "/images/manali/manali1.jpg",
+      "/images/manali/manali2.jpeg",
+      "/images/manali/manali3.jpeg",
+      "/images/manali/manali4.jpg",
+      "/images/manali/manali5.jpg",
+      "/images/manali/manali6.jpg",
+      "/images/manali/manali7.jpeg",
+      "/images/manali/manali8.jpeg",
+      "/images/manali/manali9.jpg",
+      "/images/manali/manali10.jpg",
+      "/images/manali/manali11.jpg",
+      "/images/manali/manali12.jpeg",
+      "/images/manali/manali13.webp",
+      "/images/manali/manali14.jpeg",
+      "/images/manali/manali15.jpg",
+      "/images/manali/manali16.jpeg",
+      "/images/manali/manali17.webp",
+      "/images/manali/manali18.webp",
+      "/images/manali/manali19.jpeg",
+      "/images/manali/manali20.webp",
+    ],
+    content: [
+      {
+        title: "Sunrise Trekking",
+        user_experience:
+          "The sunrise trek was an experience that will forever remain etched in my memory. As I began the hike in the early hours, the air was crisp and carried the subtle scent of pine and earth, awakening every sense within me. Each step along the winding trail brought me closer to a vantage point that promised a view unlike any I had ever seen. The soft glow of dawn started to illuminate the horizon, and the first hints of sunlight painted the rugged mountain peaks in shades of gold and amber, casting long shadows across the valleys below. It was a surreal moment where nature itself seemed to pause and hold its breath, welcoming the day with quiet grandeur. As I climbed higher, the tranquility of the morning enveloped me. The gentle rustling of leaves, the distant call of birds, and the faint murmur of a nearby stream created a symphony that was both soothing and invigorating. Each step was a reminder of the effort it took to reach this place, yet the anticipation of the unfolding panorama kept my spirits buoyant. When I finally reached the summit, I was greeted by a breathtaking spectacle: the sun, gradually climbing over the horizon, cast a warm, golden light that danced on the mountain slopes. The sky transformed into a canvas of vibrant hues—fiery oranges blending into soft pinks, delicate purples fading into deep blues. The mountains themselves seemed to glow with a life of their own, their rugged contours accentuated by the interplay of light and shadow. Standing there, with the cool breeze brushing against my face and the vast expanse of nature stretching endlessly before me, I felt an overwhelming sense of serenity and exhilaration.",
+        author: "Alice Johnson",
+        date: "21 September 2025",
+        author_img: "/images/manali/rider-img.jpg",
+      },
+      {
+        title: "River Rafting Fun",
+        user_experience:
+          "The sunrise trek was an experience that will forever remain etched in my memory. As I began the hike in the early hours, the air was crisp and carried the subtle scent of pine and earth, awakening every sense within me. Each step along the winding trail brought me closer to a vantage point that promised a view unlike any I had ever seen. The soft glow of dawn started to illuminate the horizon, and the first hints of sunlight painted the rugged mountain peaks in shades of gold and amber, casting long shadows across the valleys below. It was a surreal moment where nature itself seemed to pause and hold its breath, welcoming the day with quiet grandeur. As I climbed higher, the tranquility of the morning enveloped me. The gentle rustling of leaves, the distant call of birds, and the faint murmur of a nearby stream created a symphony that was both soothing and invigorating. Each step was a reminder of the effort it took to reach this place, yet the anticipation of the unfolding panorama kept my spirits buoyant. When I finally reached the summit, I was greeted by a breathtaking spectacle: the sun, gradually climbing over the horizon, cast a warm, golden light that danced on the mountain slopes. The sky transformed into a canvas of vibrant hues—fiery oranges blending into soft pinks, delicate purples fading into deep blues. The mountains themselves seemed to glow with a life of their own, their rugged contours accentuated by the interplay of light and shadow. Standing there, with the cool breeze brushing against my face and the vast expanse of nature stretching endlessly before me, I felt an overwhelming sense of serenity and exhilaration.",
+        author: "Bob Smith",
+        date: "21 September 2025",
+        author_img: "/images/manali/rider-img.jpg",
+      },
+      {
+        title: "Local Cuisine Adventure",
+        user_experience:
+          "The sunrise trek was an experience that will forever remain etched in my memory. As I began the hike in the early hours, the air was crisp and carried the subtle scent of pine and earth, awakening every sense within me. Each step along the winding trail brought me closer to a vantage point that promised a view unlike any I had ever seen. The soft glow of dawn started to illuminate the horizon, and the first hints of sunlight painted the rugged mountain peaks in shades of gold and amber, casting long shadows across the valleys below. It was a surreal moment where nature itself seemed to pause and hold its breath, welcoming the day with quiet grandeur. As I climbed higher, the tranquility of the morning enveloped me. The gentle rustling of leaves, the distant call of birds, and the faint murmur of a nearby stream created a symphony that was both soothing and invigorating. Each step was a reminder of the effort it took to reach this place, yet the anticipation of the unfolding panorama kept my spirits buoyant. When I finally reached the summit, I was greeted by a breathtaking spectacle: the sun, gradually climbing over the horizon, cast a warm, golden light that danced on the mountain slopes. The sky transformed into a canvas of vibrant hues—fiery oranges blending into soft pinks, delicate purples fading into deep blues. The mountains themselves seemed to glow with a life of their own, their rugged contours accentuated by the interplay of light and shadow. Standing there, with the cool breeze brushing against my face and the vast expanse of nature stretching endlessly before me, I felt an overwhelming sense of serenity and exhilaration.",
+        author: "Carla Williams",
+        date: "21 September 2025",
+        author_img: "/images/manali/rider-img.jpg",
+      },
+      {
+        title: "Camping Under Stars",
+        user_experience:
+          "The sunrise trek was an experience that will forever remain etched in my memory. As I began the hike in the early hours, the air was crisp and carried the subtle scent of pine and earth, awakening every sense within me. Each step along the winding trail brought me closer to a vantage point that promised a view unlike any I had ever seen. The soft glow of dawn started to illuminate the horizon, and the first hints of sunlight painted the rugged mountain peaks in shades of gold and amber, casting long shadows across the valleys below. It was a surreal moment where nature itself seemed to pause and hold its breath, welcoming the day with quiet grandeur. As I climbed higher, the tranquility of the morning enveloped me. The gentle rustling of leaves, the distant call of birds, and the faint murmur of a nearby stream created a symphony that was both soothing and invigorating. Each step was a reminder of the effort it took to reach this place, yet the anticipation of the unfolding panorama kept my spirits buoyant. When I finally reached the summit, I was greeted by a breathtaking spectacle: the sun, gradually climbing over the horizon, cast a warm, golden light that danced on the mountain slopes. The sky transformed into a canvas of vibrant hues—fiery oranges blending into soft pinks, delicate purples fading into deep blues. The mountains themselves seemed to glow with a life of their own, their rugged contours accentuated by the interplay of light and shadow. Standing there, with the cool breeze brushing against my face and the vast expanse of nature stretching endlessly before me, I felt an overwhelming sense of serenity and exhilaration.",
+        author: "David Lee",
+        date: "21 September 2025",
+        author_img: "/images/manali/rider-img.jpg",
+      },
+      {
+        title: "Mountain Photography",
+        user_experience:
+          "The sunrise trek was an experience that will forever remain etched in my memory. As I began the hike in the early hours, the air was crisp and carried the subtle scent of pine and earth, awakening every sense within me. Each step along the winding trail brought me closer to a vantage point that promised a view unlike any I had ever seen. The soft glow of dawn started to illuminate the horizon, and the first hints of sunlight painted the rugged mountain peaks in shades of gold and amber, casting long shadows across the valleys below. It was a surreal moment where nature itself seemed to pause and hold its breath, welcoming the day with quiet grandeur. As I climbed higher, the tranquility of the morning enveloped me. The gentle rustling of leaves, the distant call of birds, and the faint murmur of a nearby stream created a symphony that was both soothing and invigorating. Each step was a reminder of the effort it took to reach this place, yet the anticipation of the unfolding panorama kept my spirits buoyant. When I finally reached the summit, I was greeted by a breathtaking spectacle: the sun, gradually climbing over the horizon, cast a warm, golden light that danced on the mountain slopes. The sky transformed into a canvas of vibrant hues—fiery oranges blending into soft pinks, delicate purples fading into deep blues. The mountains themselves seemed to glow with a life of their own, their rugged contours accentuated by the interplay of light and shadow. Standing there, with the cool breeze brushing against my face and the vast expanse of nature stretching endlessly before me, I felt an overwhelming sense of serenity and exhilaration.",
+        author: "Emma Brown",
+        date: "21 September 2025",
+        author_img: "/images/manali/rider-img.jpg",
+      },
+      {
+        title: "Wildlife Spotting",
+        user_experience:
+          "Saw some rare Himalayan birds. Felt very connected to nature.",
+        author: "Frank Garcia",
+        date: "21 September 2025",
+        author_img: "/images/manali/rider-img.jpg",
+      },
+      {
+        title: "Evening Bonfire",
+        user_experience:
+          "The evening bonfire with stories and music was the highlight of the trip.",
+        author: "Grace Miller",
+        date: "21 September 2025",
+        author_img: "/images/manali/rider-img.jpg",
+      },
+      {
+        title: "Local Village Visit",
+        user_experience:
+          "Visiting the local villages gave me insight into traditional life in Manali.",
+        author: "Henry Davis",
         date: "21 September 2025",
         author_img: "/images/manali/rider-img.jpg",
       },
@@ -574,6 +672,11 @@ export const bikesData = [
       { label: "Mechanical Suspension", value: "Fork" },
       { label: "Mechanical Disc", value: "Brake" },
     ],
+    extraFeature: [
+      "Smooth internal cable routing",
+      "Mechanical suspension fork",
+      "Reliable mechanical disc brakes",
+    ],
     specs: {
       frameset: "RADFlex Alloy – Internal Cable Routing, 17.5”, Boost – 148MM",
       suspension: "SR Suntour X1 Boost Air, 120MM, Hydraulic Lockout",
@@ -581,7 +684,7 @@ export const bikesData = [
     },
     colors: {
       gradient: "#C6B783, #806D2A", // top → bottom
-      cta: "#C6B783",
+      cta: "var(--color-sandstorm)",
     },
   },
   {
@@ -593,6 +696,11 @@ export const bikesData = [
       { label: "Full Suspension", value: "Suspension" },
       { label: "Carbon Material", value: "Frame" },
     ],
+    extraFeature: [
+      "Hydraulic disc brakes",
+      "Full carbon suspension frame",
+      "Lightweight carbon material",
+    ],
     specs: {
       frameset: "Carbon Alloy – Internal Cable Routing, 18”",
       suspension: "FOX Float, 130MM, Hydraulic Lockout",
@@ -600,7 +708,7 @@ export const bikesData = [
     },
     colors: {
       gradient: "#0046D7, #FFFFFF",
-      cta: "#0046D7",
+      cta: "var(--color-airforce)",
     },
   },
   {
@@ -612,6 +720,11 @@ export const bikesData = [
       { label: "Mechanical Suspension", value: "Fork" },
       { label: "Mechanical Disc", value: "Brake" },
     ],
+    extraFeature: [
+      "Internal cable routing",
+      "Mechanical suspension fork",
+      "Mechanical disc brakes",
+    ],
     specs: {
       frameset: "Aluminum Alloy – Internal Cable Routing, 17”",
       suspension: "RockShox Judy, 120MM, Hydraulic Lockout",
@@ -619,7 +732,7 @@ export const bikesData = [
     },
     colors: {
       gradient: "#516316, #F1FFC3",
-      cta: "#516316",
+      cta: "var(--color-army)",
     },
   },
 ];

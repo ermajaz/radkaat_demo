@@ -27,10 +27,10 @@ export const StoryContentCard: React.FC<Props> = ({
   return (
     <div className="w-full p-6 pt-0 shadow-lg flex flex-col gap-4">
       {/* Title */}
-      <h3 className="text-sandstorm text-2xl font-bold">{content.title}</h3>
+      <span className="text-stone text-[24px] font-bold">{content.title}</span>
 
       {/* User Experience */}
-      <p className="text-white text-base">{content.user_experience}</p>
+      <p className="text-white text-[18px] font-medium leading-[33px]">{content.user_experience}</p>
 
       {/* Horizontal line */}
       <hr className="border-gray-600 my-4" />

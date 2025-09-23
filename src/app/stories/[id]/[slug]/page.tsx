@@ -47,31 +47,43 @@ export default function StoryPage() {
           fill
           className="absolute inset-0 w-full h-full object-cover"
         />
+        {/* Blackish Overlay */}
+        <div className="absolute inset-0 bg-black/40" />
         {/* Button at bottom-right */}
         <button
           onClick={() => setGalleryOpen(true)}
-          className="absolute cursor-pointer bottom-6 right-6 z-20 flex items-center gap-2 px-5 py-2.5 bg-black/70 backdrop-blur-sm hover:bg-black/80 text-white font-semibold rounded-[6px] shadow-lg"
+          className="absolute cursor-pointer bottom-4 right-4 h-[44px] z-20 text-[16px] flex items-center gap-2.5 px-4 py-2.5 
+             bg-[#1A1A1A]/80 backdrop-blur-sm hover:bg-[#1A1A1A]/90 
+             text-stone-200 font-semibold border-[0.5px] border-stone-500/50 
+             rounded-[2px] shadow-md"
+          style={{
+            boxShadow: "0px 4px 30px 0px #0000001A",
+            backdropFilter: "blur(5px)",
+          }}
         >
-          <div className="flex -space-x-2">
-            <ImageIcon size={16} />
-          </div>
+          <Image
+            src="/icons/gallery-icon.png"
+            alt="gallery-icon"
+            width={28}
+            height={23}
+          />
           View All Photos
         </button>
 
         <div className="relative z-10">
-          <HeroTout title={"Welcome to " + story.title} />
+          <HeroTout title={story.title} />
         </div>
       </div>
 
       {/* Sidebar + Story Content Section */}
-      <div className="p-10 flex min-h-screen bg-superblack text-white">
+      <div className="p-10 pb-[50vh] flex min-h-screen bg-superblack text-white">
         <StorySidebar
           contents={contents.map((c) => ({ title: c.title }))}
           activeIndex={activeIndex}
           onSelect={setActiveIndex}
         />
 
-        <div className="flex-1 p-10 flex flex-col gap-8">
+        <div className="flex-1 p-10 pt-5 flex flex-col gap-8">
           <StoryContentCard
             content={contents[activeIndex]}
             nextTourName={nextStory.title}

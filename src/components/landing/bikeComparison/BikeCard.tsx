@@ -11,7 +11,7 @@ interface Props {
 export default function BikeCard({ bike, isActive }: Props) {
   const bikeBgColors: Record<string, string> = {
     SEROW: "bg-sandstorm",
-    SAOLA: "bg-rust",
+    SAOLA: "bg-petrol",
     TAKIN: "bg-army",
   };
 

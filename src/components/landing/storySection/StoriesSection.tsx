@@ -49,7 +49,7 @@ export default function StoriesSection() {
 
   return (
     <section
-      className="pt-10 px-0 flex flex-col gap-8 overflow-hidden relative"
+      className="pt-10 flex flex-col gap-8 overflow-hidden relative"
       style={{
         background: `linear-gradient(180deg, #001644 0%, #000206 100%)`,
       }}
@@ -57,12 +57,12 @@ export default function StoriesSection() {
       {/* Horizontal Scroll of Stories */}
       <div
         ref={scrollRef}
-        className="overflow-x-auto mx-10 scrollbar-hide flex space-x-8 snap-x snap-mandatory hide-scrollbar"
+        className="overflow-x-auto mx-10 scrollbar-hide flex space-x-6 snap-x snap-mandatory hide-scrollbar"
       >
         {stories.map((story, index) => (
           <figure
             key={index}
-            className={`w-[590px] h-[560px] flex-shrink-0 snap-start rounded-b-[8px] hover:bg-[#1A1A1A] shadow-2xl text-white
+            className={`group w-[590px] h-[560px] flex-shrink-0 snap-start rounded-b-[8px] hover:bg-[#1A1A1A] shadow-2xl text-white
               ${activeIndex === index ? "bg-[#1A1A1A]" : "bg-transparent"}
             `}
           >
@@ -74,10 +74,10 @@ export default function StoriesSection() {
                 sizes="(max-width: 768px) 100vw,
                   (max-width: 1024px) 50vw,
                   33vw"
-                className="object-cover cursor-pointer transform transition-transform duration-500 group-hover:scale-110"
+                className="object-cover"
               />
 
-              <div className="absolute bottom-2 right-2 flex items-center justify-center w-[106px] h-[37px] border-[0.5px] border-white/50 rounded-[3px] bg-[#090909]/60 backdrop-blur-sm transition-all duration-300 hover:bg-[#090909]/80 hover:scale-105">
+              <div className="absolute bottom-2 right-2 hidden group-hover:flex items-center justify-center w-[106px] h-[37px] border-[0.5px] border-white/50 rounded-[3px] bg-[#090909]/60 backdrop-blur-sm transition-all duration-300 hover:bg-[#090909]/80">
                 <Button
                   onClick={() => router.push(`/stories//${story.id}/${story.title}`)}
                   className="text-[16px] font-semibold text-stone cursor-pointer"
@@ -86,8 +86,8 @@ export default function StoriesSection() {
                 </Button>
               </div>
             </div>
-            <figcaption className="h-[122px] p-[10px] flex flex-col gap-2">
-              <span className="text-white text-[24px] tracking-[1px] font-bold uppercase cursor-pointer">
+            <figcaption className="h-[122px] p-[10px] flex flex-col gap-1">
+              <span className="text-white text-[24px] mt-1  font-bold uppercase">
                 {story.title}
               </span>
               <span className="text-white text-[12px] font-normal">
@@ -101,25 +101,25 @@ export default function StoriesSection() {
 
       {/* Bottom Strip */}
       <div className="flex justify-between items-center h-[110px] p-10 bg-[#1A1A1A]">
-        <h2 className="text-white text-[48px] font-bold tracking-wide">
+        <h2 className="text-white text-[48px] font-bold">
           THE JUNGLE BOOK
         </h2>
-        <div className="flex gap-8 overflow-x-auto scrollbar-hide">
+        <div className="flex gap-8 pr-10 overflow-x-auto scrollbar-hide">
           {stories.map((story, index) => (
             <div
               key={index}
               onClick={() => handleStoryClick(index)}
-              className="cursor-pointer flex flex-col items-center gap-1 text-center transition-all duration-300"
+              className="cursor-pointer max-w-[200px] flex flex-col items-center text-center transition-all duration-300"
             >
               <span
-                className={`uppercase text-[12px] font-bold ${
+                className={`uppercase text-[12px] font-medium ${
                   activeIndex === index ? "text-stone" : "text-stone"
                 }`}
               >
                 {story.title}
               </span>
               <span
-                className={`text-[10.5px] mt-1 font-semibold ${
+                className={`text-[10.5px] font-normal ${
                   activeIndex === index ? "text-stone" : "text-stone"
                 }`}
               >
@@ -127,7 +127,7 @@ export default function StoriesSection() {
               </span>
               {/* Horizontal line below date for selected story */}
               {activeIndex === index && (
-                <span className="block w-full h-[2px] bg-stone mt-1"></span>
+                <span className="block w-full h-[2px] bg-stone mt-2"></span>
               )}
             </div>
           ))}

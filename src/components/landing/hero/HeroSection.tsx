@@ -17,9 +17,8 @@ export default function HeroSection() {
       const firstLine = heroRef.current!.querySelectorAll<HTMLElement>(
         ".hero-line.first span"
       );
-      const secondLine = heroRef.current!.querySelector<HTMLElement>(
-        ".hero-line.second"
-      );
+      const secondLine =
+        heroRef.current!.querySelector<HTMLElement>(".hero-line.second");
       const pinTarget = heroRef.current!.querySelector(".pin-wrapper");
 
       const totalSpans = firstLine.length;
@@ -68,7 +67,7 @@ export default function HeroSection() {
     ));
 
   return (
-    <div ref={heroRef} className="relative w-full overflow-hidden z-10">
+    <div ref={heroRef} className="relative overflow-hidden z-10">
       <div className="pin-wrapper">
         <div className="relative h-screen flex items-center justify-center">
           {/* Background Image */}
@@ -78,7 +77,7 @@ export default function HeroSection() {
             fill
             priority
             className="object-cover absolute inset-0"
-            sizes="100vw"
+            // sizes="100vw"
           />
 
           {/* Content */}
@@ -87,10 +86,11 @@ export default function HeroSection() {
               {splitText("NOTHING BUT NOW", "text-[sandstorm] text-stroke")}
             </h1>
             <span
-              className="hero-line second text-xl md:text-3xl !font-extrabold text-white/90 text-stroke-yellow-second !tracking-[2.5px]"
+              className="hero-line second text-xl md:text-[32px] !font-extrabold leading-[46px] text-white"
               style={{
                 textShadow:
-                  "0px 3px 5px rgba(0,0,0,0.5), 0px 0px 4px rgba(0,0,0,0.5)",
+                  "4px 4px 4px 0px #00000026",
+                WebkitTextStroke: "1px #00000080",
               }}
             >
               Every trail. Every peak. Every now.

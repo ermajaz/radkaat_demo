@@ -11,13 +11,13 @@ interface Props {
 export const StorySidebar: React.FC<Props> = ({ contents, activeIndex, onSelect }) => {
   return (
     <div className="w-[350px] border-r border-gray-700 p-5 flex flex-col gap-4">
-      <h2 className="text-white text-xl font-bold mb-4">Contents</h2>
+      <span className="text-white text-[16px] font-bold mb-2">Contents</span>
       {contents.map((c, i) => (
         <button
           key={i}
           onClick={() => onSelect(i)}
-          className={`text-left px-3 cursor-pointer py-2 rounded-md w-full transition-all ${
-            activeIndex === i ? "bg-sandstorm text-black font-semibold" : "text-white hover:bg-gray-800"
+          className={`text-left px-3 h-[42px] cursor-pointer py-2 text-stone font-semibold text-[14px] rounded-[4px] w-full transition-all ${
+            activeIndex === i ? "bg-[#1A1A1A] font-semibold" : "hover:bg-[#1A1A1A]"
           }`}
         >
           {c.title}

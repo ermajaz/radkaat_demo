@@ -1,4 +1,3 @@
-
 import AdventureSection from "@/components/landing/adventure/AdventureSection";
 import BikeComparison from "@/components/landing/bikeComparison/BikeComparison";
 import BikesShowcase from "@/components/landing/bikeSection/BikesShowcase";
@@ -14,20 +13,20 @@ export default function Home() {
   return (
     <main>
       <HeroSection />
-      {/* <UpdatedHero/> */}
-      <BikesShowcase />
-      <BikeComparison />
+      <div className="w-[calc(100vw-96px)] mx-auto">
+        <BikesShowcase />
+        <BikeComparison />
 
-      <ParallaxWrapper>
-        <GridProduct />
-        <TestRideSection />
-        <FlagSection />
+        <ParallaxWrapper>
+          <GridProduct />
+          <TestRideSection />
+          <FlagSection />
 
-        <StoriesSection />
+          <StoriesSection />
 
-        <AdventureSection />
-      </ParallaxWrapper>
-
+          <AdventureSection />
+        </ParallaxWrapper>
+      </div>
     </main>
   );
 }

@@ -33,12 +33,12 @@ export function RoadmapStepDesktop({
   }, [active]);
 
   return (
-    <div className="flex flex-col items-center text-center w-56 gap-2 relative z-10">
+    <div className="flex flex-col items-center text-center w-[250px] gap-2 relative z-10">
       {/* Icon */}
       <div
         className={`w-[70px] h-[70px] p-[10px] flex items-center justify-center rounded-full border-2 z-10 transition ${
           active
-            ? "bg-sandstorm border-sandstorm text-white"
+            ? "bg-sandstorm border-sandstorm text-superblack"
             : "border-white/40 text-white/40"
         }`}
       >

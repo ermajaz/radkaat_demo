@@ -107,7 +107,7 @@ const DestinationCard: React.FC<Props> = ({ destination }) => {
         initial={{ opacity: 0, y: 100 }}
         animate={isInView ? { opacity: 1, y: 0 } : {}}
         transition={{ duration: 1, ease: "easeOut" }}
-        className="relative z-10 max-w-7xl w-full h-full flex flex-col md:flex-row backdrop-blur-md bg-white/10 rounded-2xl shadow-2xl overflow-hidden"
+        className="relative z-10 w-full h-full flex flex-col md:flex-row backdrop-blur-md bg-white/10 shadow-2xl overflow-hidden"
       >
         {/* Left: Static Image */}
         <motion.div
@@ -151,7 +151,7 @@ const DestinationCard: React.FC<Props> = ({ destination }) => {
           initial={{ x: 50, opacity: 0 }}
           animate={isInView ? { x: 0, opacity: 1 } : {}}
           transition={{ duration: 1, delay: 0.4 }}
-          className="flex-1 flex flex-col p-5 h-1/3 md:h-full overflow-hidden border-2 border-white/10 rounded-r-2xl"
+          className="flex-1 flex flex-col p-5 h-1/3 md:h-full overflow-hidden border-2 border-white/10"
         >
           <div className="h-full flex flex-col justify-between overflow-y-auto pr-2">
             <div>

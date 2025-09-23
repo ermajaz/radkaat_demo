@@ -15,31 +15,37 @@ export default function BikesShowcase() {
   const [currentIndex, setCurrentIndex] = useState(0);
 
   useEffect(() => {
-    if (!containerRef.current) return;
+  if (!containerRef.current) return;
 
-    const sections = gsap.utils.toArray<HTMLElement>(".bike-section");
+  const container = containerRef.current;
+  const totalBikes = bikesData.length;
 
-    sections.forEach((section, i) => {
-      ScrollTrigger.create({
-        trigger: section,
-        start: "top top",
-        end: "bottom top",
-        onEnter: () => setCurrentIndex(i),
-        onEnterBack: () => setCurrentIndex(i),
-        toggleActions: "play reverse play reverse",
-      });
-    });
+  ScrollTrigger.create({
+    trigger: container,
+    start: "top top",
+    end: "bottom bottom",
+    scrub: true, // smooth mapping
+    onUpdate: (self) => {
+      const progress = self.progress; // 0 → 1
+      const index = Math.min(
+        totalBikes - 1,
+        Math.floor(progress * totalBikes)
+      );
+      setCurrentIndex(index);
+    },
+  });
 
-    return () => {
-      ScrollTrigger.getAll().forEach((st) => st.kill());
-    };
-  }, []);
+  return () => {
+    ScrollTrigger.getAll().forEach((st) => st.kill());
+  };
+}, []);
+
 
   return (
     <div ref={containerRef} className="relative z-10 bg-superblack">
       {/* Sticky showcase below the strip */}
       <div className="sticky w-full top-0 h-screen">
-        <BikesStrip />
+        <BikesStrip bike={bikesData[currentIndex]}/>
         <Showcase
           bike={bikesData[currentIndex]}
           bikes={bikesData}

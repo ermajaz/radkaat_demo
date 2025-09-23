@@ -11,6 +11,7 @@ interface Bike {
   name: string;
   image: string;
   features: { label: string; value: string }[];
+  extraFeature: string[];
   specs: Record<string, string>;
   colors: {
     gradient: string;
@@ -38,73 +39,73 @@ export default function Showcase({
   }, [bike]);
 
   return (
-    <div className="relative w-full h-[calc(100vh-37px)] text-white flex flex-col">
+    <div className="relative w-full h-[calc(100vh-30px)] text-white flex flex-col">
       {/* Main Content */}
-      <div className="relative h-[calc(100vh-93px)] flex flex-1 items-center justify-between px-6 md:px-14 -translate-y-10 overflow-y-auto overflow-x-hidden min-h-0">
+      <div className="relative h-[calc(100vh-70px)] flex items-center justify-between px-6 overflow-y-auto overflow-x-hidden min-h-0">
         {/* Left Side: Logo + Features */}
-        <div className="w-[200px] h-full flex flex-col justify-between items-start  z-20 pt-[25vh] pb-20">
+        <div className="w-[200px] h-full flex flex-col justify-center items-start  z-20">
           {/* Left Tab: Bikes */}
-          <div className="flex flex-col gap-5 items-start">
+          <div className="flex flex-col gap-2 items-start justify-center relative">
             {bikes?.map((b, i) => {
               const isActive = b.name === bike.name;
 
               return (
-                <div
-                  key={b.name}
-                  onClick={() => setCurrentIndex(i)}
-                  className={`flex items-center -ml-2 cursor-pointer transition-all duration-300 ease-in-out
-                    ${isActive ? "gap-2" : "gap-2"}`}
-                >
-                  {/* Bike Logo */}
-                  <Image
-                    src={b.logo}
-                    alt={`${b.name} logo`}
-                    width={26}
-                    height={36}
-                    className={`object-contain transform transition-transform duration-300 ease-in-out ${
-                      isActive
-                        ? "opacity-100 w-[28px] h-[40px]"
-                        : "opacity-40 w-[25px] h-[36px]"
-                    }`}
-                  />
-
-                  {/* Bike Name */}
-                  <h3
-                    className={`text-[30px] font-bold uppercase transition-all duration-300 ease-in-out ${
-                      isActive ? "text-white" : "text-gray"
-                    }`}
+                <div key={b.name} className="flex flex-col w-full">
+                  <div
+                    onClick={() => setCurrentIndex(i)}
+                    className="flex items-center cursor-pointer relative"
                   >
-                    {b.name}
-                  </h3>
+                    {/* Vertical line for active bike */}
+                    {isActive && (
+                      <span
+                        className="absolute -left-1 h-2/3 w-[3px] rounded-full"
+                        style={{ backgroundColor: b.colors.cta }}
+                      />
+                    )}
+
+                    {/* Bike Logo */}
+                    <Image
+                      src={b.logo}
+                      alt={`${b.name} logo`}
+                      width={isActive ? 28 : 25}
+                      height={isActive ? 40 : 36}
+                      className={`object-contain ml-2 transition-all duration-300 ease-in-out ${
+                        isActive ? "opacity-100" : "opacity-40"
+                      }`}
+                    />
+
+                    {/* Bike Name */}
+                    <h3
+                      className={`ml-2 text-[30px] font-bold uppercase transition-colors duration-300 ${
+                        isActive ? "text-white" : "text-gray"
+                      }`}
+                    >
+                      {b.name}
+                    </h3>
+                  </div>
+
+                  {/* Extra Features for selected bike */}
+                  {isActive && (
+                    <div className="ml-10 mt-2 flex flex-col gap-1">
+                      {b.extraFeature.map((f, idx) => (
+                        <div key={idx} className="flex items-start gap-2">
+                          {/* Big Dot */}
+                          <span className="w-1.5 h-1.5 rounded-full bg-white/80 mt-1.5 flex-shrink-0"></span>
+                          <span className="text-[13px] text-white/80 font-normal">
+                            {f}
+                          </span>
+                        </div>
+                      ))}
+                    </div>
+                  )}
                 </div>
               );
             })}
           </div>
-
-          {/* Features List */}
-          <AnimatePresence mode="wait">
-            <motion.ul
-              key={displayedBike.name}
-              initial={{ x: 0 }}
-              animate={{ x: [0, -300, 0], opacity: [1, 0.5, 1] }}
-              exit={{ x: 0, opacity: 1 }}
-              transition={{ duration: 0.8, ease: "easeInOut" }}
-              className="text-lg space-y-[14px]"
-            >
-              {displayedBike.features.map((f, idx) => (
-                <li key={idx} className="flex flex-col">
-                  <span className="text-white text-base font-normal">
-                    {f.label}
-                  </span>
-                  <span className="text-base font-bold">{f.value}</span>
-                </li>
-              ))}
-            </motion.ul>
-          </AnimatePresence>
         </div>
 
         {/* Center: Bike Image + Big Background Name */}
-        <div className="relative w-full h-full flex-1 flex justify-center items-center">
+        <div className="relative w-full h-full flex-1 flex justify-center items-center overflow-hidden">
           {/* Bike Image */}
           <AnimatePresence initial={false} mode="wait">
             <motion.div
@@ -118,7 +119,7 @@ export default function Showcase({
               }}
               exit={{ scale: 0.75, x: 0, y: 0, rotate: 0, opacity: 1 }}
               transition={{ duration: 0.8, ease: "easeInOut" }}
-              className="relative flex justify-center items-center z-10 flex-1 left-10 translate-y-20"
+              className="relative flex justify-center items-center overflow-hidden z-10 flex-1 left-10 translate-y-20"
             >
               <Image
                 src={displayedBike.image}
@@ -195,8 +196,17 @@ export default function Showcase({
 
       {/* Bottom CTA full-width */}
       <div
-        className="w-full h-[56px] flex justify-center items-center cursor-pointer mt-auto"
-        style={{ backgroundColor: displayedBike.colors.cta }}
+        className="w-full h-[40px] flex justify-center items-center cursor-pointer mt-auto"
+        style={{
+          backgroundImage:
+            displayedBike.name.toLowerCase() === "serow"
+              ? "linear-gradient(90deg, var(--color-sandstorm), var(--color-sandstorm-1))"
+              : displayedBike.name.toLowerCase() === "saola"
+              ? "linear-gradient(90deg, var(--color-airforce), var(--color-petrol))"
+              : displayedBike.name.toLowerCase() === "takin"
+              ? "linear-gradient(90deg, #75911c, var(--color-army))"
+              : "linear-gradient(90deg, var(--color-sandstorm), var(--color-sandstorm-1))",
+        }}
       >
         <Button
           className={`bg-transparent text-lg cursor-pointer font-[600] flex items-center gap-2 rounded-none shadow-none 

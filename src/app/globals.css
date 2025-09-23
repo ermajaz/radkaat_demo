@@ -67,7 +67,7 @@ html {
 }
 
 body {
-  background: var(--background);
+  background: black;
   color: var(--foreground);
   font-family: var(--font-body);
 }
@@ -82,7 +82,7 @@ h4,
 h5,
 h6 {
   font-family: var(--font-headline);
-  letter-spacing: 1.5px;
+  /* letter-spacing: 0px; */
   text-transform: uppercase;
 }
 
@@ -307,4 +307,8 @@ h6 {
 }
 .hide-scrollbar::-webkit-scrollbar {
   display: none; /* Chrome, Safari, Opera */
+}
+
+.touch-scroll {
+  -webkit-overflow-scrolling: touch;
 }
