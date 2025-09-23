@@ -41,7 +41,7 @@ export default function Showcase({
   return (
     <div className="relative w-full h-[calc(100vh-30px)] text-white flex flex-col">
       {/* Main Content */}
-      <div className="relative h-[calc(100vh-70px)] flex items-center justify-between px-6 overflow-y-auto overflow-x-hidden min-h-0">
+      <div className="relative h-[calc(100vh-70px)] flex items-center justify-between px-6 overflow-hidden min-h-0">
         {/* Left Side: Logo + Features */}
         <div className="w-[200px] h-full flex flex-col justify-center items-start  z-20">
           {/* Left Tab: Bikes */}
@@ -105,7 +105,7 @@ export default function Showcase({
         </div>
 
         {/* Center: Bike Image + Big Background Name */}
-        <div className="relative w-full h-full flex-1 flex justify-center items-center overflow-hidden">
+        <div className="relative w-full h-full flex-1 flex justify-center items-center">
           {/* Bike Image */}
           <AnimatePresence initial={false} mode="wait">
             <motion.div
@@ -119,7 +119,7 @@ export default function Showcase({
               }}
               exit={{ scale: 0.75, x: 0, y: 0, rotate: 0, opacity: 1 }}
               transition={{ duration: 0.8, ease: "easeInOut" }}
-              className="relative flex justify-center items-center overflow-hidden z-10 flex-1 left-10 translate-y-20"
+              className="relative flex justify-center items-center z-10 flex-1 left-10 translate-y-20"
             >
               <Image
                 src={displayedBike.image}
@@ -138,7 +138,7 @@ export default function Showcase({
               animate={{ y: 0, opacity: 1 }}
               exit={{ y: -300, opacity: 0 }}
               transition={{ duration: 0.4, ease: "easeInOut" }}
-              className=" h-full absolute left-[60%] -translate-x-1/2 flex items-center justify-start text-[268px] font-bold !tracking-[50px] z-0 select-none bg-clip-text text-transparent"
+              className=" h-full absolute left-[60%] -translate-x-1/2 flex items-center justify-start text-[268px] font-bold tracking-[50px] z-0 select-none bg-clip-text text-transparent"
               style={{
                 backgroundImage:
                   displayedBike.name.toLowerCase() === "serow"
