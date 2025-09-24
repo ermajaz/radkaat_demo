@@ -8,11 +8,12 @@ import Logo from "./Logo";
 import SearchOverlay from "./search/SearchOverlay";
 import ProductsOverlay from "./productOverlay/ProductsOverlay";
 import Link from "next/link";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 
 const navItems = ["Products", "Experiences", "Community"];
 
 export default function Header() {
+  const router = useRouter();
   const pathname = usePathname();
   const headerRef = useRef<HTMLDivElement>(null);
   const lastScrollY = useRef(0);
@@ -78,7 +79,11 @@ export default function Header() {
             <NavItem
               key={item}
               label={item}
-              onClick={() => item === "Products" && setProductsOpen(true)}
+              onClick={() => {
+                if (item === "Products") setProductsOpen(true);
+                else if (item === "Community") router.push("/community");
+                else if (item === "Experiences") router.push("/community"); // optional
+              }}
             />
           ))}
         </nav>

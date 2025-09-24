@@ -24,7 +24,7 @@ const ParallaxWrapper: React.FC<ParallaxWrapperProps> = ({ children }) => {
           alt="contour background"
           fill
           priority
-          className="object-contain w-full h-full"
+          className="object-cover w-full h-full"
         />
       </motion.div>
 

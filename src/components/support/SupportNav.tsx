@@ -7,6 +7,7 @@ import { Menu, X } from "lucide-react";
 
 const routes = [
   { name: "Contact Us", path: "/support/contact" },
+  { name: "About Us", path: "/support/aboutUs" },
   { name: "Terms & Conditions", path: "/support/terms" },
   { name: "Privacy Policy", path: "/support/privacy" },
   { name: "Help & FAQ", path: "/support/help" },
@@ -36,7 +37,9 @@ const SupportNav = () => {
                 href={route.path}
                 scroll={false}
                 className={`relative px-3 py-2 font-medium transition-colors ${
-                  isActive ? "text-sandstorm-1" : "text-white/70 hover:text-white"
+                  isActive
+                    ? "text-sandstorm-1"
+                    : "text-white/70 hover:text-white"
                 }`}
               >
                 {route.name}
