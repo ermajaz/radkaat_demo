@@ -46,7 +46,7 @@ const riders: Rider[] = [
 
 export default function RiderProfiles() {
   return (
-    <section className="pb-16">
+    <section className="pb-16 h-[80vh] bg-superblack">
        <h2 className="text-3xl md:text-4xl font-bold mb-12 text-center text-sandstorm">
         Top Riders
       </h2>

@@ -26,21 +26,23 @@ export default function CommunityPage() {
       >
         <div className="relative w-screen h-screen">
           <Image
-            src="/images/contour.png"
+            src="/images/contour1.png"
             alt="Contour Background"
             fill
             className="object-cover"
             priority
           />
+          {/* Black Overlay */}
+          <div className="absolute inset-0 bg-black/70" />
         </div>
       </motion.div>
 
       {/* Page Content */}
       <motion.div
         className="relative z-10"
-        initial={{ opacity: 0 }}
+        initial={{ opacity: 1 }}
         animate={{ opacity: 1 }}
-        transition={{ duration: 0.6 }}
+        transition={{ duration: 0 }}
       >
         <CommunityHero />
         <RiderProfiles />

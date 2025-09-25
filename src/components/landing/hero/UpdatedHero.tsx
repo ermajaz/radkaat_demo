@@ -88,11 +88,6 @@ export default function Hero() {
       ref={heroRef}
       className="relative w-full h-screen flex overflow-hidden bg-neutral-950 z-20"
     >
-      {/* Left Full Color */}
-      <div
-        ref={leftBgRef}
-        className="absolute left-0 top-0 w-1/2 h-full bg-black z-10 transition-transform duration-500"
-      ></div>
 
       {/* Right Overlay */}
       <div className="absolute right-0 top-0 w-1/2 h-full z-10 overflow-hidden">
@@ -104,9 +99,9 @@ export default function Hero() {
         ref={bikeRef}
         className="absolute inset-0 flex justify-center items-center z-20 pointer-events-none"
       >
-        <div className="relative w-screen h-screen left-[20%]">
+        <div className="relative w-[60vw] h-[60vh] left-[15%]">
           <Image
-            src="/images/new-hero1.png"
+            src="/images/new-hero-img.png"
             alt="Bike"
             fill
             priority

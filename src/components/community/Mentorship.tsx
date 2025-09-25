@@ -67,7 +67,12 @@ export const Mentorship: React.FC<MentorshipProps> = ({ data }) => {
   };
 
   return (
-    <section className="py-16 px-4 md:px-12 bg-gradient-to-b from-navy to-black">
+    <section
+      className="py-16 px-4 md:px-12"
+      style={{
+        background: `linear-gradient(180deg, #001644 0%, #000206 100%)`,
+      }}
+    >
       <h2 className="text-3xl md:text-4xl font-bold mb-12 text-center text-sandstorm">
         Connect with Riders
       </h2>
@@ -109,7 +114,9 @@ export const Mentorship: React.FC<MentorshipProps> = ({ data }) => {
             {/* Right: Info */}
             <div className="md:w-2/3 w-full p-6 flex flex-col justify-between">
               <div className="mt-12 md:mt-0">
-                <h3 className="text-xl font-bold text-sandstorm-1">{mentor.name}</h3>
+                <h3 className="text-xl font-bold text-sandstorm-1">
+                  {mentor.name}
+                </h3>
                 <p className="text-sm text-gray-300 mt-1">{mentor.location}</p>
 
                 {/* Expertise pills */}

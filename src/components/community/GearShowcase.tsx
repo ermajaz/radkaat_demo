@@ -2,132 +2,108 @@
 
 import { motion } from "framer-motion";
 import Image from "next/image";
+import { useState } from "react";
 import { Star } from "lucide-react";
 
-interface Gear {
+interface Panel {
   id: number;
-  name: string;
+  title: string;
+  category: string;
   image: string;
-  owner: string;
-  avatar: string;
-  review: string;
-  rating: number;
+  description: string;
+  features: string[];
+  rating?: number;
 }
 
-const gears: Gear[] = [
+const panels: Panel[] = [
   {
     id: 1,
-    name: "Radkaat Trail Jacket",
-    image: "/images/apparel.png",
-    owner: "Aarav Mehta",
-    avatar: "/images/manali/rider-img.jpg",
-    review:
-      "Took it on a Shimla ride – light, tough, and kept me dry through the rain!",
+    title: "Radkaat Mountain Bike",
+    category: "Bicycle",
+    image: "https://i.pinimg.com/736x/47/cc/5c/47cc5ceb27b4322f6c6dc1e422bca032.jpg",
+    description:
+      "Experience off-road like never before! Lightweight aluminum frame, hydraulic disc brakes, and superior suspension for rugged trails.",
+    features: ["Aluminum Frame", "Hydraulic Disc Brakes", "Suspension Fork", "29\" Wheels"],
     rating: 5,
   },
   {
     id: 2,
-    name: "Radkaat Expedition Boots",
-    image: "/images/accessories.jpg",
-    owner: "Priya Sharma",
-    avatar: "/images/manali/rider-img.jpg",
-    review: "The grip was insane during my Ladakh climb. Zero slips. 💯",
+    title: "Radkaat Trail Jacket",
+    category: "Apparel",
+    image: "https://images.pexels.com/photos/5808010/pexels-photo-5808010.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500",
+    description:
+      "Stay dry and comfortable in any weather. Breathable, waterproof, and lightweight. Perfect for all your trail adventures.",
+    features: ["Waterproof", "Lightweight", "Windproof", "Breathable"],
     rating: 4,
   },
   {
     id: 3,
-    name: "Radkaat All-Terrain Backpack",
-    image: "/images/accessories.jpg",
-    owner: "Kabir Singh",
-    avatar: "/images/manali/rider-img.jpg",
-    review:
-      "Perfect size for Spiti Valley – carried all my essentials without strain.",
+    title: "All-Terrain Backpack",
+    category: "Accessories",
+    image: "https://png.pngtree.com/thumb_back/fh260/background/20220606/pngtree-closeup-of-chain-and-rear-bicycle-cassette-with-wide-range-of-speeds-photo-image_47027444.jpg",
+    description:
+      "Carry everything you need with ease. Spacious compartments, ergonomic straps, and durable material for all trips.",
+    features: ["Spacious Compartments", "Ergonomic Straps", "Durable Material", "Hydration Compatible"],
     rating: 5,
   },
 ];
 
-export default function GearShowcase() {
+export default function ThreePanelShowcase() {
+  const [hoveredPanel, setHoveredPanel] = useState<number | null>(null);
+
   return (
-    <section className="pb-16 px-6">
-      <h2 className="text-3xl md:text-4xl font-bold mb-12 text-center text-sandstorm">
-        Our Gear of Choice
-      </h2>
-      <div className="max-w-6xl mx-auto space-y-12">
-        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
-          {gears.map((gear, index) => (
-            <motion.div
-              key={gear.id}
-              initial={{ opacity: 0, y: 40 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: index * 0.2 }}
-              viewport={{ once: true }}
-              className="relative group bg-gradient-to-tr from-gray-900/80 to-gray-900/50 backdrop-blur-md border border-gray-800 rounded-3xl shadow-xl overflow-hidden flex flex-col hover:scale-105 hover:shadow-2xl transition-transform cursor-pointer"
-            >
-              {/* Gear Image */}
-              <div className="relative w-full h-52 overflow-hidden">
-                <Image
-                  src={gear.image}
-                  alt={gear.name}
-                  fill
-                  className="object-cover transition-transform duration-500 group-hover:scale-105"
-                />
-                <div className="absolute inset-0 bg-black/20 group-hover:bg-black/30 transition-colors rounded-t-3xl"></div>
+    <section className="w-screen h-screen flex overflow-hidden">
+      {panels.map((panel) => (
+        <motion.div
+          key={panel.id}
+          className="relative w-1/3 h-full cursor-pointer overflow-hidden"
+          onHoverStart={() => setHoveredPanel(panel.id)}
+          onHoverEnd={() => setHoveredPanel(null)}
+        >
+          <Image
+            src={panel.image}
+            alt={panel.title}
+            fill
+            className="object-cover object-center bg-black transition-transform duration-500"
+          />
+
+          {/* Always visible overlay (title + category) */}
+          <div className="absolute bottom-6 left-6 text-white z-10">
+            <h2 className="text-2xl font-bold">{panel.title}</h2>
+            <p className="text-sm uppercase tracking-wide">{panel.category}</p>
+          </div>
+
+          {/* Hover overlay */}
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: hoveredPanel === panel.id ? 1 : 0 }}
+            transition={{ duration: 0.3 }}
+            className="absolute inset-0 bg-black/70 flex flex-col justify-center items-start p-8 text-white z-20"
+          >
+            <h2 className="text-3xl font-extrabold mb-4">{panel.title}</h2>
+            <p className="mb-4">{panel.description}</p>
+            <ul className="list-disc list-inside mb-4">
+              {panel.features.map((f, i) => (
+                <li key={i}>{f}</li>
+              ))}
+            </ul>
+            {panel.rating && (
+              <div className="flex gap-1 mt-2">
+                {Array.from({ length: 5 }).map((_, i) => (
+                  <Star
+                    key={i}
+                    size={20}
+                    className={i < panel.rating! ? "text-yellow-400 fill-yellow-400" : "text-gray-500"}
+                  />
+                ))}
               </div>
+            )}
+          </motion.div>
 
-              {/* Gear Details */}
-              <div className="p-5 flex flex-col flex-grow space-y-3 relative z-10">
-                <h3 className="text-lg md:text-xl font-bold text-sandstorm drop-shadow-md">
-                  {gear.name}
-                </h3>
-
-                {/* Owner Info */}
-                <div className="flex items-center gap-2">
-                  <div className="relative w-8 h-8">
-                    <div className="absolute -inset-1 rounded-full bg-gradient-to-tr from-rust to-sandstorm blur opacity-40 animate-pulse"></div>
-                    <Image
-                      src={gear.avatar}
-                      alt={gear.owner}
-                      width={32}
-                      height={32}
-                      className="rounded-full border border-gray-300/40 relative"
-                    />
-                  </div>
-                  <p className="text-sm text-gray-300">By {gear.owner}</p>
-                </div>
-
-                {/* Review */}
-                <p className="text-gray-200 text-sm md:text-base flex-grow">
-                  “{gear.review}”
-                </p>
-
-                {/* Rating */}
-                <div className="flex gap-1 mt-2">
-                  {Array.from({ length: 5 }).map((_, i) => (
-                    <motion.span
-                      key={i}
-                      initial={{ scale: 0 }}
-                      whileInView={{ scale: 1 }}
-                      transition={{ duration: 0.3, delay: i * 0.1 }}
-                    >
-                      <Star
-                        size={16}
-                        className={
-                          i < gear.rating
-                            ? "text-yellow-400 fill-yellow-400"
-                            : "text-gray-600"
-                        }
-                      />
-                    </motion.span>
-                  ))}
-                </div>
-              </div>
-
-              {/* Hover overlay glow */}
-              <div className="absolute inset-0 bg-gradient-to-t from-rust/20 to-transparent opacity-0 group-hover:opacity-40 transition-opacity rounded-3xl"></div>
-            </motion.div>
-          ))}
-        </div>
-      </div>
+          {/* Gradient for aesthetics */}
+          <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent pointer-events-none" />
+        </motion.div>
+      ))}
     </section>
   );
 }

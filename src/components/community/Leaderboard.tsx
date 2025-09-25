@@ -86,7 +86,7 @@ const leaders: Leader[] = [
     rank: 9,
     badge: "Community Mentor",
   },
-   {
+  {
     id: 10,
     name: "Rohit Verma",
     avatar: "/images/manali/rider-img.jpg",
@@ -98,7 +98,12 @@ const leaders: Leader[] = [
 
 export default function Leaderboard() {
   return (
-    <section className="py-16 px-6 bg-gradient-to-b from-navy to-black">
+    <section
+      className="py-16 px-6"
+      style={{
+        background: `linear-gradient(180deg, #001644 0%, #000206 100%)`,
+      }}
+    >
       <div className="max-w-6xl mx-auto space-y-12">
         {/* Title */}
         <motion.h2
@@ -178,7 +183,9 @@ export default function Leaderboard() {
                       height={36}
                       className="rounded-full border border-sandstorm-1"
                     />
-                    <span className="font-semibold text-white">{leader.name}</span>
+                    <span className="font-semibold text-white">
+                      {leader.name}
+                    </span>
                   </td>
                   <td className="py-3 px-4 text-sm">{leader.badge}</td>
                   <td className="py-3 px-4 font-semibold text-sandstorm-1">

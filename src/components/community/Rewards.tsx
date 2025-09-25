@@ -51,7 +51,12 @@ export const Rewards: React.FC<RewardsProps> = ({ data }) => {
   const currentUser = contributorList[0]; // Example: logged-in user
 
   return (
-    <section className="py-16 px-4 md:px-12 bg-gradient-to-b from-navy to-black text-white">
+    <section
+      className="py-16 px-4 md:px-12 text-white"
+      style={{
+        background: `linear-gradient(180deg, #001644 0%, #000206 100%)`,
+      }}
+    >
       <h2 className="text-3xl md:text-4xl font-bold mb-12 text-center text-sandstorm">
         Radkaat Rewards
       </h2>

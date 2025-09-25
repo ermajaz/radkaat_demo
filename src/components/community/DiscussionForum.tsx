@@ -1,8 +1,8 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { MessageSquare, ThumbsUp } from "lucide-react";
 import Image from "next/image";
+import { MessageSquare, ThumbsUp } from "lucide-react";
 
 interface Post {
   id: number;
@@ -49,66 +49,68 @@ const posts: Post[] = [
 
 export default function DiscussionForum() {
   return (
-    <section className="pb-16 px-6">
-      <h2 className="text-3xl md:text-4xl font-bold mb-12 text-center text-sandstorm">
+    <section className="w-full min-h-screen bg-black py-16 px-6">
+      <h2 className="text-4xl md:text-5xl font-bold text-center text-sandstorm mb-16">
         Discussion Forum
       </h2>
-      <div className="max-w-6xl mx-auto space-y-12">
-        {/* Forum Posts */}
-        <div className="space-y-8">
-          {posts.map((post, index) => (
-            <motion.div
-              key={post.id}
-              initial={{ opacity: 0, y: 50 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: index * 0.2 }}
-              viewport={{ once: true }}
-              className="relative group bg-gradient-to-tr from-gray-900/60 to-gray-900/30 backdrop-blur-md border border-gray-800 rounded-3xl p-6 shadow-lg hover:scale-105 hover:shadow-2xl transition-transform cursor-pointer overflow-hidden"
-            >
-              {/* Author */}
-              <div className="flex items-center gap-3 mb-4">
-                <div className="relative w-10 h-10">
-                  <div className="absolute -inset-1 bg-gradient-to-tr from-rust to-sandstorm rounded-full blur opacity-30 animate-pulse"></div>
-                  <Image
-                    src={post.avatar}
-                    alt={post.author}
-                    width={40}
-                    height={40}
-                    className="rounded-full border border-gray-300 relative"
-                  />
-                </div>
-                <p className="font-semibold text-sandstorm">{post.author}</p>
-              </div>
 
-              {/* Content */}
-              <h3 className="text-lg md:text-xl font-bold text-sandstorm drop-shadow-md">
+      <div className="max-w-6xl mx-auto space-y-16">
+        {posts.map((post, index) => (
+          <motion.div
+            key={post.id}
+            initial={{ opacity: 0, y: 60 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.7, delay: index * 0.2 }}
+            viewport={{ once: true }}
+            className="relative flex flex-col md:flex-row items-start md:items-center justify-between group"
+          >
+            {/* Slanted background */}
+            <div className="absolute inset-0 bg-gray-900/70 backdrop-blur-md skew-y-[-2deg] rounded-3xl -z-10 border-l-4 border-rust/50" />
+
+            {/* Left: Author */}
+            <div className="flex-shrink-0 flex flex-col items-center md:items-start gap-4 mr-6">
+              <div className="relative w-16 h-16">
+                <div className="absolute -inset-1 rounded-full bg-gradient-to-tr from-rust to-sandstorm blur opacity-40 animate-pulse"></div>
+                <Image
+                  src={post.avatar}
+                  alt={post.author}
+                  width={64}
+                  height={64}
+                  className="rounded-full border border-gray-600 relative"
+                />
+              </div>
+              <p className="text-sm text-gray-400">{post.author}</p>
+            </div>
+
+            {/* Right: Content */}
+            <div className="flex-1 flex flex-col gap-4">
+              <h3 className="text-xl md:text-2xl font-bold text-sandstorm">
                 {post.title}
               </h3>
-              <p className="text-gray-300 text-sm md:text-base mt-1">{post.content}</p>
+              <p className="text-gray-300 text-sm md:text-base">{post.content}</p>
 
-              {/* Actions */}
-              <div className="flex items-center gap-6 mt-4 text-gray-400 text-sm">
+              <div className="flex gap-6 mt-2">
                 <motion.button
                   whileHover={{ scale: 1.1 }}
                   whileTap={{ scale: 0.95 }}
-                  className="flex items-center gap-1 hover:text-rust transition"
+                  className="flex items-center gap-1 text-gray-400 hover:text-rust transition"
                 >
-                  <ThumbsUp size={16} /> {post.likes}
+                  <ThumbsUp size={18} /> {post.likes}
                 </motion.button>
                 <motion.button
                   whileHover={{ scale: 1.1 }}
                   whileTap={{ scale: 0.95 }}
-                  className="flex items-center gap-1 hover:text-sandstorm transition"
+                  className="flex items-center gap-1 text-gray-400 hover:text-sandstorm transition"
                 >
-                  <MessageSquare size={16} /> {post.comments}
+                  <MessageSquare size={18} /> {post.comments}
                 </motion.button>
               </div>
+            </div>
 
-              {/* Hover Glow Overlay */}
-              <div className="absolute inset-0 bg-gradient-to-t from-rust/20 to-transparent opacity-0 group-hover:opacity-30 transition-opacity rounded-3xl pointer-events-none"></div>
-            </motion.div>
-          ))}
-        </div>
+            {/* Hover Glow */}
+            <div className="absolute inset-0 rounded-3xl bg-gradient-to-tr from-rust/30 to-transparent opacity-0 group-hover:opacity-30 transition-opacity pointer-events-none -z-10" />
+          </motion.div>
+        ))}
       </div>
     </section>
   );

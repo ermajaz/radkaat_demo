@@ -19,7 +19,7 @@ export default function CommunityHero() {
   return (
     <section
       ref={heroRef}
-      className="relative h-[100vh] flex items-center justify-center text-center overflow-hidden"
+      className="relative h-[100vh] bg-superblack flex items-center justify-center text-center overflow-hidden"
     >
       {/* Background Parallax Image */}
       <motion.div

@@ -20,12 +20,14 @@ const ParallaxWrapper: React.FC<ParallaxWrapperProps> = ({ children }) => {
         className="fixed w-[calc(100vw-96px)] mx-auto inset-0 z-0 pointer-events-none"
       >
         <Image
-          src="/images/contour.png"
+          src="/images/contour1.png"
           alt="contour background"
           fill
           priority
           className="object-cover w-full h-full"
         />
+        {/* Black Overlay */}
+        <div className="absolute inset-0 bg-black/70" />
       </motion.div>
 
       {/* Foreground content */}
