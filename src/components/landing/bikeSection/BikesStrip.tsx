@@ -17,7 +17,7 @@ interface Bike {
 export default function BikesStrip({ bike }: { bike: Bike }) {
   return (
     <div
-      className={`w-full h-[30px] flex items-center justify-center z-40`}
+      className={`w-full h-[28px] flex items-center justify-center z-40`}
       style={{
         backgroundImage:
           bike.name.toLowerCase() === "serow"
@@ -30,11 +30,11 @@ export default function BikesStrip({ bike }: { bike: Bike }) {
       }}
     >
       <div className="flex items-center gap-2">
-        <Star className="text-black w-4.5 h-4.5 fill-black/80" />
-        <span className="font-bold text-[14px] uppercase tracking-[1.5px] text-black">
-          Introducing Goat Features
+        <Star className="text-superblack w-4 h-4 fill-superblack" strokeWidth={0}/>
+        <span className="font-bold text-[13px] uppercase tracking-[1.5px] mt-[1px] text-superblack">
+          Introducing Goat Series
         </span>
-        <Star className="text-black w-4.5 h-4.5 fill-black/80" />
+        <Star className="text-superblack w-4 h-4 fill-superblack" strokeWidth={0}/>
       </div>
     </div>
   );

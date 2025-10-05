@@ -12,8 +12,8 @@ export default function Home() {
   return (
     <main>
       <HeroSection />
+      <BikesShowcase />
       <div className="w-[calc(100vw-96px)] mx-auto">
-        <BikesShowcase />
         <BikeComparison />
 
         <ParallaxWrapper>

@@ -71,7 +71,7 @@ export default function DiscussionForum() {
             <div className="flex-shrink-0 flex flex-col items-center md:items-start gap-4 mr-6">
               <div className="relative w-16 h-16">
                 <div className="absolute -inset-1 rounded-full bg-gradient-to-tr from-rust to-sandstorm blur opacity-40 animate-pulse"></div>
-                <Image
+                <Image quality={100}
                   src={post.avatar}
                   alt={post.author}
                   width={64}

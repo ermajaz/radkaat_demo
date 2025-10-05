@@ -65,7 +65,7 @@ export default function PhotoWall() {
                   className="w-full h-full relative"
                 >
                   {item.type === "photo" ? (
-                    <Image
+                    <Image quality={100}
                       src={item.src}
                       alt={item.alt}
                       fill
@@ -124,7 +124,7 @@ export default function PhotoWall() {
               </button>
 
               {selected.type === "photo" ? (
-                <Image
+                <Image quality={100}
                   src={selected.src}
                   alt={selected.alt}
                   width={800}

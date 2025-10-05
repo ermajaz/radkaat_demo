@@ -84,7 +84,11 @@ const DestinationCard: React.FC<Props> = ({ destination }) => {
   const renderStars = (rating: number) => (
     <div className="flex items-center gap-1">
       {Array.from({ length: rating }).map((_, i) => (
-        <Star key={i} className="w-4 h-4 fill-yellow-600 text-yellow-600" />
+        <Star
+          key={i}
+          className="w-4 h-4 fill-sandstorm text-sandstorm"
+          strokeWidth={0}
+        />
       ))}
     </div>
   );
@@ -117,6 +121,7 @@ const DestinationCard: React.FC<Props> = ({ destination }) => {
           className="flex-1 relative h-1/3 md:h-full"
         >
           <Image
+            quality={100}
             src={destination.leftImage}
             alt={destination.title}
             fill
@@ -158,7 +163,7 @@ const DestinationCard: React.FC<Props> = ({ destination }) => {
               <h4 className="text-3xl md:text-3xl font-extrabold text-white drop-shadow-xl">
                 {destination.title}
               </h4>
-              <p className="italic text-emerald-600 mt-1 text-base">
+              <p className="italic text-army mt-1 text-base">
                 “{destination.subtitle}”
               </p>
               <p className="mt-2 text-gray-200 leading-relaxed text-sm md:text-base">
@@ -177,7 +182,7 @@ const DestinationCard: React.FC<Props> = ({ destination }) => {
                   </div>
                   <div className="h-1.5 bg-gray-700 rounded-full overflow-hidden">
                     <div
-                      className="h-full bg-emerald-600 rounded-full"
+                      className="h-full bg-army rounded-full"
                       style={{
                         width: `${(review.rating / review.max) * 100}%`,
                       }}

@@ -71,7 +71,7 @@ export const TourGallery: React.FC<TourGalleryProps> = ({
                   className="relative mb-4 break-inside-avoid overflow-hidden group"
                   style={{ height: `${200 + (idx % 3) * 80}px` }} // variable heights for Benton
                 >
-                  <Image
+                  <Image quality={100}
                     src={img}
                     alt={`Tour image ${idx + 1}`}
                     fill

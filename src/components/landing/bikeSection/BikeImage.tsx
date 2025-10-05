@@ -16,7 +16,7 @@ export default function BikeImage({ bike, yOffsetImage, yOffsetModel }: Props) {
       style={{ y: yOffsetImage }}
       className="relative z-10 w-full lg:w-1/2 flex justify-center"
     >
-      <Image
+      <Image quality={100}
         src={bike.image}
         alt={`${bike.name} Bike`}
         width={1200}

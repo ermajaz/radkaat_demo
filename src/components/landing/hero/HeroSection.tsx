@@ -72,6 +72,7 @@ export default function HeroSection() {
         <div className="relative h-screen flex items-center justify-center">
           {/* Background Image */}
           <Image
+            quality={100}
             src="/images/hero-img.png"
             alt="Hero Background"
             fill
@@ -80,16 +81,23 @@ export default function HeroSection() {
             // sizes="100vw"
           />
 
+          {/* Gradient Overlay */}
+          <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-black/30 to-transparent pointer-events-none" />
+
           {/* Content */}
           <div className="relative z-10 flex flex-col items-center text-center px-4 -mt-20 md:-mt-48">
-            <h1 className="hero-line first text-5xl md:text-7xl font-extrabold uppercase text-sandstorm !tracking-[15px] mb-6 text-stroke-yellow">
+            <h1
+              className="hero-line first text-5xl md:text-7xl font-extrabold uppercase text-sandstorm !tracking-[15px] mb-6 text-stroke-yellow"
+              style={{
+                textShadow: "2px 2px 8px rgba(0,0,0,0.5)",
+              }}
+            >
               {splitText("NOTHING BUT NOW", "text-[sandstorm] text-stroke")}
             </h1>
             <span
               className="hero-line second text-xl md:text-[32px] !font-extrabold leading-[46px] text-white"
               style={{
-                textShadow:
-                  "4px 4px 4px 0px #00000026",
+                textShadow: "4px 4px 4px 0px #00000026",
                 WebkitTextStroke: "1px #00000080",
               }}
             >

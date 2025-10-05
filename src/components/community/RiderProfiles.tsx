@@ -86,7 +86,7 @@ function RiderCard({ rider, delay }: { rider: Rider; delay: number }) {
       {/* Avatar */}
       <div className="relative w-28 h-28">
         <div className="absolute -inset-1 bg-gradient-to-tr from-rust to-sandstorm rounded-full blur-xl opacity-40 animate-pulse"></div>
-        <Image
+        <Image quality={100}
           src={rider.avatar}
           alt={rider.name}
           width={112}

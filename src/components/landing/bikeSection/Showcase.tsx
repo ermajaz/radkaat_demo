@@ -5,6 +5,7 @@ import { ArrowRight } from "lucide-react";
 import { AnimatePresence, motion } from "framer-motion";
 import { useEffect, useState } from "react";
 import { Button } from "@/components/ui/button";
+import Link from "next/link";
 
 interface Bike {
   logo: string;
@@ -39,9 +40,9 @@ export default function Showcase({
   }, [bike]);
 
   return (
-    <div className="relative w-full h-[calc(100vh-30px)] text-white flex flex-col">
+    <div className="relative w-[calc(100%-96px)] mx-auto h-[calc(100vh-28px)] text-white flex flex-col">
       {/* Main Content */}
-      <div className="relative h-[calc(100vh-70px)] flex items-center justify-between px-6 overflow-hidden min-h-0">
+      <div className="relative h-[calc(100vh-68px)] flex items-center justify-between px-6 overflow-hidden min-h-0">
         {/* Left Side: Logo + Features */}
         <div className="w-[200px] h-full flex flex-col justify-center items-start  z-20">
           {/* Left Tab: Bikes */}
@@ -65,6 +66,7 @@ export default function Showcase({
 
                     {/* Bike Logo */}
                     <Image
+                      quality={100}
                       src={b.logo}
                       alt={`${b.name} logo`}
                       width={isActive ? 28 : 25}
@@ -122,6 +124,7 @@ export default function Showcase({
               className="relative flex justify-center items-center z-10 flex-1 left-10 translate-y-20"
             >
               <Image
+                quality={100}
                 src={displayedBike.image}
                 alt={`${displayedBike.name} Bike`}
                 width={800}
@@ -195,30 +198,32 @@ export default function Showcase({
       </div>
 
       {/* Bottom CTA full-width */}
-      <div
-        className="w-full h-[40px] flex justify-center items-center cursor-pointer mt-auto"
-        style={{
-          backgroundImage:
-            displayedBike.name.toLowerCase() === "serow"
-              ? "linear-gradient(90deg, var(--color-sandstorm), var(--color-sandstorm-1))"
-              : displayedBike.name.toLowerCase() === "saola"
-              ? "linear-gradient(90deg, var(--color-airforce), var(--color-petrol))"
-              : displayedBike.name.toLowerCase() === "takin"
-              ? "linear-gradient(90deg, #75911c, var(--color-army))"
-              : "linear-gradient(90deg, var(--color-sandstorm), var(--color-sandstorm-1))",
-        }}
-      >
-        <Button
-          className={`bg-transparent text-lg cursor-pointer font-[600] flex items-center gap-2 rounded-none shadow-none 
-      ${
-        ["saola", "takin"].includes(displayedBike.name.toLowerCase())
-          ? "text-white"
-          : "text-black"
-      }`}
+      <Link href={`/bikes/${displayedBike.name.toLowerCase()}`} passHref>
+        <div
+          className="w-full h-[40px] flex justify-center items-center cursor-pointer mt-auto"
+          style={{
+            backgroundColor:
+              displayedBike.name.toLowerCase() === "serow"
+                ? "var(--color-sandstorm)"
+                : displayedBike.name.toLowerCase() === "saola"
+                ? "var(--color-airforce)"
+                : displayedBike.name.toLowerCase() === "takin"
+                ? "var(--color-army)"
+                : "var(--color-sandstorm)",
+          }}
         >
-          EXPLORE THE MODEL <ArrowRight className="w-5 h-5" />
-        </Button>
-      </div>
+          <Button
+            className={`bg-transparent text-lg cursor-pointer font-[600] flex items-center gap-2 rounded-none shadow-none 
+              ${
+                ["saola", "takin"].includes(displayedBike.name.toLowerCase())
+                  ? "text-white"
+                  : "text-black"
+              }`}
+          >
+            EXPLORE THE MODEL <ArrowRight className="w-5 h-5" />
+          </Button>
+        </div>
+      </Link>
     </div>
   );
 }

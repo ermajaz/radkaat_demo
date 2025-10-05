@@ -130,7 +130,7 @@ export default function Leaderboard() {
               <div className="absolute -top-4 bg-gradient-to-tr from-rust to-sandstorm w-14 h-14 flex items-center justify-center rounded-full shadow-lg text-black font-bold text-lg">
                 {leader.rank}
               </div>
-              <Image
+              <Image quality={100}
                 src={leader.avatar}
                 alt={leader.name}
                 width={100}
@@ -176,7 +176,7 @@ export default function Leaderboard() {
                     #{leader.rank}
                   </td>
                   <td className="py-3 px-4 flex items-center gap-3">
-                    <Image
+                    <Image quality={100}
                       src={leader.avatar}
                       alt={leader.name}
                       width={36}

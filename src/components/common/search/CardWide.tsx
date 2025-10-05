@@ -8,7 +8,7 @@ export default function CardWide({ rec }: { rec: Recommendation }) {
   return (
     <div className="relative col-span-2 rounded-2xl overflow-hidden group flex transform transition-all duration-300 hover:scale-[1.02] hover:shadow-2xl">
       {/* Image */}
-      <Image
+      <Image quality={100}
         src={rec.image}
         alt={rec.title}
         width={300}

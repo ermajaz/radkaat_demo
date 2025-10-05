@@ -82,7 +82,7 @@ export default function ChooseBikeVariant({ onNext }: ChooseBikeVariantProps) {
                   whileHover={{ scale: 1.05, rotate: 1 }}
                   className="relative"
                 >
-                  <Image
+                  <Image quality={100}
                     src={bike.img}
                     alt={bike.name}
                     width={220}

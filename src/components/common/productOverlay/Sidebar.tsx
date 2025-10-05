@@ -67,7 +67,7 @@ export default function Sidebar({ bikes, selected, onSelect }: Props) {
               >
                 {/* Bike logo */}
                 <div className="w-16 h-16 relative flex-shrink-0">
-                  <Image
+                  <Image quality={100}
                     src={bike.logo}
                     alt={bike.name}
                     fill

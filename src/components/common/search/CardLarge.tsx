@@ -8,7 +8,7 @@ export default function CardLarge({ rec }: { rec: Recommendation }) {
   return (
     <div className="relative col-span-2 row-span-2 rounded-3xl overflow-hidden group cursor-pointer transform transition-all duration-500 hover:scale-[1.03] hover:shadow-2xl">
       {/* Image */}
-      <Image
+      <Image quality={100}
         src={rec.image}
         alt={rec.title}
         fill

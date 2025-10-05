@@ -60,7 +60,7 @@ export default function ThreePanelShowcase() {
           onHoverStart={() => setHoveredPanel(panel.id)}
           onHoverEnd={() => setHoveredPanel(null)}
         >
-          <Image
+          <Image quality={100}
             src={panel.image}
             alt={panel.title}
             fill

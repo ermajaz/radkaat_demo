@@ -25,7 +25,7 @@ export default function CommunityPage() {
         className="fixed top-0 left-0 w-full h-full z-0 pointer-events-none"
       >
         <div className="relative w-screen h-screen">
-          <Image
+          <Image quality={100}
             src="/images/contour1.png"
             alt="Contour Background"
             fill

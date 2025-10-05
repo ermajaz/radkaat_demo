@@ -92,7 +92,7 @@ export default function ChooseRider({ onNext, onBack }: ChooseRiderProps) {
               >
                 {/* Rider Image */}
                 <div className="relative w-full h-56 overflow-hidden">
-                  <Image
+                  <Image quality={100}
                     src={rider.img}
                     alt={rider.name}
                     fill

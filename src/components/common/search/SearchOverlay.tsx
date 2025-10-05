@@ -39,7 +39,7 @@ export default function SearchOverlay({ onClose }: Props) {
     >
       {/* Background splash */}
       <div className="absolute inset-0 -z-10">
-        <Image
+        <Image quality={100}
           src="/images/splosh.png"
           alt="Background splash"
           fill

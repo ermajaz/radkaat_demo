@@ -41,7 +41,7 @@ export default function StoryPage() {
     <main className="relative">
       {/* Hero Section */}
       <div className="relative w-full h-screen">
-        <Image
+        <Image quality={100}
           src={story.img}
           alt={story.title}
           fill
@@ -61,7 +61,7 @@ export default function StoryPage() {
             backdropFilter: "blur(5px)",
           }}
         >
-          <Image
+          <Image quality={100}
             src="/icons/gallery-icon.png"
             alt="gallery-icon"
             width={28}

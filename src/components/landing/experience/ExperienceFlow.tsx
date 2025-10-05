@@ -65,7 +65,7 @@ export default function ExperienceFlow() {
         {/* Logo + Title */}
         <div className="flex items-center gap-3">
           <Link href="/" className="mr-4">
-            <Image
+            <Image quality={100}
               src="/images/website-logo.png"
               alt="website-logo"
               width={40}
@@ -126,7 +126,7 @@ export default function ExperienceFlow() {
                 whileHover={{ scale: 1.03 }}
                 className="relative rounded-xl overflow-hidden border-2 border-white/20 bg-gradient-to-br from-black/30 to-black/20 shadow-lg cursor-pointer"
               >
-                <Image
+                <Image quality={100}
                   src={selection.bike.img}
                   alt={selection.bike.name}
                   width={320}
@@ -198,7 +198,7 @@ export default function ExperienceFlow() {
                 whileHover={{ scale: 1.02 }}
                 className="flex items-center gap-3 p-3 border-2 border-white/20 rounded-xl bg-superblack/30 shadow-md cursor-pointer"
               >
-                <Image
+                <Image quality={100}
                   src={selection.rider.img}
                   alt={selection.rider.name}
                   width={50}

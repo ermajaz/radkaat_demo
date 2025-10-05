@@ -81,7 +81,7 @@ export const Rewards: React.FC<RewardsProps> = ({ data }) => {
         <div className="flex flex-col md:flex-row items-center md:items-start gap-6">
           {/* Avatar */}
           <div className="relative w-20 h-20 md:w-24 md:h-24 rounded-full overflow-hidden border-4 border-white/80 shadow-lg">
-            <Image
+            <Image quality={100}
               src={currentUser.image}
               alt={currentUser.name}
               fill
@@ -150,7 +150,7 @@ export const Rewards: React.FC<RewardsProps> = ({ data }) => {
               </div>
             )}
 
-            <Image
+            <Image quality={100}
               src={c.image}
               alt={c.name}
               width={80}

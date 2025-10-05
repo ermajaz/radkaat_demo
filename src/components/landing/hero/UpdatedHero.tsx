@@ -100,7 +100,7 @@ export default function Hero() {
         className="absolute inset-0 flex justify-center items-center z-20 pointer-events-none"
       >
         <div className="relative w-[60vw] h-[60vh] left-[15%]">
-          <Image
+          <Image quality={100}
             src="/images/new-hero-img.png"
             alt="Bike"
             fill

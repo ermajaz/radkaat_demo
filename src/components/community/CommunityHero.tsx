@@ -26,7 +26,7 @@ export default function CommunityHero() {
         style={{ y: yBackground }}
         className="absolute inset-0 z-0 w-full h-full"
       >
-        <Image
+        <Image quality={100}
           src="/images/parallex.jpeg"
           alt="Community Hero"
           fill

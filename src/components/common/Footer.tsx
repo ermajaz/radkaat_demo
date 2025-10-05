@@ -29,7 +29,7 @@ export default function Footer() {
       <div className="grid grid-cols-1 lg:grid-cols-2">
         {/* Left Image Section */}
         <div className="relative hidden sm:flex w-full h-[220px] sm:h-[280px] md:h-[350px] lg:h-[500px]">
-          <Image
+          <Image quality={100}
             src="/images/footer-img.png"
             alt="Radkaat Riders"
             fill
@@ -44,7 +44,7 @@ export default function Footer() {
           {/* Logo + Heading */}
           <div className="flex flex-row items-center gap-2 mb-10">
             <div className="relative w-16 h-16 sm:w-24 sm:h-24 shrink-0">
-              <Image
+              <Image quality={100}
                 src="/images/born-in-shimla.png"
                 alt="Born in Shimla"
                 fill

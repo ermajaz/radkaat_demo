@@ -41,7 +41,7 @@ export default function TestRideHeroMobile() {
     >
       {/* Background */}
       <div className="absolute inset-0 z-0">
-        <Image
+        <Image quality={100}
           src="/images/test-ride-img.avif"
           alt="Test Ride Background"
           fill
@@ -62,7 +62,7 @@ export default function TestRideHeroMobile() {
           </div>
           <div className="opacity-90">
             <div className="w-12 h-12 rounded-full bg-white/10 flex items-center justify-center text-xs">
-              <Image
+              <Image quality={100}
                 src="/images/website-logo.png"
                 alt="Radkaat Logo"
                 width={24}

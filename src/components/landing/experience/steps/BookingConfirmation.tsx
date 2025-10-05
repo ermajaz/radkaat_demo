@@ -59,7 +59,7 @@ export default function BookingConfirmation({ contact }: BookingConfirmationProp
 
         {/* Tick Animation */}
         {showGif ? (
-          <Image
+          <Image quality={100}
             src="/gif/tick-animation.gif"
             alt="Tick Animation"
             width={160}

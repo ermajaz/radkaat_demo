@@ -19,7 +19,7 @@ const ParallaxWrapper: React.FC<ParallaxWrapperProps> = ({ children }) => {
         style={{ y }}
         className="fixed w-[calc(100vw-96px)] mx-auto inset-0 z-0 pointer-events-none"
       >
-        <Image
+        <Image quality={100}
           src="/images/contour1.png"
           alt="contour background"
           fill

@@ -60,7 +60,7 @@ export default function FlagSection() {
       {/* Left: Flag image only (half width) */}
       <div className="relative w-full lg:w-[44%] h-1/2 lg:h-full flag-img overflow-hidden">
         <div className="absolute inset-0 w-full h-full overflow-hidden">
-          <Image
+          <Image quality={100}
             src="/videos/flag1.gif"
             alt="Flag"
             fill
@@ -88,13 +88,13 @@ export default function FlagSection() {
           </span>
 
           {/* Body */}
-          <div className="body-text text-white text-base sm:text-lg lg:text-[20px] leading-[36px] font-semibold space-y-4">
+          <div className="body-text text-white text-base sm:text-lg lg:text-[20px] leading-[36px] space-y-4">
             The Himalayas are our playground, the world our canvas, Mother
             Nature our compass.
             <br />
             We don’t stand still. We move forward. We move together.
             <br />
-            We are <span className="text-sandstorm font-semibold">
+            We are <span className="text-sandstorm">
               Radkaat
             </span>{" "}
             – a fierce community of homegrown athletes, adventurers, seekers,

@@ -37,7 +37,7 @@ export const StoryContentCard: React.FC<Props> = ({
 
       {/* Author Info */}
       <div className="flex items-center gap-3">
-        <Image
+        <Image quality={100}
           src={content.author_img}
           alt={content.author}
           width={48}

@@ -89,7 +89,7 @@ export const Mentorship: React.FC<MentorshipProps> = ({ data }) => {
           >
             {/* Left: Image */}
             <div className="relative md:w-1/3 w-full h-64 md:h-auto">
-              <Image
+              <Image quality={100}
                 src={mentor.image}
                 alt={mentor.name}
                 fill
@@ -97,7 +97,7 @@ export const Mentorship: React.FC<MentorshipProps> = ({ data }) => {
               />
               {/* Floating avatar */}
               <div className="absolute -bottom-5 left-1/2 transform -translate-x-1/2 md:left-4 md:translate-x-0">
-                <Image
+                <Image quality={100}
                   src={mentor.image}
                   alt={mentor.name}
                   width={60}

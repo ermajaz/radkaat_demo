@@ -19,7 +19,7 @@ export const brandData: SupportSection[] = [
         </blockquote>
         {/* Image placeholder from PDF "The Flag We Carry" intro section */}
         <div className="rounded-lg overflow-hidden">
-          <Image src="/images/flag-img.png" alt="Radkaat Flag" width={600} height={300} className="w-full h-full" />
+          <Image quality={100} src="/images/flag-img.png" alt="Radkaat Flag" width={600} height={300} className="w-full h-full" />
         </div>
       </div>
     ),
@@ -40,8 +40,8 @@ export const brandData: SupportSection[] = [
         </div>
         {/* Image placeholder from PDF "Our Story" page with mountain trail */}
         <div className="w-full flex items-center justify-between">
-            <Image src="/images/ashish-born.png" alt="Radkaat Origin Story" width={300} height={300} />
-        <Image src="/images/born-in-shimla.png" alt="Radkaat Origin born Story" width={300} height={300} />
+            <Image quality={100} src="/images/ashish-born.png" alt="Radkaat Origin Story" width={300} height={300} />
+        <Image quality={100} src="/images/born-in-shimla.png" alt="Radkaat Origin born Story" width={300} height={300} />
         </div>
       </div>
     ),
@@ -65,7 +65,7 @@ export const brandData: SupportSection[] = [
           </div>
         </div>
         {/* Image placeholder from PDF "Manifesto" section with community */}
-        <Image src="/images/manifesto.png" alt="Radkaat Manifesto" width={600} height={300} className="w-full h-full rounded-[1px]"/>
+        <Image quality={100} src="/images/manifesto.png" alt="Radkaat Manifesto" width={600} height={300} className="w-full h-full rounded-[1px]"/>
       </div>
     ),
   },
@@ -103,7 +103,7 @@ export const brandData: SupportSection[] = [
           “Every shot is a story — raw, cinematic, and deeply connected to place.”
         </blockquote>
         {/* Image placeholder from PDF "Photography" section (scenic + athlete) */}
-        <Image src="/images/manifesto.png" alt="Radkaat Photography" width={600} height={300} className="w-full h-full rounded-[1px]" />
+        <Image quality={100} src="/images/manifesto.png" alt="Radkaat Photography" width={600} height={300} className="w-full h-full rounded-[1px]" />
       </div>
     ),
   },
@@ -126,7 +126,7 @@ export const brandData: SupportSection[] = [
           </div>
         </div>
         {/* Image placeholder from PDF "Tone of Voice" typography spread */}
-        <Image src="/images/akshit.jpg" alt="Radkaat Tone of Voice" width={600} height={300} className="w-full h-full rounded-[2px]"/>
+        <Image quality={100} src="/images/akshit.jpg" alt="Radkaat Tone of Voice" width={600} height={300} className="w-full h-full rounded-[2px]"/>
       </div>
     ),
   },

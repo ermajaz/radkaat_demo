@@ -29,13 +29,13 @@ export default function BikeCard({ bike, isActive }: Props) {
     >
       {/* Bike Image */}
       <div className="relative w-[180px] h-[250px]">
-        <Image src={bike.img} alt={bike.name} fill className="object-contain" />
+        <Image quality={100} src={bike.img} alt={bike.name} fill className="object-contain" />
       </div>
 
       {/* Bike Logo & Name */}
       <div className="absolute left-1/2 bottom-[15%] -translate-x-1/2 -ml-2 flex items-center gap-3">
         <div className="relative w-[48px] h-[68px] flex-shrink-0">
-          <Image
+          <Image quality={100}
             src={logoSrc}
             alt={`${bike.name} logo`}
             fill

@@ -75,7 +75,7 @@ export const LocalChapters: React.FC<LocalChaptersProps> = ({ data }) => {
           >
             {/* Image with gradient overlay */}
             <div className="relative h-56 w-full">
-              <Image
+              <Image quality={100}
                 src={chapter.image}
                 alt={chapter.name}
                 fill

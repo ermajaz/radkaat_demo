@@ -67,7 +67,7 @@ export default function StoriesSection() {
             `}
           >
             <div className="relative w-full h-[426px] overflow-hidden group">
-              <Image
+              <Image quality={100}
                 src={story.img}
                 alt={story.title}
                 fill

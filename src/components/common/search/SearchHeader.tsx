@@ -12,7 +12,7 @@ export default function SearchHeader({ onClose }: Props) {
     <header className="w-full flex items-center justify-between px-8 py-6">
       {/* Logo */}
       <div className="flex items-center pt-2">
-        <Image src="/images/website-logo.png" alt="Logo" width={60} height={60} className="w-[60px] h-auto"/>
+        <Image quality={100} src="/images/website-logo.png" alt="Logo" width={60} height={60} className="w-[60px] h-auto"/>
       </div>
 
       {/* Close */}

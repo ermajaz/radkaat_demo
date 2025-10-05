@@ -14,7 +14,7 @@ export default function GridProduct() {
               {/* Card */}
               <div className="relative overflow-hidden shadow-2xl h-[28rem] w-full">
                 {/* Background Image */}
-                <Image
+                <Image quality={100}
                   src={product.image}
                   alt={product.title}
                   fill

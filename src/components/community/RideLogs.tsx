@@ -98,7 +98,7 @@ export default function RideLogsShowcase() {
           className="absolute inset-0"
         >
           {/* Background Image */}
-          <Image
+          <Image quality={100}
             src={logs[index].image}
             alt={logs[index].story}
             fill
@@ -112,7 +112,7 @@ export default function RideLogsShowcase() {
       <div className="relative z-10 flex flex-col h-full justify-between text-white p-8 md:p-16">
         {/* Rider Info */}
         <div className="flex items-center gap-3">
-          <Image
+          <Image quality={100}
             src={logs[index].avatar}
             alt={logs[index].rider}
             width={50}
