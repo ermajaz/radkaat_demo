@@ -2,154 +2,99 @@
 
 import { useEffect, useRef } from "react";
 import gsap from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
 import Image from "next/image";
 import { ArrowRight } from "lucide-react";
 
-gsap.registerPlugin(ScrollTrigger);
-
 export default function Hero() {
   const heroRef = useRef<HTMLDivElement>(null);
-  const leftBgRef = useRef<HTMLDivElement>(null);
   const bikeRef = useRef<HTMLDivElement>(null);
+  const textRef = useRef<HTMLDivElement>(null);
 
-  // Bike comes in from right on mount
   useEffect(() => {
-    if (bikeRef.current) {
+    const ctx = gsap.context(() => {
+      gsap.fromTo(
+        textRef.current,
+        { y: 30, opacity: 0 },
+        { y: 0, opacity: 1, duration: 1, ease: "power3.out" }
+      );
       gsap.fromTo(
         bikeRef.current,
-        { x: 400, opacity: 0, scale: 0.95 },
+        { x: 200, opacity: 0, scale: 0.9 },
         {
           x: 0,
           opacity: 1,
           scale: 1,
-          duration: 1.5,
+          duration: 1.4,
           ease: "power3.out",
+          delay: 0.2,
         }
       );
-    }
-  }, []);
-
-  // Scroll effect for text letters
-  useEffect(() => {
-    const ctx = gsap.context(() => {
-      const letters = gsap.utils.toArray<HTMLSpanElement>(".hero-title span");
-
-      // Ensure all letters visible initially
-      gsap.set(letters, { y: 0, opacity: 1 });
-
-      // Animate letters OUT on scroll
-      gsap.to(letters, {
-        y: -100,
-        opacity: 0,
-        stagger: 0.15, // each letter leaves one by one
-        ease: "power3.in",
-        scrollTrigger: {
-          trigger: heroRef.current,
-          start: "top top",
-          end: "+=150%",
-          scrub: true,
-          pin: true,
-        },
-      });
-
-      // Paragraph + button fade out smoothly
-      gsap.to(".hero-fade", {
-        opacity: 0,
-        y: -40,
-        ease: "power2.out",
-        scrollTrigger: {
-          trigger: heroRef.current,
-          start: "top top",
-          end: "+=80%",
-          scrub: true,
-        },
-      });
     }, heroRef);
-
     return () => ctx.revert();
-  }, []);
-
-  // Scroll effect for left background
-  useEffect(() => {
-    const handleScroll = () => {
-      const scrollTop = window.scrollY;
-      if (leftBgRef.current) {
-        const shift = Math.min(scrollTop / 3, window.innerWidth * 0.4);
-        leftBgRef.current.style.transform = `translateX(${shift}px)`;
-      }
-    };
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
   return (
     <section
       ref={heroRef}
-      className="relative w-full h-screen flex overflow-hidden bg-neutral-950 z-20"
+      className="relative w-full h-screen min-h-[680px] overflow-hidden bg-black z-20"
     >
-
-      {/* Right Overlay */}
-      <div className="absolute right-0 top-0 w-1/2 h-full z-10 overflow-hidden">
-        <div className="absolute inset-0 bg-neutral-900"></div>
+      {/* Right half gradient panel */}
+      <div className="pointer-events-none absolute right-0 top-0 h-full w-[42%]">
+        <div className="absolute inset-0 bg-[linear-gradient(90deg,#1f1f1f_0%,#242424_60%,#2c2c2c_100%)]" />
       </div>
 
-      {/* Bike */}
-      <div
-        ref={bikeRef}
-        className="absolute inset-0 flex justify-center items-center z-20 pointer-events-none"
-      >
-        <div className="relative w-[60vw] h-[60vh] left-[15%]">
-          <Image quality={100}
-            src="/images/new-hero-img.png"
-            alt="Bike"
-            fill
-            priority
-            className="object-cover"
-          />
-        </div>
-      </div>
+      {/* Glow accent behind bike */}
+      <div className="absolute right-[20%] top-1/2 -translate-y-1/2 w-[700px] h-[700px] bg-sandstorm/10 rounded-full blur-[140px]" />
 
-      {/* Hero Text */}
-      <div className="w-1/2 flex flex-col justify-center px-10 md:px-20 relative z-30 text-white hero-content">
-        {/* Animated title letters */}
-        <h1 className="text-5xl md:text-6xl font-extrabold leading-tight hero-title">
-          {"Nothing".split("").map((l, i) => (
-            <span key={i} className="inline-block">
-              {l}
+      <div className="relative z-10 mx-auto h-full max-w-[1536px] px-6 md:px-12 flex items-center">
+        {/* Left column: text */}
+        <div ref={textRef} className="flex-1 flex flex-col justify-center">
+          <h1 className="leading-tight font-extrabold">
+            <span className="block text-white text-[48px] md:text-[72px] tracking-tight">
+              Nothing
             </span>
-          ))}{" "}
-          <span className="text-sandstorm">
-            {"But".split("").map((l, i) => (
-              <span key={`but-${i}`} className="inline-block">
-                {l}
-              </span>
-            ))}
-          </span>{" "}
-          <span className="text-sandstorm">
-            {"Now".split("").map((l, i) => (
-              <span key={`now-${i}`} className="inline-block">
-                {l}
-              </span>
-            ))}
-          </span>
-        </h1>
+            <span className="block text-sandstorm text-[56px] md:text-[88px] tracking-wide relative">
+              but Now
+              <span className="absolute bottom-[-8px] left-0 w-2/3 h-[3px] bg-sandstorm animate-pulse" />
+            </span>
+          </h1>
 
-        {/* Paragraph + Button (fade out) */}
-        <div className="mt-6 max-w-lg hero-fade">
-          <p className="text-gray-400 text-base md:text-lg leading-relaxed">
-            Every trail. Every peak. Every moment counts. Gear up for the
-            ultimate cycling experience with GoreWear Essentials.
+          <p className="mt-8 max-w-[600px] text-gray-300 text-[24px] leading-relaxed tracking-wide">
+            Every trail. Every peak. Every now.
           </p>
+
+          <div className="mt-10 flex flex-wrap items-center gap-6">
+            <a
+              href="#"
+              className="inline-flex items-center gap-3 px-7 py-3 font-semibold rounded-none shadow-lg transition hover:scale-105 bg-sandstorm text-black"
+            >
+              Shop Collection <ArrowRight size={20} />
+            </a>
+            <a
+              href="#"
+              className="inline-flex items-center gap-2 text-gray-400 hover:text-sandstorm transition-colors"
+            >
+              Discover More →
+            </a>
+          </div>
         </div>
 
-        <div className="mt-6 flex gap-4 hero-fade">
-          <a
-            href="#"
-            className="bg-sandstorm text-black px-6 py-3 rounded-md font-semibold flex items-center gap-2 shadow-lg hover:scale-105 transition-transform"
+        {/* Right column: bike */}
+        <div className="flex justify-center items-center relative">
+          <div
+            ref={bikeRef}
+            className="relative w-[90%] max-w-[880px]"
           >
-            Shop Collection <ArrowRight size={18} />
-          </a>
+            <Image
+              quality={100}
+              src="/images/hero-bike-new.png"
+              alt="Bike"
+              width={1100}
+              height={800}
+              priority
+              className="object-contain drop-shadow-[0_20px_60px_rgba(215,255,0,0.2)]"
+            />
+          </div>
         </div>
       </div>
     </section>

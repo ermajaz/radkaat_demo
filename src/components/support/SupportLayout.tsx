@@ -16,7 +16,6 @@ const SupportLayout = ({
     <div className="w-full max-w-7xl mx-auto py-8 px-4 md:px-8 pb-[30vh] flex-1">
       {children}
     </div>
-    <Footer />
   </div>
 );
 

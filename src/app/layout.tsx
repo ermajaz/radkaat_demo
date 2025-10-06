@@ -9,7 +9,7 @@ import Header from "@/components/common/Header";
 
 const redHatDisplay = Red_Hat_Display({
   subsets: ["latin"],
-  weight: ["400", "500", "700"],
+  weight: ["400", "500", "700","800","900"],
   variable: "--font-body",
 });
 
@@ -33,7 +33,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${redHatDisplay.variable} antialiased`}>
+      <body className={`${redHatDisplay.variable} antialiased container`}>
         <LoaderProvider>
           <SmoothScroll />
           <Header />

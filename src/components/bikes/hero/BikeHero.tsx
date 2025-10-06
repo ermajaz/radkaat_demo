@@ -21,13 +21,14 @@ export default function BikeHero({
 }: BikeHeroProps) {
   return (
     <section
-      className="relative flex items-center justify-between h-screen bg-cover bg-center"
+      className="w-full relative flex items-center justify-between h-screen bg-cover bg-center"
       style={{
         backgroundImage: "url('/images/bikes/bike-hero-bg.png')",
       }}
     >
       {/* Left Vertical Branding */}
       <BikeBranding text={branding} />
+
 
       {/* Center Image */}
       <BikeImage src={image} alt={`${branding} ${model}`} />

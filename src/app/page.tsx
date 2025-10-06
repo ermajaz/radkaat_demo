@@ -10,22 +10,17 @@ import ParallaxWrapper from "@/components/common/ParallaxWrapper";
 
 export default function Home() {
   return (
-    <main>
+    <main className="">
       <HeroSection />
       <BikesShowcase />
-      <div className="w-[calc(100vw-96px)] mx-auto">
-        <BikeComparison />
-
-        <ParallaxWrapper>
-          <GridProduct />
-          <TestRideSection />
-          <FlagSection />
-
-          <StoriesSection />
-
-          <AdventureSection />
-        </ParallaxWrapper>
-      </div>
+      <BikeComparison />
+      <ParallaxWrapper>
+        <GridProduct />
+        <TestRideSection />
+        <FlagSection />
+        <StoriesSection />
+        <AdventureSection />
+      </ParallaxWrapper>
     </main>
   );
 }

@@ -10,7 +10,7 @@ export default function BikeColorSelector({ colors }: Props) {
   const [selected, setSelected] = useState(colors[0]);
 
   return (
-    <div className="flex items-center space-x-1 bg-white rounded-full px-2 py-1.5">
+    <div className="flex items-center space-x-1 bg-white rounded-full px-[5px] py-[5px]">
       {colors.map((c) => {
         const isSelected = selected === c;
         return (
@@ -27,7 +27,7 @@ export default function BikeColorSelector({ colors }: Props) {
             >
               {/* Inner color ball */}
               <div
-                className="w-6 h-6 rounded-full border"
+                className="w-4.5 h-4.5 rounded-full border"
                 style={{ backgroundColor: c }}
               />
             </div>

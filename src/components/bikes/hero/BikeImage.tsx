@@ -1,3 +1,5 @@
+"use client";
+import { motion } from "framer-motion";
 import Image from "next/image";
 
 interface Props {
@@ -7,14 +9,16 @@ interface Props {
 
 export default function BikeImage({ src, alt }: Props) {
   return (
-    <div className="w-full h-full mr-30 relative">
-      {/* Radial glow behind bike */}
-      <div className="absolute inset-0 flex items-center justify-center -z-10">
-        <div className="w-[900px] h-[900px] rounded-full bg-yellow-900/30 blur-[180px]" />
-      </div>
+    <motion.div
+      initial={{ y: 200, opacity: 0 }}
+      animate={{ y: 0, opacity: 1 }}
+      transition={{ duration: 1, ease: "easeOut", delay: 0.3 }}
+      className="w-full h-full mr-24 relative"
+    >
 
-      <div className="w-full h-full mt-10 flex items-end justify-center">
-        <Image quality={100}
+      <div className="w-full h-full mt-13 flex items-end justify-center">
+        <Image
+          quality={100}
           src={src}
           alt={alt}
           width={900}
@@ -23,6 +27,6 @@ export default function BikeImage({ src, alt }: Props) {
           className="object-contain"
         />
       </div>
-    </div>
+    </motion.div>
   );
 }

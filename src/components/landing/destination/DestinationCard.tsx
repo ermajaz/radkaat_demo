@@ -86,7 +86,7 @@ const DestinationCard: React.FC<Props> = ({ destination }) => {
       {Array.from({ length: rating }).map((_, i) => (
         <Star
           key={i}
-          className="w-4 h-4 fill-sandstorm text-sandstorm"
+          className="w-4 h-4 fill-orange-300 text-orange-300"
           strokeWidth={0}
         />
       ))}
@@ -163,7 +163,7 @@ const DestinationCard: React.FC<Props> = ({ destination }) => {
               <h4 className="text-3xl md:text-3xl font-extrabold text-white drop-shadow-xl">
                 {destination.title}
               </h4>
-              <p className="italic text-army mt-1 text-base">
+              <p className="italic text-green-700 mt-1 text-base">
                 “{destination.subtitle}”
               </p>
               <p className="mt-2 text-gray-200 leading-relaxed text-sm md:text-base">
@@ -182,7 +182,7 @@ const DestinationCard: React.FC<Props> = ({ destination }) => {
                   </div>
                   <div className="h-1.5 bg-gray-700 rounded-full overflow-hidden">
                     <div
-                      className="h-full bg-army rounded-full"
+                      className="h-full bg-green-700 rounded-full"
                       style={{
                         width: `${(review.rating / review.max) * 100}%`,
                       }}

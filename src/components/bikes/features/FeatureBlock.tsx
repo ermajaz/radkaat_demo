@@ -18,7 +18,7 @@ export default function FeatureBlock({
   image,
 }: FeatureBlockProps) {
   return (
-    <section className="w-full bg-superblack h-screen text-stone pt-15 pl-10">
+    <section className="w-full bg-superblack h-[calc(100vh-70px)] text-stone pt-[60px] pl-10">
       <div className="w-full h-full mx-auto flex flex-col md:flex-row items-center">
         {/* Left Section */}
         <div className="relative w-[50%] h-full pr-6 py-5">

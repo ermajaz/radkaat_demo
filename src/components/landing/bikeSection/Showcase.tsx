@@ -40,7 +40,7 @@ export default function Showcase({
   }, [bike]);
 
   return (
-    <div className="relative w-[calc(100%-96px)] mx-auto h-[calc(100vh-28px)] text-white flex flex-col">
+    <div className="relative w-full mx-auto h-[calc(100vh-28px)] text-white flex flex-col">
       {/* Main Content */}
       <div className="relative h-[calc(100vh-68px)] flex items-center justify-between px-6 overflow-hidden min-h-0">
         {/* Left Side: Logo + Features */}

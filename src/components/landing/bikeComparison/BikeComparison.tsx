@@ -39,7 +39,7 @@ export default function BikeComparison() {
         </div>
 
         {/* Right: Graph + Details */}
-        <div className="w-[40%] h-[80vh]">
+        <div className="w-[40%] h-[80vh] flex items-center justify-center">
           <BikeDetails bike={selectedBike} allBikes={bikes} />
         </div>
       </div>

@@ -17,17 +17,17 @@ const ParallaxWrapper: React.FC<ParallaxWrapperProps> = ({ children }) => {
       {/* Parallax Background */}
       <motion.div
         style={{ y }}
-        className="fixed w-[calc(100vw-96px)] mx-auto inset-0 z-0 pointer-events-none"
+        className="fixed w-full max-w-[1440px] mx-auto inset-0 z-0 pointer-events-none"
       >
         <Image quality={100}
           src="/images/contour1.png"
           alt="contour background"
           fill
           priority
-          className="object-cover w-full h-full"
+          className="object-cover w-full px-5 h-full"
         />
         {/* Black Overlay */}
-        <div className="absolute inset-0 bg-black/70" />
+        <div className="absolute inset-0 bg-superblack/70" />
       </motion.div>
 
       {/* Foreground content */}

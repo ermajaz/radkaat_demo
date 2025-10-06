@@ -1,5 +1,6 @@
 "use client";
 
+import { useEffect, useState } from "react";
 import { Button } from "@/components/ui/button";
 
 interface BikeStripProps {
@@ -9,30 +10,94 @@ interface BikeStripProps {
   onBookTestRide?: () => void;
 }
 
+const navItems = [
+  { id: "overview", label: "OVERVIEW" },
+  { id: "geometry", label: "GEOMETRY" },
+  { id: "kids", label: "KIDS" },
+  { id: "support", label: "SUPPORT" },
+];
+
 export default function BikeStrip({
   name,
   model,
   onBuy,
   onBookTestRide,
 }: BikeStripProps) {
+  const [active, setActive] = useState("overview");
+
+  // ScrollSpy effect
+  useEffect(() => {
+    const handleScroll = () => {
+      const offsets = navItems.map((item) => {
+        const el = document.getElementById(item.id);
+        if (el) {
+          return {
+            id: item.id,
+            top: el.getBoundingClientRect().top,
+          };
+        }
+        return { id: item.id, top: Infinity };
+      });
+
+      const visible = offsets.find(
+        (o) => o.top > 0 && o.top < window.innerHeight / 2
+      );
+      if (visible) setActive(visible.id);
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  const scrollTo = (id: string) => {
+    const el = document.getElementById(id);
+    if (el) {
+      window.scrollTo({
+        top: el.offsetTop - 70, // account for sticky height
+        behavior: "smooth",
+      });
+    }
+  };
+
   return (
-    <div className="w-full bg-stone-300 h-[70px] flex items-center justify-between px-8">
-      {/* Left side: Name & Model */}
-      <div className="flex items-center justify-center">
-        <span className="text-[24px] font-bold text-black">{name} -</span>
-        <span className="text-[24px] font-semibold text-black">&nbsp;{model}</span>
+    <div className="sticky top-0 z-100 w-full bg-stone-300 h-[70px] flex items-center justify-between px-8">
+      <div className="flex items-center space-x-10">
+        {/* Left: Name & Model */}
+        <div className="flex items-center gap-2">
+          <span className="text-[20px] font-bold text-black">
+            {name} - {model}
+          </span>
+        </div>
+
+        {/* Center: Navigation */}
+        <div className="flex items-center gap-6">
+          {navItems.map((item) => (
+            <button
+              key={item.id}
+              onClick={() => scrollTo(item.id)}
+              className={`text-[13px] cursor-pointer text-black relative pb-0.5 transition-colors ${
+                active === item.id ? "font-bold" : "font-medium hover:text-rust"
+              }`}
+            >
+              {item.label}
+              {active === item.id && (
+                <span className="absolute left-0 bottom-0 h-[2px] w-full bg-black"></span>
+              )}
+            </button>
+          ))}
+        </div>
       </div>
 
-      {/* Right side: Text + Button */}
-      <div className="flex items-center gap-8">
+      {/* Right: Actions */}
+      <div className="flex items-center gap-10">
         <span
-          className="text-[18px] text-black font-medium cursor-pointer hover:text-rust"
+          className="text-[16px] text-black font-medium cursor-pointer hover:text-rust"
           onClick={onBookTestRide}
         >
           Book a Test Ride
         </span>
         <Button
-          className="bg-black rounded-none px-7 py-5 cursor-pointer text-white hover:bg-gray-800"
+          className="bg-black rounded-none px-6 py-4 cursor-pointer text-white hover:bg-gray-800"
           onClick={onBuy}
         >
           BUY
