@@ -1,14 +1,61 @@
 // components/FeelTheFuture.tsx
 "use client";
 
+import { useRef, useEffect } from "react";
 import Image from "next/image";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 export default function FeelTheFuture() {
+  const sectionRef = useRef<HTMLDivElement>(null);
+  const textRef = useRef<HTMLDivElement>(null);
+  const imgRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    gsap.registerPlugin(ScrollTrigger);
+
+    if (sectionRef.current) {
+      const ctx = gsap.context(() => {
+        // Animate left text
+        gsap.from(textRef.current, {
+          x: -150,
+          opacity: 0,
+          duration: 1.2,
+          ease: "power3.out",
+          scrollTrigger: {
+            trigger: sectionRef.current,
+            start: "top 80%", // animation starts when section enters viewport
+          },
+        });
+
+        // Animate right image
+        gsap.from(imgRef.current, {
+          x: 150,
+          opacity: 0,
+          duration: 1.2,
+          ease: "power3.out",
+          scrollTrigger: {
+            trigger: sectionRef.current,
+            start: "top 80%",
+          },
+        });
+      }, sectionRef);
+
+      return () => ctx.revert(); // cleanup on unmount
+    }
+  }, []);
+
   return (
-    <section className="w-full bg-superblack text-white py-20 pl-10">
+    <section
+      ref={sectionRef}
+      className="w-full bg-superblack text-white py-20 pl-10"
+    >
       <div className="w-full mx-auto flex justify-between items-center">
         {/* Left Section - Text */}
-        <div className="max-w-[40%] flex flex-col items-start space-y-3">
+        <div
+          ref={textRef}
+          className="max-w-[40%] flex flex-col items-start space-y-3"
+        >
           <span className="text-5xl md:text-7xl font-extrabold mb-6 leading-18">
             FEEL THE <br /> FUTURE
           </span>
@@ -27,9 +74,13 @@ export default function FeelTheFuture() {
         </div>
 
         {/* Right Section - Image */}
-        <div className="relative w-[685px] h-[400px] md:h-[500px] lg:h-[641px]">
-          <Image quality={100}
-            src="/images/bikes/goat-img.png" // replace with your image path
+        <div
+          ref={imgRef}
+          className="relative w-[685px] h-[400px] md:h-[500px] lg:h-[641px]"
+        >
+          <Image
+            quality={100}
+            src="/images/bikes/goat-img.png"
             alt="Serow Bike with Mountain Goat"
             fill
             className="object-cover"

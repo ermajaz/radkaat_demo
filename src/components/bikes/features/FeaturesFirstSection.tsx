@@ -9,37 +9,74 @@ gsap.registerPlugin(ScrollTrigger);
 
 export default function FeaturesFirstSection() {
   const sectionRef = useRef<HTMLDivElement>(null);
+  const leftRef = useRef<HTMLDivElement>(null);
+  const rightRef = useRef<HTMLDivElement>(null);
   const lettersRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    if (!sectionRef.current || !lettersRef.current) return;
+    if (
+      !sectionRef.current ||
+      !leftRef.current ||
+      !rightRef.current ||
+      !lettersRef.current
+    )
+      return;
 
     const letters = lettersRef.current.querySelectorAll("span");
 
-    // Animate only the text letters
-    gsap.fromTo(
+    const tl = gsap.timeline({
+      scrollTrigger: {
+        trigger: sectionRef.current,
+        start: "top top",
+        end: "+=200%", // extend scroll distance for animation
+        scrub: true,
+        pin: true,
+      },
+    });
+
+    // Phase 1: Left covers full width
+    gsap.set(leftRef.current, { width: "100%" });
+    gsap.set(rightRef.current, { width: "0%", opacity: 0 });
+
+    // Phase 2: Shrink left, reveal right
+    tl.to(leftRef.current, {
+      width: "50%",
+      duration: 1,
+      ease: "power2.inOut",
+    }).to(
+      rightRef.current,
+      {
+        width: "50%",
+        opacity: 1,
+        duration: 1,
+        ease: "power2.inOut",
+      },
+      "<"
+    );
+
+    // Phase 3: Animate letters upward
+    tl.to(
       letters,
-      { y: 0, opacity: 1 },
       {
         y: -80,
         opacity: 0,
         stagger: 0.15,
-        scrollTrigger: {
-          trigger: sectionRef.current,
-          start: "top+=70 top",
-          end: "bottom top",
-          scrub: true,
-        },
-      }
+        duration: 1,
+        ease: "power2.out",
+      },
+      "+=0.3"
     );
   }, []);
 
   return (
-    <section ref={sectionRef} className="relative h-[300vh] bg-black">
+    <section ref={sectionRef} className="relative bg-black overflow-hidden">
       {/* Sticky container */}
-      <div className="sticky top-[70px] h-[calc(100vh-70px)] w-full flex items-center justify-between">
+      <div className="sticky top-0 h-screen w-full flex">
         {/* Left Side */}
-        <div className="w-1/2 relative flex items-center justify-center">
+        <div
+          ref={leftRef}
+          className="relative flex items-center justify-center bg-black overflow-hidden"
+        >
           {/* Background Image */}
           <Image
             quality={100}
@@ -47,7 +84,7 @@ export default function FeaturesFirstSection() {
             alt="Bike Frame"
             width={600}
             height={600}
-            className="w-full h-full object-contain"
+            className="w-full h-full object-cover"
           />
 
           {/* Overlay Text */}
@@ -78,7 +115,10 @@ export default function FeaturesFirstSection() {
         </div>
 
         {/* Right Side */}
-        <div className="w-1/2 flex items-center justify-center">
+        <div
+          ref={rightRef}
+          className="flex items-center justify-center bg-black overflow-hidden"
+        >
           <Image
             quality={100}
             src="/images/bikes/feature-right.png"
