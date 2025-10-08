@@ -48,7 +48,7 @@ export default function FeelTheFuture() {
   return (
     <section
       ref={sectionRef}
-      className="w-full bg-superblack text-white py-20 pl-10"
+      className="w-full bg-superblack text-white py-20 pl-10 overflow-hidden"
     >
       <div className="w-full mx-auto flex justify-between items-center">
         {/* Left Section - Text */}
