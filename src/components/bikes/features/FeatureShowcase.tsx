@@ -45,7 +45,7 @@ export default function FeatureShowcase({ features }: Props) {
   }, []);
 
   return (
-    <section className="w-full flex bg-superblack text-stone">
+    <section className="w-full min-h-screen flex bg-superblack text-stone">
       {/* LEFT SIDE (Snap Scroll) */}
       <div
         ref={leftRef}

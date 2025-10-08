@@ -12,9 +12,10 @@ interface BikeStripProps {
 
 const navItems = [
   { id: "overview", label: "OVERVIEW" },
+  { id: "features", label: "FEATURES" },
   { id: "geometry", label: "GEOMETRY" },
-  { id: "kids", label: "KIDS" },
-  { id: "support", label: "SUPPORT" },
+  { id: "experience", label: "EXPERIENCE" },
+  { id: "ride", label: "TEST RIDE" },
 ];
 
 export default function BikeStrip({
@@ -28,34 +29,27 @@ export default function BikeStrip({
   // ScrollSpy effect
   useEffect(() => {
     const handleScroll = () => {
-      const offsets = navItems.map((item) => {
+      const scrollY = window.scrollY;
+      const visible = navItems.find((item) => {
         const el = document.getElementById(item.id);
-        if (el) {
-          return {
-            id: item.id,
-            top: el.getBoundingClientRect().top,
-          };
-        }
-        return { id: item.id, top: Infinity };
+        if (!el) return false;
+        const top = el.offsetTop - 80; // buffer
+        const bottom = top + el.offsetHeight;
+        return scrollY >= top && scrollY < bottom;
       });
-
-      const visible = offsets.find(
-        (o) => o.top > 0 && o.top < window.innerHeight / 2
-      );
       if (visible) setActive(visible.id);
     };
 
     window.addEventListener("scroll", handleScroll);
+    handleScroll(); // run once on mount
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
   const scrollTo = (id: string) => {
     const el = document.getElementById(id);
     if (el) {
-      window.scrollTo({
-        top: el.offsetTop - 70, // account for sticky height
-        behavior: "smooth",
-      });
+      const y = el.getBoundingClientRect().top + window.scrollY - 70; // sticky height
+      window.scrollTo({ top: y, behavior: "smooth" });
     }
   };
 
