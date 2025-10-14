@@ -49,7 +49,7 @@ export default function FeatureShowcase({ features }: Props) {
       {/* LEFT SIDE (Snap Scroll) */}
       <div
         ref={leftRef}
-        className="w-1/2 mt-[70px] px-16 snap-y snap-mandatory"
+        className="w-[55%] mt-[70px] px-12.5 snap-y snap-mandatory"
       >
         {features.map((f, i) => (
           <div
@@ -57,8 +57,10 @@ export default function FeatureShowcase({ features }: Props) {
             data-index={i}
             className="feature-block h-[calc(100vh-70px)] flex flex-col justify-start pt-10 relative snap-start"
           >
+            {/* Gradient Accent Line */}
+            <div className="h-[3px] w-20 bg-gradient-to-r from-white/90 to-transparent mb-6" />
             {/* Label */}
-            <h2 className="text-[35px] tracking-wide font-semibold uppercase text-sandstorm mb-4">
+            <h2 className="text-[32px] tracking-wide font-semibold uppercase text-sandstorm mb-4">
               {f.label}
             </h2>
 
@@ -68,14 +70,14 @@ export default function FeatureShowcase({ features }: Props) {
             </span>
 
             {/* Bullet Points */}
-            <ul className="list-disc text-[22px] list-inside space-y-2 leading-relaxed">
+            <ul className="list-disc text-[24px] list-inside space-y-0 leading-relaxed">
               {f.points.map((p, j) => (
                 <li key={j}>{p}</li>
               ))}
             </ul>
 
             {/* Large Index Number */}
-            <span className="absolute bottom-10 left-0 text-[110px] font-extrabold text-stone opacity-40 leading-none">
+            <span className="absolute bottom-10 left-0 text-[130px] font-extrabold text-stone opacity-40 leading-none">
               {f.index.toString().padStart(2, "0")}
             </span>
           </div>
@@ -83,7 +85,7 @@ export default function FeatureShowcase({ features }: Props) {
       </div>
 
       {/* RIGHT SIDE (Sticky Image) */}
-      <div className="w-1/2 h-[calc(100vh-70px)] mt-[70px] sticky top-[70px] flex items-center justify-center">
+      <div className="w-[45%] h-[calc(100vh-70px)] mt-[70px] sticky top-[70px] flex items-center justify-center">
         <AnimatePresence mode="wait">
           <motion.div
             key={features[activeIndex].image}

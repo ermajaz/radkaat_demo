@@ -1,22 +1,26 @@
 "use client";
-
 import BikeBranding from "./BikeBranding";
 import BikeDetails from "./BikeDetails";
 import BikeImage from "./BikeImage";
-
 interface BikeHeroProps {
   branding: string;
   model: string;
-  specs: { front: number; rear: number; wheel: string };
+   variants: {
+    name: string;
+    front: number;
+    rear: number;
+    wheel: string;
+  }[];
   colors: string[];
+  icon:string;
   image: string;
 }
-
 export default function BikeHero({
   branding,
   model,
-  specs,
+  variants,
   colors,
+  icon,
   image,
 }: BikeHeroProps) {
   return (
@@ -29,12 +33,10 @@ export default function BikeHero({
       {/* Left Vertical Branding */}
       <BikeBranding text={branding} />
 
-
       {/* Center Image */}
       <BikeImage src={image} alt={`${branding} ${model}`} />
-
       {/* Right Details */}
-      <BikeDetails model={model} specs={specs} colors={colors} />
+      <BikeDetails model={model} branding={branding} icon={icon} variants={variants} colors={colors} />
     </section>
   );
 }

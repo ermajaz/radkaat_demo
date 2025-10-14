@@ -54,12 +54,12 @@ export default function FeelTheFuture() {
         {/* Left Section - Text */}
         <div
           ref={textRef}
-          className="max-w-[40%] flex flex-col items-start space-y-3"
+          className="max-w-[42%] flex flex-col items-start space-y-3"
         >
-          <span className="text-5xl md:text-7xl font-extrabold mb-6 leading-18">
+          <span className="text-5xl md:text-7xl font-extrabold mb-8 leading-18">
             FEEL THE <br /> FUTURE
           </span>
-          <p className="text-[24px] leading-relaxed text-gray-300">
+          <p className="text-[24px] leading-relaxed font-[500] text-stone">
             The Serow is a mountain goat found across the rocky mid-range
             mountains of East India, Taiwan, and the Philippines. Known for
             their sure-footedness, agility, and strength, Serows thrive in tough

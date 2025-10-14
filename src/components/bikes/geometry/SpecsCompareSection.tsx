@@ -9,7 +9,8 @@ export default function SpecsCompareSection() {
   const [activeTab, setActiveTab] = useState<"specs" | "compare">("specs");
 
   return (
-    <section className="w-full bg-superblack min-h-[calc(100vh-70px)] text-stone">
+    <section className="relative w-full bg-superblack min-h-[calc(100vh-70px)] p-5 text-stone">
+      {/* <div className="absolute inset-0 bg-gradient-to-tr from-black via-[#101010] to-[#1A1A1A] opacity-90 pointer-events-none" /> */}
       {/* Toggle Header */}
       <div className="flex items-center px-6 py-6">
         <div className="relative flex w-[220px] h-[40px] border border-stone/40 overflow-hidden">

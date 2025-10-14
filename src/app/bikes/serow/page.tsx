@@ -1,5 +1,4 @@
 "use client";
-
 import { useRouter } from "next/navigation";
 import BikeHero from "@/components/bikes/hero/BikeHero";
 import BikeStrip from "@/components/bikes/strip/BikeStrip";
@@ -10,18 +9,14 @@ import TestRideSection from "@/components/landing/testRide/TestRideSection";
 import FeatureShowcase from "@/components/bikes/features/FeatureShowcase";
 import SpecsCompareSection from "@/components/bikes/geometry/SpecsCompareSection";
 import SpecsExperienceSection from "@/components/bikes/specsToExperience/SpecsExperienceSection";
-
 export default function SerowPage() {
   const router = useRouter();
-
   const handleBuy = () => {
     console.log("Buy clicked");
   };
-
   const handleBookTestRide = () => {
     router.push("/experience");
   };
-
   return (
     <main className="z-100">
       <ParallaxWrapper>
@@ -30,12 +25,16 @@ export default function SerowPage() {
           <BikeHero
             branding="SEROW"
             model="M10"
-            specs={{ front: 200, rear: 208, wheel: "29/MX" }}
+            variants={[
+              { name: "M10", front: 130, rear: 120, wheel: "30/MX" },
+              { name: "M12", front: 150, rear: 140, wheel: "29/MX" },
+              { name: "M14", front: 170, rear: 160, wheel: "32/MX" },
+            ]}
             colors={["black", "var(--color-rust)"]}
+            icon="/images/serow-white.png"
             image="/images/bikes/serow-hero.png"
           />
         </section>
-
         {/* Sticky Nav */}
         <BikeStrip
           name="SEROW"
@@ -44,7 +43,6 @@ export default function SerowPage() {
           onBookTestRide={handleBookTestRide}
         />
         <FeelTheFuture />
-
         {/* Features */}
         <section id="features">
           <FeaturesFirstSection />
@@ -76,37 +74,46 @@ export default function SerowPage() {
                 index: 3,
                 label: "Lorem Ipsum",
                 title: "Responsiveness Stability",
-                points: ["Steel: 67.3", "Alloy Non Boost: 67", "Alloy Boost: 67"],
+                points: [
+                  "Steel: 67.3",
+                  "Alloy Non Boost: 67",
+                  "Alloy Boost: 67",
+                ],
                 image: "/images/bikes/cycle-f.png",
               },
               {
                 index: 4,
                 label: "Lorem Ipsum",
                 title: "Range of User Height How Tall A Bike Feels",
-                points: ["Steel: 525mm", "Alloy Non Boost: 625mm", "Alloy Boost: 625mm"],
+                points: [
+                  "Steel: 525mm",
+                  "Alloy Non Boost: 625mm",
+                  "Alloy Boost: 625mm",
+                ],
                 image: "/images/bikes/cycle-f.png",
               },
               {
                 index: 5,
                 label: "Lorem Ipsum",
                 title: "Bike Control How Long A Bike Feels",
-                points: ["Steel: 380mm", "Alloy Non Boost: 440mm", "Alloy Boost: 440mm"],
+                points: [
+                  "Steel: 380mm",
+                  "Alloy Non Boost: 440mm",
+                  "Alloy Boost: 440mm",
+                ],
                 image: "/images/bikes/cycle-f.png",
               },
             ]}
           />
         </section>
-
         {/* Geometry */}
         <section id="geometry">
           <SpecsCompareSection />
         </section>
-
         {/* Experience */}
         <section id="experience">
           <SpecsExperienceSection />
         </section>
-
         {/* Test Ride */}
         <section id="ride" className="py-5">
           <TestRideSection />

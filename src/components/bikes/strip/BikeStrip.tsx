@@ -84,12 +84,12 @@ export default function BikeStrip({
 
       {/* Right: Actions */}
       <div className="flex items-center gap-10">
-        <span
+        {/* <span
           className="text-[16px] text-black font-medium cursor-pointer hover:text-rust"
           onClick={onBookTestRide}
         >
           Book a Test Ride
-        </span>
+        </span> */}
         <Button
           className="bg-black rounded-none px-6 py-4 cursor-pointer text-white hover:bg-gray-800"
           onClick={onBuy}

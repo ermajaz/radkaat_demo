@@ -17,7 +17,7 @@ export default function BikeColorSelector({ colors }: Props) {
           <button
             key={c}
             onClick={() => setSelected(c)}
-            className={`flex items-center justify-center rounded-full transition-all`}
+            className={`flex items-center justify-center cursor-pointer rounded-full transition-all`}
           >
             {/* Outer circle for selected state */}
             <div
