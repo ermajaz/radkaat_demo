@@ -31,7 +31,7 @@ export default function SerowPage() {
               { name: "M14", front: 170, rear: 160, wheel: "32/MX" },
             ]}
             colors={["black", "var(--color-rust)"]}
-            icon="/images/serow-white.png"
+            icon="/images/Serow-white.png"
             image="/images/bikes/serow-hero.png"
           />
         </section>

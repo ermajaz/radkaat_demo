@@ -32,7 +32,7 @@ export default function TakinPage() {
               { name: "M14", front: 170, rear: 160, wheel: "32/MX" },
             ]}
             colors={["black", "var(--color-rust)"]}
-            icon="/images/takin-white.png"
+            icon="/images/Takin-white.png"
             image="/images/bikes/serow-hero.png"
           />
         </section>
