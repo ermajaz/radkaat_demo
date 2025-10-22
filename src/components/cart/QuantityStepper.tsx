@@ -23,15 +23,13 @@ export const QuantityStepper: React.FC<Props> = ({
   const inc = () => onChange(Math.min(max, value + 1));
 
   return (
-    <motion.div
+    <div
       className={clsx(
         "inline-flex items-center border border-[#2a2a2a]",
         "select-none text-white",
         "transition-all duration-200 hover:border-army/60",
         className
       )}
-      whileHover={{ scale: 1.02 }}
-      whileTap={{ scale: 0.98 }}
     >
       {/* Decrease Button */}
       <button
@@ -39,7 +37,7 @@ export const QuantityStepper: React.FC<Props> = ({
         onClick={dec}
         aria-label="Decrease quantity"
         className={clsx(
-          "w-8 h-8 md:w-9 md:h-9 flex cursor-pointer items-center justify-center font-light",
+          "w-8 h-8 md:w-9 md:h-9 text-[20px] flex cursor-pointer items-center justify-center font-light",
           "bg-[#0b0b0b] text-gray-400 hover:text-army hover:bg-army/10",
           "transition-all duration-200 focus:outline-none active:scale-95"
         )}
@@ -63,13 +61,13 @@ export const QuantityStepper: React.FC<Props> = ({
         onClick={inc}
         aria-label="Increase quantity"
         className={clsx(
-          "w-8 h-8 md:w-9 md:h-9 flex cursor-pointer items-center justify-center font-light",
+          "w-8 h-8 md:w-9 md:h-9 text-[20px] flex cursor-pointer items-center justify-center font-light",
           "bg-[#0b0b0b] text-gray-400 hover:text-army hover:bg-army/10",
           "transition-all duration-200 focus:outline-none active:scale-95"
         )}
       >
         +
       </button>
-    </motion.div>
+    </div>
   );
 };
