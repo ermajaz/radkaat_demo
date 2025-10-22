@@ -4,9 +4,10 @@ import SmoothScroll from "@/components/common/SmoothScroll";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import 'react-phone-input-2/lib/style.css';
+import { LoaderProvider } from "@/components/common/LoaderProvider";
 
 import { Red_Hat_Display } from "@next/font/google";
-import Header from "@/components/common/Header";
+import { LayoutProvider } from "@/components/common/LayoutProvider";
 
 const redHatDisplay = Red_Hat_Display({
   subsets: ["latin"],
@@ -24,8 +25,6 @@ export const metadata: Metadata = {
   },
 };
 
-import { LoaderProvider } from "@/components/common/LoaderProvider";
-import Footer from "@/components/common/Footer";
 
 export default function RootLayout({
   children,
@@ -37,9 +36,7 @@ export default function RootLayout({
       <body className={`${redHatDisplay.variable} antialiased container`}>
         <LoaderProvider>
           <SmoothScroll />
-          <Header />
-          {children}
-          <Footer />
+          <LayoutProvider>{children}</LayoutProvider>
         </LoaderProvider>
       </body>
     </html>

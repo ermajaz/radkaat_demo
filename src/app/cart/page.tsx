@@ -1,11 +1,11 @@
-// app/cart/page.tsx
 "use client";
 
 import React, { useMemo, useState } from "react";
+import { motion } from "framer-motion";
 import { CartList } from "@/components/cart/CartList";
 import { CartSummary } from "@/components/cart/CartSummary";
 import type { CartProduct } from "@/components/cart/CartItem";
-import { motion } from "framer-motion";
+import { useRouter } from "next/navigation";
 
 const initial: CartProduct[] = [
   {
@@ -66,6 +66,7 @@ const initial: CartProduct[] = [
 
 export default function CartPage() {
   const [products, setProducts] = useState<CartProduct[]>(initial);
+  const router = useRouter();
 
   const handleQtyChange = (id: string, qty: number) => {
     setProducts((prev) => prev.map((p) => (p.id === id ? { ...p, qty } : p)));
@@ -79,34 +80,37 @@ export default function CartPage() {
     () => products.reduce((s, p) => s + p.price * p.qty, 0),
     [products]
   );
+
   const itemCount = useMemo(
     () => products.reduce((s, p) => s + p.qty, 0),
     [products]
   );
 
   const handleCheckout = () => {
-    // connect to checkout flow
-    alert(`Checkout pressed — subtotal ₹$${subtotal.toLocaleString()}`);
+    // ✅ Go to address step
+    router.push("/cart/address");
   };
 
   return (
     <main className="min-h-screen text-white">
-      <div className="w-full mx-auto py-12 md:py-20">
+      <div className="w-full mx-auto py-8 md:py-14">
         <div className="flex flex-col md:flex-row gap-8 md:gap-0.5">
-          {/* left column - items */}
+          {/* 🛒 Left Section - Cart Items */}
           <section className="flex-1 bg-transparent">
-            <div className=" border border-[#2b2b2b]">
+            <div className="border border-[#2b2b2b]">
               {/* 🚚 Stylish Free Shipping Banner */}
-              <div
+              <motion.div
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5 }}
                 className="
-        relative overflow-hidden
-        text-center text-[13px] uppercase tracking-[0.15em]
-        font-medium text-army py-4 mb-8
-        bg-[#0f0f0f] border border-army/40
-        before:absolute before:inset-0 before:bg-gradient-to-r before:from-army/10 before:via-transparent before:to-army/10
-        shadow-[0_0_25px_rgba(139,169,137,0.15)]
-        transition-all duration-300
-      "
+                  relative overflow-hidden
+                  text-center text-[13px] uppercase tracking-[0.15em]
+                  font-medium text-army py-4 mb-8
+                  bg-[#0f0f0f] border border-army/40
+                  before:absolute before:inset-0 before:bg-gradient-to-r before:from-army/10 before:via-transparent before:to-army/10
+                  shadow-[0_0_25px_rgba(139,169,137,0.15)]
+                "
               >
                 <span className="relative z-10">
                   Free Ground Shipping for Orders Over{" "}
@@ -125,8 +129,9 @@ export default function CartPage() {
                   }}
                   className="absolute inset-y-0 w-[60%] bg-gradient-to-r from-transparent via-army/10 to-transparent blur-xl"
                 />
-              </div>
+              </motion.div>
 
+              {/* Cart List */}
               <div className="p-6 pt-0">
                 <CartList
                   products={products}
@@ -135,7 +140,7 @@ export default function CartPage() {
                 />
               </div>
 
-              {/* subtotal small on mobile */}
+              {/* Subtotal (Mobile Only) */}
               <div className="mt-8 md:hidden text-right">
                 <div className="text-sm text-gray-300 uppercase tracking-wider">
                   Subtotal
@@ -147,7 +152,7 @@ export default function CartPage() {
             </div>
           </section>
 
-          {/* right column - summary */}
+          {/* 💳 Right Section - Summary */}
           <aside className="w-full md:w-[450px] h-screen md:sticky md:top-20">
             <CartSummary
               subtotal={subtotal}

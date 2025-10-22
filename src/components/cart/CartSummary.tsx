@@ -15,7 +15,7 @@ type Props = {
 };
 
 // Simulated login check — replace this with your auth logic
-const isUserLoggedIn = false;
+const isUserLoggedIn = true;
 
 export const CartSummary: React.FC<Props> = ({
   subtotal,
