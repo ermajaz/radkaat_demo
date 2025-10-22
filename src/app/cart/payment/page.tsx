@@ -30,7 +30,7 @@ export default function PaymentPage() {
   };
 
   return (
-    <main className="min-h-screen bg-[#0a0a0a] text-white overflow-hidden">
+    <main className="min-h-screen text-white overflow-hidden">
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}

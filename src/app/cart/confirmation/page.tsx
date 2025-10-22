@@ -38,7 +38,7 @@ export default function ConfirmationPage() {
   }, []);
 
   return (
-    <main className="min-h-screen bg-[#070707] text-white relative overflow-hidden flex items-center justify-center py-8 md:py-14">
+    <main className="min-h-screen text-white relative overflow-hidden flex items-center justify-center py-8 md:py-14">
       {/* 🎊 Confetti Celebration */}
       {showConfetti && (
         <Confetti recycle={false} numberOfPieces={250} gravity={0.2} />
