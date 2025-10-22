@@ -30,7 +30,7 @@ export const PaymentOptions: React.FC<PaymentOptionsProps> = ({
         <button
           onClick={() => setSelectedMethod("wallet")}
           className={cn(
-            "border p-4 text-sm uppercase tracking-widest transition-all",
+            "border p-4 text-sm uppercase cursor-pointer tracking-widest transition-all",
             selectedMethod === "wallet"
               ? "border-army bg-army/10 text-army shadow-[0_0_15px_rgba(139,169,137,0.2)]"
               : "border-[#2b2b2b] hover:border-army/40 text-gray-400"
@@ -41,7 +41,7 @@ export const PaymentOptions: React.FC<PaymentOptionsProps> = ({
         <button
           onClick={() => setSelectedMethod("cashfree")}
           className={cn(
-            "border p-4 text-sm uppercase tracking-widest transition-all",
+            "border p-4 text-sm uppercase cursor-pointer tracking-widest transition-all",
             selectedMethod === "cashfree"
               ? "border-army bg-army/10 text-army shadow-[0_0_15px_rgba(139,169,137,0.2)]"
               : "border-[#2b2b2b] hover:border-army/40 text-gray-400"
@@ -56,7 +56,7 @@ export const PaymentOptions: React.FC<PaymentOptionsProps> = ({
           onClick={onConfirm}
           disabled={!selectedMethod}
           className={cn(
-            "px-8 py-3 font-semibold uppercase tracking-wider transition-all",
+            "px-8 py-3 font-semibold cursor-pointer uppercase tracking-wider transition-all",
             selectedMethod
               ? "bg-army text-black hover:bg-army/90"
               : "bg-gray-700 text-gray-400 cursor-not-allowed"

@@ -19,7 +19,7 @@ export default function CartLayout({
   // determine current step dynamically
   let step: 1 | 2 | 3 = 1;
   if (pathname.includes("/address")) step = 2;
-  if (pathname.includes("/payment")) step = 3;
+  if (pathname.includes("/payment") || pathname.includes("/confirmation")) step = 3;
 
   return (
     <main className="min-h-screen text-white">

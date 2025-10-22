@@ -63,7 +63,7 @@ export const CouponSection: React.FC<CouponSectionProps> = ({
         />
         <button
           onClick={handleApplyCoupon}
-          className="px-5 py-2 bg-army text-black font-semibold uppercase tracking-wider hover:bg-army/90 transition-all duration-300"
+          className="px-5 py-2 bg-army cursor-pointer text-black font-semibold uppercase tracking-wider hover:bg-army/90 transition-all duration-300"
         >
           Apply
         </button>
@@ -91,7 +91,7 @@ export const CouponSection: React.FC<CouponSectionProps> = ({
             </div>
             <button
               onClick={() => setAppliedCoupon(null)}
-              className="mt-4 md:mt-0 px-4 py-1 text-xs uppercase border border-army text-army hover:bg-army hover:text-black transition-all"
+              className="mt-4 md:mt-0 px-4 py-1 text-xs uppercase border border-army text-army cursor-pointer transition-all"
             >
               Remove
             </button>
