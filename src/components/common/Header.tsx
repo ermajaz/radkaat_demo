@@ -9,6 +9,7 @@ import SearchOverlay from "./search/SearchOverlay";
 import ProductsOverlay from "./productOverlay/ProductsOverlay";
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
+import UserMenuModal from "./UserMenuModal";
 
 const navItems = ["Products", "Experiences", "Community"];
 
@@ -21,6 +22,7 @@ export default function Header() {
 
   const [searchOpen, setSearchOpen] = useState(false);
   const [productsOpen, setProductsOpen] = useState(false);
+  const [userMenuOpen, setUserMenuOpen] = useState(false);
 
   // 🧭 Scroll-based header hide/show logic
   useEffect(() => {
@@ -98,19 +100,30 @@ export default function Header() {
             <span className="absolute inset-0 blur-md opacity-0 group-hover:opacity-40 bg-army/30 transition-all duration-300" />
           </button>
 
-          {/* User */}
-          <button
-            onClick={() => router.push("/auth/login")}
-            className="relative group cursor-pointer"
-            aria-label="Login"
+          {/* 🧑‍💼 User Menu Hover */}
+          <div
+            className="relative"
+            onMouseEnter={() => setUserMenuOpen(true)}
+            onMouseLeave={() => setUserMenuOpen(false)}
           >
-            <User
-              size={22}
-              strokeWidth={1.7}
-              className="transition-all duration-200 group-hover:text-army"
+            <button
+              onClick={() => router.push("/auth/login")}
+              className="relative group cursor-pointer"
+              aria-label="User Menu"
+            >
+              <User
+                size={22}
+                strokeWidth={1.7}
+                className="transition-all duration-200 group-hover:text-army"
+              />
+            </button>
+
+            {/* 🧩 User Menu Modal */}
+            <UserMenuModal
+              open={userMenuOpen}
+              onClose={() => setUserMenuOpen(false)}
             />
-            <span className="absolute inset-0 blur-md opacity-0 group-hover:opacity-40 bg-army/30 transition-all duration-300" />
-          </button>
+          </div>
 
           {/* Cart */}
           <button
@@ -134,7 +147,9 @@ export default function Header() {
 
       {/* 🔮 Overlays */}
       {searchOpen && <SearchOverlay onClose={() => setSearchOpen(false)} />}
-      {productsOpen && <ProductsOverlay onClose={() => setProductsOpen(false)} />}
+      {productsOpen && (
+        <ProductsOverlay onClose={() => setProductsOpen(false)} />
+      )}
     </>
   );
 }
