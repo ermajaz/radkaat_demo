@@ -28,7 +28,7 @@ export const ConfirmationActions: React.FC = () => {
       </button>
 
       <button
-        onClick={() => router.push("/user/orders")}
+        onClick={() => router.push("/orders")}
         className="flex items-center gap-3 bg-army text-black px-7 py-3 uppercase tracking-wider cursor-pointer text-sm font-semibold 
         hover:bg-army/90 transition-all duration-300 group shadow-[0_0_20px_rgba(139,169,137,0.3)]"
       >
