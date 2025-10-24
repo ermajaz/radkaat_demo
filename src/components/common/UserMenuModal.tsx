@@ -32,7 +32,6 @@ export interface MenuItem {
 const menuItems: MenuItem[] = [
   { label: "Profile", icon: User, href: "/profile" },
   { label: "My Orders", icon: Package, href: "/orders" },
-  { label: "Wishlist", icon: Heart, href: "/wishlist" },
   { label: "Notifications", icon: Bell, href: "/notifications" },
   { label: "Logout", icon: LogOut, href: "/auth/logout", confirm: true },
 ];
@@ -97,8 +96,9 @@ export default function UserMenuModal({
             transition={{ duration: 0.25, ease: "easeOut" }}
             className={cn(
               "absolute top-14 right-0 w-64 p-4 z-[200]",
-              "shadow-[0_4px_24px_rgba(0,0,0,0.3)]",
-              "bg-gradient-to-br from-white/15 to-white/5 backdrop-blur-2xl border border-white/20 overflow-hidden"
+              "border border-white/20 overflow-hidden",
+              "bg-[rgba(255,255,255,0.08)] backdrop-blur-xl backdrop-saturate-150",
+              "shadow-[0_8px_32px_rgba(0,0,0,0.6)] transition-all duration-300"
             )}
           >
             {/* 🧑 User Info Section */}

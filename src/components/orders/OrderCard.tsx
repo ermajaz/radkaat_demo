@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { ArrowRight, Calendar, PackageOpen } from "lucide-react";
+import { ArrowRight, Calendar, PackageOpen, Download } from "lucide-react";
 import OrderStatusBadge from "./OrderStatusBadge";
 import Link from "next/link";
 import Image from "next/image";
@@ -14,6 +14,9 @@ export default function OrderCard({ order }: { order: Order }) {
       ? order.products.length - 3
       : 0;
 
+  // Mock invoice link (replace with actual API endpoint or static URL)
+  const invoiceUrl = `/invoices/${order.id}.pdf`;
+
   return (
     <motion.div
       initial={{ opacity: 0, y: 15 }}
@@ -22,7 +25,7 @@ export default function OrderCard({ order }: { order: Order }) {
       whileHover={{ y: -4 }}
       className="relative overflow-hidden border border-white/10 bg-white/[0.04] hover:bg-white/[0.07] transition-all duration-500 backdrop-blur-2xl p-6 shadow-[0_0_25px_rgba(0,0,0,0.4)] group"
     >
-      {/* ✨ Subtle ambient light */}
+      {/* ✨ Ambient Glow */}
       <motion.div
         className="absolute inset-0 -z-10 bg-gradient-to-br from-white/5 via-transparent to-transparent blur-2xl opacity-30"
         animate={{ opacity: [0.25, 0.5, 0.25] }}
@@ -54,7 +57,7 @@ export default function OrderCard({ order }: { order: Order }) {
               return (
                 <motion.div
                   key={p.id}
-                  className="absolute top-0"
+                  className="absolute"
                   style={{
                     left: `${offset}px`,
                     zIndex,
@@ -101,8 +104,9 @@ export default function OrderCard({ order }: { order: Order }) {
         </div>
       )}
 
-      {/* Bottom Info */}
-      <div className="flex items-center justify-between flex-wrap gap-4 border-t border-white/10 pt-4">
+      {/* Bottom Section */}
+      <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 border-t border-white/10 pt-4">
+        {/* Order Info */}
         <div className="flex items-center gap-3">
           <div className="w-10 h-10 bg-white/10 border border-white/10 rounded-lg flex items-center justify-center shadow-[inset_0_0_6px_rgba(255,255,255,0.1)]">
             <PackageOpen size={18} className="text-white/70" />
@@ -117,20 +121,32 @@ export default function OrderCard({ order }: { order: Order }) {
           </div>
         </div>
 
-        {/* View Details Button */}
-        <Link
-          href={`/orders/${order.id}`}
-          className="flex items-center gap-2 text-sm font-semibold text-white/90 px-4 py-2 border border-white/15 hover:bg-white/10 hover:text-army transition-all duration-300"
-        >
-          View Details
-          <motion.div
-            initial={{ x: 0 }}
-            whileHover={{ x: 4 }}
-            transition={{ type: "spring", stiffness: 250, damping: 15 }}
+        {/* Action Buttons */}
+        <div className="flex items-center gap-3 flex-wrap">
+          {/* 🧾 Invoice Button */}
+          <Link
+            href={invoiceUrl}
+            download
+            className="flex items-center gap-2 px-4 py-2 text-sm font-semibold text-army border border-army  bg-army/20 hover:text-white hover:shadow-[0_0_12px_rgba(154,205,50,0.4)] transition-all duration-300"
           >
-            <ArrowRight size={16} className="text-army" />
-          </motion.div>
-        </Link>
+            <Download size={16} /> Invoice
+          </Link>
+
+          {/* 🔍 View Details */}
+          <Link
+            href={`/orders/${order.id}`}
+            className="flex items-center gap-2 text-sm font-semibold text-white/90 px-4 py-2 border border-white/15 hover:bg-white/10 hover:text-army transition-all duration-300"
+          >
+            View Details
+            <motion.div
+              initial={{ x: 0 }}
+              whileHover={{ x: 4 }}
+              transition={{ type: "spring", stiffness: 250, damping: 15 }}
+            >
+              <ArrowRight size={16} className="text-army" />
+            </motion.div>
+          </Link>
+        </div>
       </div>
     </motion.div>
   );

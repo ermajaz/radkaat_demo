@@ -28,7 +28,7 @@ export default function ConfirmDialog({
         <>
           {/* 🩶 Fullscreen Overlay */}
           <motion.div
-            className="fixed w-screen h-[calc(100vh+80px)] inset-0 z-[1000] bg-black/75 backdrop-blur-sm flex items-center justify-center"
+            className="fixed w-screen h-[calc(100vh+80px)] inset-0 z-[1000] bg-black/75 backdrop-blur-sm  flex items-center justify-center"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}

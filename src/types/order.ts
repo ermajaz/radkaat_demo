@@ -7,6 +7,8 @@ export interface OrderProduct {
   price: number;
   qty: number;
   image?: string;
+  variant?: string;
+  color?: string;
 }
 
 export interface Order {
@@ -18,5 +20,14 @@ export interface Order {
   items: number;
   address?: string;
   payment?: string;
+  deliveryDate?: string;
+  priceBreakdown?: {
+    mrp: number;
+    gst: number;
+    delivery: number;
+    coupon: number;
+    wallet: number;
+    total: number;
+  };
   products?: OrderProduct[];
 }

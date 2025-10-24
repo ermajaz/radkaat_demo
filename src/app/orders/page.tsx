@@ -172,7 +172,7 @@ export default function OrdersPage() {
           <div>
             <h1 className="text-3xl font-bold tracking-wide mb-2 flex items-center gap-3">
               My Orders
-              <span className="text-sm font-medium text-white/60 border border-white/10 bg-white/5 px-3 py-1 rounded-md">
+              <span className="text-sm font-medium text-white/60 border border-white/10 bg-white/5 px-3 py-1">
                 {filteredOrders.length} Total
               </span>
             </h1>
@@ -201,7 +201,7 @@ export default function OrdersPage() {
               <select
                 value={sortMonth}
                 onChange={(e) => setSortMonth(e.target.value as MonthFilter)}
-                className="bg-white/10 border cursor-pointer border-white/10 text-sm px-3 py-2 focus:outline-none focus:border-army transition-all rounded-md"
+                className="bg-white/10 border cursor-pointer border-white/10 text-sm px-3 py-2 focus:outline-none focus:border-army transition-all"
               >
                 {months.map((m) => (
                   <option key={m} value={m}>
