@@ -9,7 +9,7 @@ import ProfileAddressSection from "@/components/profile/ProfileAddressSection";
 
 export default function ProfilePage() {
   return (
-    <main className="min-h-screen bg-gradient-to-b from-[#0f0f0f] via-[#111] to-[#0a0a0a] text-white px-6 md:px-16 py-30">
+    <main className="min-h-screen text-white px-6 md:px-16 py-30">
       <motion.div
         initial={{ opacity: 0, y: 40 }}
         animate={{ opacity: 1, y: 0 }}

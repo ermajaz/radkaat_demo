@@ -49,12 +49,17 @@ const posts: Post[] = [
 
 export default function DiscussionForum() {
   return (
-    <section className="w-full min-h-screen bg-black py-16 px-6">
-      <h2 className="text-4xl md:text-5xl font-bold text-center text-sandstorm mb-16">
+    <section className="relative w-full min-h-screen bg-superblack py-20 px-6 overflow-hidden">
+      {/* Ambient lighting background */}
+      {/* <div className="absolute inset-0 -z-10 bg-gradient-to-b from-[#0a0a0a] via-[#121212] to-[#0a0a0a]" />
+      <div className="absolute top-[-10%] left-[-10%] w-[600px] h-[600px] bg-gradient-to-tr from-army/20 via-sandstorm/10 to-transparent rounded-full blur-[120px]" />
+      <div className="absolute bottom-[-10%] right-[-10%] w-[600px] h-[600px] bg-gradient-to-tl from-rust/15 via-transparent to-transparent rounded-full blur-[120px]" /> */}
+
+      <h2 className="text-4xl md:text-5xl font-bold text-center text-army mb-20 tracking-wide">
         Discussion Forum
       </h2>
 
-      <div className="max-w-6xl mx-auto space-y-16">
+      <div className="max-w-6xl mx-auto space-y-12">
         {posts.map((post, index) => (
           <motion.div
             key={post.id}
@@ -62,53 +67,76 @@ export default function DiscussionForum() {
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, delay: index * 0.2 }}
             viewport={{ once: true }}
-            className="relative flex flex-col md:flex-row items-start md:items-center justify-between group"
+            whileHover={{ y: -4 }}
+            className="relative group overflow-hidden border border-white/10 bg-[rgba(18,18,18,0.7)] backdrop-blur-2xl backdrop-saturate-150 p-6 md:p-8 shadow-[0_4px_30px_rgba(0,0,0,0.6)] transition-all duration-500"
           >
-            {/* Slanted background */}
-            <div className="absolute inset-0 bg-gray-900/70 backdrop-blur-md skew-y-[-2deg] rounded-3xl -z-10 border-l-4 border-rust/50" />
+            {/* Glow overlay */}
+            <motion.div
+              className="absolute inset-0 -z-10 bg-gradient-to-br from-army/10 via-transparent to-sandstorm/10 opacity-0 group-hover:opacity-40 blur-2xl transition-opacity duration-700"
+            />
 
-            {/* Left: Author */}
-            <div className="flex-shrink-0 flex flex-col items-center md:items-start gap-4 mr-6">
-              <div className="relative w-16 h-16">
-                <div className="absolute -inset-1 rounded-full bg-gradient-to-tr from-rust to-sandstorm blur opacity-40 animate-pulse"></div>
-                <Image quality={100}
+            {/* Top Accent Line */}
+            <motion.div
+              className="absolute top-0 left-0 h-[3px] w-0 bg-gradient-to-r from-army via-sandstorm to-rust group-hover:w-full transition-all duration-700"
+            />
+
+            {/* Content layout */}
+            <div className="flex flex-col md:flex-row items-start md:items-center gap-6 md:gap-10">
+              {/* Author Avatar */}
+              <div className="flex-shrink-0 relative">
+                <div className="absolute inset-0 rounded-full bg-gradient-to-tr from-army via-sandstorm to-transparent blur-xl opacity-30 group-hover:opacity-70 transition-opacity duration-700" />
+                <Image
                   src={post.avatar}
                   alt={post.author}
-                  width={64}
-                  height={64}
-                  className="rounded-full border border-gray-600 relative"
+                  width={72}
+                  height={72}
+                  quality={100}
+                  className="rounded-full border border-white/20 relative z-10"
                 />
               </div>
-              <p className="text-sm text-gray-400">{post.author}</p>
-            </div>
 
-            {/* Right: Content */}
-            <div className="flex-1 flex flex-col gap-4">
-              <h3 className="text-xl md:text-2xl font-bold text-sandstorm">
-                {post.title}
-              </h3>
-              <p className="text-gray-300 text-sm md:text-base">{post.content}</p>
+              {/* Post Details */}
+              <div className="flex-1 flex flex-col gap-4">
+                <div>
+                  <h3 className="text-2xl font-semibold text-sandstorm mb-1">
+                    {post.title}
+                  </h3>
+                  <p className="text-white/60 text-sm">{post.author}</p>
+                </div>
+                <p className="text-white/80 text-sm md:text-base leading-relaxed">
+                  {post.content}
+                </p>
 
-              <div className="flex gap-6 mt-2">
-                <motion.button
-                  whileHover={{ scale: 1.1 }}
-                  whileTap={{ scale: 0.95 }}
-                  className="flex items-center gap-1 text-gray-400 hover:text-rust transition"
-                >
-                  <ThumbsUp size={18} /> {post.likes}
-                </motion.button>
-                <motion.button
-                  whileHover={{ scale: 1.1 }}
-                  whileTap={{ scale: 0.95 }}
-                  className="flex items-center gap-1 text-gray-400 hover:text-sandstorm transition"
-                >
-                  <MessageSquare size={18} /> {post.comments}
-                </motion.button>
+                {/* Actions */}
+                <div className="flex gap-6 mt-3">
+                  <motion.button
+                    whileHover={{ scale: 1.1 }}
+                    whileTap={{ scale: 0.95 }}
+                    className="flex items-center gap-1.5 text-white/60 hover:text-army transition"
+                  >
+                    <ThumbsUp
+                      size={18}
+                      className="transition-colors cursor-pointer group-hover:text-army"
+                    />
+                    <span className="text-sm">{post.likes}</span>
+                  </motion.button>
+
+                  <motion.button
+                    whileHover={{ scale: 1.1 }}
+                    whileTap={{ scale: 0.95 }}
+                    className="flex items-center gap-1.5 text-white/60 hover:text-sandstorm transition"
+                  >
+                    <MessageSquare size={18}  className="cursor-pointer"/>
+                    <span className="text-sm">{post.comments}</span>
+                  </motion.button>
+                </div>
               </div>
             </div>
 
-            {/* Hover Glow */}
-            <div className="absolute inset-0 rounded-3xl bg-gradient-to-tr from-rust/30 to-transparent opacity-0 group-hover:opacity-30 transition-opacity pointer-events-none -z-10" />
+            {/* Hover light sweep */}
+            <motion.div
+              className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-[1.3s] ease-in-out"
+            />
           </motion.div>
         ))}
       </div>

@@ -57,7 +57,7 @@ export default function PhotoWall() {
                 whileInView={{ opacity: 1, scale: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: index * 0.1 }}
                 viewport={{ once: true }}
-                className={`relative group cursor-pointer overflow-hidden rounded-xl shadow-lg row-span-${rowSpan}`}
+                className={`relative group cursor-pointer overflow-hidden shadow-lg row-span-${rowSpan}`}
                 onClick={() => setSelected(item)}
               >
                 <motion.div
@@ -69,19 +69,19 @@ export default function PhotoWall() {
                       src={item.src}
                       alt={item.alt}
                       fill
-                      className="object-cover w-full h-full transition-transform duration-500 group-hover:scale-110 rounded-xl"
+                      className="object-cover w-full h-full transition-transform duration-500 group-hover:scale-110"
                     />
                   ) : (
-                    <div className="relative w-full h-full bg-black rounded-xl">
+                    <div className="relative w-full h-full bg-superblack">
                       <video
                         src={item.src}
-                        className="object-cover w-full h-full rounded-xl"
+                        className="object-cover w-full h-full"
                         muted
                         loop
                         autoPlay
                         playsInline
                       />
-                      <div className="absolute inset-0 bg-black/40 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity rounded-xl">
+                      <div className="absolute inset-0 bg-superblack/40 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
                         <Play size={50} className="text-white drop-shadow-lg" />
                       </div>
                     </div>
@@ -92,13 +92,13 @@ export default function PhotoWall() {
                     initial={{ y: "100%", opacity: 0 }}
                     whileHover={{ y: 0, opacity: 1 }}
                     transition={{ duration: 0.4 }}
-                    className="absolute bottom-0 left-0 w-full bg-black/60 backdrop-blur-sm text-white text-sm px-3 py-2 rounded-b-xl flex justify-between items-center"
+                    className="absolute bottom-0 left-0 w-full bg-black/60 backdrop-blur-sm text-white text-sm px-3 py-2 flex justify-between items-center"
                   >
                     <span>📍 {item.alt}</span>
                     <span className="font-semibold">{item.rider}</span>
                   </motion.div>
 
-                  <div className="absolute inset-0 bg-gradient-to-t from-rust/20 to-transparent opacity-0 group-hover:opacity-30 rounded-xl transition-opacity pointer-events-none"></div>
+                  <div className="absolute inset-0 bg-gradient-to-t from-rust/20 to-transparent opacity-0 group-hover:opacity-30 transition-opacity pointer-events-none"></div>
                 </motion.div>
               </motion.div>
             );
@@ -110,15 +110,15 @@ export default function PhotoWall() {
       <AnimatePresence>
         {selected && (
           <motion.div
-            className="fixed inset-0 z-50 flex items-center justify-center bg-black/90 backdrop-blur-md"
+            className="fixed inset-0 z-50 flex items-center justify-center bg-superblack/40 backdrop-blur-md"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
           >
-            <div className="relative max-w-4xl w-full mx-4 md:mx-0 rounded-2xl overflow-hidden">
+            <div className="relative max-w-4xl w-full mx-4 md:mx-0 overflow-hidden">
               <button
                 onClick={() => setSelected(null)}
-                className="absolute top-4 right-4 text-white bg-black/50 p-2 rounded-full hover:bg-black/80 transition z-10"
+                className="absolute top-4 right-4 text-white bg-superblack/50 p-1 cursor-pointer hover:bg-superblack/80 transition z-10"
               >
                 <X size={24} />
               </button>
@@ -129,18 +129,18 @@ export default function PhotoWall() {
                   alt={selected.alt}
                   width={800}
                   height={600}
-                  className="object-contain w-full max-h-[80vh] bg-black"
+                  className="object-contain w-full max-h-[80vh] bg-superblack"
                 />
               ) : (
                 <video
                   src={selected.src}
-                  className="object-contain w-full max-h-[80vh] bg-black"
+                  className="object-contain w-full max-h-[80vh] bg-superblack"
                   controls
                   autoPlay
                 />
               )}
 
-              <div className="bg-black/70 text-white p-4">
+              <div className="bg-superblack/70 text-white p-4">
                 <h3 className="text-xl font-semibold">{selected.alt}</h3>
                 <p className="text-sm mt-1">Rider: {selected.rider}</p>
                 <p className="text-sm mt-1">{selected.description}</p>

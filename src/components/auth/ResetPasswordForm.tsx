@@ -21,7 +21,7 @@ export const ResetPasswordForm: React.FC = () => {
   };
 
   return (
-    <div className="relative flex flex-col items-center justify-center w-full min-h-screen text-white overflow-hidden px-6">
+    <div className="relative flex flex-col items-center justify-center w-full text-white overflow-hidden">
       {/* Auth Card */}
       <motion.div
         initial={{ opacity: 0, y: 25 }}

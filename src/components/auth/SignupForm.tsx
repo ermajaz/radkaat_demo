@@ -25,7 +25,7 @@ export const SignupForm: React.FC = () => {
   };
 
   return (
-    <div className="relative flex flex-col items-center justify-center w-full min-h-screen text-white overflow-hidden px-6">
+    <div className="relative flex flex-col items-center justify-center w-full text-white overflow-hidden">
       {/* Auth Card */}
       <motion.div
         initial={{ opacity: 0, y: 25 }}
@@ -50,18 +50,20 @@ export const SignupForm: React.FC = () => {
           transition={{ delay: 0.2 }}
           className="text-center mt-4 text-gray-400 text-sm leading-relaxed"
         >
-          Join <span className="text-army font-medium cursor-pointer">Radkaat</span> today and
-          start your premium journey. Fill in your details to create your
-          account.
+          Join{" "}
+          <span className="text-army font-medium cursor-pointer">Radkaat</span>{" "}
+          today and start your premium journey. Fill in your details to create
+          your account.
         </motion.p>
 
         {/* Signup Form */}
         <form onSubmit={handleSubmit} className="space-y-6 mt-8">
-          {/* Full Name */}
+          {/* Full Name + Email (Side by side on larger screens) */}
           <motion.div
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.25 }}
+            className="grid grid-cols-1 sm:grid-cols-2 gap-4"
           >
             <AuthInput
               value={name}
@@ -70,14 +72,6 @@ export const SignupForm: React.FC = () => {
               placeholder="John Doe"
               className="bg-transparent border-[#2e2e2e] focus:border-army text-white placeholder-gray-500"
             />
-          </motion.div>
-
-          {/* Email */}
-          <motion.div
-            initial={{ opacity: 0, y: 10 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.3 }}
-          >
             <AuthInput
               value={email}
               onChange={(e) => setEmail(e.target.value)}
@@ -91,7 +85,7 @@ export const SignupForm: React.FC = () => {
           <motion.div
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.35 }}
+            transition={{ delay: 0.3 }}
           >
             <PhoneInputWrapper
               label="Phone (with country code)"
@@ -104,7 +98,7 @@ export const SignupForm: React.FC = () => {
           <motion.div
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.4 }}
+            transition={{ delay: 0.35 }}
           >
             <AuthInput
               value={password}
@@ -120,7 +114,7 @@ export const SignupForm: React.FC = () => {
           <motion.div
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.45 }}
+            transition={{ delay: 0.4 }}
           >
             <button
               type="submit"
@@ -139,7 +133,7 @@ export const SignupForm: React.FC = () => {
           <motion.div
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.5 }}
+            transition={{ delay: 0.45 }}
             className="mt-6 text-center"
           >
             <Link

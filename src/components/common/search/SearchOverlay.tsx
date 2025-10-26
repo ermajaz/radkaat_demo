@@ -2,14 +2,12 @@
 
 import { useEffect, useRef } from "react";
 import gsap from "gsap";
+import { X } from "lucide-react";
 import Image from "next/image";
-import SearchHeader from "./SearchHeader";
 import SearchInput from "./SearchInput";
-import SearchRecommendations from "./SearchRecommendations";
+import SearchSuggestions from "./SearchSuggestions";
 
-type Props = {
-  onClose: () => void;
-};
+type Props = { onClose: () => void };
 
 export default function SearchOverlay({ onClose }: Props) {
   const overlayRef = useRef<HTMLDivElement>(null);
@@ -19,51 +17,49 @@ export default function SearchOverlay({ onClose }: Props) {
 
     gsap.fromTo(
       overlayRef.current,
-      { y: "-100%" },
-      { y: 0, duration: 0.6, ease: "power3.out" }
+      { y: "-100%", opacity: 0 },
+      { y: 0, opacity: 1, duration: 0.6, ease: "power3.out" }
     );
 
-    // Disable background scroll
     const originalOverflow = document.body.style.overflow;
     document.body.style.overflow = "hidden";
 
     return () => {
-      document.body.style.overflow = originalOverflow;
+      document.body.style.overflow = originalOverflow; // ✅ No return value now
     };
   }, []);
 
   return (
     <div
       ref={overlayRef}
-      className="fixed bg-superblack top-0 left-0 w-full h-full z-50 flex flex-col text-white overflow-hidden"
+      className="fixed inset-0 z-50 flex flex-col bg-superblack backdrop-blur-2xl text-white overflow-hidden"
     >
-      {/* Background splash */}
-      <div className="absolute inset-0 -z-10">
-        <Image quality={100}
-          src="/images/splosh.png"
-          alt="Background splash"
-          fill
-          priority
-          className="object-contain object-right h-full w-full"
-        />
-
-        {/* Gradient overlay for beauty */}
-        <div className="absolute inset-0 bg-gradient-to-r from-black via-black/80 to-transparent" />
-
-        {/* Subtle dark glass for readability */}
-        <div className="absolute inset-0 bg-superblack/10" />
+      {/* Header */}
+      <div className="flex items-center justify-between px-6 py-4 border-b border-white/10">
+        <div className="flex items-center gap-3">
+          <Image
+            src="/images/website-logo.png"
+            alt="Radkaat"
+            width={48}
+            height={48}
+            className="rounded-md"
+          />
+        </div>
+        <button
+          onClick={onClose}
+          className="p-2 hover:bg-white/10 rounded-full cursor-pointer transition"
+        >
+          <X size={40} />
+        </button>
       </div>
 
-      {/* Header */}
-      <SearchHeader onClose={onClose} />
-
-      {/* Input Section */}
-      <div className="flex flex-col items-center justify-center flex-1 px-6">
+      {/* Search Input */}
+      <div className="flex justify-center my-[10%] px-6">
         <SearchInput />
       </div>
 
-      {/* Recommendations */}
-      <SearchRecommendations />
+      {/* Suggestions */}
+      <SearchSuggestions />
     </div>
   );
 }

@@ -1,9 +1,9 @@
-// components/community/Mentorship.tsx
 "use client";
 
 import Image from "next/image";
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
+import { useState } from "react";
 
 // types/community.ts
 export interface Mentor {
@@ -13,7 +13,7 @@ export interface Mentor {
   expertise: string[];
   image: string;
   level: "Pro Rider" | "Trailblazer" | "Explorer";
-  connected?: boolean; // if the current user has already connected
+  connected?: boolean;
 }
 
 export const mentors: Mentor[] = [
@@ -46,107 +46,145 @@ export const mentors: Mentor[] = [
   },
   {
     id: "4",
+    name: "Nisha Verma",
+    location: "Manali, HP",
+    expertise: ["Spiti Rides", "Long-Distance Touring"],
+    image: "/images/manali/rider-img.jpg",
+    level: "Pro Rider",
+    connected: true,
+  },
+  {
+    id: "5",
     name: "Vikram Das",
     location: "Delhi, NCR",
     expertise: ["City Rides", "Gear Reviews"],
     image: "/images/manali/rider-img.jpg",
     level: "Explorer",
+    connected: false,
+  },
+  {
+    id: "6",
+    name: "Nisha Verma",
+    location: "Manali, HP",
+    expertise: ["Spiti Rides", "Long-Distance Touring"],
+    image: "/images/manali/rider-img.jpg",
+    level: "Pro Rider",
     connected: true,
   },
 ];
 
-interface MentorshipProps {
-  data?: Mentor[];
-}
+export const Mentorship: React.FC<{ data?: Mentor[] }> = ({ data }) => {
+  const [connectedIds, setConnectedIds] = useState<string[]>(
+    mentors.filter((m) => m.connected).map((m) => m.id)
+  );
 
-export const Mentorship: React.FC<MentorshipProps> = ({ data }) => {
   const mentorList = data || mentors;
 
   const handleConnect = (id: string) => {
-    console.log("Connect clicked for mentor id:", id);
+    setConnectedIds((prev) =>
+      prev.includes(id) ? prev.filter((x) => x !== id) : [...prev, id]
+    );
   };
 
   return (
     <section
-      className="py-16 px-4 md:px-12"
+      className="py-20 px-4 md:px-12 relative overflow-hidden"
       style={{
-        background: `linear-gradient(180deg, #001644 0%, #000206 100%)`,
+        background: `radial-gradient(circle at 10% 20%, rgba(255,180,100,0.05), transparent 60%), linear-gradient(180deg, #0c0d12 0%, #000206 100%)`,
       }}
     >
-      <h2 className="text-3xl md:text-4xl font-bold mb-12 text-center text-sandstorm">
+      {/* Background glow & grid pattern */}
+      <div className="absolute inset-0 -z-10 opacity-[0.08] bg-[radial-gradient(circle_at_50%_50%,_#ffae00_1px,_transparent_1px)] bg-[size:40px_40px]" />
+      <div className="absolute -top-20 right-10 w-[400px] h-[400px] bg-rust/20 blur-[150px] rounded-full" />
+      <div className="absolute bottom-0 left-0 w-[300px] h-[300px] bg-sandstorm/20 blur-[120px] rounded-full" />
+
+      <motion.h2
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.6 }}
+        viewport={{ once: true }}
+        className="text-3xl md:text-5xl font-bold mb-16 text-center text-sandstorm tracking-wide"
+      >
         Connect with Riders
-      </h2>
+      </motion.h2>
 
-      <div className="grid gap-8 md:grid-cols-2 grid-cols-1">
-        {mentorList.map((mentor, i) => (
-          <motion.div
-            key={mentor.id}
-            initial={{ opacity: 0, y: 50 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: i * 0.15 }}
-            viewport={{ once: true }}
-            className="relative flex flex-col md:flex-row rounded-3xl shadow-2xl overflow-hidden group bg-white/5 backdrop-blur-md border border-gray-700 hover:scale-[1.03] transition-transform duration-300"
-          >
-            {/* Left: Image */}
-            <div className="relative md:w-1/3 w-full h-64 md:h-auto">
-              <Image quality={100}
-                src={mentor.image}
-                alt={mentor.name}
-                fill
-                className="object-cover"
-              />
-              {/* Floating avatar */}
-              <div className="absolute -bottom-5 left-1/2 transform -translate-x-1/2 md:left-4 md:translate-x-0">
-                <Image quality={100}
-                  src={mentor.image}
-                  alt={mentor.name}
-                  width={60}
-                  height={60}
-                  className="rounded-full border-2 border-rust shadow-lg"
-                />
-              </div>
-              {/* Level Ribbon */}
-              <div className="absolute top-3 right-3 bg-rust px-3 py-1 rounded-full text-white font-semibold text-xs shadow-md">
-                {mentor.level}
-              </div>
-            </div>
+      <div className="grid gap-10 md:grid-cols-2 lg:grid-cols-3">
+        {mentorList.map((mentor, i) => {
+          const connected = connectedIds.includes(mentor.id);
 
-            {/* Right: Info */}
-            <div className="md:w-2/3 w-full p-6 flex flex-col justify-between">
-              <div className="mt-12 md:mt-0">
-                <h3 className="text-xl font-bold text-sandstorm-1">
+          return (
+            <motion.div
+              key={mentor.id}
+              initial={{ opacity: 0, y: 50 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.2, delay: 0 }}
+              viewport={{ once: true }}
+              whileHover={{ scale: 1.03 }}
+              className="relative group overflow-hidden border border-white/10 bg-white/[0.03] backdrop-blur-2xl p-6 flex flex-col justify-between transition-all duration-500"
+            >
+              {/* Glow background */}
+              <div className="absolute inset-0 bg-gradient-to-br from-rust/10 via-transparent to-sandstorm/10 opacity-0 group-hover:opacity-100 transition-opacity duration-700 blur-2xl" />
+
+              {/* Header with image & name */}
+              <div className="flex flex-col items-center text-center">
+                <div className="relative space-y-5">
+                  <div className="absolute inset-0 bg-gradient-to-tr from-rust to-sandstorm rounded-full blur-lg opacity-40 group-hover:opacity-70 transition-opacity" />
+                  <Image
+                    src={mentor.image}
+                    alt={mentor.name}
+                    width={100}
+                    height={100}
+                    className="rounded-full border-2 border-white/20 relative z-10"
+                  />
+                  {/* Level Ribbon */}
+                  <span
+                    className={`absolute -bottom-3 left-1/2 -translate-x-1/2 text-xs whitespace-nowrap font-semibold px-2 py-0.5 text-superblack shadow-md ${
+                      mentor.level === "Pro Rider"
+                        ? "bg-gradient-to-r from-yellow-400 to-orange-400"
+                        : mentor.level === "Trailblazer"
+                        ? "bg-gradient-to-r from-rust to-sandstorm"
+                        : "bg-gradient-to-r from-teal-400 to-lime-400"
+                    }`}
+                  >
+                    {mentor.level}
+                  </span>
+                </div>
+
+                <h3 className="text-xl font-semibold mt-5 text-sandstorm">
                   {mentor.name}
                 </h3>
-                <p className="text-sm text-gray-300 mt-1">{mentor.location}</p>
+                <p className="text-sm text-white/60 mt-1">{mentor.location}</p>
+              </div>
 
-                {/* Expertise pills */}
-                <div className="flex flex-wrap gap-2 mt-3">
-                  {mentor.expertise.map((exp, idx) => (
-                    <span
-                      key={idx}
-                      className="px-3 py-1 bg-gradient-to-r from-rust to-sandstorm text-black text-xs rounded-full font-medium"
-                    >
-                      {exp}
-                    </span>
-                  ))}
-                </div>
+              {/* Expertise Badges */}
+              <div className="flex flex-wrap justify-center gap-2 mt-5">
+                {mentor.expertise.map((exp, idx) => (
+                  <span
+                    key={idx}
+                    className="px-3 py-1 bg-white/10 border border-white/10 text-xs font-medium text-white/80 backdrop-blur-sm"
+                  >
+                    {exp}
+                  </span>
+                ))}
               </div>
 
               {/* Connect Button */}
-              <Button
-                variant={mentor.connected ? "outline" : "default"}
-                className={`mt-6 w-full py-2 font-semibold text-black ${
-                  mentor.connected
-                    ? "border-rust text-rust hover:bg-rust/20"
-                    : "bg-gradient-to-r from-rust to-sandstorm hover:from-sandstorm-1 hover:to-rust"
-                }`}
-                onClick={() => handleConnect(mentor.id)}
-              >
-                {mentor.connected ? "Connected" : "Connect"}
-              </Button>
-            </div>
-          </motion.div>
-        ))}
+              <div className="mt-6 cursor-pointer">
+                <Button
+                  variant="default"
+                  className={`w-full py-2 font-semibold rounded-none transition-all duration-300 ${
+                    connected
+                      ? "bg-gradient-to-r from-transparent to-transparent border border-rust text-rust hover:bg-rust/20"
+                      : "bg-gradient-to-r from-rust to-sandstorm text-black hover:scale-[1.02]"
+                  }`}
+                  onClick={() => handleConnect(mentor.id)}
+                >
+                  {connected ? "Connected ✓" : "Connect"}
+                </Button>
+              </div>
+            </motion.div>
+          );
+        })}
       </div>
     </section>
   );

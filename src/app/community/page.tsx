@@ -8,7 +8,6 @@ import GearShowcase from "@/components/community/GearShowcase";
 import Leaderboard from "@/components/community/Leaderboard";
 import { Mentorship } from "@/components/community/Mentorship";
 import PhotoWall from "@/components/community/PhotoWall";
-import { Rewards } from "@/components/community/Rewards";
 import RideLogs from "@/components/community/RideLogs";
 import RiderProfiles from "@/components/community/RiderProfiles";
 import { motion} from "framer-motion";
@@ -33,7 +32,6 @@ export default function CommunityPage() {
           <PhotoWall />
           <Leaderboard />
           <Mentorship />
-          <Rewards />
         </motion.div>
       </ParallaxWrapper>
     </main>

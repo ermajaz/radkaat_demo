@@ -160,7 +160,7 @@ export default function OrdersPage() {
   }, [activeStatus, searchTerm, sortMonth]);
 
   return (
-    <main className="min-h-screen bg-gradient-to-b from-[#0f0f0f] via-[#111] to-[#0a0a0a] text-white px-6 md:px-16 py-24">
+    <main className="min-h-screen bg-superblack text-white px-6 md:px-16 py-24">
       <motion.div
         initial={{ opacity: 0, y: 40 }}
         animate={{ opacity: 1, y: 0 }}

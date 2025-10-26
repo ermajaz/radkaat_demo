@@ -86,7 +86,7 @@ export default function RideLogsShowcase() {
   };
 
   return (
-    <section className="relative w-screen h-screen overflow-hidden">
+    <section className="relative w-full h-screen overflow-hidden">
       <AnimatePresence custom={direction} mode="popLayout">
         <motion.div
           key={logs[index].id}

@@ -81,7 +81,7 @@ function RiderCard({ rider, delay }: { rider: Rider; delay: number }) {
         visible: { opacity: 1, y: 0, transition: { duration: 0.6, delay } },
       }}
       whileHover={{ scale: 1.05 }}
-      className="relative bg-gradient-to-br from-[#1a1f2a] to-[#111519] backdrop-blur-md border border-white/10 rounded-3xl p-6 flex flex-col items-center text-white shadow-lg hover:shadow-2xl cursor-pointer"
+      className="relative bg-gradient-to-br from-[#1a1f2a] to-[#111519] backdrop-blur-md border border-white/10 p-6 flex flex-col items-center text-white shadow-lg hover:shadow-2xl cursor-pointer"
     >
       {/* Avatar */}
       <div className="relative w-28 h-28">
@@ -109,7 +109,7 @@ function RiderCard({ rider, delay }: { rider: Rider; delay: number }) {
           <motion.span
             key={i}
             whileHover={{ scale: 1.05 }}
-            className="text-xs bg-rust/90 text-white px-3 py-1 rounded-full font-medium shadow-md"
+            className="text-xs bg-rust/90 text-white px-3 py-1 font-medium shadow-md"
           >
             {badge}
           </motion.span>

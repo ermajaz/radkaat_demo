@@ -97,8 +97,8 @@ export default function UserMenuModal({
             className={cn(
               "absolute top-14 right-0 w-64 p-4 z-[200]",
               "border border-white/20 overflow-hidden",
-              "bg-[rgba(255,255,255,0.08)] backdrop-blur-xl backdrop-saturate-150",
-              "shadow-[0_8px_32px_rgba(0,0,0,0.6)] transition-all duration-300"
+              "bg-[rgba(15,15,15,0.6)] backdrop-blur-2xl backdrop-brightness-90 backdrop-saturate-150",
+              "shadow-[0_8px_32px_rgba(0,0,0,0.65)] transition-all duration-300"
             )}
           >
             {/* 🧑 User Info Section */}

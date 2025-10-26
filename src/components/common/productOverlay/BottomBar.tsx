@@ -15,7 +15,7 @@ export default function BottomBar({ bike }: { bike: OverlayBike }) {
   const [selectedColor, setSelectedColor] = useState("#3bb54a");
 
   return (
-    <div className=" inset-x-5 bg-[#35322c] py-4 px-8 flex items-center justify-between gap-4 rounded-lg shadow-lg">
+    <div className=" inset-x-5 bg-[#35322c] py-4 px-8 flex items-center justify-between gap-4 shadow-lg">
       <div className="flex items-center gap-6">
         <div>
           <div className="text-white font-bold uppercase tracking-wide">
@@ -38,7 +38,7 @@ export default function BottomBar({ bike }: { bike: OverlayBike }) {
 
       <div className="flex items-center gap-4">
         <Select>
-          <SelectTrigger className="min-w-[120px] bg-transparent border border-white/20 text-white">
+          <SelectTrigger className="min-w-[120px] rounded-none bg-transparent border border-white/20 text-white">
             <SelectValue placeholder="Size" />
           </SelectTrigger>
           <SelectContent>
@@ -48,7 +48,7 @@ export default function BottomBar({ bike }: { bike: OverlayBike }) {
           </SelectContent>
         </Select>
 
-        <Button className="bg-white cursor-pointer text-black hover:bg-white/90 font-semibold">
+        <Button className="bg-white cursor-pointer rounded-none text-black hover:bg-white/90 font-semibold">
           View Product
         </Button>
       </div>

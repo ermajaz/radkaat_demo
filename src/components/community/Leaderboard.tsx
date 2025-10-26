@@ -48,154 +48,216 @@ const leaders: Leader[] = [
   },
   {
     id: 5,
-    name: "Rohit Verma",
+    name: "Ravi Kumar",
     avatar: "/images/manali/rider-img.jpg",
-    points: 1100,
+    points: 1040,
     rank: 5,
-    badge: "Community Mentor",
+    badge: "Desert Rider",
   },
   {
     id: 6,
-    name: "Rohit Verma",
+    name: "Ishita Rao",
     avatar: "/images/manali/rider-img.jpg",
-    points: 1100,
+    points: 990,
     rank: 6,
-    badge: "Community Mentor",
+    badge: "Trail Scout",
   },
   {
     id: 7,
-    name: "Rohit Verma",
+    name: "Amit Joshi",
     avatar: "/images/manali/rider-img.jpg",
-    points: 1100,
+    points: 940,
     rank: 7,
-    badge: "Community Mentor",
+    badge: "Night Rider",
   },
   {
     id: 8,
-    name: "Rohit Verma",
+    name: "Sanya Kapoor",
     avatar: "/images/manali/rider-img.jpg",
-    points: 1100,
+    points: 920,
     rank: 8,
-    badge: "Community Mentor",
+    badge: "Wind Seeker",
   },
   {
     id: 9,
-    name: "Rohit Verma",
+    name: "Raj Malhotra",
     avatar: "/images/manali/rider-img.jpg",
-    points: 1100,
+    points: 910,
     rank: 9,
-    badge: "Community Mentor",
+    badge: "Hill Tamer",
   },
   {
     id: 10,
-    name: "Rohit Verma",
+    name: "Mira Desai",
     avatar: "/images/manali/rider-img.jpg",
-    points: 1100,
+    points: 900,
     rank: 10,
-    badge: "Community Mentor",
+    badge: "Trail Explorer",
   },
 ];
 
 export default function Leaderboard() {
+  const getRankColor = (rank: number) => {
+    switch (rank) {
+      case 1:
+        return "from-yellow-400 via-amber-300 to-yellow-200";
+      case 2:
+        return "from-gray-300 via-gray-400 to-gray-200";
+      case 3:
+        return "from-amber-700 via-orange-500 to-amber-400";
+      default:
+        return "from-army/30 via-transparent to-transparent";
+    }
+  };
+
   return (
-    <section
-      className="py-16 px-6"
-      style={{
-        background: `linear-gradient(180deg, #001644 0%, #000206 100%)`,
-      }}
-    >
-      <div className="max-w-6xl mx-auto space-y-12">
-        {/* Title */}
-        <motion.h2
-          initial={{ y: 20, opacity: 0 }}
-          whileInView={{ y: 0, opacity: 1 }}
-          transition={{ duration: 0.6 }}
-          viewport={{ once: true }}
-          className="text-3xl md:text-4xl font-bold text-sandstorm text-center"
-        >
-          Rider Leaderboard
-        </motion.h2>
+    <section className="relative py-20 px-6 overflow-hidden bg-superblack">
+      {/* Ambient glow */}
+      <div className="absolute inset-0 -z-10 bg-[radial-gradient(circle_at_30%_20%,rgba(162,255,162,0.07),transparent_70%)]" />
 
-        {/* Top 3 Leaders */}
-        <div className="grid sm:grid-cols-3 gap-6">
-          {leaders.slice(0, 3).map((leader, i) => (
+      <motion.h2
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.6 }}
+        viewport={{ once: true }}
+        className="text-4xl md:text-5xl font-bold text-center text-army mb-16 relative"
+      >
+        Rider Leaderboard
+        <motion.div
+          className="mx-auto mt-3 h-[3px] w-24 bg-gradient-to-r from-army via-sandstorm to-rust rounded-full"
+          initial={{ width: 0 }}
+          whileInView={{ width: "6rem" }}
+          transition={{ duration: 0.8 }}
+        />
+      </motion.h2>
+
+      {/* 🏆 Top 3 Leaders */}
+      <div className="max-w-6xl mx-auto grid sm:grid-cols-3 gap-8 mb-16">
+        {leaders.slice(0, 3).map((leader, i) => (
+          <motion.div
+            key={leader.id}
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: i * 0.2 }}
+            viewport={{ once: true }}
+            whileHover={{ scale: 1.05, y: -4 }}
+            className="relative pt-10 pb-8 md:p-8 text-center overflow-visible backdrop-blur-2xl border border-white/10 shadow-[0_8px_40px_rgba(0,0,0,0.5)] bg-[rgba(255,255,255,0.05)]"
+          >
+            {/* ✨ Gradient aura */}
+            <div
+              className={`absolute inset-0 bg-gradient-to-br ${getRankColor(
+                leader.rank
+              )} opacity-10 blur-3xl`}
+            />
+
+            {/* 🏆 Rank badge (shifted slightly inside to avoid cutting) */}
             <motion.div
-              key={leader.id}
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: i * 0.15 }}
-              viewport={{ once: true }}
-              className="relative bg-gray-900 rounded-3xl shadow-2xl p-6 flex flex-col items-center text-center hover:scale-105 transition-transform cursor-pointer"
+              className={`absolute -top-7 left-1/2 -translate-x-1/2 bg-gradient-to-br ${getRankColor(
+                leader.rank
+              )} w-12 h-12 flex items-center justify-center text-black font-extrabold text-lg shadow-xl border border-white/10`}
+              initial={{ y: -20, opacity: 0 }}
+              whileInView={{ y: 5, opacity: 1 }}
+              transition={{ delay: 0.2 }}
             >
-              <div className="absolute -top-4 bg-gradient-to-tr from-rust to-sandstorm w-14 h-14 flex items-center justify-center rounded-full shadow-lg text-black font-bold text-lg">
-                {leader.rank}
-              </div>
-              <Image quality={100}
-                src={leader.avatar}
-                alt={leader.name}
-                width={100}
-                height={100}
-                className="rounded-full border-2 border-sandstorm-1 mt-6"
-              />
-              <h3 className="text-xl font-bold text-sandstorm-1 mt-3">
-                {leader.name}
-              </h3>
-              <p className="text-gray-300 text-sm">{leader.badge}</p>
-              <div className="flex items-center gap-2 mt-3">
-                <Trophy className="text-yellow-400" size={20} />
-                <span className="font-semibold text-sandstorm-1">
-                  {leader.points} pts
-                </span>
-              </div>
+              {leader.rank}
             </motion.div>
-          ))}
-        </div>
 
-        {/* Remaining Leaders */}
-        <div className="overflow-hidden rounded-2xl shadow-lg bg-gray-900">
-          <table className="w-full text-left text-gray-300">
-            <thead className="bg-gray-800 text-sm">
-              <tr>
-                <th className="py-3 px-4">Rank</th>
-                <th className="py-3 px-4">Rider</th>
-                <th className="py-3 px-4">Badge</th>
-                <th className="py-3 px-4">Points</th>
-              </tr>
-            </thead>
-            <tbody>
-              {leaders.slice(3).map((leader, index) => (
-                <motion.tr
-                  key={leader.id}
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.5, delay: index * 0.1 }}
-                  viewport={{ once: true }}
-                  className="border-b border-gray-800 hover:bg-gray-800/50 transition"
-                >
-                  <td className="py-3 px-4 font-bold text-sandstorm-1">
-                    #{leader.rank}
-                  </td>
-                  <td className="py-3 px-4 flex items-center gap-3">
-                    <Image quality={100}
-                      src={leader.avatar}
-                      alt={leader.name}
-                      width={36}
-                      height={36}
-                      className="rounded-full border border-sandstorm-1"
-                    />
-                    <span className="font-semibold text-white">
-                      {leader.name}
-                    </span>
-                  </td>
-                  <td className="py-3 px-4 text-sm">{leader.badge}</td>
-                  <td className="py-3 px-4 font-semibold text-sandstorm-1">
-                    {leader.points}
-                  </td>
-                </motion.tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
+            {/* 🧊 Avatar */}
+            <div className="relative flex justify-center items-center mt-12">
+              {/* Pulsing aura ring */}
+              <motion.div
+                className="absolute w-[120px] h-[120px] rounded-full bg-gradient-to-tr from-army via-sandstorm to-transparent blur-xl opacity-40"
+                animate={{ scale: [1, 1.1, 1], opacity: [0.4, 0.6, 0.4] }}
+                transition={{
+                  duration: 3,
+                  repeat: Infinity,
+                  ease: "easeInOut",
+                }}
+              />
+
+              <div className="relative z-10 flex justify-center items-center">
+                <Image
+                  src={leader.avatar}
+                  alt={leader.name}
+                  width={100}
+                  height={100}
+                  className="rounded-full border-2 border-white/20 object-cover"
+                />
+              </div>
+            </div>
+
+            {/* 🏍️ Rider Info */}
+            <h3 className="text-xl font-semibold text-sandstorm mt-5">
+              {leader.name}
+            </h3>
+            <p className="text-white/60 text-sm">{leader.badge}</p>
+
+            {/* 🏅 Points */}
+            <div className="flex justify-center items-center gap-2 mt-5 text-lg font-semibold text-army">
+              <Trophy
+                size={20}
+                className={`${
+                  leader.rank === 1
+                    ? "text-yellow-400"
+                    : leader.rank === 2
+                    ? "text-gray-300"
+                    : "text-yellow-500"
+                }`}
+              />
+              {leader.points} pts
+            </div>
+          </motion.div>
+        ))}
+      </div>
+
+      {/* 🏍️ Remaining Leaders Table */}
+      <div className="max-w-6xl mx-auto overflow-hidden border border-white/10 bg-[rgba(255,255,255,0.04)] backdrop-blur-2xl shadow-[0_8px_25px_rgba(0,0,0,0.4)]">
+        <table className="w-full text-left text-white/80">
+          <thead className="bg-white/5 text-sm uppercase tracking-wide text-white/60">
+            <tr>
+              <th className="py-4 px-5">Rank</th>
+              <th className="py-4 px-5">Rider</th>
+              <th className="py-4 px-5">Badge</th>
+              <th className="py-4 px-5 text-right">Points</th>
+            </tr>
+          </thead>
+          <tbody>
+            {leaders.slice(3).map((leader, index) => (
+              <motion.tr
+                key={leader.id}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: index * 0.05 }}
+                viewport={{ once: true }}
+                whileHover={{
+                  scale: 1.01,
+                  backgroundColor: "rgba(255,255,255,0.05)",
+                }}
+                className="border-t border-white/10 transition-all"
+              >
+                <td className="py-3 px-5 font-semibold text-sandstorm">
+                  #{leader.rank}
+                </td>
+                <td className="py-3 px-5 flex items-center gap-3">
+                  <Image
+                    src={leader.avatar}
+                    alt={leader.name}
+                    width={36}
+                    height={36}
+                    className="rounded-full border border-white/20"
+                  />
+                  <span className="font-medium text-white">{leader.name}</span>
+                </td>
+                <td className="py-3 px-5 text-sm text-white/70">
+                  {leader.badge}
+                </td>
+                <td className="py-3 px-5 text-right font-semibold text-army">
+                  {leader.points}
+                </td>
+              </motion.tr>
+            ))}
+          </tbody>
+        </table>
       </div>
     </section>
   );

@@ -4,7 +4,7 @@ import { ResetPasswordForm } from "@/components/auth/ResetPasswordForm";
 
 export default function ResetPasswordPage() {
   return (
-    <main className="min-h-screen flex items-center justify-center">
+    <main className="max-h-[600px] flex items-center justify-center">
       <div className="w-full">
         <ResetPasswordForm />
       </div>
