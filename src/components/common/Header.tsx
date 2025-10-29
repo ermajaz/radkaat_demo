@@ -19,39 +19,41 @@ export default function Header() {
   const headerRef = useRef<HTMLDivElement | null>(null);
   const lastScrollY = useRef(0);
   const [showHeader, setShowHeader] = useState(true);
+  const [isHovered, setIsHovered] = useState(false);
 
   const [searchOpen, setSearchOpen] = useState(false);
   const [productsOpen, setProductsOpen] = useState(false);
   const [userMenuOpen, setUserMenuOpen] = useState(false);
 
   // 🧭 Hide/show based on scroll direction
- useEffect(() => {
-  let scrollTimeout: ReturnType<typeof setTimeout>;
+  useEffect(() => {
+    let scrollTimeout: ReturnType<typeof setTimeout>;
 
-  const handleScroll = () => {
-    const currentScrollY = window.scrollY;
+    const handleScroll = () => {
+      const currentScrollY = window.scrollY;
 
-    if (currentScrollY > lastScrollY.current && currentScrollY > 50) {
-      setShowHeader(false); // hide on scroll down
-    } else if (currentScrollY < lastScrollY.current) {
-      setShowHeader(true); // show on scroll up
-    }
-    lastScrollY.current = currentScrollY;
+      if (currentScrollY > lastScrollY.current && currentScrollY > 50) {
+        setShowHeader(false); // hide on scroll down
+      } else if (currentScrollY < lastScrollY.current) {
+        setShowHeader(true); // show on scroll up
+      }
+      lastScrollY.current = currentScrollY;
 
-    // 🕒 Reset inactivity timer
-    clearTimeout(scrollTimeout);
-    scrollTimeout = setTimeout(() => {
-      if (currentScrollY > 100) setShowHeader(false);
-    }, 3000); // hide if no scroll for 3s
-  };
+      // 🕒 Reset inactivity timer
+      clearTimeout(scrollTimeout);
+      scrollTimeout = setTimeout(() => {
+        if (!isHovered && currentScrollY > 100) {
+          setShowHeader(false);
+        }
+      }, 3000); // hide if no scroll for 3s
+    };
 
-  window.addEventListener("scroll", handleScroll, { passive: true });
-  return () => {
-    clearTimeout(scrollTimeout);
-    window.removeEventListener("scroll", handleScroll);
-  };
-}, []);
-
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    return () => {
+      clearTimeout(scrollTimeout);
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, [isHovered]);
 
   // 🎞 GSAP smooth header animation
   useEffect(() => {
@@ -67,6 +69,13 @@ export default function Header() {
     <>
       <header
         ref={headerRef}
+        onMouseEnter={() => {
+          setIsHovered(true);
+          setShowHeader(true);
+        }}
+        onMouseLeave={() => {
+          setIsHovered(false);
+        }}
         className="fixed w-full top-0 left-0 z-50 flex items-center justify-between px-8 md:px-16 py-4 bg-black/50 backdrop-blur-[2px]"
       >
         {/* 🪖 Logo */}
