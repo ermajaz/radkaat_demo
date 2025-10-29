@@ -37,7 +37,7 @@ interface LatLng {
   lng: number;
 }
 
-// Animated Polyline
+// 🗺️ Animated Polyline
 const AnimatedPolyline = ({
   positions,
   isInView,
@@ -108,18 +108,13 @@ const DestinationCard: React.FC<Props> = ({ destination }) => {
       className="relative h-[430px] w-full flex items-center justify-center"
     >
       <motion.div
-        initial={{ opacity: 0, y: 100 }}
-        animate={isInView ? { opacity: 1, y: 0 } : {}}
-        transition={{ duration: 1, ease: "easeOut" }}
+        // ✅ No fade or slide animation — instant appearance
+        initial={false}
+        animate={isInView ? {} : {}}
         className="relative z-10 w-full h-full flex flex-col md:flex-row backdrop-blur-md bg-white/10 shadow-2xl overflow-hidden"
       >
-        {/* Left: Static Image */}
-        <motion.div
-          initial={{ x: -50, opacity: 0 }}
-          animate={isInView ? { x: 0, opacity: 1 } : {}}
-          transition={{ duration: 1, delay: 0.2 }}
-          className="flex-1 relative h-1/3 md:h-full"
-        >
+        {/* 🖼️ Left Image */}
+        <div className="flex-1 relative h-1/3 md:h-full">
           <Image
             quality={100}
             src={destination.leftImage}
@@ -127,15 +122,10 @@ const DestinationCard: React.FC<Props> = ({ destination }) => {
             fill
             className="object-cover"
           />
-        </motion.div>
+        </div>
 
-        {/* Middle: Map */}
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={isInView ? { opacity: 1 } : {}}
-          transition={{ duration: 1, delay: 0.3 }}
-          className="flex-1 relative h-1/3 md:h-full"
-        >
+        {/* 🗺️ Middle Map */}
+        <div className="flex-1 relative h-1/3 md:h-full">
           {showMap && (
             <MapContainer
               key={`${destination.id}`}
@@ -149,15 +139,10 @@ const DestinationCard: React.FC<Props> = ({ destination }) => {
               <Marker position={route[route.length - 1]} />
             </MapContainer>
           )}
-        </motion.div>
+        </div>
 
-        {/* Right: Content */}
-        <motion.div
-          initial={{ x: 50, opacity: 0 }}
-          animate={isInView ? { x: 0, opacity: 1 } : {}}
-          transition={{ duration: 1, delay: 0.4 }}
-          className="flex-1 flex flex-col p-5 h-1/3 md:h-full overflow-hidden border-2 border-white/10"
-        >
+        {/* 📄 Right Content */}
+        <div className="flex-1 flex flex-col p-5 h-1/3 md:h-full overflow-hidden border-2 border-white/10">
           <div className="h-full flex flex-col justify-between overflow-y-auto pr-2">
             <div>
               <h4 className="text-3xl md:text-3xl font-extrabold text-white drop-shadow-xl">
@@ -192,7 +177,7 @@ const DestinationCard: React.FC<Props> = ({ destination }) => {
               ))}
             </div>
           </div>
-        </motion.div>
+        </div>
       </motion.div>
     </div>
   );

@@ -62,7 +62,8 @@ export default function StoriesSection() {
         {stories.map((story, index) => (
           <figure
             key={index}
-            className={`group w-[590px] h-[560px] flex-shrink-0 snap-start rounded-b-[8px] hover:bg-[#1A1A1A] shadow-2xl text-white
+            onClick={() => router.push(`/stories//${story.id}/${story.title}`)}
+            className={`group w-[590px] h-[560px] flex-shrink-0 cursor-pointer snap-start rounded-b-[8px] hover:bg-[#1A1A1A] shadow-2xl text-white
               ${activeIndex === index ? "bg-[#1A1A1A]" : "bg-transparent"}
             `}
           >
@@ -79,7 +80,6 @@ export default function StoriesSection() {
 
               <div className="absolute bottom-2 right-2 hidden group-hover:flex items-center justify-center w-[106px] h-[37px] border-[0.5px] border-white/50 rounded-[3px] bg-[#090909]/60 backdrop-blur-sm transition-all duration-300 hover:bg-[#090909]/80">
                 <Button
-                  onClick={() => router.push(`/stories//${story.id}/${story.title}`)}
                   className="text-[16px] font-semibold text-stone cursor-pointer"
                 >
                   View Story

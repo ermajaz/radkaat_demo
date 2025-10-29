@@ -5,7 +5,7 @@ import Image from "next/image";
 
 export default function GridProduct() {
   return (
-    <section className="relative w-full text-white p-[20px]">
+    <section className="relative w-full text-white bg-superblack p-[20px]">
       <div className="w-full mx-auto flex flex-col items-center">
         {/* Cards Grid */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-[20px] w-full">
