@@ -25,7 +25,7 @@ export default function BikeImage({ bike, yOffsetImage, yOffsetModel }: Props) {
       />
       <motion.h1
         style={{ y: yOffsetModel }}
-        className="absolute inset-0 -z-10 flex !tracking-[40px] items-center justify-center text-[18vw] opacity-[0.3] font-extrabold text-sandstorm pointer-events-none select-none"
+        className="absolute inset-0 -z-10 flex tracking-[40px]! items-center justify-center text-[18vw] opacity-[0.3] font-extrabold text-sandstorm pointer-events-none select-none"
       >
         {bike.name.toUpperCase()}
       </motion.h1>

@@ -34,7 +34,7 @@ export default function BikeCard({ bike, isActive }: Props) {
 
       {/* Bike Logo & Name */}
       <div className="absolute left-1/2 bottom-[15%] -translate-x-1/2 -ml-2 flex items-center gap-3">
-        <div className="relative w-[48px] h-[68px] flex-shrink-0">
+        <div className="relative w-12 h-[68px] shrink-0">
           <Image quality={100}
             src={logoSrc}
             alt={`${bike.name} logo`}

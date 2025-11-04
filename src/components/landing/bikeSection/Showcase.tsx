@@ -92,7 +92,7 @@ export default function Showcase({
                       {b.extraFeature.map((f, idx) => (
                         <div key={idx} className="flex items-start gap-2">
                           {/* Big Dot */}
-                          <span className="w-1.5 h-1.5 rounded-full bg-white/80 mt-1.5 flex-shrink-0"></span>
+                          <span className="w-1.5 h-1.5 rounded-full bg-white/80 mt-1.5 shrink-0"></span>
                           <span className="text-[13px] text-white/80 font-normal">
                             {f}
                           </span>
@@ -169,8 +169,8 @@ export default function Showcase({
               transition={{ duration: 0.8, ease: "easeInOut" }}
               className="z-20"
             >
-              <div className="relative p-[1px] border border-white/20 rounded-xl shadow-lg w-[280px]">
-                <div className="bg-[#2B2B2b]/50 backdrop-blur-[10px] drop-shadow-white/10 rounded-[8px] p-4">
+              <div className="relative p-px border border-white/20 rounded-xl shadow-lg w-[280px]">
+                <div className="bg-[#2B2B2b]/50 backdrop-blur-[10px] drop-shadow-white/10 rounded-lg p-4">
                   {Object.entries(displayedBike.specs).map(
                     ([key, value], idx, arr) => (
                       <div
@@ -200,7 +200,7 @@ export default function Showcase({
       {/* Bottom CTA full-width */}
       <Link href={`/bikes/${displayedBike.name.toLowerCase()}`} passHref>
         <div
-          className="w-full h-[40px] flex justify-center items-center cursor-pointer mt-auto"
+          className="w-full h-10 flex justify-center items-center cursor-pointer mt-auto"
           style={{
             backgroundColor:
               displayedBike.name.toLowerCase() === "serow"
@@ -213,7 +213,7 @@ export default function Showcase({
           }}
         >
           <Button
-            className={`bg-transparent text-lg cursor-pointer font-[600] flex items-center gap-2 rounded-none shadow-none 
+            className={`bg-transparent text-lg cursor-pointer font-semibold flex items-center gap-2 rounded-none shadow-none 
               ${
                 ["saola", "takin"].includes(displayedBike.name.toLowerCase())
                   ? "text-white"

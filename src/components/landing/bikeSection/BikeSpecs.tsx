@@ -17,7 +17,7 @@ export default function BikeSpecs({ bike }: Props) {
           <h3 className="text-base font-semibold text-gray-300 uppercase mb-1">
             {key}
           </h3>
-          <p className="text-sm break-words">{value}</p>
+          <p className="text-sm wrap-break-word">{value}</p>
         </div>
       ))}
     </div>
