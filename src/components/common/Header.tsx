@@ -76,7 +76,7 @@ export default function Header() {
         onMouseLeave={() => {
           setIsHovered(false);
         }}
-        className="fixed w-full top-0 left-0 z-50 flex items-center justify-between px-8 md:px-16 py-4 bg-black/50 backdrop-blur-[2px]"
+        className="fixed w-full top-0 left-0 z-50 flex items-center justify-between px-8 md:px-16 py-4 bg-black/10 backdrop-blur-[2px]"
       >
         {/* 🪖 Logo */}
         {pathname === "/" ? (
@@ -161,7 +161,7 @@ export default function Header() {
             />
             <span className="absolute inset-0 blur-md opacity-0 group-hover:opacity-40 bg-army/30 transition-all duration-300" />
             {/* Optional item count badge */}
-            <span className="absolute -top-1 -right-2 bg-army text-black text-[10px] font-semibold rounded-full px-[6px] py-[2px] leading-none">
+            <span className="absolute -top-1 -right-2 bg-army text-black text-[10px] font-semibold rounded-full px-1.5 py-0.5 leading-none">
               2
             </span>
           </button>
