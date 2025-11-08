@@ -10,7 +10,7 @@ export function TestRideHeroDesktop() {
   const router = useRouter();
 
   return (
-    <div className="relative w-full h-[70vh] md:h-[100vh] flex flex-col items-center justify-center overflow-hidden z-10 bg-superblack">
+    <div className="relative w-full h-[70vh] md:h-[600px] flex flex-col items-center justify-center overflow-hidden z-10 bg-superblack">
       <Image quality={100}
         src="/images/test-ride-img.jpg"
         alt="Test Ride"

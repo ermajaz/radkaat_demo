@@ -1,23 +1,20 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import { stories } from "@/utils/data";
-import Image from "next/image";
 import Lenis from "@studio-freight/lenis";
-import { useRouter } from "next/navigation";
-import { Button } from "@/components/ui/button";
+import { destinations } from "@/utils/destinations";
+import DestinationCard from "../destination/DestinationCard";
 
 export default function StoriesSection() {
   const scrollRef = useRef<HTMLDivElement>(null);
-  const router = useRouter();
-  const [activeIndex, setActiveIndex] = useState(0); // First story selected initially
+  const [activeIndex, setActiveIndex] = useState(0);
 
   useEffect(() => {
     if (!scrollRef.current) return;
 
     const lenis = new Lenis({
-      duration: 0.5,
-      easing: (t: number) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+      duration: 0.6,
+      easing: (t: number) => 1 - Math.pow(1 - t, 3),
       lerp: 0.1,
     });
 
@@ -49,63 +46,38 @@ export default function StoriesSection() {
 
   return (
     <section
-      className="pt-10 flex flex-col gap-8 overflow-hidden relative"
+      className="pt-10 flex flex-col gap-10 overflow-hidden relative"
       style={{
         background: `linear-gradient(180deg, #001644 0%, #000206 100%)`,
       }}
     >
-      {/* Horizontal Scroll of Stories */}
+      {/* 🌍 Horizontal Scroll of Destination Cards */}
       <div
         ref={scrollRef}
-        className="overflow-x-auto mx-10 scrollbar-hide flex space-x-6 snap-x snap-mandatory hide-scrollbar"
+        className="flex overflow-x-auto hide-scrollbar snap-x snap-mandatory px-10 ml-10 gap-10 scroll-smooth"
       >
-        {stories.map((story, index) => (
-          <figure
-            key={index}
-            onClick={() => router.push(`/stories//${story.id}/${story.title}`)}
-            className={`group w-[590px] h-[560px] flex-shrink-0 cursor-pointer snap-start rounded-b-[8px] hover:bg-[#1A1A1A] shadow-2xl text-white
-              ${activeIndex === index ? "bg-[#1A1A1A]" : "bg-transparent"}
-            `}
-          >
-            <div className="relative w-full h-[426px] overflow-hidden group">
-              <Image quality={100}
-                src={story.img}
-                alt={story.title}
-                fill
-                sizes="(max-width: 768px) 100vw,
-                  (max-width: 1024px) 50vw,
-                  33vw"
-                className="object-cover"
-              />
-
-              <div className="absolute bottom-2 right-2 hidden group-hover:flex items-center justify-center w-[106px] h-[37px] border-[0.5px] border-white/50 rounded-[3px] bg-[#090909]/60 backdrop-blur-sm transition-all duration-300 hover:bg-[#090909]/80">
-                <Button
-                  className="text-[16px] font-semibold text-stone cursor-pointer"
-                >
-                  View Story
-                </Button>
-              </div>
-            </div>
-            <figcaption className="h-[122px] p-[10px] flex flex-col gap-1">
-              <span className="text-white text-[24px] mt-1  font-bold uppercase">
-                {story.title}
-              </span>
-              <span className="text-white text-[12px] font-normal">
-                {story.date}
-              </span>
-              <p className="text-white text-[16px]">{story.excerpt}</p>
-            </figcaption>
-          </figure>
+        {destinations.map((destination, index) => (
+          <div key={destination.id} className="snap-start flex-shrink-0 w-[800px]">
+            <DestinationCard
+              destination={destination}
+              isActive={activeIndex === index}
+            />
+          </div>
         ))}
       </div>
 
-      {/* Bottom Strip */}
-      <div className="flex justify-between items-center h-[110px] p-10 bg-[#1A1A1A]">
-        <h2 className="text-white text-[48px] font-bold">
-          THE JUNGLE BOOK
-        </h2>
-        <div className="flex gap-8 pr-10 overflow-x-auto scrollbar-hide">
-          {stories.map((story, index) => (
+      {/* 🐾 Bottom Strip */}
+      <div className="flex justify-between items-center h-[130px] px-10 bg-[#1A1A1A]">
+        <div className="flex flex-col w-[350px]">
+          <h2 className="text-white text-[48px] font-bold">THE JUNGLE BOOK</h2>
+          <p className="text-[#B3B3B3] text-[12px] font-light max-w-full">
+            A timeless tale of adventure and discovery, following Mowgli’s
+            journey through the wild jungle with his loyal companions.
+          </p>
+        </div>
+
+        <div className="flex gap-10 pr-10 overflow-x-auto hide-scrollbar">
+          {destinations.map((story, index) => (
             <div
               key={index}
               onClick={() => handleStoryClick(index)}
@@ -113,21 +85,21 @@ export default function StoriesSection() {
             >
               <span
                 className={`uppercase text-[12px] font-medium ${
-                  activeIndex === index ? "text-stone" : "text-stone"
+                  activeIndex === index ? "text-green-400" : "text-gray-300"
                 }`}
               >
                 {story.title}
               </span>
               <span
                 className={`text-[10.5px] font-normal ${
-                  activeIndex === index ? "text-stone" : "text-stone"
+                  activeIndex === index ? "text-green-400" : "text-gray-400"
                 }`}
               >
                 {story.date}
               </span>
-              {/* Horizontal line below date for selected story */}
+
               {activeIndex === index && (
-                <span className="block w-full h-[2px] bg-stone mt-2"></span>
+                <span className="block w-full h-[2px] bg-green-400 mt-2"></span>
               )}
             </div>
           ))}

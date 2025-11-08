@@ -16,7 +16,7 @@ export default function AdventureSection() {
   return (
     <section
       ref={ref}
-      className="relative w-full min-h-screen pb-16 flex items-center justify-center px-5"
+      className="relative w-full min-h-fit pb-16 flex items-center justify-center px-5"
     >
       <div className="w-full h-full flex flex-col items-center justify-center">
         {/* <div className="absolute inset-0 bg-superblack/30 z-5 pointer-events-none"></div> */}
@@ -32,7 +32,7 @@ export default function AdventureSection() {
             Explore Adventures <MoveRight />
           </Button>
         </div>
-        <DestinationSection />
+        {/* <DestinationSection /> */}
       </div>
     </section>
   );
