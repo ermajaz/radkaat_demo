@@ -80,3 +80,10 @@ export interface Destination {
     author_img: string;
   }[];
 }
+
+export interface ItineraryItem {
+  day: number;
+  title: string;
+  highlights?: string[];
+  description?: string;
+}

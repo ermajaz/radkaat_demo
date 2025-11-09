@@ -1,7 +1,60 @@
-import { Bikee, OverlayBike, Store } from "@/types";
+import { Bikee, ItineraryItem, OverlayBike, Store } from "@/types";
 import { Calendar, Clock, Truck, Bike } from "lucide-react";
 
-export const stories = [
+export interface StorySection {
+  type: "story" | "itinerary" | "packing" | "testimonial" | "gallery";
+  title: string;
+  data?: any;
+}
+
+export interface Story {
+  id: number;
+  title: string;
+  date: string;
+  excerpt: string;
+  img: string;
+  link: string;
+  className?: string;
+  price: number;
+  images: string[];
+  content: StorySection[];
+}
+
+export const itineraryData: ItineraryItem[] = [
+  {
+    day: 1,
+    title: "Arrival in Manali – Local Sightseeing & Leisure",
+    highlights: ["Hadimba Temple", "Mall Road", "Vashisht Hot Springs"],
+    description:
+      "Arrive in Manali, check in to your hotel, and take some time to relax amidst the Himalayan air. In the afternoon, visit the famous Hadimba Devi Temple, a tranquil wooden shrine surrounded by tall deodar trees. Explore Vashisht Village, known for its natural hot water springs, and stroll through Mall Road for local shopping and cafés. Spend your evening soaking in the peaceful vibes of the mountains.",
+  },
+  {
+    day: 2,
+    title: "Solang Valley Adventure",
+    description:
+      "After breakfast, embark on an exciting excursion to Solang Valley. Enjoy adventure activities such as paragliding, zorbing, and ropeway rides (on direct payment basis). Return to Manali by evening and relax at your hotel.",
+  },
+  {
+    day: 3,
+    title: "Excursion to Rohtang Pass / Atal Tunnel",
+    description:
+      "A thrilling day trip to Rohtang Pass or Atal Tunnel (subject to permit and weather). Marvel at snow-clad peaks and breathtaking landscapes. Return to Manali by evening.",
+  },
+  {
+    day: 4,
+    title: "Naggar Castle & Art Exploration",
+    description:
+      "Visit the heritage-rich Naggar Castle and Roerich Art Gallery. Explore quaint local cafés and enjoy serene views of the Kullu Valley. Return to Manali for overnight stay.",
+  },
+  {
+    day: 5,
+    title: "Departure from Manali – Memories to Cherish",
+    description:
+      "After breakfast, check out from the hotel. Depart with unforgettable memories of your mountain retreat.",
+  },
+];
+
+export const stories: Story[] = [
   {
     id: 1,
     title: "Manali Adventures",
@@ -11,6 +64,7 @@ export const stories = [
     img: "/images/manali.jpg",
     link: "#",
     className: "absolute top-20 left-[8%] rotate-[-5deg]",
+    price: 29999,
     images: [
       "/images/manali/manali1.jpg",
       "/images/manali/manali2.jpeg",
@@ -35,169 +89,176 @@ export const stories = [
     ],
     content: [
       {
-        title: "Sunrise Trekking",
-        user_experience:
-          "The sunrise trek was an experience that will forever remain etched in my memory. As I began the hike in the early hours, the air was crisp and carried the subtle scent of pine and earth, awakening every sense within me. Each step along the winding trail brought me closer to a vantage point that promised a view unlike any I had ever seen. The soft glow of dawn started to illuminate the horizon, and the first hints of sunlight painted the rugged mountain peaks in shades of gold and amber, casting long shadows across the valleys below. It was a surreal moment where nature itself seemed to pause and hold its breath, welcoming the day with quiet grandeur. As I climbed higher, the tranquility of the morning enveloped me. The gentle rustling of leaves, the distant call of birds, and the faint murmur of a nearby stream created a symphony that was both soothing and invigorating. Each step was a reminder of the effort it took to reach this place, yet the anticipation of the unfolding panorama kept my spirits buoyant. When I finally reached the summit, I was greeted by a breathtaking spectacle: the sun, gradually climbing over the horizon, cast a warm, golden light that danced on the mountain slopes. The sky transformed into a canvas of vibrant hues—fiery oranges blending into soft pinks, delicate purples fading into deep blues. The mountains themselves seemed to glow with a life of their own, their rugged contours accentuated by the interplay of light and shadow. Standing there, with the cool breeze brushing against my face and the vast expanse of nature stretching endlessly before me, I felt an overwhelming sense of serenity and exhilaration.",
-        author: "Alice Johnson",
-        date: "21 September 2025",
-        author_img: "/images/manali/rider-img.jpg",
+        type: "story",
+        title: "Details",
+        data: {
+          title: "Arrival in Manali",
+          user_experience:
+            "The sunrise trek was an experience that will forever remain etched in my memory. The air was crisp, and each step revealed more of the breathtaking Himalayan view. When I finally reached the summit, the golden light of dawn danced on the snow peaks — a surreal moment of peace and awe.",
+          author: "Alice Johnson",
+          date: "21 September 2025",
+          author_img: "/images/manali/rider-img.jpg",
+        },
       },
       {
-        title: "River Rafting Fun",
-        user_experience:
-          "The sunrise trek was an experience that will forever remain etched in my memory. As I began the hike in the early hours, the air was crisp and carried the subtle scent of pine and earth, awakening every sense within me. Each step along the winding trail brought me closer to a vantage point that promised a view unlike any I had ever seen. The soft glow of dawn started to illuminate the horizon, and the first hints of sunlight painted the rugged mountain peaks in shades of gold and amber, casting long shadows across the valleys below. It was a surreal moment where nature itself seemed to pause and hold its breath, welcoming the day with quiet grandeur. As I climbed higher, the tranquility of the morning enveloped me. The gentle rustling of leaves, the distant call of birds, and the faint murmur of a nearby stream created a symphony that was both soothing and invigorating. Each step was a reminder of the effort it took to reach this place, yet the anticipation of the unfolding panorama kept my spirits buoyant. When I finally reached the summit, I was greeted by a breathtaking spectacle: the sun, gradually climbing over the horizon, cast a warm, golden light that danced on the mountain slopes. The sky transformed into a canvas of vibrant hues—fiery oranges blending into soft pinks, delicate purples fading into deep blues. The mountains themselves seemed to glow with a life of their own, their rugged contours accentuated by the interplay of light and shadow. Standing there, with the cool breeze brushing against my face and the vast expanse of nature stretching endlessly before me, I felt an overwhelming sense of serenity and exhilaration.",
-        author: "Bob Smith",
-        date: "21 September 2025",
-        author_img: "/images/manali/rider-img.jpg",
+        type: "itinerary",
+        title: "Itinerary",
+        data: itineraryData, // imported reusable data file
       },
       {
-        title: "Local Cuisine Adventure",
-        user_experience:
-          "The sunrise trek was an experience that will forever remain etched in my memory. As I began the hike in the early hours, the air was crisp and carried the subtle scent of pine and earth, awakening every sense within me. Each step along the winding trail brought me closer to a vantage point that promised a view unlike any I had ever seen. The soft glow of dawn started to illuminate the horizon, and the first hints of sunlight painted the rugged mountain peaks in shades of gold and amber, casting long shadows across the valleys below. It was a surreal moment where nature itself seemed to pause and hold its breath, welcoming the day with quiet grandeur. As I climbed higher, the tranquility of the morning enveloped me. The gentle rustling of leaves, the distant call of birds, and the faint murmur of a nearby stream created a symphony that was both soothing and invigorating. Each step was a reminder of the effort it took to reach this place, yet the anticipation of the unfolding panorama kept my spirits buoyant. When I finally reached the summit, I was greeted by a breathtaking spectacle: the sun, gradually climbing over the horizon, cast a warm, golden light that danced on the mountain slopes. The sky transformed into a canvas of vibrant hues—fiery oranges blending into soft pinks, delicate purples fading into deep blues. The mountains themselves seemed to glow with a life of their own, their rugged contours accentuated by the interplay of light and shadow. Standing there, with the cool breeze brushing against my face and the vast expanse of nature stretching endlessly before me, I felt an overwhelming sense of serenity and exhilaration.",
-        author: "Carla Williams",
-        date: "21 September 2025",
-        author_img: "/images/manali/rider-img.jpg",
+        type: "packing",
+        title: "What to Pack?",
+        data: [
+          { name: "Cycling Helmet", image: "https://media.trekbikes.com/image/upload/w_1200/TrekVelocisMipsHelmetCE-34589-A-Primary", category: "must" },
+          { name: "Cycling Jacket (Waterproof/Windproof)", image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcShLb6-wUL85Bj_tQsTWqdZkNs5OlzYr6Vrsw&s", category: "must" },
+          { name: "Full Finger Gloves - 2 pairs", image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQiWyV9w-d107DbU0tzPwVMcXON5sO58CySFg&s", category: "must" },
+          { name: "Cycling Shoes", image: "https://i.insider.com/6048e5109942cf001865d880?width=1136&format=jpeg", category: "must" },
+          { name: "Prescription Medications", image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS1fhHSQHXnrEAgA_REfaRH9rCvD6l7zXb98g&s", category: "must" },
+
+          { name: "Bike Shorts", image: "https://contents.mediadecathlon.com/p2464583/e441ddb57ab55a86c9a4a982d70fb756/p2464583.jpg" },
+          { name: "Casual Clothing for Travel", image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTu4tkCEMnwpV9Bnv3AXnpQIEG3w8037LOFdQ&s" },
+          { name: "Sun Hat", image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSE-HvivaKeDt4kcKFyBMs9uqg7T3LyXauH4A&s" },
+          { name: "Sunblock & Lip Balm", image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTNmZe3u0KBTX00UdPNMi38QqprcQEYt6aX4A&s" },
+          { name: "Hiking Shoes", image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTxp5mqadE-uU5zGJtzqA1AfuL6VNdbmR47IA&s" },
+        ],
+      }
+      ,
+      {
+        type: "testimonial",
+        title: "Testimonials",
+        data: [
+          {
+            name: "Riya Sharma",
+            role: "Solo Traveler from Delhi",
+            comment:
+              "This was my first solo trip, and the Manali itinerary was perfectly planned! Every day felt like a new adventure — from the snow at Rohtang Pass to peaceful walks on Mall Road. The team handled everything smoothly; can’t wait to travel with them again!",
+            image: "/images/manali/rider-img.jpg",
+          },
+          {
+            name: "Arjun & Meera",
+            role: "Couple from Chennai",
+            comment:
+              "Our honeymoon in Manali was straight out of a dream! The itinerary balanced adventure and relaxation perfectly — paragliding in Solang Valley, cozy cafés in Old Manali, and breathtaking views from Naggar Castle.",
+            image: "/images/manali/rider-img.jpg",
+          },
+          {
+            name: "The Nair Family",
+            role: "Family from Kochi",
+            comment:
+              "A perfect family getaway! The kids loved the snow games in Solang Valley, and we enjoyed exploring the art and culture at Naggar. The guides were friendly, and the trip was filled with laughter and stunning views!",
+            image: "/images/manali/rider-img.jpg",
+          },
+        ],
       },
       {
-        title: "Camping Under Stars",
-        user_experience:
-          "The sunrise trek was an experience that will forever remain etched in my memory. As I began the hike in the early hours, the air was crisp and carried the subtle scent of pine and earth, awakening every sense within me. Each step along the winding trail brought me closer to a vantage point that promised a view unlike any I had ever seen. The soft glow of dawn started to illuminate the horizon, and the first hints of sunlight painted the rugged mountain peaks in shades of gold and amber, casting long shadows across the valleys below. It was a surreal moment where nature itself seemed to pause and hold its breath, welcoming the day with quiet grandeur. As I climbed higher, the tranquility of the morning enveloped me. The gentle rustling of leaves, the distant call of birds, and the faint murmur of a nearby stream created a symphony that was both soothing and invigorating. Each step was a reminder of the effort it took to reach this place, yet the anticipation of the unfolding panorama kept my spirits buoyant. When I finally reached the summit, I was greeted by a breathtaking spectacle: the sun, gradually climbing over the horizon, cast a warm, golden light that danced on the mountain slopes. The sky transformed into a canvas of vibrant hues—fiery oranges blending into soft pinks, delicate purples fading into deep blues. The mountains themselves seemed to glow with a life of their own, their rugged contours accentuated by the interplay of light and shadow. Standing there, with the cool breeze brushing against my face and the vast expanse of nature stretching endlessly before me, I felt an overwhelming sense of serenity and exhilaration.",
-        author: "David Lee",
-        date: "21 September 2025",
-        author_img: "/images/manali/rider-img.jpg",
-      },
-      {
-        title: "Mountain Photography",
-        user_experience:
-          "The sunrise trek was an experience that will forever remain etched in my memory. As I began the hike in the early hours, the air was crisp and carried the subtle scent of pine and earth, awakening every sense within me. Each step along the winding trail brought me closer to a vantage point that promised a view unlike any I had ever seen. The soft glow of dawn started to illuminate the horizon, and the first hints of sunlight painted the rugged mountain peaks in shades of gold and amber, casting long shadows across the valleys below. It was a surreal moment where nature itself seemed to pause and hold its breath, welcoming the day with quiet grandeur. As I climbed higher, the tranquility of the morning enveloped me. The gentle rustling of leaves, the distant call of birds, and the faint murmur of a nearby stream created a symphony that was both soothing and invigorating. Each step was a reminder of the effort it took to reach this place, yet the anticipation of the unfolding panorama kept my spirits buoyant. When I finally reached the summit, I was greeted by a breathtaking spectacle: the sun, gradually climbing over the horizon, cast a warm, golden light that danced on the mountain slopes. The sky transformed into a canvas of vibrant hues—fiery oranges blending into soft pinks, delicate purples fading into deep blues. The mountains themselves seemed to glow with a life of their own, their rugged contours accentuated by the interplay of light and shadow. Standing there, with the cool breeze brushing against my face and the vast expanse of nature stretching endlessly before me, I felt an overwhelming sense of serenity and exhilaration.",
-        author: "Emma Brown",
-        date: "21 September 2025",
-        author_img: "/images/manali/rider-img.jpg",
-      },
-      {
-        title: "Wildlife Spotting",
-        user_experience:
-          "Saw some rare Himalayan birds. Felt very connected to nature.",
-        author: "Frank Garcia",
-        date: "21 September 2025",
-        author_img: "/images/manali/rider-img.jpg",
-      },
-      {
-        title: "Evening Bonfire",
-        user_experience:
-          "The evening bonfire with stories and music was the highlight of the trip.",
-        author: "Grace Miller",
-        date: "21 September 2025",
-        author_img: "/images/manali/rider-img.jpg",
-      },
-      {
-        title: "Local Village Visit",
-        user_experience:
-          "Visiting the local villages gave me insight into traditional life in Manali.",
-        author: "Henry Davis",
-        date: "21 September 2025",
-        author_img: "/images/manali/rider-img.jpg",
+        type: "gallery",
+        title: "Gallery",
+        data: [
+          "/images/manali/manali1.jpg",
+          "/images/manali/manali2.jpeg",
+          "/images/manali/manali3.jpeg",
+          "/images/manali/manali4.jpg",
+          "/images/manali/manali5.jpg",
+        ],
       },
     ],
   },
+
+  // 🔹 Story 2: Sipping Chai at Spiti
   {
     id: 2,
     title: "Sipping Chai At Spiti",
-    date: "23 December 2023",
+    date: "23 December 2025",
     excerpt:
       "Wilson has been bringing the International Yeti Gatherings to life for ten years through H+I Adventures, a tour outfit co-founded by Wilson in 2007.",
     img: "/images/sipping.jpg",
     link: "#",
     className: "absolute top-25 left-[25%] rotate-[-7deg]",
+    price: 29999,
     images: [
-      "/images/manali/manali1.jpg",
-      "/images/manali/manali2.jpeg",
-      "/images/manali/manali3.jpeg",
-      "/images/manali/manali4.jpg",
-      "/images/manali/manali5.jpg",
-      "/images/manali/manali6.jpg",
-      "/images/manali/manali7.jpeg",
-      "/images/manali/manali8.jpeg",
-      "/images/manali/manali9.jpg",
-      "/images/manali/manali10.jpg",
-      "/images/manali/manali11.jpg",
-      "/images/manali/manali12.jpeg",
-      "/images/manali/manali13.webp",
-      "/images/manali/manali14.jpeg",
-      "/images/manali/manali15.jpg",
-      "/images/manali/manali16.jpeg",
-      "/images/manali/manali17.webp",
-      "/images/manali/manali18.webp",
-      "/images/manali/manali19.jpeg",
-      "/images/manali/manali20.webp",
+      "/images/spiti/spiti1.jpg",
+      "/images/spiti/spiti2.jpg",
+      "/images/spiti/spiti3.jpg",
+      "/images/spiti/spiti4.jpg",
+      "/images/spiti/spiti5.jpg",
     ],
     content: [
       {
-        title: "Chai Plantation Walk",
-        user_experience:
-          "Walking through the tea plantations was serene and calming. The aroma of fresh chai leaves made the whole experience magical.",
-        author: "Irene Thomas",
-        date: "21 September 2025",
-        author_img: "/images/manali/rider-img.jpg",
+        type: "story",
+        title: "Details",
+        data: {
+          title: "Exploring the Spiti Valley",
+          user_experience:
+            "Spiti welcomed us with a silence that spoke volumes. The cold desert's serenity and the warmth of locals made this trip soul-enriching. The sight of Key Monastery against the blue sky is a memory etched forever.",
+          author: "Arjun Kapoor",
+          date: "25 December 2025",
+          author_img: "/images/manali/rider-img.jpg",
+        },
       },
       {
-        title: "Sunset Viewpoint",
-        user_experience:
-          "The sunset over Spiti valley is something I will never forget. Colors of the sky reflected on the river created a painting-like scene.",
-        author: "Jack Wilson",
-        date: "21 September 2025",
-        author_img: "/images/manali/rider-img.jpg",
+        type: "itinerary",
+        title: "Itinerary",
+        data: itineraryData,
       },
       {
-        title: "Local Homestay Experience",
-        user_experience:
-          "Staying at a local homestay made me feel at home. The hosts shared their culture and traditional meals with so much warmth.",
-        author: "Karen Singh",
-        date: "21 September 2025",
-        author_img: "/images/manali/rider-img.jpg",
+        type: "packing",
+        title: "What to Pack?",
+        data: [
+          { name: "Cycling Helmet", image: "https://media.trekbikes.com/image/upload/w_1200/TrekVelocisMipsHelmetCE-34589-A-Primary", category: "must" },
+          { name: "Cycling Jacket (Waterproof/Windproof)", image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcShLb6-wUL85Bj_tQsTWqdZkNs5OlzYr6Vrsw&s", category: "must" },
+          { name: "Full Finger Gloves - 2 pairs", image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQiWyV9w-d107DbU0tzPwVMcXON5sO58CySFg&s", category: "must" },
+          { name: "Cycling Shoes", image: "https://i.insider.com/6048e5109942cf001865d880?width=1136&format=jpeg", category: "must" },
+          { name: "Prescription Medications", image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS1fhHSQHXnrEAgA_REfaRH9rCvD6l7zXb98g&s", category: "must" },
+
+          { name: "Bike Shorts", image: "https://contents.mediadecathlon.com/p2464583/e441ddb57ab55a86c9a4a982d70fb756/p2464583.jpg" },
+          { name: "Casual Clothing for Travel", image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTu4tkCEMnwpV9Bnv3AXnpQIEG3w8037LOFdQ&s" },
+          { name: "Sun Hat", image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSE-HvivaKeDt4kcKFyBMs9uqg7T3LyXauH4A&s" },
+          { name: "Sunblock & Lip Balm", image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTNmZe3u0KBTX00UdPNMi38QqprcQEYt6aX4A&s" },
+          { name: "Hiking Shoes", image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTxp5mqadE-uU5zGJtzqA1AfuL6VNdbmR47IA&s" },
+        ],
+      },
+
+      {
+        type: "testimonial",
+        title: "Testimonials",
+        data: [
+          {
+            name: "Riya Sharma",
+            role: "Solo Traveler from Delhi",
+            comment:
+              "This was my first solo trip, and the Manali itinerary was perfectly planned! Every day felt like a new adventure — from the snow at Rohtang Pass to peaceful walks on Mall Road. The team handled everything smoothly; can’t wait to travel with them again!",
+            image: "/images/manali/rider-img.jpg",
+          },
+          {
+            name: "Arjun & Meera",
+            role: "Couple from Chennai",
+            comment:
+              "Our honeymoon in Manali was straight out of a dream! The itinerary balanced adventure and relaxation perfectly — paragliding in Solang Valley, cozy cafés in Old Manali, and breathtaking views from Naggar Castle.",
+            image: "/images/manali/rider-img.jpg",
+          },
+          {
+            name: "The Nair Family",
+            role: "Family from Kochi",
+            comment:
+              "A perfect family getaway! The kids loved the snow games in Solang Valley, and we enjoyed exploring the art and culture at Naggar. The guides were friendly, and the trip was filled with laughter and stunning views!",
+            image: "/images/manali/rider-img.jpg",
+          },
+        ],
       },
       {
-        title: "Mountain Photography",
-        user_experience:
-          "Every corner of Spiti is photogenic! The rugged mountains, winding rivers, and colorful monasteries were perfect for photography.",
-        author: "Leo Martinez",
-        date: "21 September 2025",
-        author_img: "/images/manali/rider-img.jpg",
-      },
-      {
-        title: "Monastery Visit",
-        user_experience:
-          "Visiting ancient monasteries gave me a deep insight into local spirituality. The monks were welcoming and explained their rituals patiently.",
-        author: "Maya Patel",
-        date: "21 September 2025",
-        author_img: "/images/manali/rider-img.jpg",
-      },
-      {
-        title: "Village Interaction",
-        user_experience:
-          "Talking to the villagers was enlightening. I learned how they cultivate crops in such harsh conditions and their love for community.",
-        author: "Nikhil Rao",
-        date: "21 September 2025",
-        author_img: "/images/manali/rider-img.jpg",
-      },
-      {
-        title: "River Side Chai Break",
-        user_experience:
-          "Sipping fresh chai beside the river while listening to the flowing water was the most peaceful experience I’ve had in years.",
-        author: "Olivia Chen",
-        date: "21 September 2025",
-        author_img: "/images/manali/rider-img.jpg",
-      },
-      {
-        title: "Stargazing Night",
-        user_experience:
-          "The night sky in Spiti is unbelievably clear. Stargazing with a cup of chai made me feel connected to the universe.",
-        author: "Pranav Desai",
-        date: "21 September 2025",
-        author_img: "/images/manali/rider-img.jpg",
+        type: "gallery",
+        title: "Photo Memories",
+        data: [
+          "/images/spiti/spiti1.jpg",
+          "/images/spiti/spiti2.jpg",
+          "/images/spiti/spiti3.jpg",
+          "/images/spiti/spiti4.jpg",
+          "/images/spiti/spiti5.jpg",
+        ],
       },
     ],
   },
+
   {
     id: 3,
     title: "Kali's Abode, Faridkots Reverence",
@@ -207,6 +268,7 @@ export const stories = [
     img: "/images/kali.png",
     link: "#",
     className: "absolute top-5 left-[40%] rotate-[8deg]",
+    price: 29999,
     images: [
       "/images/manali/manali1.jpg",
       "/images/manali/manali2.jpeg",
@@ -231,68 +293,78 @@ export const stories = [
     ],
     content: [
       {
-        title: "Spiritual Awakening",
-        user_experience:
-          "Visiting Kali’s Abode felt like a spiritual awakening. The atmosphere is serene and charged with positive energy.",
-        author: "Sarah Thompson",
-        date: "21 September 2025",
-        author_img: "/images/manali/rider-img.jpg",
+        type: "story",
+        title: "Details",
+        data: {
+          title: "Arrival in Manali",
+          user_experience:
+            "The sunrise trek was an experience that will forever remain etched in my memory. The air was crisp, and each step revealed more of the breathtaking Himalayan view. When I finally reached the summit, the golden light of dawn danced on the snow peaks — a surreal moment of peace and awe.",
+          author: "Alice Johnson",
+          date: "21 September 2025",
+          author_img: "/images/manali/rider-img.jpg",
+        },
       },
       {
-        title: "Temple Architecture",
-        user_experience:
-          "The intricate carvings and traditional architecture of the temple left me awestruck. Every detail tells a story.",
-        author: "Ravi Kumar",
-        date: "21 September 2025",
-        author_img: "/images/manali/rider-img.jpg",
+        type: "itinerary",
+        title: "Itinerary",
+        data: itineraryData, // imported reusable data file
       },
       {
-        title: "Meditation Sessions",
-        user_experience:
-          "Participating in meditation sessions here gave me peace like never before. The guides were knowledgeable and patient.",
-        author: "Anita Joshi",
-        date: "21 September 2025",
-        author_img: "/images/manali/rider-img.jpg",
-      },
+        type: "packing",
+        title: "What to Pack?",
+        data: [
+          { name: "Cycling Helmet", image: "https://media.trekbikes.com/image/upload/w_1200/TrekVelocisMipsHelmetCE-34589-A-Primary", category: "must" },
+          { name: "Cycling Jacket (Waterproof/Windproof)", image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcShLb6-wUL85Bj_tQsTWqdZkNs5OlzYr6Vrsw&s", category: "must" },
+          { name: "Full Finger Gloves - 2 pairs", image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQiWyV9w-d107DbU0tzPwVMcXON5sO58CySFg&s", category: "must" },
+          { name: "Cycling Shoes", image: "https://i.insider.com/6048e5109942cf001865d880?width=1136&format=jpeg", category: "must" },
+          { name: "Prescription Medications", image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS1fhHSQHXnrEAgA_REfaRH9rCvD6l7zXb98g&s", category: "must" },
+
+          { name: "Bike Shorts", image: "https://contents.mediadecathlon.com/p2464583/e441ddb57ab55a86c9a4a982d70fb756/p2464583.jpg" },
+          { name: "Casual Clothing for Travel", image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTu4tkCEMnwpV9Bnv3AXnpQIEG3w8037LOFdQ&s" },
+          { name: "Sun Hat", image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSE-HvivaKeDt4kcKFyBMs9uqg7T3LyXauH4A&s" },
+          { name: "Sunblock & Lip Balm", image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTNmZe3u0KBTX00UdPNMi38QqprcQEYt6aX4A&s" },
+          { name: "Hiking Shoes", image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTxp5mqadE-uU5zGJtzqA1AfuL6VNdbmR47IA&s" },
+        ],
+      }
+      ,
       {
-        title: "Local Rituals",
-        user_experience:
-          "Observing the local rituals was fascinating. I learned so much about Faridkots’ traditions and cultural heritage.",
-        author: "Manish Verma",
-        date: "21 September 2025",
-        author_img: "/images/manali/rider-img.jpg",
-      },
+        type: "testimonial",
+        title: "Testimonials",
+        data: [
+          {
+            name: "Riya Sharma",
+            role: "Solo Traveler from Delhi",
+            comment:
+              "This was my first solo trip, and the Manali itinerary was perfectly planned! Every day felt like a new adventure — from the snow at Rohtang Pass to peaceful walks on Mall Road. The team handled everything smoothly; can’t wait to travel with them again!",
+            image: "/images/manali/rider-img.jpg",
+          },
+          {
+            name: "Arjun & Meera",
+            role: "Couple from Chennai",
+            comment:
+              "Our honeymoon in Manali was straight out of a dream! The itinerary balanced adventure and relaxation perfectly — paragliding in Solang Valley, cozy cafés in Old Manali, and breathtaking views from Naggar Castle.",
+            image: "/images/manali/rider-img.jpg",
+          },
+          {
+            name: "The Nair Family",
+            role: "Family from Kochi",
+            comment:
+              "A perfect family getaway! The kids loved the snow games in Solang Valley, and we enjoyed exploring the art and culture at Naggar. The guides were friendly, and the trip was filled with laughter and stunning views!",
+            image: "/images/manali/rider-img.jpg",
+          },
+        ],
+      }
+      ,
       {
-        title: "Scenic Trails",
-        user_experience:
-          "The trails around Kali’s Abode are scenic and peaceful. Every walk felt like a journey into nature’s heart.",
-        author: "Priya Sharma",
-        date: "21 September 2025",
-        author_img: "/images/manali/rider-img.jpg",
-      },
-      {
-        title: "Community Interaction",
-        user_experience:
-          "Interacting with the local community enriched my experience. Their stories and hospitality were heartwarming.",
-        author: "Rahul Mehta",
-        date: "21 September 2025",
-        author_img: "/images/manali/rider-img.jpg",
-      },
-      {
-        title: "Evening Aarti",
-        user_experience:
-          "The evening aarti was mesmerizing. The chants, lamps, and devotion created a magical ambiance.",
-        author: "Neha Gupta",
-        date: "21 September 2025",
-        author_img: "/images/manali/rider-img.jpg",
-      },
-      {
-        title: "Nature Walks",
-        user_experience:
-          "Walking through the surrounding forests and hills was refreshing. The connection with nature was revitalizing.",
-        author: "Vikram Singh",
-        date: "21 September 2025",
-        author_img: "/images/manali/rider-img.jpg",
+        type: "gallery",
+        title: "Gallery",
+        data: [
+          "/images/manali/manali1.jpg",
+          "/images/manali/manali2.jpeg",
+          "/images/manali/manali3.jpeg",
+          "/images/manali/manali4.jpg",
+          "/images/manali/manali5.jpg",
+        ],
       },
     ],
   },
@@ -305,6 +377,7 @@ export const stories = [
     img: "/images/seven-hills.jpg",
     link: "#",
     className: "absolute top-20 left-[8%] rotate-[-5deg]",
+    price: 29999,
     images: [
       "/images/manali/manali1.jpg",
       "/images/manali/manali2.jpeg",
@@ -329,68 +402,78 @@ export const stories = [
     ],
     content: [
       {
-        title: "Hilltop Sunrise",
-        user_experience:
-          "Waking up on the hilltops to witness the sunrise was an unforgettable experience. The sky was painted in vivid colors.",
-        author: "Alex Turner",
-        date: "21 September 2025",
-        author_img: "/images/manali/rider-img.jpg",
+        type: "story",
+        title: "Details",
+        data: {
+          title: "Arrival in Manali",
+          user_experience:
+            "The sunrise trek was an experience that will forever remain etched in my memory. The air was crisp, and each step revealed more of the breathtaking Himalayan view. When I finally reached the summit, the golden light of dawn danced on the snow peaks — a surreal moment of peace and awe.",
+          author: "Alice Johnson",
+          date: "21 September 2025",
+          author_img: "/images/manali/rider-img.jpg",
+        },
       },
       {
-        title: "Forest Trekking",
-        user_experience:
-          "Trekking through dense forests around the hills brought me close to nature. Birds and wildlife sightings made it magical.",
-        author: "Bella Martin",
-        date: "21 September 2025",
-        author_img: "/images/manali/rider-img.jpg",
+        type: "itinerary",
+        title: "Itinerary",
+        data: itineraryData, // imported reusable data file
       },
       {
-        title: "Village Exploration",
-        user_experience:
-          "Exploring local villages gave me insight into rural life and traditions. The hospitality of villagers was heartwarming.",
-        author: "Charlie Singh",
-        date: "21 September 2025",
-        author_img: "/images/manali/rider-img.jpg",
-      },
+        type: "packing",
+        title: "What to Pack?",
+        data: [
+          { name: "Cycling Helmet", image: "https://media.trekbikes.com/image/upload/w_1200/TrekVelocisMipsHelmetCE-34589-A-Primary", category: "must" },
+          { name: "Cycling Jacket (Waterproof/Windproof)", image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcShLb6-wUL85Bj_tQsTWqdZkNs5OlzYr6Vrsw&s", category: "must" },
+          { name: "Full Finger Gloves - 2 pairs", image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQiWyV9w-d107DbU0tzPwVMcXON5sO58CySFg&s", category: "must" },
+          { name: "Cycling Shoes", image: "https://i.insider.com/6048e5109942cf001865d880?width=1136&format=jpeg", category: "must" },
+          { name: "Prescription Medications", image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS1fhHSQHXnrEAgA_REfaRH9rCvD6l7zXb98g&s", category: "must" },
+
+          { name: "Bike Shorts", image: "https://contents.mediadecathlon.com/p2464583/e441ddb57ab55a86c9a4a982d70fb756/p2464583.jpg" },
+          { name: "Casual Clothing for Travel", image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTu4tkCEMnwpV9Bnv3AXnpQIEG3w8037LOFdQ&s" },
+          { name: "Sun Hat", image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSE-HvivaKeDt4kcKFyBMs9uqg7T3LyXauH4A&s" },
+          { name: "Sunblock & Lip Balm", image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTNmZe3u0KBTX00UdPNMi38QqprcQEYt6aX4A&s" },
+          { name: "Hiking Shoes", image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTxp5mqadE-uU5zGJtzqA1AfuL6VNdbmR47IA&s" },
+        ],
+      }
+      ,
       {
-        title: "Waterfall Adventure",
-        user_experience:
-          "Discovering hidden waterfalls along the trails was thrilling. The cool water and scenic surroundings were perfect for relaxation.",
-        author: "Diana Patel",
-        date: "21 September 2025",
-        author_img: "/images/manali/rider-img.jpg",
-      },
+        type: "testimonial",
+        title: "Testimonials",
+        data: [
+          {
+            name: "Riya Sharma",
+            role: "Solo Traveler from Delhi",
+            comment:
+              "This was my first solo trip, and the Manali itinerary was perfectly planned! Every day felt like a new adventure — from the snow at Rohtang Pass to peaceful walks on Mall Road. The team handled everything smoothly; can’t wait to travel with them again!",
+            image: "/images/manali/rider-img.jpg",
+          },
+          {
+            name: "Arjun & Meera",
+            role: "Couple from Chennai",
+            comment:
+              "Our honeymoon in Manali was straight out of a dream! The itinerary balanced adventure and relaxation perfectly — paragliding in Solang Valley, cozy cafés in Old Manali, and breathtaking views from Naggar Castle.",
+            image: "/images/manali/rider-img.jpg",
+          },
+          {
+            name: "The Nair Family",
+            role: "Family from Kochi",
+            comment:
+              "A perfect family getaway! The kids loved the snow games in Solang Valley, and we enjoyed exploring the art and culture at Naggar. The guides were friendly, and the trip was filled with laughter and stunning views!",
+            image: "/images/manali/rider-img.jpg",
+          },
+        ],
+      }
+      ,
       {
-        title: "Photography Paradise",
-        user_experience:
-          "The Seven Hills offered endless photography opportunities. The landscapes, flora, and fauna were breathtaking.",
-        author: "Ethan Roberts",
-        date: "21 September 2025",
-        author_img: "/images/manali/rider-img.jpg",
-      },
-      {
-        title: "Local Cuisine Delight",
-        user_experience:
-          "Sampling traditional dishes of the hill communities was delightful. Every meal was rich in flavors and culture.",
-        author: "Fiona Gupta",
-        date: "21 September 2025",
-        author_img: "/images/manali/rider-img.jpg",
-      },
-      {
-        title: "Starlit Nights",
-        user_experience:
-          "Nights under the clear sky were mesmerizing. Stargazing while sitting around a campfire was a truly magical experience.",
-        author: "George Verma",
-        date: "21 September 2025",
-        author_img: "/images/manali/rider-img.jpg",
-      },
-      {
-        title: "Hilltop Meditation",
-        user_experience:
-          "Meditating on a quiet hilltop brought immense peace. The serenity and fresh air made it a spiritual experience.",
-        author: "Hannah Joshi",
-        date: "21 September 2025",
-        author_img: "/images/manali/rider-img.jpg",
+        type: "gallery",
+        title: "Gallery",
+        data: [
+          "/images/manali/manali1.jpg",
+          "/images/manali/manali2.jpeg",
+          "/images/manali/manali3.jpeg",
+          "/images/manali/manali4.jpg",
+          "/images/manali/manali5.jpg",
+        ],
       },
     ],
   },
@@ -403,6 +486,7 @@ export const stories = [
     img: "/images/manali.jpg",
     link: "#",
     className: "absolute top-20 left-[8%] rotate-[-5deg]",
+    price: 29999,
     images: [
       "/images/manali/manali1.jpg",
       "/images/manali/manali2.jpeg",
@@ -427,72 +511,85 @@ export const stories = [
     ],
     content: [
       {
-        title: "Sunrise Trekking",
-        user_experience:
-          "The sunrise trek was an experience that will forever remain etched in my memory. As I began the hike in the early hours, the air was crisp and carried the subtle scent of pine and earth, awakening every sense within me. Each step along the winding trail brought me closer to a vantage point that promised a view unlike any I had ever seen. The soft glow of dawn started to illuminate the horizon, and the first hints of sunlight painted the rugged mountain peaks in shades of gold and amber, casting long shadows across the valleys below. It was a surreal moment where nature itself seemed to pause and hold its breath, welcoming the day with quiet grandeur. As I climbed higher, the tranquility of the morning enveloped me. The gentle rustling of leaves, the distant call of birds, and the faint murmur of a nearby stream created a symphony that was both soothing and invigorating. Each step was a reminder of the effort it took to reach this place, yet the anticipation of the unfolding panorama kept my spirits buoyant. When I finally reached the summit, I was greeted by a breathtaking spectacle: the sun, gradually climbing over the horizon, cast a warm, golden light that danced on the mountain slopes. The sky transformed into a canvas of vibrant hues—fiery oranges blending into soft pinks, delicate purples fading into deep blues. The mountains themselves seemed to glow with a life of their own, their rugged contours accentuated by the interplay of light and shadow. Standing there, with the cool breeze brushing against my face and the vast expanse of nature stretching endlessly before me, I felt an overwhelming sense of serenity and exhilaration.",
-        author: "Alice Johnson",
-        date: "21 September 2025",
-        author_img: "/images/manali/rider-img.jpg",
+        type: "story",
+        title: "Details",
+        data: {
+          title: "Arrival in Manali",
+          user_experience:
+            "The sunrise trek was an experience that will forever remain etched in my memory. The air was crisp, and each step revealed more of the breathtaking Himalayan view. When I finally reached the summit, the golden light of dawn danced on the snow peaks — a surreal moment of peace and awe.",
+          author: "Alice Johnson",
+          date: "21 September 2025",
+          author_img: "/images/manali/rider-img.jpg",
+        },
       },
       {
-        title: "River Rafting Fun",
-        user_experience:
-          "The sunrise trek was an experience that will forever remain etched in my memory. As I began the hike in the early hours, the air was crisp and carried the subtle scent of pine and earth, awakening every sense within me. Each step along the winding trail brought me closer to a vantage point that promised a view unlike any I had ever seen. The soft glow of dawn started to illuminate the horizon, and the first hints of sunlight painted the rugged mountain peaks in shades of gold and amber, casting long shadows across the valleys below. It was a surreal moment where nature itself seemed to pause and hold its breath, welcoming the day with quiet grandeur. As I climbed higher, the tranquility of the morning enveloped me. The gentle rustling of leaves, the distant call of birds, and the faint murmur of a nearby stream created a symphony that was both soothing and invigorating. Each step was a reminder of the effort it took to reach this place, yet the anticipation of the unfolding panorama kept my spirits buoyant. When I finally reached the summit, I was greeted by a breathtaking spectacle: the sun, gradually climbing over the horizon, cast a warm, golden light that danced on the mountain slopes. The sky transformed into a canvas of vibrant hues—fiery oranges blending into soft pinks, delicate purples fading into deep blues. The mountains themselves seemed to glow with a life of their own, their rugged contours accentuated by the interplay of light and shadow. Standing there, with the cool breeze brushing against my face and the vast expanse of nature stretching endlessly before me, I felt an overwhelming sense of serenity and exhilaration.",
-        author: "Bob Smith",
-        date: "21 September 2025",
-        author_img: "/images/manali/rider-img.jpg",
+        type: "itinerary",
+        title: "Itinerary",
+        data: itineraryData, // imported reusable data file
       },
       {
-        title: "Local Cuisine Adventure",
-        user_experience:
-          "The sunrise trek was an experience that will forever remain etched in my memory. As I began the hike in the early hours, the air was crisp and carried the subtle scent of pine and earth, awakening every sense within me. Each step along the winding trail brought me closer to a vantage point that promised a view unlike any I had ever seen. The soft glow of dawn started to illuminate the horizon, and the first hints of sunlight painted the rugged mountain peaks in shades of gold and amber, casting long shadows across the valleys below. It was a surreal moment where nature itself seemed to pause and hold its breath, welcoming the day with quiet grandeur. As I climbed higher, the tranquility of the morning enveloped me. The gentle rustling of leaves, the distant call of birds, and the faint murmur of a nearby stream created a symphony that was both soothing and invigorating. Each step was a reminder of the effort it took to reach this place, yet the anticipation of the unfolding panorama kept my spirits buoyant. When I finally reached the summit, I was greeted by a breathtaking spectacle: the sun, gradually climbing over the horizon, cast a warm, golden light that danced on the mountain slopes. The sky transformed into a canvas of vibrant hues—fiery oranges blending into soft pinks, delicate purples fading into deep blues. The mountains themselves seemed to glow with a life of their own, their rugged contours accentuated by the interplay of light and shadow. Standing there, with the cool breeze brushing against my face and the vast expanse of nature stretching endlessly before me, I felt an overwhelming sense of serenity and exhilaration.",
-        author: "Carla Williams",
-        date: "21 September 2025",
-        author_img: "/images/manali/rider-img.jpg",
-      },
+        type: "packing",
+        title: "What to Pack?",
+        data: [
+          { name: "Cycling Helmet", image: "https://media.trekbikes.com/image/upload/w_1200/TrekVelocisMipsHelmetCE-34589-A-Primary", category: "must" },
+          { name: "Cycling Jacket (Waterproof/Windproof)", image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcShLb6-wUL85Bj_tQsTWqdZkNs5OlzYr6Vrsw&s", category: "must" },
+          { name: "Full Finger Gloves - 2 pairs", image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQiWyV9w-d107DbU0tzPwVMcXON5sO58CySFg&s", category: "must" },
+          { name: "Cycling Shoes", image: "https://i.insider.com/6048e5109942cf001865d880?width=1136&format=jpeg", category: "must" },
+          { name: "Prescription Medications", image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS1fhHSQHXnrEAgA_REfaRH9rCvD6l7zXb98g&s", category: "must" },
+
+          { name: "Bike Shorts", image: "https://contents.mediadecathlon.com/p2464583/e441ddb57ab55a86c9a4a982d70fb756/p2464583.jpg" },
+          { name: "Casual Clothing for Travel", image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTu4tkCEMnwpV9Bnv3AXnpQIEG3w8037LOFdQ&s" },
+          { name: "Sun Hat", image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSE-HvivaKeDt4kcKFyBMs9uqg7T3LyXauH4A&s" },
+          { name: "Sunblock & Lip Balm", image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTNmZe3u0KBTX00UdPNMi38QqprcQEYt6aX4A&s" },
+          { name: "Hiking Shoes", image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTxp5mqadE-uU5zGJtzqA1AfuL6VNdbmR47IA&s" },
+        ],
+      }
+      ,
       {
-        title: "Camping Under Stars",
-        user_experience:
-          "The sunrise trek was an experience that will forever remain etched in my memory. As I began the hike in the early hours, the air was crisp and carried the subtle scent of pine and earth, awakening every sense within me. Each step along the winding trail brought me closer to a vantage point that promised a view unlike any I had ever seen. The soft glow of dawn started to illuminate the horizon, and the first hints of sunlight painted the rugged mountain peaks in shades of gold and amber, casting long shadows across the valleys below. It was a surreal moment where nature itself seemed to pause and hold its breath, welcoming the day with quiet grandeur. As I climbed higher, the tranquility of the morning enveloped me. The gentle rustling of leaves, the distant call of birds, and the faint murmur of a nearby stream created a symphony that was both soothing and invigorating. Each step was a reminder of the effort it took to reach this place, yet the anticipation of the unfolding panorama kept my spirits buoyant. When I finally reached the summit, I was greeted by a breathtaking spectacle: the sun, gradually climbing over the horizon, cast a warm, golden light that danced on the mountain slopes. The sky transformed into a canvas of vibrant hues—fiery oranges blending into soft pinks, delicate purples fading into deep blues. The mountains themselves seemed to glow with a life of their own, their rugged contours accentuated by the interplay of light and shadow. Standing there, with the cool breeze brushing against my face and the vast expanse of nature stretching endlessly before me, I felt an overwhelming sense of serenity and exhilaration.",
-        author: "David Lee",
-        date: "21 September 2025",
-        author_img: "/images/manali/rider-img.jpg",
-      },
+        type: "testimonial",
+        title: "Testimonials",
+        data: [
+          {
+            name: "Riya Sharma",
+            role: "Solo Traveler from Delhi",
+            comment:
+              "This was my first solo trip, and the Manali itinerary was perfectly planned! Every day felt like a new adventure — from the snow at Rohtang Pass to peaceful walks on Mall Road. The team handled everything smoothly; can’t wait to travel with them again!",
+            image: "/images/manali/rider-img.jpg",
+          },
+          {
+            name: "Arjun & Meera",
+            role: "Couple from Chennai",
+            comment:
+              "Our honeymoon in Manali was straight out of a dream! The itinerary balanced adventure and relaxation perfectly — paragliding in Solang Valley, cozy cafés in Old Manali, and breathtaking views from Naggar Castle.",
+            image: "/images/manali/rider-img.jpg",
+          },
+          {
+            name: "The Nair Family",
+            role: "Family from Kochi",
+            comment:
+              "A perfect family getaway! The kids loved the snow games in Solang Valley, and we enjoyed exploring the art and culture at Naggar. The guides were friendly, and the trip was filled with laughter and stunning views!",
+            image: "/images/manali/rider-img.jpg",
+          },
+        ],
+      }
+      ,
       {
-        title: "Mountain Photography",
-        user_experience:
-          "The sunrise trek was an experience that will forever remain etched in my memory. As I began the hike in the early hours, the air was crisp and carried the subtle scent of pine and earth, awakening every sense within me. Each step along the winding trail brought me closer to a vantage point that promised a view unlike any I had ever seen. The soft glow of dawn started to illuminate the horizon, and the first hints of sunlight painted the rugged mountain peaks in shades of gold and amber, casting long shadows across the valleys below. It was a surreal moment where nature itself seemed to pause and hold its breath, welcoming the day with quiet grandeur. As I climbed higher, the tranquility of the morning enveloped me. The gentle rustling of leaves, the distant call of birds, and the faint murmur of a nearby stream created a symphony that was both soothing and invigorating. Each step was a reminder of the effort it took to reach this place, yet the anticipation of the unfolding panorama kept my spirits buoyant. When I finally reached the summit, I was greeted by a breathtaking spectacle: the sun, gradually climbing over the horizon, cast a warm, golden light that danced on the mountain slopes. The sky transformed into a canvas of vibrant hues—fiery oranges blending into soft pinks, delicate purples fading into deep blues. The mountains themselves seemed to glow with a life of their own, their rugged contours accentuated by the interplay of light and shadow. Standing there, with the cool breeze brushing against my face and the vast expanse of nature stretching endlessly before me, I felt an overwhelming sense of serenity and exhilaration.",
-        author: "Emma Brown",
-        date: "21 September 2025",
-        author_img: "/images/manali/rider-img.jpg",
-      },
-      {
-        title: "Wildlife Spotting",
-        user_experience:
-          "Saw some rare Himalayan birds. Felt very connected to nature.",
-        author: "Frank Garcia",
-        date: "21 September 2025",
-        author_img: "/images/manali/rider-img.jpg",
-      },
-      {
-        title: "Evening Bonfire",
-        user_experience:
-          "The evening bonfire with stories and music was the highlight of the trip.",
-        author: "Grace Miller",
-        date: "21 September 2025",
-        author_img: "/images/manali/rider-img.jpg",
-      },
-      {
-        title: "Local Village Visit",
-        user_experience:
-          "Visiting the local villages gave me insight into traditional life in Manali.",
-        author: "Henry Davis",
-        date: "21 September 2025",
-        author_img: "/images/manali/rider-img.jpg",
+        type: "gallery",
+        title: "Gallery",
+        data: [
+          "/images/manali/manali1.jpg",
+          "/images/manali/manali2.jpeg",
+          "/images/manali/manali3.jpeg",
+          "/images/manali/manali4.jpg",
+          "/images/manali/manali5.jpg",
+        ],
       },
     ],
   },
 ];
+
+
+
 
 export const bikes: Bikee[] = [
   {

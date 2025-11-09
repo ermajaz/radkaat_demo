@@ -1,14 +1,14 @@
 "use client";
 
-import React, { useState } from "react";
+import { useState } from "react";
 import { useParams, useRouter } from "next/navigation";
 import { stories } from "@/utils/data";
 import { StorySidebar } from "@/components/story/StorySidebar";
-import { StoryContentCard } from "@/components/story/StoryContentCard";
 import HeroTout from "@/components/story/HeroTout";
 import Image from "next/image";
-import { ImageIcon } from "lucide-react";
 import { TourGallery } from "@/components/story/TourGallery";
+import StoryStrip from "@/components/common/StoryStrip";
+import { StoryContentRenderer } from "@/components/story/StoryContentRenderer";
 
 export default function StoryPage() {
   const params = useParams();
@@ -52,7 +52,7 @@ export default function StoryPage() {
         {/* Button at bottom-right */}
         <button
           onClick={() => setGalleryOpen(true)}
-          className="absolute cursor-pointer bottom-4 right-4 h-[44px] z-20 text-[16px] flex items-center gap-2.5 px-4 py-2.5 
+          className="absolute cursor-pointer bottom-16 right-4 h-[44px] z-20 text-[16px] flex items-center gap-2.5 px-4 py-2.5 
              bg-[#1A1A1A]/80 backdrop-blur-sm hover:bg-[#1A1A1A]/90 
              text-stone-200 font-semibold border-[0.5px] border-stone-500/50 
              rounded-[2px] shadow-md"
@@ -84,11 +84,13 @@ export default function StoryPage() {
         />
 
         <div className="flex-1 p-10 pt-5 flex flex-col gap-8">
-          <StoryContentCard
-            content={contents[activeIndex]}
+          <StoryContentRenderer
+            section={contents[activeIndex]}
             nextTourName={nextStory.title}
             onNextTourClick={handleNextStory}
           />
+
+
         </div>
       </div>
       {/* TourGallery Overlay */}
@@ -100,6 +102,13 @@ export default function StoryPage() {
           onClose={() => setGalleryOpen(false)}
         />
       )}
+
+      <StoryStrip
+        name={story.title}
+        price={story.price ?? 24999} // or use actual price field
+        onBuy={() => alert(`Buying ${story.title}`)} // replace with your real buy logic
+      />
+
     </main>
   );
 }
