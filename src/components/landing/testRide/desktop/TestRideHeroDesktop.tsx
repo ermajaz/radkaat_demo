@@ -5,12 +5,13 @@ import { TestRideRoadmapDesktop } from "./TestRideRoadmapDesktop";
 import { HoverButton } from "./AnimatedButton";
 import { MoveRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { cn } from "@/lib/utils";
 
-export function TestRideHeroDesktop() {
+export function TestRideHeroDesktop({ className }: { className: string }) {
   const router = useRouter();
 
   return (
-    <div className="relative w-full h-[70vh] md:h-[600px] flex flex-col items-center justify-center overflow-hidden z-10 bg-superblack">
+    <div className={cn("relative w-full h-[70vh] flex flex-col items-center justify-center overflow-hidden z-10 bg-superblack", className)}>
       <Image quality={100}
         src="/images/test-ride-img.jpg"
         alt="Test Ride"

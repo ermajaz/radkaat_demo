@@ -16,7 +16,7 @@ export default function Home() {
       <BikeComparison />
       <ParallaxWrapper>
         <GridProduct />
-        <TestRideSection />
+        <TestRideSection className="md:h-[600px]"/>
         <FlagSection />
         <StoriesSection />
         <AdventureSection />

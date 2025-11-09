@@ -85,21 +85,21 @@ export default function StoriesSection() {
             >
               <span
                 className={`uppercase text-[12px] font-medium ${
-                  activeIndex === index ? "text-green-400" : "text-gray-300"
+                  activeIndex === index ? "text-stone" : "text-gray-300"
                 }`}
               >
                 {story.title}
               </span>
               <span
                 className={`text-[10.5px] font-normal ${
-                  activeIndex === index ? "text-green-400" : "text-gray-400"
+                  activeIndex === index ? "text-stone" : "text-gray-400"
                 }`}
               >
                 {story.date}
               </span>
 
               {activeIndex === index && (
-                <span className="block w-full h-[2px] bg-green-400 mt-2"></span>
+                <span className="block w-full h-[2px] bg-stone mt-2"></span>
               )}
             </div>
           ))}

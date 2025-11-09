@@ -109,7 +109,7 @@ const DestinationCard: React.FC<Props> = ({ destination, isActive }) => {
       ref={ref}
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
-      initial={{ opacity: 0, y: 40 }}
+      initial={{ opacity: 0, y: 0 }}
       animate={isInView ? { opacity: 1, y: 0 } : {}}
       transition={{ duration: 0.6, ease: "easeOut" }}
       onClick={() =>

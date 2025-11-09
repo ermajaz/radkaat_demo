@@ -117,7 +117,7 @@ export default function TakinPage() {
         </section>
         {/* Test Ride */}
         <section id="ride" className="py-5">
-          <TestRideSection />
+          <TestRideSection className="md:min-h-screen"/>
         </section>
       </ParallaxWrapper>
     </main>

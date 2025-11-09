@@ -116,7 +116,7 @@ export default function SerowPage() {
         </section>
         {/* Test Ride */}
         <section id="ride" className="py-5">
-          <TestRideSection />
+          <TestRideSection className="md:min-h-screen"/>
         </section>
       </ParallaxWrapper>
     </main>
