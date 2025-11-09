@@ -31,24 +31,28 @@ export const itineraryData: ItineraryItem[] = [
   {
     day: 2,
     title: "Solang Valley Adventure",
+    highlights: ["Hadimba Temple", "Mall Road", "Vashisht Hot Springs"],
     description:
       "After breakfast, embark on an exciting excursion to Solang Valley. Enjoy adventure activities such as paragliding, zorbing, and ropeway rides (on direct payment basis). Return to Manali by evening and relax at your hotel.",
   },
   {
     day: 3,
     title: "Excursion to Rohtang Pass / Atal Tunnel",
+    highlights: ["Hadimba Temple", "Mall Road", "Vashisht Hot Springs"],
     description:
       "A thrilling day trip to Rohtang Pass or Atal Tunnel (subject to permit and weather). Marvel at snow-clad peaks and breathtaking landscapes. Return to Manali by evening.",
   },
   {
     day: 4,
     title: "Naggar Castle & Art Exploration",
+    highlights: ["Hadimba Temple", "Mall Road", "Vashisht Hot Springs"],
     description:
       "Visit the heritage-rich Naggar Castle and Roerich Art Gallery. Explore quaint local cafés and enjoy serene views of the Kullu Valley. Return to Manali for overnight stay.",
   },
   {
     day: 5,
     title: "Departure from Manali – Memories to Cherish",
+    highlights: ["Hadimba Temple", "Mall Road", "Vashisht Hot Springs"],
     description:
       "After breakfast, check out from the hotel. Depart with unforgettable memories of your mountain retreat.",
   },

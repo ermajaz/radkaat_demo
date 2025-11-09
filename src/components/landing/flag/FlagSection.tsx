@@ -58,6 +58,16 @@ export default function FlagSection() {
       className="relative w-full h-[522px] flex flex-col lg:flex-row overflow-hidden"
     >
       {/* Left: Flag image only (half width) */}
+      {/* <div className="relative w-full lg:w-[44%] h-1/2 lg:h-full overflow-hidden">
+        <video
+          src="/videos/flag1.mp4"
+          autoPlay
+          muted
+          loop
+          playsInline
+          className="absolute inset-0 w-full h-full object-cover object-[88%_12%]"
+        />
+      </div> */}
       <div className="relative w-full lg:w-[44%] h-1/2 lg:h-full flag-img overflow-hidden">
         <div className="absolute inset-0 w-full h-full overflow-hidden">
           <Image quality={100}
