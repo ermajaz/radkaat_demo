@@ -130,7 +130,7 @@ const DestinationCard: React.FC<Props> = ({ destination, isActive }) => {
         />
 
         {/* Gradient overlay */}
-        <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/60 to-transparent flex flex-col justify-end p-6">
+        <div className="absolute inset-0 bg-linear-to-t from-black/90 via-black/60 to-transparent flex flex-col justify-end p-6">
           <h4 className="text-3xl font-extrabold text-white drop-shadow-lg">
             {destination.title}
           </h4>

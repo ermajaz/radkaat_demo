@@ -21,7 +21,6 @@ export default function HeroTout({
       const { bottom } = sectionRef.current.getBoundingClientRect();
       const windowHeight = window.innerHeight;
 
-      // Parallax effect: move faster as it scrolls out, fade out as bottom reaches middle
       const fadePoint = windowHeight / 2;
       let progress = 0;
 
@@ -31,11 +30,10 @@ export default function HeroTout({
         progress = 1;
       }
 
-      // Parallax: move up to 120px instead of 60px for stronger effect
       controls.start({
-        y: -progress * 120, // Parallax move up
-        opacity: 1 - progress, // Fade out
-        transition: { type: "tween", duration: 0.2 },
+        y: -progress * 120,
+        opacity: 1 - progress,
+        transition: { type: "tween", duration: 0.25, ease: "easeOut" },
       });
     };
 
@@ -46,26 +44,50 @@ export default function HeroTout({
   return (
     <section
       ref={sectionRef}
-      className="relative w-full h-screen overflow-hidden"
+      className="relative w-full h-screen overflow-hidden flex flex-col justify-center md:justify-end"
     >
+      {/* Hero Content */}
+      <motion.div
+        className="
+          relative z-10 
+          flex flex-col items-center md:items-start justify-center md:justify-end 
+          text-center md:text-left 
+          px-6 sm:px-10 md:px-20 py-16 md:py-40
+        "
+        animate={controls}
+        initial={{ y: 0, opacity: 1, scale: 1 }}
+      >
+        {subtitle && (
+          <motion.p
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.2 }}
+            className="
+              uppercase tracking-[6px] text-[#E4D27C] 
+              text-sm sm:text-base md:text-lg font-semibold mb-4
+            "
+          >
+            {subtitle}
+          </motion.p>
+        )}
 
-      {/* Content */}
-      <div className="relative z-10 flex items-end justify-start h-full p-8 md:p-20 md:py-40">
-        <motion.div
-          className="text-white space-y-10"
-          animate={controls}
-          initial={{ y: 0, opacity: 1, scale: 1 }}
+        <motion.h1
+          initial={{ opacity: 0, y: 15 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 1, delay: 0.3 }}
+          className="
+            text-3xl sm:text-4xl md:text-5xl lg:text-6xl 
+            font-bold leading-snug max-w-3xl 
+            tracking-[4px] md:tracking-[15px]
+            text-white drop-shadow-[0_4px_12px_rgba(0,0,0,0.6)]
+          "
         >
-          {subtitle && (
-            <p className="uppercase tracking-widest text-base md:text-lg font-semibold">
-              {subtitle}
-            </p>
-          )}
-          <h1 className="text-3xl md:text-5xl lg:text-6xl max-w-3xl font-bold leading-snug !tracking-[15px]">
-            {title}
-          </h1>
-        </motion.div>
-      </div>
+          {title}
+        </motion.h1>
+      </motion.div>
+
+      {/* Optional subtle gradient overlay for depth */}
+      <div className="absolute inset-0 bg-linear-to-t from-black/60 via-black/20 to-transparent pointer-events-none" />
     </section>
   );
 }

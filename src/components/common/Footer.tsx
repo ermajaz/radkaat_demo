@@ -40,7 +40,7 @@ export default function Footer() {
         </div>
 
         {/* Right Content */}
-        <div className="flex flex-col justify-between pl-10 sm:pt-10 pb-6 z-10 bg-superblack">
+        <div className="flex flex-col justify-between pl-10 sm:pt-10 pb-6 z-10 bg-superblack max-sm:pt-10">
           {/* Logo + Heading */}
           <div className="flex flex-row items-center gap-2 mb-10">
             <div className="relative w-16 h-16 sm:w-24 sm:h-24 shrink-0">
@@ -52,7 +52,7 @@ export default function Footer() {
                 sizes="80px"
               />
             </div>
-            <h2 className="text-left text-[26px] md:text-[34px] lg:text-[40px] font-bold uppercase leading-tight !tracking-widest font-display">
+            <h2 className="text-left text-[26px] md:text-[34px] lg:text-[40px] font-bold uppercase leading-tight tracking-widest! font-display">
               Radkaat. <br /> Here to Help
             </h2>
           </div>
@@ -78,7 +78,7 @@ export default function Footer() {
                       layout
                       initial={{ width: 0 }}
                       animate={{ width: hoveredMenu === menu ? "100%" : 0 }}
-                      className="h-[2px] bg-rust rounded"
+                      className="h-0.5 bg-rust rounded"
                     />
                   </div>
 
@@ -133,7 +133,7 @@ export default function Footer() {
           </div>
 
           {/* Socials */}
-          <div className="flex text-[12px] justify-center sm:justify-start gap-6 mb-1">
+          <div className="flex text-[12px] justify-center sm:justify-start gap-6 mb-1 max-sm:pb-2">
             <Link
               href="https://facebook.com"
               target="_blank"

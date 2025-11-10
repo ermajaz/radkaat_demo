@@ -15,22 +15,12 @@ interface PackingItem {
 interface Props {
   title: string;
   items: PackingItem[];
-  homepageLink?: string;
-  nextTourName?: string;
-  onNextTourClick?: () => void;
 }
 
-export default function WhatToPackSection({
-  title,
-  items,
-  homepageLink = "/",
-  nextTourName = "Next Tour",
-  onNextTourClick,
-}: Props) {
+export default function WhatToPackSection({ title, items }: Props) {
   const mustPack = items.filter((item) => item.category === "must");
   const recommended = items.filter((item) => item.category !== "must");
 
-  // Track checked state for all items
   const [checkedItems, setCheckedItems] = useState<Record<string, boolean>>({});
 
   const toggleCheck = (itemName: string) => {
@@ -76,34 +66,6 @@ export default function WhatToPackSection({
           />
         )}
       </div>
-
-      {/* Divider */}
-      <div className="border-t border-gray-800/70 mt-12 mb-8" />
-
-      {/* Bottom Navigation */}
-      <motion.div
-        initial={{ opacity: 0, y: 10 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        transition={{ delay: 0.2, duration: 0.6 }}
-        viewport={{ once: true }}
-        className="w-full flex justify-between items-center"
-      >
-        <Link
-          href={homepageLink}
-          className="flex items-center gap-2 cursor-pointer text-white font-medium hover:text-[#E4D27C] transition-colors duration-300"
-        >
-          <ArrowLeft size={18} />
-          Homepage
-        </Link>
-
-        <button
-          onClick={onNextTourClick}
-          className="flex items-center gap-2 cursor-pointer text-white font-medium hover:text-[#E4D27C] transition-colors duration-300"
-        >
-          {nextTourName}
-          <ArrowRight size={18} />
-        </button>
-      </motion.div>
     </section>
   );
 }
@@ -136,6 +98,7 @@ function PackingCategory({
       >
         {title}
       </h3>
+
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-5">
         {items.map((item, i) => {
           const isChecked = checkedItems[item.name];
@@ -145,14 +108,16 @@ function PackingCategory({
               whileHover={{ scale: 1.03 }}
               transition={{ type: "spring", stiffness: 200, damping: 15 }}
               onClick={() => onToggle(item.name)}
-              className={`relative cursor-pointer flex items-center gap-4 bg-gradient-to-b from-[#1A1A1A] to-[#0E0E0E] border ${
-                isChecked
-                  ? "border-army shadow-army"
-                  : "border-neutral-800"
-              } p-4 transition-all duration-500`}
+              className={`relative cursor-pointer flex items-center gap-4 
+                bg-linear-to-b from-[#1A1A1A] to-[#0E0E0E] 
+                border ${isChecked ? "border-army shadow-army" : "border-neutral-800"}
+                p-4 transition-all duration-500
+                rounded-xl md:rounded-none`} 
             >
               {/* Image / Icon */}
-              <div className="relative w-12 h-12 flex-shrink-0 rounded-md overflow-hidden border border-[#E4D27C]/30 bg-[#121212]">
+              <div className="relative w-12 h-12 shrink-0 overflow-hidden 
+                  border border-[#E4D27C]/30 bg-[#121212]
+                  rounded-lg md:rounded-none"> {/* ✅ Rounded image only for mobile */}
                 {item.image ? (
                   <Image
                     src={item.image}
@@ -174,7 +139,7 @@ function PackingCategory({
                 {item.name}
               </p>
 
-              {/* Check Overlay */}
+              {/* Animated Check Overlay */}
               <AnimateCheck isChecked={isChecked} />
             </motion.div>
           );
@@ -195,10 +160,6 @@ const AnimateCheck = ({ isChecked }: { isChecked: boolean }) => (
     transition={{ duration: 0.4, ease: "easeOut" }}
     className="absolute top-2 right-2"
   >
-    <CheckCircle
-      className="text-army"
-      size={22}
-      strokeWidth={2.5}
-    />
+    <CheckCircle className="text-army" size={22} strokeWidth={2.5} />
   </motion.div>
 );

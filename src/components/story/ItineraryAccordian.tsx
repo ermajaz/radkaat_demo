@@ -1,25 +1,17 @@
 "use client";
 
-import React, { useState } from "react";
-import { ArrowLeft, ArrowRight, ChevronDown } from "lucide-react";
+import  { useState } from "react";
+import {  ChevronDown } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
-import Image from "next/image";
-import Link from "next/link";
 import { cn } from "@/lib/utils";
 import { ItineraryItem } from "@/types";
 
 interface ItineraryAccordionProps {
   items: ItineraryItem[];
-  homepageLink?: string;
-  nextTourName?: string;
-  onNextTourClick?: () => void;
 }
 
 export default function ItineraryAccordion({
   items,
-  homepageLink = "/",
-  nextTourName = "Next Tour",
-  onNextTourClick,
 }: ItineraryAccordionProps) {
   const [openIndex, setOpenIndex] = useState<number | null>(0);
 
@@ -40,7 +32,7 @@ export default function ItineraryAccordion({
         Trip Itinerary
       </motion.h2>
 
-      <div className="relative flex flex-col gap-5 before:absolute before:top-5 before:bottom-5 before:left-[28px] md:before:left-[35px] before:w-[2px] before:bg-gradient-to-b before:from-[#E4D27C]/60 before:to-transparent">
+      <div className="relative flex flex-col gap-5 before:absolute before:top-5 before:bottom-5 before:left-7 md:before:left-[35px] before:w-0.5 before:bg-linear-to-b before:from-[#E4D27C]/60 before:to-transparent">
         {items.map((item, index) => {
           const isOpen = openIndex === index;
 
@@ -52,31 +44,50 @@ export default function ItineraryAccordion({
               transition={{ delay: index * 0.05, duration: 0.4 }}
               viewport={{ once: true }}
               className={cn(
-                "relative overflow-hidden border border-neutral-800/70 bg-gradient-to-b from-[#141414] to-[#0B0B0B] transition-all duration-500 shadow-[0_0_25px_rgba(0,0,0,0.2)] hover:shadow-[0_0_35px_rgba(228,210,124,0.15)]"
+                "relative overflow-hidden border border-neutral-800/70 bg-linear-to-b from-[#141414] to-[#0B0B0B] transition-all duration-500",
+                "shadow-[0_0_25px_rgba(0,0,0,0.2)] hover:shadow-[0_0_35px_rgba(228,210,124,0.15)]",
+                // Rounded only on mobile
+                "rounded-xl md:rounded-none"
               )}
             >
               {/* Header */}
               <button
                 onClick={() => toggleAccordion(index)}
-                className="w-full flex justify-between items-center px-6 md:px-8 py-5 text-left"
+                className={cn(
+                  "w-full flex justify-between items-center text-left select-none transition-all duration-300",
+                  "px-4 sm:px-6 md:px-8 py-4 sm:py-5", // responsive padding
+                  "min-h-[72px]" // ensures uniform tap zone height on mobile
+                )}
               >
-                <div className="flex items-center gap-4">
+                <div className="flex items-center gap-3 sm:gap-4 flex-1 min-w-0">
                   {/* Day Badge */}
-                  <div className="relative bg-gradient-to-r from-[#E4D27C]/20 to-[#E4D27C]/10 text-[#E4D27C] text-sm font-semibold  px-4 py-1.5 border border-[#E4D27C]/40 shadow-[0_0_10px_rgba(228,210,124,0.15)]">
+                  <div className="relative shrink-0 bg-linear-to-r from-[#E4D27C]/20 to-[#E4D27C]/10 text-[#E4D27C]
+                    text-[13px] sm:text-sm font-semibold px-3 sm:px-4 py-1.5
+                    border border-[#E4D27C]/40 shadow-[0_0_10px_rgba(228,210,124,0.15)]
+                    rounded-md sm:rounded-none leading-none text-center">
                     Day {item.day}
                   </div>
 
-                  <h3 className="text-[17px] md:text-[19px] font-semibold tracking-wide">
+                  {/* Title */}
+                  <h3
+                    className="truncate text-[15.5px] sm:text-[17px] md:text-[19px]
+                 font-semibold tracking-wide text-stone-200 leading-snug"
+                    style={{
+                      lineHeight: "1.4",
+                    }}
+                  >
                     {item.title}
                   </h3>
                 </div>
+
                 <ChevronDown
                   className={cn(
-                    "h-6 w-6 text-[#E4D27C] transition-transform duration-300",
+                    "shrink-0 ml-3 h-5 w-5 sm:h-6 sm:w-6 text-[#E4D27C] transition-transform duration-300",
                     isOpen && "rotate-180"
                   )}
                 />
               </button>
+
 
               {/* Animated Content */}
               <AnimatePresence initial={false}>
@@ -87,7 +98,7 @@ export default function ItineraryAccordion({
                     animate={{ height: "auto", opacity: 1 }}
                     exit={{ height: 0, opacity: 0 }}
                     transition={{ duration: 0.4, ease: "easeInOut" }}
-                    className="px-6 md:px-8 pb-6 text-[15px] leading-relaxed text-stone-300 border-t border-neutral-800/60"
+                    className="px-6 md:px-8 py-3 text-[15px] leading-relaxed text-stone-300 border-t border-neutral-800/60"
                   >
                     {item.highlights && (
                       <p className="text-[15px] font-semibold mb-3 text-[#E4D27C]">
@@ -107,34 +118,6 @@ export default function ItineraryAccordion({
           );
         })}
       </div>
-
-      {/* Divider */}
-      <div className="border-t border-gray-800/70 mt-12 mb-8" />
-
-      {/* Bottom Navigation */}
-      <motion.div
-        initial={{ opacity: 0, y: 10 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        transition={{ delay: 0.2, duration: 0.6 }}
-        viewport={{ once: true }}
-        className="w-full flex justify-between items-center"
-      >
-        <Link
-          href={homepageLink}
-          className="flex items-center gap-2 cursor-pointer text-white font-medium hover:text-[#E4D27C] transition-colors duration-300"
-        >
-          <ArrowLeft size={18} />
-          Homepage
-        </Link>
-
-        <button
-          onClick={onNextTourClick}
-          className="flex items-center gap-2 cursor-pointer text-white font-medium hover:text-[#E4D27C] transition-colors duration-300"
-        >
-          {nextTourName}
-          <ArrowRight size={18} />
-        </button>
-      </motion.div>
     </section>
   );
 }

@@ -2,6 +2,7 @@ import AdventureSection from "@/components/landing/adventure/AdventureSection";
 import BikeComparison from "@/components/landing/bikeComparison/BikeComparison";
 import BikesShowcase from "@/components/landing/bikeSection/BikesShowcase";
 import FlagSection from "@/components/landing/flag/FlagSection";
+import FlagSectionMobile from "@/components/landing/flag/FlagSectionMobile";
 import HeroSection from "@/components/landing/hero/HeroSection";
 import GridProduct from "@/components/landing/ourProduct/GridProduct";
 import StoriesSection from "@/components/landing/storySection/StoriesSection";
@@ -14,10 +15,24 @@ export default function Home() {
       <HeroSection />
       <BikesShowcase />
       <BikeComparison />
+
       <ParallaxWrapper>
         <GridProduct />
-        <TestRideSection className="md:h-[600px]"/>
-        <FlagSection />
+        <TestRideSection className="md:h-[600px]" />
+
+        {/* ✅ Flag Section — responsive split */}
+        <div>
+          {/* Desktop / Tablet View */}
+          <div className="hidden md:block">
+            <FlagSection />
+          </div>
+
+          {/* Mobile View */}
+          <div className="block md:hidden">
+            <FlagSectionMobile />
+          </div>
+        </div>
+
         <StoriesSection />
         <AdventureSection />
       </ParallaxWrapper>
