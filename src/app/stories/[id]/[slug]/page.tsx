@@ -41,18 +41,19 @@ export default function StoryPage() {
     <main className="relative">
       {/* Hero Section */}
       <div className="relative w-full h-screen">
-        <Image quality={100}
+        <Image
+          quality={100}
           src={story.img}
           alt={story.title}
           fill
           className="absolute inset-0 w-full h-full object-cover"
         />
-        {/* Blackish Overlay */}
         <div className="absolute inset-0 bg-black/40" />
-        {/* Button at bottom-right */}
+
+        {/* Button: View Gallery */}
         <button
           onClick={() => setGalleryOpen(true)}
-          className="absolute cursor-pointer bottom-16 right-4 h-[44px] z-20 text-[16px] flex items-center gap-2.5 px-4 py-2.5 
+          className="absolute cursor-pointer bottom-24 right-4 h-[44px] z-20 text-[16px] flex items-center gap-2.5 px-4 py-2.5 
              bg-[#1A1A1A]/80 backdrop-blur-sm hover:bg-[#1A1A1A]/90 
              text-stone-200 font-semibold border-[0.5px] border-stone-500/50 
              rounded-[2px] shadow-md"
@@ -61,7 +62,8 @@ export default function StoryPage() {
             backdropFilter: "blur(5px)",
           }}
         >
-          <Image quality={100}
+          <Image
+            quality={100}
             src="/icons/gallery-icon.png"
             alt="gallery-icon"
             width={28}
@@ -75,40 +77,45 @@ export default function StoryPage() {
         </div>
       </div>
 
-      {/* Sidebar + Story Content Section */}
-      <div className="p-10 pb-[50vh] flex min-h-screen bg-superblack text-white">
-        <StorySidebar
-          contents={contents.map((c) => ({ title: c.title }))}
-          activeIndex={activeIndex}
-          onSelect={setActiveIndex}
-        />
+      {/* Sidebar + Story Content */}
+      <div className="flex flex-col min-h-screen mb-20 lg:flex-row p-6 lg:p-10 bg-superblack text-white relative z-10">
+        {/* SIDEBAR - Sticky */}
+        <div className="w-full lg:w-[350px] lg:pr-10 mb-10 lg:mb-0">
+          <div className="lg:sticky lg:top-0">
+            <StorySidebar
+              contents={contents.map((c) => ({ title: c.title }))}
+              activeIndex={activeIndex}
+              onSelect={setActiveIndex}
+            />
+          </div>
+        </div>
 
-        <div className="flex-1 p-10 pt-5 flex flex-col gap-8">
+        {/* MAIN CONTENT */}
+        <div className="flex-1 pt-10 pl-10 flex flex-col gap-8">
           <StoryContentRenderer
             section={contents[activeIndex]}
             nextTourName={nextStory.title}
             onNextTourClick={handleNextStory}
           />
-
-
         </div>
       </div>
+
       {/* TourGallery Overlay */}
       {galleryOpen && (
         <TourGallery
           title={story.title}
-          images={story.images ?? []} // ensure your story object has an `images` array
+          images={story.images ?? []}
           open={galleryOpen}
           onClose={() => setGalleryOpen(false)}
         />
       )}
 
+      {/* Sticky Bottom Strip */}
       <StoryStrip
         name={story.title}
-        price={story.price ?? 24999} // or use actual price field
-        onBuy={() => alert(`Buying ${story.title}`)} // replace with your real buy logic
+        price={story.price ?? 24999}
+        onBuy={() => alert(`Buying ${story.title}`)}
       />
-
     </main>
   );
 }

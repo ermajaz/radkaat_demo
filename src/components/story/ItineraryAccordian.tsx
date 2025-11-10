@@ -35,7 +35,7 @@ export default function ItineraryAccordion({
         whileInView={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6 }}
         viewport={{ once: true }}
-        className="text-3xl md:text-4xl font-bold mb-8 tracking-tight"
+        className="text-xl md:text-3xl font-bold mb-8 tracking-tight"
       >
         Trip Itinerary
       </motion.h2>

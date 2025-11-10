@@ -17,7 +17,6 @@ export default function StoryStrip({ name, price, onBuy }: StoryStripProps) {
         bg-stone backdrop-blur-md
         flex items-center justify-between
         px-6 md:px-10 py-3
-        shadow-[0_-2px_10px_rgba(0,0,0,0.3)]
       "
     >
       {/* Left Side: Story Name */}
