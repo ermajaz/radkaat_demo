@@ -58,7 +58,7 @@ export default function FeatureShowcase({ features }: Props) {
             className="feature-block h-[calc(100vh-70px)] flex flex-col justify-start pt-10 relative snap-start"
           >
             {/* Gradient Accent Line */}
-            <div className="h-[3px] w-20 bg-gradient-to-r from-white/90 to-transparent mb-6" />
+            <div className="h-[3px] w-20 bg-linear-to-r from-white/90 to-transparent mb-6" />
             {/* Label */}
             <h2 className="text-[32px] tracking-wide font-semibold uppercase text-sandstorm mb-4">
               {f.label}

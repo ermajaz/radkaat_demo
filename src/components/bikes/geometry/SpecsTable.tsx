@@ -37,7 +37,7 @@ export default function SpecsTable() {
               alt="Bike Frame Geometry"
               fill
               priority
-              className="object-contain scale-130 translate-y-[-40px] translate-x-[-40px] drop-shadow-[0_0_35px_rgba(255,255,255,0.08)]"
+              className="object-contain scale-130 -translate-y-10 -translate-x-10 drop-shadow-[0_0_35px_rgba(255,255,255,0.08)]"
             />
           </div>
         </motion.div>

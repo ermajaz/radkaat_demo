@@ -112,7 +112,7 @@ export default function SpecsExperienceSection() {
       ScrollTrigger.create({
         id: "specs-exp-master",
         trigger: section,
-        start: "top top+=70", // start only when section is more visible
+        start: "top top", // start only when section is more visible
         end: endDistance,
         scrub: true,
         pin: true,
@@ -131,12 +131,12 @@ export default function SpecsExperienceSection() {
   return (
     <section
       ref={sectionRef}
-      className="w-full bg-superblack min-h-screen text-stone px-10 pt-10"
+      className="w-full bg-superblack min-h-screen text-stone px-10"
     >
       <SpecsExperienceToggle active={active} />
 
       {/* Render both and switch via state; this avoids timeline null refs on mount */}
-      <div className="relative min-h-[calc(100vh-70px)]">
+      <div className="relative min-h-screen">
         <div
           className={`absolute inset-0 transition-opacity duration-300 ${
             active === "specs"

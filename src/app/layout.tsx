@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import "./globals.css";
-import SmoothScroll from "@/components/common/SmoothScroll";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import 'react-phone-input-2/lib/style.css';
@@ -35,7 +34,6 @@ export default function RootLayout({
     <html lang="en">
       <body className={`${redHatDisplay.variable} antialiased container`}>
         <LoaderProvider>
-          <SmoothScroll />
           <LayoutProvider>{children}</LayoutProvider>
         </LoaderProvider>
       </body>

@@ -8,6 +8,7 @@ import GridProduct from "@/components/landing/ourProduct/GridProduct";
 import StoriesSection from "@/components/landing/storySection/StoriesSection";
 import TestRideSection from "@/components/landing/testRide/TestRideSection";
 import ParallaxWrapper from "@/components/common/ParallaxWrapper";
+import GridProductMobile from "@/components/landing/ourProduct/GridProductMobile";
 
 export default function Home() {
   return (
@@ -17,7 +18,17 @@ export default function Home() {
       <BikeComparison />
 
       <ParallaxWrapper>
-        <GridProduct />
+        <div>
+          {/* Desktop / Tablet View */}
+          <div className="hidden md:block">
+            <GridProduct />
+          </div>
+
+          {/* Mobile View */}
+          <div className="block md:hidden">
+            <GridProductMobile />
+          </div>
+        </div>
         <TestRideSection className="md:h-[600px]" />
 
         {/* ✅ Flag Section — responsive split */}

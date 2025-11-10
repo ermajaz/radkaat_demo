@@ -41,6 +41,9 @@ export const DestinationCardMobile: React.FC<DestinationCardMobileProps> = ({
       viewport={{ once: true }}
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
+      onClick={() =>
+        window.open(`${destination?.link}`, "_blank")
+      }
       className={`
         relative w-full max-h-[60vh] min-h-[430px] rounded-lg overflow-hidden
         bg-[#0A0A0A] border border-[#E4D27C]/10

@@ -15,7 +15,7 @@ export default function AdventureSection() {
     <section
       ref={ref}
       className="
-        relative w-full min-h-[60vh] md:min-h-fit pb-12 md:pb-16 
+        relative w-full min-h-[50vh] md:min-h-fit pb-12 md:pb-16 
         flex items-center justify-center 
         px-4 sm:px-6 md:px-10
       "
@@ -26,7 +26,7 @@ export default function AdventureSection() {
           className="
             relative z-20 flex flex-col items-center justify-center text-center
             px-3 sm:px-6 md:px-10 
-            h-[70vh] md:h-96
+            h-fit md:h-96
           "
         >
           {/* Title */}
