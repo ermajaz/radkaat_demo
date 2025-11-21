@@ -98,7 +98,7 @@ export const BIKES: Bike[] = [
     uiName: "Saola",
     bgWord: "SAOLA",
     image: "/images/dummy-cycle.png",
-    logo: "/icons/saola-white.png",
+    logo: "/icons/Saola-white.png",
     description: "A versatile mountain bike designed for all terrains.A versatile mountain bike designed for all terrains.A versatile mountain bike designed for all terrains.A versatile mountain bike designed for all terrains.A versatile mountain bike designed for all terrains.A versatile mountain bike designed for all terrains.A versatile mountain bike designed for all terrains.A versatile mountain bike designed for all terrains.A versatile mountain bike designed for all terrains.",
     colors: {
       gradient: "#0046D7, #FFFFFF",
@@ -153,7 +153,7 @@ export const BIKES: Bike[] = [
     uiName: "Takin",
     bgWord: "TAKIN",
     image: "/images/dummy-cycle.png",
-    logo: "/icons/takin-white.png",
+    logo: "/icons/Takin-white.png",
     description: "A versatile mountain bike designed for all terrains.A versatile mountain bike designed for all terrains.A versatile mountain bike designed for all terrains.A versatile mountain bike designed for all terrains.A versatile mountain bike designed for all terrains.A versatile mountain bike designed for all terrains.A versatile mountain bike designed for all terrains.A versatile mountain bike designed for all terrains.A versatile mountain bike designed for all terrains.",
     colors: {
       gradient: "#516316, #F1FFC3",
