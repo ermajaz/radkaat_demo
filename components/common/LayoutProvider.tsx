@@ -13,7 +13,6 @@ export const LayoutProvider: React.FC<{ children: React.ReactNode }> = ({ childr
     "/cart",
     "/cart/address",
     "/cart/payment",
-    "/experience",
     "/test-ride",
   ];
 

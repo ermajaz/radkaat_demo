@@ -20,7 +20,7 @@ export default function NavList({
           label={item}
           onClick={() => {
             if (item === "Products") onProductsOpen();
-            else router.push("/community");
+            else router.push(`/${item.toLowerCase()}`);
           }}
         />
       ))}
