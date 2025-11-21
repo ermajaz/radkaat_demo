@@ -1,0 +1,107 @@
+/* ================================
+   Radkaat Utility Classes
+   ================================ */
+
+/* Background Utilities */
+.bg-superblack {
+    background-color: var(--color-super-black);
+}
+
+.text-superblack {
+    color: var(--color-super-black);
+}
+
+.bg-navy {
+    background-color: var(--color-navy-blue);
+}
+
+.text-navy {
+    color: var(--color-navy-blue);
+}
+
+.bg-petrol {
+    background-color: var(--color-petrol-blue);
+}
+
+.text-petrol {
+    color: var(--color-petrol-blue);
+}
+
+.bg-airforce {
+    background-color: var(--color-airforce-blue);
+}
+
+.text-airforce {
+    color: var(--color-airforce-blue);
+}
+
+.bg-army {
+    background-color: var(--color-army-green);
+}
+
+.text-army {
+    color: var(--color-army-green);
+}
+
+.bg-sandstorm {
+    background-color: var(--color-sandstorm);
+}
+
+.text-sandstorm {
+    color: var(--color-sandstorm);
+}
+
+.bg-sandstorm-1 {
+    background-color: var(--color-sandstorm-1);
+}
+
+.text-sandstorm-1 {
+    color: var(--color-sandstorm-1);
+}
+
+.bg-rust {
+    background-color: var(--color-rust);
+}
+
+.text-rust {
+    color: var(--color-rust);
+}
+
+.bg-stone {
+    background-color: var(--color-stone);
+}
+
+.text-stone {
+    color: var(--color-stone);
+}
+
+.bg-gray {
+    background-color: var(--color-gray);
+}
+
+.text-gray {
+    color: var(--color-gray);
+}
+
+.bg-gray-light {
+    background-color: var(--color-gray-light);
+}
+
+.text-gray-light {
+    color: var(--color-gray-light);
+}
+
+/* ================================
+   Stroke Text Utilities
+   ================================ */
+
+.text-stroke-yellow {
+    color: var(--color-sandstorm);
+    -webkit-text-stroke: 5px black;
+    paint-order: stroke fill;
+}
+
+.text-stroke-yellow-second {
+    -webkit-text-stroke: 2px black;
+    paint-order: stroke fill;
+}

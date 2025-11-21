@@ -1,0 +1,12 @@
+
+.clip-triangle-1 {
+  clip-path: polygon(0 0, 100% 0, 0 100%);
+}
+
+.clip-triangle-2 {
+  clip-path: polygon(100% 0, 100% 100%, 0 100%);
+}
+
+.clip-triangle-3 {
+  clip-path: polygon(0 0, 100% 100%, 0 100%);
+}

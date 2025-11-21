@@ -1,0 +1,110 @@
+/* ================================
+   Radkaat Global Variables & Theme
+   ================================ */
+
+@import "tailwindcss";
+
+/* ================================
+   Fonts
+   ================================ */
+
+@font-face {
+  font-family: "Oswald Stencil";
+  src: url("/fonts/Oswald-Stencil.ttf") format("truetype");
+  font-weight: 700;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Oswald Stencil";
+  src: url("/fonts/Oswald-Stencil.ttf") format("truetype");
+  font-weight: 800;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Oswald Stencil";
+  src: url("/fonts/Oswald-Stencil.ttf") format("truetype");
+  font-weight: 900;
+  font-style: normal;
+}
+
+/* ================================
+   Root Variables
+   ================================ */
+
+:root {
+  /* Base colors */
+  --background: #ffffff;
+  --foreground: #171717;
+
+  /* Radkaat Brand Colors */
+  --color-super-black: #0f0708;
+  --color-navy-blue: #001644;
+  --color-petrol-blue: #003a5d;
+  --color-airforce-blue: #5a90c6;
+  --color-army-green: #516316;
+  --color-sandstorm: #c6b783;
+  --color-sandstorm-1: #605940;
+  --color-rust: #8d363b;
+  --color-stone: #e6e7e8;
+  --color-gray: #666666;
+  --color-gray-light: #121212;
+
+  /* Typography */
+  --font-headline: "Oswald Stencil", sans-serif;
+  --font-body: "Red Hat Display", sans-serif;
+}
+
+/* Disable default browser smooth scroll (Lenis recommended) */
+html {
+  scroll-behavior: auto !important;
+}
+
+/* ================================
+   Tailwind Inline Theme Mapping
+   ================================ */
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+
+  /* Tailwind color shortcuts */
+  --color-superblack: var(--color-super-black);
+  --color-navy: var(--color-navy-blue);
+  --color-petrol: var(--color-petrol-blue);
+  --color-airforce: var(--color-airforce-blue);
+  --color-army: var(--color-army-green);
+  --color-sandstorm: var(--color-sandstorm);
+  --color-sandstorm-1: var(--color-sandstorm-1);
+  --color-rust: var(--color-rust);
+  --color-stone: var(--color-stone);
+  --color-gray: var(--color-gray);
+  --color-gray-light: var(--color-gray-light);
+
+  /* Typography mapping */
+  --font-sans: var(--font-body);
+  --font-display: var(--font-headline);
+  --font-mono: var(--font-geist-mono);
+}
+
+/* ================================
+   Dark Mode Variables
+   ================================ */
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #0f0708;
+    --foreground: #ededed;
+  }
+}
+
+/* ================================
+   Global Body Background
+   ================================ */
+
+body {
+  background: var(--color-super-black);
+  color: var(--foreground);
+  font-family: var(--font-body);
+}

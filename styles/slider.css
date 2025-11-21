@@ -1,0 +1,20 @@
+
+.bikes-slider .slick-slide {
+  display: flex !important;
+  justify-content: center;
+  align-items: center;
+}
+
+.bikes-slider .slick-track {
+  display: flex !important;
+  justify-content: center;
+  align-items: center;
+}
+
+.bikes-slider .slick-list {
+  overflow: visible !important;
+}
+
+.bikes-slider .slick-dots {
+  bottom: -20px;
+}
