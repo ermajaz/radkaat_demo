@@ -31,12 +31,13 @@ export default function BicycleComparisonMobile() {
       <BikeSelectorMobile
         bikes={selectedBikes}
         options={BikeComparisonData.models}
-        onChange={(i, val) => {
+        onChange={(i: number, val: string) => {
           const arr = [...selectedBikes];
           arr[i] = val;
           setSelectedBikes(arr);
         }}
       />
+
 
       <ComparisonTableMobile
         category={activeCategory}
