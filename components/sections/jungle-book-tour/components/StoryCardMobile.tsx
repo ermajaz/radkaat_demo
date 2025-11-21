@@ -2,12 +2,13 @@
 
 import { useState } from "react";
 import CardImage from "./CardImage";
+import {motion} from "framer-motion";
 
 export default function StoryCardMobile({ destination, isActive }: any) {
   const [hovered, setHovered] = useState(false);
 
   return (
-    <div
+    <motion.div
       whileTap={{ scale: 0.97 }}
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
@@ -16,6 +17,6 @@ export default function StoryCardMobile({ destination, isActive }: any) {
                 ${isActive ? "scale-[1.02] shadow-gold/30" : ""}`}
     >
       <CardImage destination={destination} hovered={hovered} />
-    </div>
+    </motion.div>
   );
 }
