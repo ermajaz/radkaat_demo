@@ -76,7 +76,7 @@ export default function MapInner({
       key={destination.id}
       zoom={7}
       scrollWheelZoom={false}
-      className="w-full h-full"
+      className="w-full h-full z-0"
     >
       <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
       <AnimatedPolyline positions={route} isInView={isInView} />

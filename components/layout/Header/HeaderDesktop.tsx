@@ -47,7 +47,7 @@ export default function HeaderDesktop() {
         px-12 py-4 bg-black/10 backdrop-blur-sm"
       >
         <Logo />
-        <NavList onProductsOpen={() => setProductsOpen(true)} />
+        <NavList onProductsOpen={() => setProductsOpen(true)} isProductsOpen={productsOpen} />
 
         <HeaderIcons
           onSearchOpen={() => setSearchOpen(true)}

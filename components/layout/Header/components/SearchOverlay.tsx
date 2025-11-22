@@ -42,7 +42,7 @@ export default function SearchOverlay({ onClose }: { onClose: () => void }) {
           width={48}
           height={48}
         />
-        <NavList onProductsOpen={() => setProductsOpen(true)} />
+        <NavList onProductsOpen={() => setProductsOpen(true)} isProductsOpen={productsOpen}/>
         <button onClick={onClose} className="p-2 cursor-pointer">
           <X size={40} />
         </button>
@@ -55,7 +55,7 @@ export default function SearchOverlay({ onClose }: { onClose: () => void }) {
 
       {/* 🧩 Category section fills remaining area with scroll */}
       <div className="flex-1 overflow-y-auto px-6 pb-4">
-        <Category />
+        <Category onClose={onClose}/>
       </div>
 
       {productsOpen && <ProductsOverlay

@@ -30,7 +30,7 @@ export default function BikeShowcaseDesktop() {
   useStopScroll(show360 || showTech);
 
   return (
-    <section className="w-full h-screen relative text-white bg-superblack overflow-hidden flex flex-col">
+    <section id="bike-showcase" className="w-full h-screen relative text-white bg-superblack overflow-hidden flex flex-col">
       {/* 🔸 Top strip with small bike icons */}
       <BikesStrip bike={bike} />
 

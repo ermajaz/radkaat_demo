@@ -1,21 +1,40 @@
+// useStopScroll.ts
 import { useEffect } from "react";
 
 export function useStopScroll(active: boolean) {
   useEffect(() => {
-    const html = document.documentElement;
+    // ✅ find the real scroll container
+    const container = document.querySelector("[data-scroll-container]") as HTMLElement;
+
+    if (!container) return;
 
     if (active) {
-      const scrollBarWidth = window.innerWidth - document.body.offsetWidth;
-      html.style.overflow = "hidden";
-      html.style.paddingRight = `${scrollBarWidth}px`;
-    } else {
-      html.style.overflow = "";
-      html.style.paddingRight = "";
-    }
+      const scrollY = container.scrollTop;
+      container.dataset.scrollY = `${scrollY}`;
 
-    return () => {
-      html.style.overflow = "";
-      html.style.paddingRight = "";
-    };
+      // ✅ lock without repositioning
+      container.style.overflow = "hidden";
+      container.style.position = "fixed";
+      container.style.top = `-${scrollY}px`;
+      container.style.left = "0";
+      container.style.right = "0";
+      container.style.width = "100%";
+    } else {
+      const scrollY = container.dataset.scrollY
+        ? parseInt(container.dataset.scrollY, 10)
+        : 0;
+
+      container.style.overflow = "";
+      container.style.position = "";
+      container.style.top = "";
+      container.style.left = "";
+      container.style.right = "";
+      container.style.width = "";
+
+      // ✅ restore position WITHOUT jump flicker
+      requestAnimationFrame(() => {
+        container.scrollTo(0, scrollY);
+      });
+    }
   }, [active]);
 }

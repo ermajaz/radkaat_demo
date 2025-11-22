@@ -13,7 +13,7 @@ export default function LandingPage() {
       <BicycleShowcase />
       <BicycleComparison />
       <BicycleRide />
-      <Category />
+      <Category/>
       <JungleBook />
       <AboutRadkaat />
     </div>

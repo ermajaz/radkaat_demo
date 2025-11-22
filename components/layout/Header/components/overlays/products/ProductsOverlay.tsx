@@ -57,7 +57,7 @@ export default function ProductsOverlay({ onClose, onSearchOpen }: { onClose: ()
                     <X size={50} strokeWidth={5} />
                 </button>
 
-                <NavList onProductsOpen={() => setProductsOpen(true)} />
+                <NavList onProductsOpen={() => setProductsOpen(true)} isProductsOpen={productsOpen}/>
 
                 <button
                     onClick={onSearchOpen}

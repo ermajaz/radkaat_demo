@@ -18,7 +18,9 @@
 body {
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
+  scrollbar-gutter: stable;
 }
+
 
 /* Prevent iOS input zoom */
 input, select, textarea {
@@ -151,4 +153,15 @@ textarea:focus {
   body {
     @apply bg-background text-foreground;
   }
+}
+
+
+
+/* globals.css */
+.hide-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.hide-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
 }
