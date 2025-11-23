@@ -1,6 +1,7 @@
 "use client";
 import React, { useEffect, useState } from "react";
 import { LoaderOne } from "@/components/common/LoaderOne";
+import RadkaatLoader from "./RadkaatLoader";
 
 export function LoaderProvider({ children }: { children: React.ReactNode }) {
   const [loading, setLoading] = useState(true);
@@ -13,7 +14,8 @@ export function LoaderProvider({ children }: { children: React.ReactNode }) {
   if (loading) {
     return (
       <div className="fixed inset-0 z-50 flex items-center justify-center bg-superblack/80">
-        <LoaderOne />
+        {/* <LoaderOne /> */}
+        <RadkaatLoader />
       </div>
     );
   }

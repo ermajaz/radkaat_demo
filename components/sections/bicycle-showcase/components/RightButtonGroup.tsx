@@ -40,7 +40,7 @@ export default function RightButtonGroup({
         <motion.div
           whileHover={{ rotate: 360 }}
           transition={{ duration: 0.8, ease: "easeOut" }}
-          className="z-10 w-7 h-7 mb-[2px]"
+          className="z-10 w-7 h-7 mb-0.5"
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"
