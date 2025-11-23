@@ -8,7 +8,7 @@ import JungleBook from "@/components/sections/jungle-book-tour/JungleBook";
 
 export default function LandingPage() {
   return (
-    <div> landing page
+    <div>
       <HeroSection />
       <BicycleShowcase />
       <BicycleComparison />

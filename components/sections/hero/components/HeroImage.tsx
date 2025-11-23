@@ -9,7 +9,7 @@ export default function HeroImage() {
       initial={{ opacity: 0, x: 100 }}
       animate={{ opacity: 1, x: 0 }}
       transition={{ duration: 1, ease: "easeOut" }}
-      className="absolute right-0 bottom-0 w-[60%] h-full flex items-end justify-end"
+      className="absolute right-0 bottom-0 w-[55%] h-full flex items-end justify-end"
     >
       <Image
         src="/images/hero-cycle.png"

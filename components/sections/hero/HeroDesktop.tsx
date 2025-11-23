@@ -5,7 +5,7 @@ import HeroBackground from "./components/HeroBackground";
 import HeroLogoSection from "./components/HeroLogoSection";
 import HeroTagline from "./components/HeroTagline";
 import HeroImage from "./components/HeroImage";
-
+import HeroBikeLink from "./components/HeroBikeLink";
 
 export default function HeroDesktop() {
   return (
@@ -26,6 +26,14 @@ export default function HeroDesktop() {
 
       {/* Right Image */}
       <HeroImage />
+
+      {/* Bottom Right Link */}
+      <HeroBikeLink
+        modelName="Serow Model-1"
+        brand="Radkaat"
+        year="2025"
+      />
+
 
       {/* Gradient vignette */}
       <div className="absolute inset-0 bg-linear-to-l from-transparent via-transparent to-[#000000bb] pointer-events-none" />

@@ -2,7 +2,7 @@
 
 import { motion, AnimatePresence } from "framer-motion";
 import { useEffect, useRef } from "react";
-import { LogOut, User, Package, Heart, Bell, LucideIcon } from "lucide-react";
+import { LogOut, User, Package, Heart, Bell, LucideIcon, ShoppingCart } from "lucide-react";
 import gsap from "gsap";
 import { useRouter } from "next/navigation";
 import Image from "next/image";
@@ -24,7 +24,7 @@ interface UserMenuModalProps {
 const menuItems = [
   { label: "Profile", icon: User, href: "/profile" },
   { label: "My Orders", icon: Package, href: "/orders" },
-  { label: "Notifications", icon: Bell, href: "/notifications" },
+  { label: "Cart", icon: ShoppingCart, href: "/cart" },
   { label: "Logout", icon: LogOut, href: "/auth/logout", confirm: true },
 ];
 

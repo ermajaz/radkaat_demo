@@ -12,56 +12,55 @@ export default function CustomHotspot({ hotspot }: { hotspot: Hotspot }) {
         top: `${hotspot.topPct}%`,
         transform: "translate(-50%, -50%)",
       }}
-      initial={{ opacity: 0, scale: 0.6 }}
-      animate={{ opacity: 1, scale: 1 }}
-      transition={{ duration: 0.6, ease: "easeOut" }}
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      transition={{ duration: 0.5, ease: "easeOut" }}
     >
-      <div className="relative">
+      <div className="relative flex items-center justify-center">
 
-        {/* PULSING GLOW RING */}
-        <motion.div
-          className="absolute inset-0 rounded-full pointer-events-none"
+        {/* ✅ OUTER STATIC RING */}
+        <div
+          className="absolute rounded-full border border-white/30"
           style={{
-            width: 28,
-            height: 28,
-            margin: "-6px",
-            border: "2px solid var(--color-sandstorm-1)",
-            background: "radial-gradient(circle, var(--color-sandstorm) 0%, var(--color-sandstorm-1) 45%, var(--color-sandstorm) 70%)",
+            width: 30,
+            height: 30,
+          }}
+        />
+
+        {/* ✅ SOFT GLOW BETWEEN RINGS */}
+        <motion.div
+          className="absolute rounded-full"
+          style={{
+            width: 40,
+            height: 40,
+            background:
+              "radial-gradient(circle, rgba(255,230,140,0.4) 0%, rgba(255,200,90,0.15) 45%, rgba(0,0,0,0) 80%)",
             filter: "blur(6px)",
           }}
           animate={{
-            opacity: [0.5, 1, 0.5],
-            scale: [1, 1.35, 1],
+            opacity: [0.4, 0.8, 0.4],
           }}
           transition={{
-            duration: 1.8,
+            duration: 2,
             repeat: Infinity,
             ease: "easeInOut",
           }}
         />
 
-
-        {/* MAIN DOT */}
-        <motion.div
-          className="w-5 h-5 bg-white rounded-full flex items-center justify-center shadow-lg relative"
-          animate={{
-            scale: [1, 1.15, 1],
-          }}
-          transition={{
-            duration: 1.6,
-            repeat: Infinity,
-            ease: "easeInOut",
-          }}
+        {/* ✅ INNER SOLID CIRCLE (NO SCALE) */}
+        <div
+          className="w-4 h-4 bg-white rounded-full flex items-center justify-center shadow-md relative z-10"
         >
-          <span className="text-black text-[14px] font-bold leading-none">+</span>
-        </motion.div>
+          {/* ✅ FIXED PLUS */}
+          <span className="text-black text-[13px] font-bold leading-none">+</span>
+        </div>
 
-        {/* FIRST ANGLED LINE */}
+        {/* ✅ WHITE ANGLED LINE */}
         <motion.div
           className="absolute bg-white"
           initial={{ width: 0, opacity: 0 }}
           animate={{ width: 50, opacity: 1 }}
-          transition={{ delay: 0.2, duration: 0.35 }}
+          transition={{ delay: 0.25, duration: 0.35 }}
           style={{
             height: "2px",
             top: "-3px",
@@ -71,25 +70,24 @@ export default function CustomHotspot({ hotspot }: { hotspot: Hotspot }) {
           }}
         />
 
-        {/* SECOND STRAIGHT LINE */}
+        {/* ✅ WHITE STRAIGHT LINE */}
         <motion.div
           className="absolute bg-white"
           initial={{ width: 0, opacity: 0 }}
           animate={{ width: 170, opacity: 1 }}
-          transition={{ delay: 0.55, duration: 0.55 }}
+          transition={{ delay: 0.5, duration: 0.5 }}
           style={{
             height: "2px",
             top: "-41px",
             left: "50px",
-            transform: "rotate(0deg)",
             transformOrigin: "left center",
           }}
         />
 
-        {/* TEXT BLOCK */}
+        {/* ✅ TEXT */}
         <motion.div
           className="w-[250px] absolute left-60 top-[-75px]"
-          initial={{ opacity: 0, y: 10 }}
+          initial={{ opacity: 0, y: 6 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.55, duration: 0.45 }}
         >

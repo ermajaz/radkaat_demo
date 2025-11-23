@@ -22,7 +22,7 @@ export const metadata = {
 export default function RootLayout({ children }: { children: ReactNode }) {
   return (
     <html lang="en">
-      <body className={`${redHatDisplay.variable} antialiased container min-h-screen bg-(--color-superblack) text-white`}>
+      <body className={`${redHatDisplay.variable} antialiased container max-w-[1440px] min-h-screen bg-(--color-superblack) text-white`}>
         <LoaderProvider>
           <LayoutProvider>{children}</LayoutProvider>
         </LoaderProvider>

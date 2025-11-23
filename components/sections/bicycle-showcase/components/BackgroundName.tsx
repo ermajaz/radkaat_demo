@@ -15,9 +15,9 @@ export default function BackgroundName({
   const [from, to] = colors.gradient.split(",").map((c) => c.trim());
 
   return (
-    <div className="absolute bottom-[45%] left-0 right-0 flex items-center justify-center pointer-events-none">
+    <div className="absolute bottom-[50%] left-10 right-0 flex items-center justify-center pointer-events-none">
       <h1
-        className="text-[260px] font-extrabold tracking-[60px] select-none
+        className="text-[260px] font-extrabold tracking-[70px] select-none
                    bg-clip-text text-transparent opacity-[0.5]"
         style={{
           backgroundImage: `linear-gradient(to bottom, ${from}, ${to})`,

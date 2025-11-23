@@ -20,7 +20,7 @@ export default function TechSidebar({ onClose }: { onClose: () => void }) {
 
   return (
     <motion.div
-      className="fixed inset-y-0 right-0 w-[85%] bg-[#110d0d] text-white shadow-xl border-l border-white/10 z-1200 overflow-y-auto"
+      className="fixed inset-y-0 right-0 w-full bg-superblack text-white shadow-xl border-l border-white/10 z-1200 overflow-y-auto"
       initial={{ x: "100%" }}
       animate={{ x: 0 }}
       exit={{ x: "100%" }}

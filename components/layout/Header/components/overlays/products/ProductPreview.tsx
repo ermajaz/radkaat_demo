@@ -38,31 +38,6 @@ export default function ProductPreview({
 
     return (
         <div className="w-full h-full relative flex flex-col justify-between items-stretch">
-            {/* Top model tabs over the image area */}
-            <div className="absolute top-6 left-8 right-8 z-30 pointer-events-none">
-                <div className="w-fit flex items-center border-b-2 border-white/30 justify-start gap-6 pointer-events-auto">
-                    {modelLabels.map((m, idx) => {
-                        const active = idx === activeModelIndex;
-                        return (
-                            <button
-                                key={m}
-                                onClick={() => setActiveModelIndex(idx)}
-                                className={`relative cursor-pointer text-2xl font-semibold tracking-wide px-1  ${active ? "text-white" : "text-white/30"
-                                    }`}
-                                aria-current={active ? "true" : "false"}
-                            >
-                                {m}
-                                {/* underline whose width is equal to the word */}
-                                <span
-                                    className={`block h-0.5 mt-1 ${active ? "bg-white w-full" : "bg-white/30 w-0"
-                                        }`}
-                                    style={{ transformOrigin: "left" }}
-                                />
-                            </button>
-                        );
-                    })}
-                </div>
-            </div>
 
             {/* Big image container */}
             <div className="w-full h-full bg-[#0b0b0b] overflow-hidden relative flex items-center justify-center">
@@ -75,23 +50,46 @@ export default function ProductPreview({
                 />
             </div>
 
-            {/* Bottom variant strip (full width dark bar) */}
+            {/* ✅ Bottom Variant Strip */}
             <motion.div
                 initial={{ opacity: 0, y: 16 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.45 }}
-                className="absolute bottom-5 left-[2.5%] w-[95%] mx-auto bg-[#1A1A1A]/80 border border-white/6 rounded-sm p-4 flex items-center justify-between"
+                className="absolute bottom-3 left-0 right-0 max-w-[95%] mx-auto bg-[#1A1A1A]/80 border border-white/6 rounded-sm p-2 flex items-center justify-between"
             >
-                {/* Left: model selection compact (model-1 model-2 model-3) */}
-                <div className="flex items-center gap-6">
-                    <div className="text-left mr-2">
-                        <div className="text-lg font-bold text-white/80">{baseTitle}</div>
-                        <div className="text-base text-white/60">From: {basePrice}</div>
+
+                {/* ✅ LEFT SIDE — Title + Price + Models */}
+                <div className="flex items-center gap-10 ml-2">
+
+                    {/* Title + Price */}
+                    <div className="text-left">
+                        <div className="text-xl font-bold text-white">{baseTitle}</div>
+                        <div className="text-sm text-white/60 mt-1">From: {basePrice}</div>
                     </div>
+
+                    {/* ✅ Model Tabs (NO UNDERLINE) */}
+                    <div className="flex items-center gap-6">
+                        {modelLabels.map((m, idx) => {
+                            const active = idx === activeModelIndex;
+                            return (
+                                <button
+                                    key={m}
+                                    onClick={() => setActiveModelIndex(idx)}
+                                    className={`text-lg cursor-pointer font-medium transition-all ${active ? "text-white" : "text-white/50 hover:text-white/70"
+                                    }`} 
+                                >
+                                    {m}
+                                </button>
+                            );
+                        })}
+                    </div>
+
                 </div>
 
-                {/* Right: quick info + CTA */}
-                <div className="flex items-center gap-5">
+                {/* ✅ RIGHT SIDE — Colors + CTA */}
+                <div className="flex items-center gap-4">
+
+                    {/* Color Swatches */}
                     <div className="flex items-center gap-3">
                         {baseColors.map((c) => {
                             const active = c === activeVariant;
@@ -99,24 +97,34 @@ export default function ProductPreview({
                                 <button
                                     key={c}
                                     onClick={() => setActiveVariant(c)}
-                                    className="relative w-8 h-8 cursor-pointer rounded-full flex items-center justify-center"
+                                    className="relative w-8 h-8 flex items-center justify-center cursor-pointer"
                                 >
-                                    {active && (
-                                        <span className="absolute inset-0 rounded-full border-2 border-white" />
-                                    )}
-                                    <span className="w-5 h-5 rounded-full" style={{ backgroundColor: c }} />
+                                   {/* Outer ring when active */}
+                                {active && (
+                                    <span className="absolute w-8 h-8 rounded-full border-2 border-white" />
+                                )}
+
+                                {/* Color circle */}
+                                <span
+                                    className="w-5 h-5 rounded-full shadow-[inset_0_0_6px_rgba(0,0,0,0.4)]"
+                                    style={{ backgroundColor: c }}
+                                />
                                 </button>
                             );
                         })}
                     </div>
+
+                    {/* CTA */}
                     <Link
-                        href="#"
-                        className="bg-white text-black text-xs px-8 py-2 rounded-xs cursor-pointer font-medium"
+                        href="/serow/model-1"
+                        className="px-6 py-2 bg-white rounded-xs text-black text-xs font-semibold hover:bg-white/90 transition"
                     >
                         View Product
                     </Link>
+
                 </div>
             </motion.div>
+
         </div>
     );
 }

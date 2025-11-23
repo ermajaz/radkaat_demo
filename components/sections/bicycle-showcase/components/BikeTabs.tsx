@@ -23,7 +23,7 @@ export default function BikeTabs({
           const active = b.id === activeBikeId;
 
           return (
-            <div key={b.id} className="relative pb-2">
+            <div key={b.id} className="relative pb-1">
               <button
                 onClick={() => {
                   setActiveBikeId(b.id);

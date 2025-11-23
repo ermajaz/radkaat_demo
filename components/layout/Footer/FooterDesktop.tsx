@@ -15,9 +15,9 @@ export default function FooterDesktop() {
       <div className="grid grid-cols-1 lg:grid-cols-2">
         <FooterImage />
 
-        <div className="flex flex-col justify-between pl-10 sm:pt-10 pb-6 z-10 bg-superblack max-sm:pt-10">
+        <div className="flex flex-col justify-between pl-10 sm:pt-10 pb-3 z-10 bg-superblack max-sm:pt-10">
           <FooterHeading />
-          <div className="flex flex-col sm:flex-row justify-between gap-10 mb-6">
+          <div className="flex flex-col sm:flex-row justify-between gap-10">
             <FooterMenu />
             <FooterContact />
           </div>

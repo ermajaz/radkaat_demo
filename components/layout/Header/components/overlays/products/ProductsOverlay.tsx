@@ -7,8 +7,8 @@ import NavSection from "./NavSection";
 import ModelsSection from "./ModelsSection";
 import ProductPreview from "./ProductPreview";
 import { MODEL_DETAILS, ModelClassKey, MODELS, PRODUCT_NAV, ProductKey } from "./utils/product-overlay-data";
-import Image from "next/image";
-import NavList from "../../NavList";
+// import Image from "next/image";
+// import NavList from "../../NavList";
 import { Search, X } from "lucide-react";
 
 
@@ -46,7 +46,7 @@ export default function ProductsOverlay({ onClose, onSearchOpen }: { onClose: ()
             onClick={onClose}
         >
             {/* HEADER */}
-            <div className="flex h-[90px] items-center bg-[#121212] justify-between px-10 shrink-0">
+            <div className="flex h-[90px] items-center bg-superblack justify-between px-10 shrink-0">
 
                 {/* LEFT — BIG CLOSE BUTTON */}
                 <button
@@ -57,7 +57,7 @@ export default function ProductsOverlay({ onClose, onSearchOpen }: { onClose: ()
                     <X size={50} strokeWidth={5} />
                 </button>
 
-                <NavList onProductsOpen={() => setProductsOpen(true)} isProductsOpen={productsOpen}/>
+                {/* <NavList onProductsOpen={() => setProductsOpen(true)} isProductsOpen={productsOpen}/> */}
 
                 <button
                     onClick={onSearchOpen}
@@ -78,7 +78,7 @@ export default function ProductsOverlay({ onClose, onSearchOpen }: { onClose: ()
             <div className="flex flex-row w-full h-full overflow-hidden" onClick={(e) => e.stopPropagation()}>
 
                 {/* LEFT SIDEBAR */}
-                <div className="w-[450px] shrink-0 bg-[#121212] px-6 py-10 flex gap-12">
+                <div className="w-[450px] shrink-0 bg-superblack px-6 py-10 flex gap-12">
                     <SidebarLayout onClickInside={(e) => e.stopPropagation()}>
 
                         <NavSection

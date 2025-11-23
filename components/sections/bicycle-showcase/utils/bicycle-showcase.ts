@@ -65,7 +65,7 @@ export const BIKES: Bike[] = [
         label: "Suspension",
         content: "Fox Float 36 fork + DPX2 rear shock. Tuned for mixed trails.",
         hotspots: [
-          { id: "h2", leftPct: 68, topPct: 36, angle: -10, title: "Fork travel 150mm", description: "-8mm / 0 / +8mm. Dials in fit for rider and terrain." },
+          { id: "h0", leftPct: 38, topPct: 36, angle: -10, title: "Fork travel 150mm", description: "-8mm / 0 / +8mm. Dials in fit for rider and terrain." },
         ],
       },
       {
@@ -73,7 +73,7 @@ export const BIKES: Bike[] = [
         label: "Drivetrain",
         content: "12-speed Shimano XT with wide-range cassette.",
         hotspots: [{
-          id: "h3", leftPct: 38, topPct: 60, angle: -10, title: "REACH ADJUST HEADSET CUPS",
+          id: "h1", leftPct: 38, topPct: 60, angle: -10, title: "REACH ADJUST HEADSET CUPS",
           description: "-8mm / 0 / +8mm. Dials in fit for rider and terrain."
         }],
       },
@@ -82,7 +82,7 @@ export const BIKES: Bike[] = [
         label: "Brakes",
         content: "Hydraulic disc brakes with 203mm rotors.",
         hotspots: [{
-          id: "h4", leftPct: 82, topPct: 56, angle: -10, title: "REACH ADJUST HEADSET CUPS",
+          id: "h2", leftPct: 12, topPct: 46, angle: -10, title: "REACH ADJUST HEADSET CUPS",
           description: "-8mm / 0 / +8mm. Dials in fit for rider and terrain."
         }],
       },
@@ -110,7 +110,7 @@ export const BIKES: Bike[] = [
         label: "Frame",
         content: "Carbon monocoque frame focused on agility.",
         hotspots: [{
-          id: "h1", leftPct: 46, topPct: 34, angle: -10, title: "REACH ADJUST HEADSET CUPS",
+          id: "h3", leftPct: 46, topPct: 34, angle: -10, title: "REACH ADJUST HEADSET CUPS",
           description: "-8mm / 0 / +8mm. Dials in fit for rider and terrain."
         }],
       },
@@ -119,7 +119,7 @@ export const BIKES: Bike[] = [
         label: "Suspension",
         content: "140mm trail tuned.",
         hotspots: [{
-          id: "h2", leftPct: 70, topPct: 38, angle: -10, title: "REACH ADJUST HEADSET CUPS",
+          id: "h4", leftPct: 38, topPct: 38, angle: -10, title: "REACH ADJUST HEADSET CUPS",
           description: "-8mm / 0 / +8mm. Dials in fit for rider and terrain."
         }],
       },
@@ -128,7 +128,7 @@ export const BIKES: Bike[] = [
         label: "Drivetrain",
         content: "12 speed SRAM GX.",
         hotspots: [{
-          id: "h2", leftPct: 70, topPct: 38, angle: -10, title: "REACH ADJUST HEADSET CUPS",
+          id: "h5", leftPct: 50, topPct: 38, angle: -10, title: "REACH ADJUST HEADSET CUPS",
           description: "-8mm / 0 / +8mm. Dials in fit for rider and terrain."
         }],
       },
@@ -137,7 +137,7 @@ export const BIKES: Bike[] = [
         label: "Brakes",
         content: "Hydraulic discs 180/160.",
         hotspots: [{
-          id: "h2", leftPct: 70, topPct: 38, angle: -10, title: "REACH ADJUST HEADSET CUPS",
+          id: "h6", leftPct: 20, topPct: 38, angle: -10, title: "REACH ADJUST HEADSET CUPS",
           description: "-8mm / 0 / +8mm. Dials in fit for rider and terrain."
         }],
       },
@@ -165,7 +165,7 @@ export const BIKES: Bike[] = [
         label: "Frame",
         content: "Robust alloy frame for hardpack and enduro.",
         hotspots: [{
-          id: "h2", leftPct: 70, topPct: 38, angle: -10, title: "REACH ADJUST HEADSET CUPS",
+          id: "h7", leftPct: 30, topPct: 28, angle: -10, title: "REACH ADJUST HEADSET CUPS",
           description: "-8mm / 0 / +8mm. Dials in fit for rider and terrain."
         }],
       },
@@ -174,7 +174,7 @@ export const BIKES: Bike[] = [
         label: "Suspension",
         content: "160 / 150 mm travel setup.",
         hotspots: [{
-          id: "h2", leftPct: 72, topPct: 36, angle: -10, title: "REACH ADJUST HEADSET CUPS",
+          id: "h8", leftPct: 42, topPct: 36, angle: -10, title: "REACH ADJUST HEADSET CUPS",
           description: "-8mm / 0 / +8mm. Dials in fit for rider and terrain."
         }],
       },
@@ -183,7 +183,7 @@ export const BIKES: Bike[] = [
         label: "Drivetrain",
         content: "SRAM Eagle 12-speed.",
         hotspots: [{
-          id: "h2", leftPct: 70, topPct: 38, angle: -10, title: "REACH ADJUST HEADSET CUPS",
+          id: "h9", leftPct: 26, topPct: 38, angle: -10, title: "REACH ADJUST HEADSET CUPS",
           description: "-8mm / 0 / +8mm. Dials in fit for rider and terrain."
         }],
       },
@@ -192,7 +192,7 @@ export const BIKES: Bike[] = [
         label: "Brakes",
         content: "4-piston hydraulic brakes.",
         hotspots: [{
-          id: "h2", leftPct: 70, topPct: 38, angle: -10, title: "REACH ADJUST HEADSET CUPS",
+          id: "h10", leftPct: 38, topPct: 38, angle: -10, title: "REACH ADJUST HEADSET CUPS",
           description: "-8mm / 0 / +8mm. Dials in fit for rider and terrain."
         }],
       },

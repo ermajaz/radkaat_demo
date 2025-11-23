@@ -12,7 +12,6 @@ import ProductsOverlay from "./overlays/products/ProductsOverlay";
 export default function SearchOverlay({ onClose }: { onClose: () => void }) {
   const ref = useRef<HTMLDivElement>(null);
   const [productsOpen, setProductsOpen] = useState(false);
-  const [searchOpen, setSearchOpen] = useState(false);
 
   useEffect(() => {
     if (!ref.current) return;
@@ -32,36 +31,41 @@ export default function SearchOverlay({ onClose }: { onClose: () => void }) {
   return (
     <div
       ref={ref}
-      className="fixed inset-0 z-200 bg-superblack text-white flex flex-col h-screen mx-auto max-w-[1440px]"
+      className="fixed inset-0 z-200 bg-superblack text-white flex flex-col h-screen mx-auto max-w-[1440px] overflow-y-auto"
     >
-      {/* 🔥 Fixed Header */}
-      <div className="flex items-center justify-between px-6 py-4 border-b border-white/10 shrink-0">
+      {/* ✅ FIXED HEADER */}
+      <div className="flex items-center justify-between px-6 py-4 border-b border-white/10 shrink-0 h-[72px]">
         <Image
           src="/images/website-logo.png"
           alt="Radkaat"
           width={48}
           height={48}
         />
-        <NavList onProductsOpen={() => setProductsOpen(true)} isProductsOpen={productsOpen}/>
+        <NavList
+          onProductsOpen={() => setProductsOpen(true)}
+          isProductsOpen={productsOpen}
+        />
         <button onClick={onClose} className="p-2 cursor-pointer">
           <X size={40} />
         </button>
       </div>
 
-      {/* 🔍 Center Search Input */}
-      <div className="flex justify-center py-[8%] px-6 shrink-0">
+      {/* ✅ VARIABLE HEIGHT SEARCH (AUTO) */}
+      <div className="shrink-0 flex-1 w-full px-6 py-10 flex justify-center">
         <SearchInput />
       </div>
 
-      {/* 🧩 Category section fills remaining area with scroll */}
-      <div className="flex-1 overflow-y-auto px-6 pb-4">
-        <Category onClose={onClose}/>
+      {/* ✅ FIXED CATEGORY HEIGHT (NEVER SCROLLS) */}
+      <div className="shrink-0 h-auto px-6 pb-6">
+        <Category onClose={onClose} />
       </div>
 
-      {productsOpen && <ProductsOverlay
-        onClose={() => setProductsOpen(false)}
-        onSearchOpen={() => setSearchOpen(true)}
-      />}
+      {productsOpen && (
+        <ProductsOverlay
+          onClose={() => setProductsOpen(false)}
+          onSearchOpen={() => {}}
+        />
+      )}
     </div>
   );
 }

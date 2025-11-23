@@ -25,11 +25,11 @@ export default function BottomVariantSelector({
     const currentVariant = variants.find((v) => v.model === activeModel)!;
 
     return (
-        <div className="absolute bottom-5 left-0 right-0 max-w-7xl mx-auto bg-[#1A1A1A]/80 border border-white/6 rounded-sm p-4 flex items-center justify-between">
+        <div className="absolute bottom-3 left-0 right-0 max-w-7xl mx-auto bg-[#1A1A1A]/80 border border-white/6 rounded-sm p-2 flex items-center justify-between">
 
             <div className="w-full mx-auto flex items-center justify-between">
                 {/* ------------------- MODEL SWITCH TABS ------------------- */}
-                <div className="flex items-center gap-6">
+                <div className="flex items-center gap-6 ml-2">
                     {variants.map((v) => {
                         const active = v.model === activeModel;
                         return (

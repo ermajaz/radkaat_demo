@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 export default function FooterContact() {
   return (
     <motion.div
-      className=" w-full sm:w-[300px] text-gray-200 text-sm flex flex-col gap-2"
+      className=" w-full sm:w-[300px] mb-12 invisible text-gray-200 text-sm flex flex-col gap-2"
       whileHover={{ scale: 1 }}
       transition={{ duration: 0.3 }}
     >

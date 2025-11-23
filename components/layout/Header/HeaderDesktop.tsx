@@ -42,7 +42,7 @@ export default function HeaderDesktop() {
         ref={headerRef}
         onMouseEnter={onHoverStart}
         onMouseLeave={onHoverEnd}
-        className="fixed w-full top-0 left-0 z-50 
+        className="fixed w-full max-w-[1440px] mx-auto top-0 z-50 
         text-white flex items-center justify-between 
         px-12 py-4 bg-black/10 backdrop-blur-sm"
       >
