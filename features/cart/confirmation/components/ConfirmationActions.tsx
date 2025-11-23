@@ -17,7 +17,7 @@ export const ConfirmationActions = () => {
     >
       <button
         onClick={() => router.push("/")}
-        className="flex items-center gap-3 border border-army/70 text-army px-7 py-3 uppercase tracking-wider text-sm transition-all group"
+        className="flex items-center gap-3 cursor-pointer border border-army/70 text-army px-7 py-3 uppercase tracking-wider text-sm transition-all group"
       >
         <ArrowLeft size={18} className="group-hover:-translate-x-1 transition-transform" />
         Continue Shopping
@@ -25,7 +25,7 @@ export const ConfirmationActions = () => {
 
       <button
         onClick={() => router.push("/orders")}
-        className="flex items-center gap-3 bg-army text-black px-7 py-3 uppercase tracking-wider text-sm font-semibold hover:bg-army/90 transition-all group shadow-[0_0_20px_rgba(139,169,137,0.3)]"
+        className="flex items-center gap-3 bg-army cursor-pointer text-black px-7 py-3 uppercase tracking-wider text-sm font-semibold hover:bg-army/90 transition-all group shadow-[0_0_20px_rgba(139,169,137,0.3)]"
       >
         View Order
         <ArrowRight size={18} className="group-hover:translate-x-1 transition-transform" />

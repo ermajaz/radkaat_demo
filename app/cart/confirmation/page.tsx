@@ -41,7 +41,7 @@ export default function ConfirmationPage() {
   }, []);
 
   return (
-    <main className="min-h-screen text-white relative overflow-hidden flex items-center justify-center py-8 md:py-14">
+    <main className="h-full text-white relative overflow-hidden flex items-center justify-center ">
       {/* 🎊 Confetti */}
       {showConfetti && <Confetti recycle={false} numberOfPieces={250} gravity={0.2} />}
 
@@ -59,9 +59,9 @@ export default function ConfirmationPage() {
         animate={{ opacity: 1, scale: 1, y: 0 }}
         transition={{ duration: 0.7, ease: "easeOut" }}
         className="
-          relative z-10 max-w-5xl w-full border border-[#222] 
+          relative z-10 max-w-4xl w-full border border-[#222] 
           bg-linear-to-b from-[#111]/90 to-[#090909]/90 backdrop-blur-xl
-          p-8 md:p-14 text-center overflow-hidden
+          p-8 md:p-8 text-center overflow-hidden
         "
       >
         {/* Animated Accent */}
@@ -71,7 +71,7 @@ export default function ConfirmationPage() {
           className="absolute top-0 left-0 w-full h-0.5 bg-linear-to-r from-transparent via-army to-transparent"
         />
 
-        <div className="relative z-10 space-y-12">
+        <div className="relative z-10 space-y-5">
           <PaymentStatus success />
           <OrderSummary order={orderData} />
           <ConfirmationActions />

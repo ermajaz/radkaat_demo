@@ -8,14 +8,15 @@ import { accessoriesProducts } from "../utils/accessories-data";
 import AccessoryDetailsModal from "./AccessoryDetailsModal";
 import { accessoriesDetailsData } from "../utils/accessories-datatils";
 
-
 interface Props {
   product: AccessoryProduct;
   onOpen: () => void;
 }
 
 export function ProductCard({ product, onOpen }: Props) {
-  const [activeVariant, setActiveVariant] = useState<AccessoryVariant | null>(product?.variants[0] || null);
+  const [activeVariant, setActiveVariant] = useState<AccessoryVariant | null>(
+    product?.variants[0] || null
+  );
 
   const handleEquip = () => {
     if (!activeVariant) {
@@ -30,9 +31,7 @@ export function ProductCard({ product, onOpen }: Props) {
 
   return (
     <motion.article
-      whileHover={{ y: -12, scale: 1.03, rotateX: 2, rotateY: -2 }}
-      transition={{ type: "spring", stiffness: 180, damping: 18 }}
-      className="group bg-white/3 border border-white/8 overflow-hidden backdrop-blur-xl shadow-[0_20px_80px_rgba(0,0,0,0.65)] cursor-pointer relative"
+      className="bg-white/3 border border-white/8 overflow-hidden backdrop-blur-xl shadow-[0_20px_80px_rgba(0,0,0,0.65)] cursor-pointer relative"
     >
       {/* Image Area */}
       <div className="relative h-64 overflow-hidden" onClick={onOpen}>
@@ -40,13 +39,10 @@ export function ProductCard({ product, onOpen }: Props) {
           src={product.image}
           alt={product.name}
           fill
-          className="object-cover object-center transition-transform duration-700 group-hover:scale-110"
+          className="object-cover object-center"
         />
 
-        {/* Shine Sweep */}
-        <div className="absolute inset-0 bg-linear-to-r from-transparent via-white/10 to-transparent translate-x-[-150%] group-hover:translate-x-[150%] transition-all duration-700" />
-
-        {/* Overlay Gradient */}
+        {/* Subtle Overlay Gradient */}
         <div className="absolute inset-0 bg-linear-to-t from-black/80 via-black/30 to-transparent" />
       </div>
 
@@ -63,29 +59,26 @@ export function ProductCard({ product, onOpen }: Props) {
 
         {/* ✅ Variant Selector */}
         <div className="flex gap-8 mt-2">
-
+          {/* Sizes */}
           <div className="flex flex-col gap-4">
-            {/* Step Label */}
             <p className="text-[10px] tracking-[0.25em] uppercase text-neutral-500">
               Select Size
             </p>
 
-            {/* Sizes */}
             <div className="flex flex-wrap gap-2">
               {product.variants.map((v) => (
                 <button
                   key={v.id}
                   onClick={() => setActiveVariant(v)}
                   className={`
-          px-3 py-1.5 rounded-full text-[11px] cursor-pointer uppercase font-medium transition-all
-          border backdrop-blur-md
-          ${!v.inStock
+                    px-3 py-1.5 rounded-full cursor-pointer text-[11px] uppercase font-medium transition-all border
+                    ${!v.inStock
                       ? "border-white/10 text-neutral-600 line-through cursor-not-allowed"
                       : activeVariant?.id === v.id
-                        ? "bg-sandstorm/20 border-sandstorm text-sandstorm shadow-[0_0_12px_rgba(255,210,150,0.3)]"
-                        : "border-white/20 text-neutral-200 hover:border-sandstorm/60"
+                        ? "bg-sandstorm/20 border-sandstorm text-sandstorm"
+                        : "border-white/20 text-neutral-200"
                     }
-        `}
+                  `}
                   disabled={!v.inStock}
                 >
                   {v.size}
@@ -100,6 +93,7 @@ export function ProductCard({ product, onOpen }: Props) {
               <p className="text-[10px] tracking-[0.25em] uppercase text-neutral-500">
                 Select Color
               </p>
+
               <div className="flex gap-3">
                 {activeVariant.colors.map((color) => (
                   <button
@@ -107,16 +101,16 @@ export function ProductCard({ product, onOpen }: Props) {
                     onClick={() =>
                       setActiveVariant({
                         ...activeVariant,
-                        colors: [color, ...activeVariant.colors],
+                        colors: [color, ...activeVariant.colors.filter(c => c !== color)],
                       })
                     }
                     className={`
-              w-6 h-6 rounded-full cursor-pointer border transition-all
-              ${color === activeVariant.colors[0]
-                        ? "border-sandstorm shadow-[0_0_10px_rgba(255,210,150,0.5)] scale-110"
-                        : "border-white/30 opacity-80 hover:opacity-100"
+                      w-6 h-6 rounded-full cursor-pointer border
+                      ${color === activeVariant.colors[0]
+                        ? "border-sandstorm scale-110"
+                        : "border-white/30 opacity-80"
                       }
-            `}
+                    `}
                     style={{ backgroundColor: color }}
                   />
                 ))}
@@ -124,41 +118,34 @@ export function ProductCard({ product, onOpen }: Props) {
             </div>
           )}
         </div>
+
+        {/* ✅ Price */}
         {activeVariant && (
           <p className="text-xl font-semibold text-sandstorm tracking-wide">
             ₹{activeVariant.price.toLocaleString()}
           </p>
         )}
 
-
-        {/* ✅ CTA Button */}
+        {/* ✅ CTA Button (Subtle Hover Only) */}
         <motion.button
           onClick={handleEquip}
-          whileHover={{ scale: 1.06, y: -2 }}
           whileTap={{ scale: 0.96 }}
-          className="mt-2 w-full py-3 bg-linear-to-r cursor-pointer from-sandstorm/80 to-sandstorm text-black text-xs uppercase tracking-[0.25em] font-semibold shadow-[0_8px_26px_rgba(255,210,150,0.35)] transition-all flex items-center justify-center gap-2"
+          className="mt-2 w-full py-3 bg-sandstorm cursor-pointer text-black text-xs uppercase tracking-[0.25em] font-semibold flex items-center justify-center"
         >
           Equip This Fit
-          <motion.span
-            animate={{ x: [0, 4, 0] }}
-            transition={{ repeat: Infinity, duration: 1.6 }}
-            className="text-[10px]"
-          >
-            →
-          </motion.span>
         </motion.button>
-
       </div>
     </motion.article>
   );
 }
+
 
 export default function AccessoriesCategoryGrid() {
   const [open, setOpen] = useState(false);
   const [activeId, setActiveId] = useState<string | null>(null);
 
   return (
-    <section className="w-full bg-[#050505] text-white py-24">
+    <section className="w-full bg-superblack text-white py-24">
       <div className="max-w-6xl mx-auto px-8">
 
         {/* HEADER */}

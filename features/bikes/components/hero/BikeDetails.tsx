@@ -18,6 +18,7 @@ interface Props {
   icon: string;
   variants: Variant[];
   colors: string[];
+  backgroundImage?: string; // ✅ NEW
 }
 
 export default function BikeDetails({
@@ -26,18 +27,37 @@ export default function BikeDetails({
   icon,
   variants,
   colors,
+  backgroundImage = "/icons/bike-bg-img.png",
 }: Props) {
   const [activeVariant, setActiveVariant] = useState(0);
   const active = variants[activeVariant];
+
+  const valueAnim = {
+    initial: { opacity: 0, y: 10 },
+    animate: { opacity: 1, y: 0 },
+    exit: { opacity: 0, y: -10 },
+  };
 
   return (
     <motion.div
       initial={{ x: 200, opacity: 0 }}
       animate={{ x: 0, opacity: 1 }}
-      transition={{ duration: 0.8, ease: "easeOut", delay: 0.6 }}
-      className="absolute top-[42%] -translate-y-[58%] right-[15px] flex flex-col gap-y-2 items-center text-center w-full max-w-sm text-white"
+      transition={{ duration: 0.5, ease: "easeOut", delay: 0.3 }}
+      className="absolute py-10 top-[42%] -translate-y-[58%] right-[15px] 
+                 flex flex-col gap-y-3 items-center text-center 
+                 w-full max-w-sm text-white overflow-hidden"
     >
-      {/* Model Name */}
+      {/* ✅ BACKGROUND IMAGE */}
+      <div className="absolute bottom-0 inset-0 -z-10">
+        <Image
+          src="/icons/bike-bg-img.png"
+          alt="Bike background"
+          fill
+          className="object-contain scale-100 object-center pointer-events-none select-none"
+        />
+      </div>
+
+      {/* ✅ Model Name */}
       <span className="text-[36px] font-black uppercase flex items-center space-x-2">
         {icon && (
           <Image
@@ -52,9 +72,8 @@ export default function BikeDetails({
         {branding} - {active.name}
       </span>
 
-      {/* Variant Selector */}
+      {/* ✅ Variant Selector */}
       <div className="relative flex items-center justify-center space-x-2 rounded-full bg-[#333337] backdrop-blur-md border border-white/6 px-2 py-1">
-        {/* Background highlight (animated horizontally) */}
         <motion.div
           layout
           layoutId="variant-glow"
@@ -63,96 +82,63 @@ export default function BikeDetails({
             left: `${(activeVariant * 100) / variants.length}%`,
             width: `${100 / variants.length}%`,
           }}
-          transition={{
-            type: "spring",
-            stiffness: 400,
-            damping: 35,
-          }}
+          transition={{ type: "spring", stiffness: 400, damping: 35 }}
         />
-        {variants.map((v, i) => {
-          const isActive = activeVariant === i;
-          return (
-            <button
-              key={v.name}
-              onClick={() => setActiveVariant(i)}
-              className={`relative z-10 px-[18px] h-[25px] rounded-full cursor-pointer uppercase text-sm font-semibold transition-colors duration-300 ${
-                isActive ? "text-black" : "text-stone"
-              }`}
-            >
-              {v.name}
-            </button>
-          );
-        })}
+
+        {variants.map((v, i) => (
+          <button
+            key={v.name}
+            onClick={() => setActiveVariant(i)}
+            className={`relative z-10 px-[18px] h-[25px] rounded-full uppercase text-sm font-semibold transition-colors duration-300 ${
+              activeVariant === i ? "text-black" : "text-stone"
+            }`}
+          >
+            {v.name}
+          </button>
+        ))}
       </div>
 
-      {/* Animated Variant Specs */}
+      {/* ✅ Specs */}
       <motion.div
         key={active.name}
-        initial={{ opacity: 0, y: 15 }}
-        animate={{ opacity: 1, y: 0 }}
-        exit={{ opacity: 0, y: -15 }}
-        transition={{ duration: 0.4 }}
         className="flex space-x-9 uppercase font-medium mt-1"
       >
-        <div className="flex flex-col justify-center items-center">
-          <p className="text-[14px]">Front (MM)</p>
-          <span className="font-extrabold text-[24px]">{active.front}</span>
-        </div>
-        <div className="flex flex-col justify-center items-center">
-          <p className="text-[14px]">Rear (MM)</p>
-          <span className="font-extrabold text-[24px]">{active.rear}</span>
-        </div>
-        <div className="flex flex-col justify-center items-center">
-          <p className="text-[14px]">Wheel Size</p>
-          <span className="font-extrabold text-[24px]">{active.wheel}</span>
-        </div>
+        {[
+          { label: "Front (MM)", value: active.front },
+          { label: "Rear (MM)", value: active.rear },
+          { label: "Wheel Size", value: active.wheel },
+        ].map((spec) => (
+          <div key={spec.label} className="flex flex-col items-center">
+            <p className="text-[14px]">{spec.label}</p>
+            <motion.span
+              variants={valueAnim}
+              initial="initial"
+              animate="animate"
+              exit="exit"
+              transition={{ duration: 0.35, ease: "easeOut" }}
+              className="font-extrabold text-[24px]"
+            >
+              {spec.value}
+            </motion.span>
+          </div>
+        ))}
       </motion.div>
 
-      {/* Color Selector */}
+      {/* ✅ Color Selector */}
       <div className="flex items-center space-x-2 mt-1">
         <p className="uppercase text-sm tracking-wider font-bold">Color:</p>
         <BikeColorSelector colors={colors} />
       </div>
 
-      {/* Buy Button */}
+      {/* ✅ Buy Button */}
       <Button
-        className="
-    relative overflow-hidden group
-    w-[120px] h-[42px] mt-2
-    border border-[#999999]/80 rounded-none
-    uppercase font-medium text-[15px]
-    tracking-wide text-white
-    transition-colors duration-300 cursor-pointer
-  "
+        className="relative overflow-hidden group w-[120px] h-[42px] mt-2
+                   border border-[#999999]/80 rounded-none uppercase font-bold
+                   text-[15px] tracking-wide text-white cursor-pointer"
       >
-        {/* Animated gradient background */}
-        <span
-          className="
-      absolute inset-0 
-      bg-linear-to-r from-transparent via-white/80 to-white
-      translate-x-full group-hover:translate-x-0
-      transition-transform duration-700 ease-[cubic-bezier(0.77,0,0.175,1)]
-    "
-        />
-
-        {/* Solid fill layer for smooth white appearance */}
-        <span
-          className="
-      absolute inset-0
-      bg-white scale-x-0 origin-left
-      transition-transform duration-650 ease-[cubic-bezier(0.77,0,0.175,1)]
-      group-hover:scale-x-100
-    "
-        />
-
-        {/* Text Layer */}
-        <span
-          className="
-      relative z-10
-      transition-colors duration-500 font-bold ease-[cubic-bezier(0.77,0,0.175,1)]
-      group-hover:text-black
-    "
-        >
+        <span className="absolute inset-0 bg-linear-to-r from-transparent via-white/80 to-white translate-x-full group-hover:translate-x-0 transition-transform duration-700" />
+        <span className="absolute inset-0 bg-white scale-x-0 origin-left transition-transform duration-650 group-hover:scale-x-100" />
+        <span className="relative z-10 group-hover:text-black transition-colors duration-500">
           Buy Now
         </span>
       </Button>

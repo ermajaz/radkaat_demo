@@ -16,11 +16,9 @@ export default function CategoryTile({
     const title = product.title?.toLowerCase();
 
     if (title === "bikes") {
-      const el = document.getElementById("bike-showcase");
+      // ✅ Go to homepage + scroll to bike showcase
       onClose?.();
-      if (el) {
-        el.scrollIntoView({ behavior: "smooth" });
-      }
+      router.push("/#bike-showcase");
       return;
     }
 
@@ -28,6 +26,7 @@ export default function CategoryTile({
     onClose?.();
     router.push(`/${title}`);
   };
+
 
   return (
     <div className="relative group cursor-pointer" onClick={handleClick}>

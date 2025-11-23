@@ -28,7 +28,7 @@ const techItems = [
 
 export default function AccessoriesInAction() {
   return (
-    <section className="relative w-full bg-black py-28 text-white overflow-hidden">
+    <section className="relative w-full bg-superblack py-28 text-white overflow-hidden">
 
       {/* ✅ Futuristic grid background */}
       <div className="absolute inset-0 opacity-[0.04] bg-[linear-gradient(90deg,#fff_1px,transparent_1px),linear-gradient(#fff_1px,transparent_1px)] bg-size-[60px_60px]" />
@@ -75,12 +75,11 @@ export default function AccessoriesInAction() {
             return (
               <motion.div
                 key={item.title}
-                whileHover={{ y: -6, scale: 1.03 }}
-                transition={{ type: "spring", stiffness: 180, damping: 14 }}
-                className="relative group bg-white/3 border border-white/10 rounded-3xl p-6 backdrop-blur-xl shadow-[0_0_40px_rgba(255,0,0,0.08)] cursor-default"
+                transition={{ duration: 0.4 }}
+                className="elative group bg-white/3 border border-white/10 rounded-xl p-6 backdrop-blur-xl shadow-[0_0_40px_rgba(255,0,0,0.08)] cursor-default"
               >
                 {/* Glow on hover */}
-                <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition duration-500 bg-linear-to-br from-sandstorm/10 to-transparent rounded-3xl" />
+                <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition duration-500 bg-linear-to-br from-sandstorm/10 to-transparent rounded-xl" />
 
                 <Icon className="text-sandstorm mb-3 w-6 h-6" />
 

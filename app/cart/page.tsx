@@ -90,8 +90,8 @@ export default function CartPage() {
   };
 
   return (
-    <main className="min-h-screen text-white">
-      <div className="w-full mx-auto py-8 md:py-14">
+    <main className="h-full text-white">
+      <div className="w-full mx-auto">
         <div className="flex flex-col md:flex-row gap-8 md:gap-0.5">
           {/* 🛒 Left Section - Cart Items */}
           <section className="flex-1 bg-transparent">
@@ -151,7 +151,7 @@ export default function CartPage() {
           </section>
 
           {/* 💳 Right Section - Summary */}
-          <aside className="w-full md:w-[450px] h-screen md:sticky md:top-20">
+          <aside className="w-full md:w-[450px] h-full md:sticky md:top-20">
             <CartSummary
               subtotal={subtotal}
               onCheckout={handleCheckout}

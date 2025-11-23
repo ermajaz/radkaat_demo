@@ -34,7 +34,7 @@ export default function AddressPage() {
   };
 
   return (
-    <main className="min-h-screen text-white">
+    <main className="h-full text-white">
       <div className="w-full mx-auto py-8 md:py-14">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -51,7 +51,7 @@ export default function AddressPage() {
             {!showForm && (
               <button
                 onClick={() => setShowForm(true)}
-                className="flex items-center gap-2 border border-army text-army px-4 py-2 text-sm uppercase tracking-wide"
+                className="flex items-center gap-2 cursor-pointer border border-army text-army px-4 py-2 text-sm uppercase tracking-wide"
               >
                 <Plus size={18} />
                 Add New

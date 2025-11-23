@@ -35,7 +35,7 @@ export default function HeaderIcons({
         <Search
           size={22}
           strokeWidth={1.7}
-          className="transition-all duration-200 group-hover:text-army"
+          className="transition-all duration-200 mb-1.5 group-hover:text-army"
         />
         <span className="absolute inset-0 blur-md opacity-0 group-hover:opacity-40 bg-army/30 transition-all" />
       </button>

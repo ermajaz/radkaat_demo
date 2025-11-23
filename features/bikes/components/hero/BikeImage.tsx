@@ -12,7 +12,7 @@ export default function BikeImage({ src, alt }: Props) {
     <motion.div
       initial={{ y: 200, opacity: 0 }}
       animate={{ y: 0, opacity: 1 }}
-      transition={{ duration: 1, ease: "easeOut", delay: 0.3 }}
+      transition={{ duration: 0.5, ease: "easeOut", delay: 0.2 }}
       className="w-full h-full mr-24 relative"
     >
 

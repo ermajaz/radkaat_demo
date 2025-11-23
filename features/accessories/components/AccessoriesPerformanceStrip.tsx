@@ -24,11 +24,11 @@ const showcase = [
 
 export default function AccessoriesPerformanceStrip() {
   return (
-    <section className="relative w-full bg-black text-white py-24 overflow-hidden">
+    <section className="relative w-full bg-superblack text-white py-24 overflow-hidden">
       
       {/* ✅ Soft edge gradient */}
-      <div className="pointer-events-none absolute top-0 left-0 w-40 h-full bg-linear-to-r from-black via-45% to-transparent z-10" />
-      <div className="pointer-events-none absolute top-0 right-0 w-40 h-full bg-linear-to-l from-black via-45% to-transparent z-10" />
+      <div className="pointer-events-none absolute top-0 left-0 w-40 h-full bg-linear-to-r from-superblack via-45% to-transparent z-10" />
+      <div className="pointer-events-none absolute top-0 right-0 w-40 h-full bg-linear-to-l from-superblack via-45% to-transparent z-10" />
 
       {/* ✅ Title */}
       <div className="max-w-6xl mx-auto px-8 mb-10">
@@ -50,16 +50,15 @@ export default function AccessoriesPerformanceStrip() {
         {showcase.map((s, i) => (
           <motion.div
             key={s.title}
-            whileHover={{ y: -10, scale: 1.04 }}
             transition={{ type: "spring", stiffness: 200, damping: 18 }}
-            className="relative snap-start min-w-[500px] h-[420px] rounded-3xl overflow-hidden border border-white/10 bg-white/5 backdrop-blur-xl shadow-[0_0_40px_rgba(0,0,0,0.5)] cursor-pointer group"
+            className="relative snap-start min-w-[550px] w-full h-[420px] rounded-xl overflow-hidden border border-white/10 bg-white/5 backdrop-blur-xl shadow-[0_0_40px_rgba(0,0,0,0.5)] cursor-pointer group"
           >
             {/* ✅ Image */}
             <Image
               src={s.image}
               alt={s.title}
               fill
-              className="object-cover object-center rounded-3xl transition-transform duration-700 group-hover:scale-110"
+              className="object-cover object-center rounded-xl transition-transform duration-700"
             />
 
             {/* ✅ Dark overlay */}

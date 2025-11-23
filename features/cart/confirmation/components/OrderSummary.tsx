@@ -53,7 +53,7 @@ export const OrderSummary: React.FC<OrderSummaryProps> = ({ order }) => {
         />
       </div>
 
-      <div className="pt-4 mt-4 border-t border-[#2b2b2b] flex justify-between items-center text-lg font-semibold">
+      <div className="flex justify-between items-center text-lg font-semibold">
         <span className="text-gray-300">Total Paid</span>
         <span className="text-army text-2xl font-bold">₹{finalAmount.toLocaleString()}</span>
       </div>

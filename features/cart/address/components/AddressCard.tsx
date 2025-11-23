@@ -22,7 +22,7 @@ export const AddressCard: React.FC<AddressCardProps> = ({
       whileHover={{ scale: 1.02 }}
       transition={{ type: "spring", stiffness: 200, damping: 18 }}
       className={`
-        relative cursor-pointer border p-6 md:p-7 rounded-none
+        max-h-[250px] relative cursor-pointer border p-6 md:p-7 rounded-none
         bg-linear-to-b from-[#111] to-[#0a0a0a] overflow-hidden
         transition-all duration-500 group
         ${

@@ -86,7 +86,7 @@ export default function UserMenuModal({
           transition={{ duration: 0.25, ease: "easeOut" }}
           className={cn(
             "absolute top-14 right-0 w-64 p-4 z-200",
-            "bg-[rgba(15,15,15,0.6)] border border-white/20",
+            "bg-[rgba(15,15,15,1)] border border-white/20",
             "backdrop-blur-2xl shadow-lg rounded-md"
           )}
         >

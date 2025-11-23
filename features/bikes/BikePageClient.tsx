@@ -31,6 +31,7 @@ import SpecsExperienceSection from "@/features/bikes/components/specsToExperienc
 // --- Ride ---
 import BicycleRide from "@/components/sections/bicycle-ride/BicycleRide";
 import { TableBikeName, TableModelName } from "@/features/bikes/components/geometry/utils/geometry.types";
+import BikeConfigSection from "./components/bike-config/BikeConfigSection";
 
 export default function BikesPageClient({
   bikeName,
@@ -124,6 +125,9 @@ export default function BikesPageClient({
             selectedModel={modelName}
           />,
         )}
+      </section>
+      <section id="bike-config">
+        <BikeConfigSection />
       </section>
 
       {/* ============================

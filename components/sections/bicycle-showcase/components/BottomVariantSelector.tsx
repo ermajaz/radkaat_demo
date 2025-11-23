@@ -73,7 +73,6 @@ export default function BottomVariantSelector({
 
                     <a
                         href={currentVariant.productLink}
-                        target="_blank"
                         className="px-6 py-2 bg-white rounded-xs text-black text-xs font-semibold hover:bg-white/90 transition"
                     >
                         View Product

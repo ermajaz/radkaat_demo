@@ -46,7 +46,7 @@ export const CartSummary: React.FC<Props> = ({
       ref={el}
       className="
         w-full md:w-[450px]
-        min-h-screen relative overflow-hidden 
+        h-[calc(100vh-100px)] relative overflow-hidden 
         flex flex-col justify-between
         bg-[#0a0a0a] text-white
         shadow-[0_0_40px_rgba(0,0,0,0.6)]

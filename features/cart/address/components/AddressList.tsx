@@ -43,7 +43,6 @@ export const AddressList: React.FC<AddressListProps> = ({
       {addresses.map((address) => (
         <motion.div
           key={address.id}
-          whileHover={{ scale: 1.02 }}
           transition={{ type: "spring", stiffness: 180, damping: 15 }}
           className="h-full"
         >
@@ -58,16 +57,12 @@ export const AddressList: React.FC<AddressListProps> = ({
       {/* Add New Address Card */}
       <motion.button
         onClick={onAddNew}
-        whileHover={{
-          scale: 1.03,
-          boxShadow: "0 0 25px rgba(139,169,137,0.25)",
-        }}
         whileTap={{ scale: 0.97 }}
         transition={{ duration: 0.3 }}
         className="
           relative flex flex-col items-center justify-center gap-3 
           border border-dashed border-army/40 text-army 
-          h-full min-h-[220px] md:min-h-60
+          h-full min-h-[220px] md:min-h-50
           bg-linear-to-b from-[#111] to-[#0a0a0a]
           hover:bg-army/10 transition-all duration-300 
           cursor-pointer group overflow-hidden

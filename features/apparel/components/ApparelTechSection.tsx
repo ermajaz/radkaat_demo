@@ -28,8 +28,8 @@ const techItems = [
 
 export default function ApparelTechSection() {
   return (
-    <section className="relative w-full bg-black py-28 text-white overflow-hidden">
-      
+    <section className="relative w-full bg-superblack py-28 text-white overflow-hidden">
+
       {/* ✅ Futuristic grid background */}
       <div className="absolute inset-0 opacity-[0.04] bg-[linear-gradient(90deg,#fff_1px,transparent_1px),linear-gradient(#fff_1px,transparent_1px)] bg-size-[60px_60px]" />
 
@@ -37,7 +37,7 @@ export default function ApparelTechSection() {
       <div className="absolute -top-40 left-1/3 w-96 h-96 bg-sandstorm/10 blur-[120px] rounded-full" />
 
       <div className="relative max-w-6xl mx-auto px-8 z-10 grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
-        
+
         {/* ✅ LEFT CONTENT */}
         <motion.div
           initial={{ x: -50, opacity: 0 }}
@@ -74,12 +74,11 @@ export default function ApparelTechSection() {
             return (
               <motion.div
                 key={item.title}
-                whileHover={{ y: -6, scale: 1.03 }}
-                transition={{ type: "spring", stiffness: 180, damping: 14 }}
-                className="relative group bg-white/3 border border-white/10 rounded-3xl p-6 backdrop-blur-xl shadow-[0_0_40px_rgba(255,0,0,0.08)] cursor-default"
+                transition={{ duration: 0.4 }}
+                className="relative group bg-white/3 border border-white/10 rounded-xl p-6 backdrop-blur-xl shadow-[0_0_40px_rgba(255,0,0,0.08)] cursor-default"
               >
-                {/* Glow on hover */}
-                <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition duration-500 bg-linear-to-br from-sandstorm/10 to-transparent rounded-3xl" />
+                {/* ✅ Subtle glow on hover (no movement) */}
+                <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition duration-500 bg-linear-to-br from-sandstorm/10 to-transparent rounded-xl" />
 
                 <Icon className="text-sandstorm mb-3 w-6 h-6" />
 
@@ -91,7 +90,7 @@ export default function ApparelTechSection() {
                   {item.desc}
                 </p>
 
-                {/* Line connector */}
+                {/* ✅ Minimal reveal line */}
                 <motion.div
                   initial={{ width: 0 }}
                   whileInView={{ width: "40%" }}

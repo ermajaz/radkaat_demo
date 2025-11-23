@@ -1,5 +1,6 @@
 "use client";
 
+import ScrollIndicator from "@/components/common/ScrollIndicator";
 import { motion, useScroll, useTransform } from "framer-motion";
 import Image from "next/image";
 import { useRef } from "react";
@@ -19,7 +20,7 @@ export default function AccessoriesHero() {
   return (
     <section
       ref={ref}
-      className="relative w-full min-h-screen bg-black text-white overflow-hidden flex items-center"
+      className="relative w-full min-h-screen bg-superblack text-white overflow-hidden flex items-center"
     >
       {/* 🌑 Parallax Background */}
       <motion.div
@@ -81,38 +82,23 @@ export default function AccessoriesHero() {
           </motion.p>
         </motion.div>
 
-        {/* 🛡 Floating 3D Product */}
-        <motion.div
-          initial={{ opacity: 0, x: 50, scale: 0.9 }}
-          animate={{ opacity: 1, x: 0, scale: 1 }}
-          transition={{ duration: 1.1, ease: "easeOut" }}
-          whileHover={{ scale: 1.05, rotateZ: 1 }}
-          className="flex-1 flex justify-center"
-        >
-          <motion.div
-            animate={{
-              y: [0, -12, 0],
-            }}
-            transition={{
-              repeat: Infinity,
-              duration: 5,
-              ease: "easeInOut",
-            }}
-            className="relative w-80 h-80 rounded-4xl bg-white/5 backdrop-blur-xl border border-white/10 shadow-[0_24px_80px_rgba(0,0,0,0.7)]"
+        {/* ✅ Static Product */}
+        <div className="flex-1 flex justify-center">
+          <div
+            className="relative w-80 h-80 rounded-xl bg-white/5 backdrop-blur-xl border border-white/10 shadow-[0_24px_80px_rgba(0,0,0,0.7)]"
           >
-            {/* Product */}
             <Image
               src="/images/accessories.jpg"
               alt="AeroGuard Helmet"
               fill
-              className="object-contain rounded-4xl"
+              className="object-contain rounded-xl"
             />
 
             {/* Glass Info Card */}
             <motion.div
               initial={{ y: 30, opacity: 0 }}
               animate={{ y: 0, opacity: 1 }}
-              transition={{ delay: 1.1, duration: 0.7 }}
+              transition={{ delay: 0.4, duration: 0.7 }}
               className="absolute -bottom-4 left-6 right-6 h-20 rounded-2xl bg-black/70 backdrop-blur-xl border border-white/10 px-4 flex items-center justify-between"
             >
               <div>
@@ -123,37 +109,13 @@ export default function AccessoriesHero() {
               </div>
               <p className="text-xs text-neutral-300">Aero + Safety</p>
             </motion.div>
-          </motion.div>
-        </motion.div>
+          </div>
+        </div>
+
       </div>
 
       {/* 🖤 Scroll Indicator */}
-      <motion.div
-        className="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2"
-        animate={{ opacity: [0.5, 1, 0.5], y: [0, -6, 0] }}
-        transition={{ repeat: Infinity, duration: 2, ease: "easeInOut" }}
-      >
-        {/* Glow Dot */}
-        <motion.div
-          className="w-2 h-2 rounded-full bg-sandstorm shadow-[0_0_10px_4px_rgba(255,210,150,0.5)]"
-          animate={{ scale: [1, 1.4, 1] }}
-          transition={{ repeat: Infinity, duration: 1.8, ease: "easeInOut" }}
-        />
-
-        {/* Text */}
-        <span className="text-sandstorm text-xs tracking-[0.4em] font-medium">
-          SCROLL
-        </span>
-
-        {/* Arrow */}
-        <motion.div
-          className="text-sandstorm text-[10px]"
-          animate={{ y: [0, 4, 0] }}
-          transition={{ repeat: Infinity, duration: 1.6, ease: "easeInOut" }}
-        >
-          ↓
-        </motion.div>
-      </motion.div>
+     <ScrollIndicator />
 
     </section>
   );
