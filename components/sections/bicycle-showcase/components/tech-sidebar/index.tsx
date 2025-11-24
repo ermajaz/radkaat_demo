@@ -25,10 +25,11 @@ export default function TechSidebar({ onClose }: { onClose: () => void }) {
       initial={{ x: "100%" }}
       animate={{ x: 0 }}
       exit={{ x: "100%" }}
+      transition={{ type: "spring", stiffness: 200, damping: 26 }}
     >
       <Header onClose={onClose} />
 
-      <div className="px-10 py-10 overflow-y-auto flex-1 py-32">
+      <div className="px-10 overflow-y-auto flex-1 py-32">
         <div className="grid grid-cols-12 gap-10">
 
           {/* ✅ Left Categories */}

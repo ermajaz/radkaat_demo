@@ -7,7 +7,7 @@ export default function GeometryImage({
 }: {
   hoveredImage: string | null;
 }) {
-  const src = hoveredImage ?? "/images/bikes/frame-geometry.png";
+  const src = hoveredImage ?? "/images/bikes/frame-wheel.jpg";
 
   return (
     <div className="relative w-full flex items-center justify-center">
