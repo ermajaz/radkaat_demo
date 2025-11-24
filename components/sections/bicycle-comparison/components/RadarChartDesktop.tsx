@@ -57,7 +57,7 @@ export const RadarChartDesktop = ({
     <div className="w-full flex justify-between items-center px-4">
       
       {/* RADAR CHART */}
-      <div className="w-[50%] h-[400px] shrink-0 relative">
+      <div className="w-[50%] h-full shrink-0 relative">
         <ResponsiveContainer width="100%" height="100%">
           <RadarChart
             cx="50%"

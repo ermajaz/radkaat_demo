@@ -10,14 +10,17 @@ import {
   TableRow,
 } from "@/components/ui/table";
 import BikeSelectorDesktop from "./BikeSelectorDesktop";
+import CategoryTabsDesktop from "./CategoryTabsDesktop";
 
 export const ComparisonTableDesktop = ({
   category,
+  setCategory,
   selectedBikes,
   data,
   onSelectBike,
 }: {
   category: string;
+  setCategory: (c: string) => void;
   selectedBikes: string[];
   data: any;
   onSelectBike: (index: number, value: string) => void;
@@ -29,42 +32,45 @@ export const ComparisonTableDesktop = ({
       <div className="relative mx-auto overflow-x-auto w-full">
 
         {/* TABLE */}
-        <Table className="w-full border-collapse">
-          <TableHeader>
-            <TableRow className="border-b border-white/30 bg-transparent hover:bg-transparent">
-              {/* empty cell on left */}
-              <TableHead className="py-10 text-left">&nbsp;</TableHead>
+        <Table className="w-full border-collapse hover:bg-transparent">
+          <TableHeader className="hover:bg-transparent">
+            {/* ROW 1: Bike Selectors */}
+            <TableRow className="w-full border-none bg-transparent hover:bg-transparent">
+              <TableHead className="py-6 text-left"></TableHead>
 
               {selectedBikes.map((bike, i) => (
-                <TableHead
-                  key={i}
-                  className="py-10 text-center font-normal"
-                >
-                  <motion.div
-                    initial={{ opacity: 0, y: 12 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    transition={{ delay: 0.1 * i }}
-                    className="flex justify-center mt-5"
-                  >
-                    <BikeSelectorDesktop
-                      selected={bike}
-                      onSelect={(val) => onSelectBike(i, val)}
-                      options={data.models}
-                    />
-                  </motion.div>
+                <TableHead key={i} className="py-6 text-center font-normal">
+                  <BikeSelectorDesktop
+                    selected={bike}
+                    onSelect={(val) => onSelectBike(i, val)}
+                    options={data.models}
+                  />
                 </TableHead>
               ))}
             </TableRow>
+
+            {/* ROW 2: Category Tabs */}
+            <TableRow className="w-full border-b border-white/30 bg-transparent hover:bg-transparent">
+
+              <TableHead colSpan={selectedBikes?.length+1} className="hover:bg-transparent px-0">
+                <CategoryTabsDesktop
+                  categories={Object.keys(data.table)}
+                  active={category}
+                  setActive={setCategory}
+                />
+              </TableHead>
+            </TableRow>
           </TableHeader>
 
-          <TableBody>
+
+          <TableBody className="hover:bg-transparent">
             {Object.keys(rows).map((spec, i) => (
               <motion.tr
                 key={spec}
                 initial={{ opacity: 0, y: 10 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.05 * i }}
-                className="border-b border-white/30 hover:bg-[#161616] transition-colors"
+                className="border-b border-white/30 transition-colors"
               >
                 <TableCell className="h-14 py-2 text-left text-sm font-bold text-white whitespace-nowrap">
                   {spec}

@@ -228,8 +228,8 @@ export const variants = [
 
 export const SPEC_MODELS = ["model-1", "model-2", "model-3"];
 
-
 export const SPEC_CATEGORIES = [
+  "Geometry",
   "Frame",
   "Suspension",
   "Drivetrain",
@@ -239,196 +239,244 @@ export const SPEC_CATEGORIES = [
   "Specs",
 ];
 
+export const GEOMETRY_MAP = {
+  chainstay_length: {
+    label: "Chainstay Length",
+    type: "line",
+    x1: 140, y1: 360, x2: 420, y2: 360,
+  },
+  head_tube_angle: {
+    label: "Head Tube Angle",
+    type: "arc",
+    cx: 520, cy: 90, r: 80, start: -20, end: 50,
+  },
+  seat_tube_angle: {
+    label: "Seat Tube Angle",
+    type: "arc",
+    cx: 200, cy: 180, r: 120, start: -70, end: -10,
+  },
+  reach: {
+    label: "Reach",
+    type: "line",
+    x1: 300, y1: 150, x2: 500, y2: 150,
+  },
+  stack: {
+    label: "Stack",
+    type: "line",
+    x1: 300, y1: 150, x2: 300, y2: 40,
+  },
+  wheelbase: {
+    label: "Wheelbase",
+    type: "line",
+    x1: 80, y1: 430, x2: 520, y2: 430,
+  },
+};
+
+
 
 export const SPEC_TABLE = {
   "model-1": {
+    Geometry: [
+      { label: "Reach", value: "455mm", geoId: "reach", image: "/images/bikes/frame-geometry.png" },
+      { label: "Stack", value: "615mm", geoId: "stack", image: "/images/bikes/frame-geometry.png" },
+      { label: "Wheelbase", value: "1230mm", geoId: "wheelbase", image: "/images/bikes/frame-geometry.png" },
+      { label: "Chainstay Length", value: "435mm", geoId: "chainstay_length", image: "/images/bikes/frame-geometry.png" },
+      { label: "Head Tube Angle", value: "64.5°", geoId: "head_tube_angle", image: "/images/bikes/frame-geometry.png" },
+      { label: "Seat Tube Angle", value: "76°", geoId: "seat_tube_angle", image: "/images/bikes/frame-geometry.png" },
+    ],
+
     Frame: [
-      { label: "Bottom Bracket Shell", value: "BSA 73mm" },
-      { label: "Rear Brake Mount", value: "200 PM" },
-      { label: "Shock Length", value: "230mm" },
-      { label: "Fork Compatibility", value: "170–180mm" },
-      { label: "Fork Offset", value: "44mm" },
-      { label: "Frame Material", value: "6061-T6 Alloy" },
-      { label: "Rear Travel", value: "160mm" },
+      { label: "Bottom Bracket Shell", value: "BSA 73mm", image: "/images/bikes/frame-geometry.png" },
+      { label: "Rear Brake Mount", value: "200 PM", image: "/images/bikes/frame-geometry.png" },
+      { label: "Shock Length", value: "230mm", image: "/images/bikes/frame-geometry.png" },
+      { label: "Fork Compatibility", value: "170–180mm", image: "/images/bikes/frame-geometry.png" },
+      { label: "Fork Offset", value: "44mm", image: "/images/bikes/frame-geometry.png" },
+      { label: "Frame Material", value: "6061-T6 Alloy", image: "/images/bikes/frame-geometry.png" },
+      { label: "Rear Travel", value: "160mm", image: "/images/bikes/frame-geometry.png" },
     ],
 
     Suspension: [
-      { label: "Fork Travel", value: "170mm" },
-      { label: "Shock Stroke", value: "62.5mm" },
-      { label: "Shock Type", value: "Air, Tune: Medium/Medium" },
-      { label: "Fork Axle", value: "15x110mm Boost" },
-      { label: "Rear Axle", value: "12x148mm Boost" },
+      { label: "Fork Travel", value: "170mm", image: "/images/bikes/frame-geometry.png" },
+      { label: "Shock Stroke", value: "62.5mm", image: "/images/bikes/frame-geometry.png" },
+      { label: "Shock Type", value: "Air, Medium/Medium", image: "/images/bikes/frame-geometry.png" },
+      { label: "Fork Axle", value: "15x110mm Boost", image: "/images/bikes/frame-geometry.png" },
+      { label: "Rear Axle", value: "12x148mm Boost", image: "/images/bikes/frame-geometry.png" },
     ],
 
     Drivetrain: [
-      { label: "Crankset", value: "SRAM NX 170mm" },
-      { label: "Chainring", value: "32T Narrow-Wide" },
-      { label: "Cassette", value: "11-50T 12-speed" },
-      { label: "Rear Derailleur", value: "SRAM NX Eagle" },
-      { label: "Shifter", value: "SRAM NX Trigger" },
-      { label: "Chain", value: "SRAM Eagle 12-speed" },
+      { label: "Crankset", value: "SRAM NX 170mm", image: "/images/bikes/frame-geometry.png" },
+      { label: "Chainring", value: "32T Narrow-Wide", image: "/images/bikes/frame-geometry.png" },
+      { label: "Cassette", value: "11-50T 12-speed", image: "/images/bikes/frame-geometry.png" },
+      { label: "Rear Derailleur", value: "SRAM NX Eagle", image: "/images/bikes/frame-geometry.png" },
+      { label: "Shifter", value: "SRAM NX Trigger", image: "/images/bikes/frame-geometry.png" },
+      { label: "Chain", value: "SRAM Eagle 12-speed", image: "/images/bikes/frame-geometry.png" },
     ],
 
     Brakes: [
-      { label: "Front Rotor", value: "203mm" },
-      { label: "Rear Rotor", value: "203mm" },
-      { label: "Brake Type", value: "Hydraulic Disc" },
-      { label: "Calipers", value: "SRAM Guide R" },
+      { label: "Front Rotor", value: "203mm", image: "/images/bikes/frame-geometry.png" },
+      { label: "Rear Rotor", value: "203mm", image: "/images/bikes/frame-geometry.png" },
+      { label: "Brake Type", value: "Hydraulic Disc", image: "/images/bikes/frame-geometry.png" },
+      { label: "Calipers", value: "SRAM Guide R", image: "/images/bikes/frame-geometry.png" },
     ],
 
     Cockpit: [
-      { label: "Handlebar", value: "780mm Alloy" },
-      { label: "Stem", value: "40mm" },
-      { label: "Grips", value: "Lock-On Rubber" },
-      { label: "Seatpost", value: "150mm Dropper Post" },
-      { label: "Saddle", value: "Ergo Trail Saddle" },
+      { label: "Handlebar", value: "780mm Alloy", image: "/images/bikes/frame-geometry.png" },
+      { label: "Stem", value: "40mm", image: "/images/bikes/frame-geometry.png" },
+      { label: "Grips", value: "Lock-On Rubber", image: "/images/bikes/frame-geometry.png" },
+      { label: "Seatpost", value: "150mm Dropper Post", image: "/images/bikes/frame-geometry.png" },
+      { label: "Saddle", value: "Ergo Trail Saddle", image: "/images/bikes/frame-geometry.png" },
     ],
 
     Wheels: [
-      { label: "Wheel Size", value: "29\"" },
-      { label: "Front Hub", value: "Boost 15x110mm" },
-      { label: "Rear Hub", value: "Boost 12x148mm" },
-      { label: "Rims", value: "Double Wall Alloy" },
-      { label: "Tires", value: "Maxxis Minion DHF/DHR" },
+      { label: "Wheel Size", value: "29\"", image: "/images/bikes/frame-geometry.png" },
+      { label: "Front Hub", value: "Boost 15x110mm", image: "/images/bikes/frame-geometry.png" },
+      { label: "Rear Hub", value: "Boost 12x148mm", image: "/images/bikes/frame-geometry.png" },
+      { label: "Rims", value: "Double Wall Alloy", image: "/images/bikes/frame-geometry.png" },
+      { label: "Tires", value: "Maxxis Minion DHF/DHR", image: "/images/bikes/frame-geometry.png" },
     ],
 
     Specs: [
       { label: "Weight", value: "15.2 kg" },
       { label: "Max Rider Weight", value: "120 kg" },
       { label: "Warranty", value: "3 Years on Frame" },
-      { label: "Chainstay Length", value: "435mm" },
-      { label: "Head Tube Angle", value: "64.5°" },
     ],
   },
 
-  // ---------------------------------------------
-  // MODEL 2
-  // ---------------------------------------------
-
+  // ✅ MODEL 2 ---------------------------------------
   "model-2": {
+    Geometry: [
+      { label: "Reach", value: "40mm", geoId: "reach", image: "/images/bikes/frame-geometry.png" },
+      { label: "Stack", value: "620mm", geoId: "stack", image: "/images/bikes/frame-geometry.png" },
+      { label: "Wheelbase", value: "120mm", geoId: "wheelbase", image: "/images/bikes/frame-geometry.png" },
+      { label: "Chainstay Length", value: "440mm", geoId: "chainstay_length", image: "/images/bikes/frame-geometry.png" },
+      { label: "Head Tube Angle", value: "65°", geoId: "head_tube_angle", image: "/images/bikes/frame-geometry.png" },
+      { label: "Seat Tube Angle", value: "75°", geoId: "seat_tube_angle", image: "/images/bikes/frame-geometry.png" },
+    ],
     Frame: [
-      { label: "Bottom Bracket Shell", value: "BSA 73mm" },
-      { label: "Rear Brake Mount", value: "180 PM" },
-      { label: "Shock Length", value: "230mm" },
-      { label: "Fork Compatibility", value: "150–180mm" },
-      { label: "Fork Offset", value: "48mm" },
-      { label: "Frame Material", value: "7005 Hydroformed Alloy" },
-      { label: "Rear Travel", value: "150mm" },
+      { label: "Bottom Bracket Shell", value: "BSA 7mm", image: "/images/bikes/frame-geometry.png" },
+      { label: "Rear Brake Mount", value: "20 PM", image: "/images/bikes/frame-geometry.png" },
+      { label: "Shock Length", value: "23mm", image: "/images/bikes/frame-geometry.png" },
+      { label: "Fork Compatibility", value: "70–10mm", image: "/images/bikes/frame-geometry.png" },
+      { label: "Fork Offset", value: "44mm", image: "/images/bikes/frame-geometry.png" },
+      { label: "Frame Material", value: "6061-T6 Alloy", image: "/images/bikes/frame-geometry.png" },
+      { label: "Rear Travel", value: "160mm", image: "/images/bikes/frame-geometry.png" },
     ],
 
     Suspension: [
-      { label: "Fork Travel", value: "160mm" },
-      { label: "Shock Stroke", value: "60mm" },
-      { label: "Shock Type", value: "Air, Tune: Light/Medium" },
-      { label: "Fork Axle", value: "15x110mm Boost" },
-      { label: "Rear Axle", value: "12x148mm Boost" },
+      { label: "Fork Travel", value: "170mm", image: "/images/bikes/frame-geometry.png" },
+      { label: "Shock Stroke", value: "6.5mm", image: "/images/bikes/frame-geometry.png" },
+      { label: "Shock Type", value: "Air, Medium/Medium", image: "/images/bikes/frame-geometry.png" },
+      { label: "Fork Axle", value: "15x10mm Boost", image: "/images/bikes/frame-geometry.png" },
+      { label: "Rear Axle", value: "12x148mm Boost", image: "/images/bikes/frame-geometry.png" },
     ],
 
     Drivetrain: [
-      { label: "Crankset", value: "Shimano Deore 170mm" },
-      { label: "Chainring", value: "32T Narrow-Wide" },
-      { label: "Cassette", value: "10-51T 12-speed" },
-      { label: "Rear Derailleur", value: "Shimano Deore M6100" },
-      { label: "Shifter", value: "Shimano Deore Rapidfire" },
-      { label: "Chain", value: "Shimano 12-speed" },
+      { label: "Crankset", value: "SRM NX 170mm", image: "/images/bikes/frame-geometry.png" },
+      { label: "Chainring", value: "32T Narrow-Wide", image: "/images/bikes/frame-geometry.png" },
+      { label: "Cassette", value: "11-5T 12-speed", image: "/images/bikes/frame-geometry.png" },
+      { label: "Rear Derailleur", value: "SRAM NX Eagle", image: "/images/bikes/frame-geometry.png" },
+      { label: "Shifter", value: "SRAM NX Trigger", image: "/images/bikes/frame-geometry.png" },
+      { label: "Chain", value: "SRM Eagle 12-speed", image: "/images/bikes/frame-geometry.png" },
     ],
 
     Brakes: [
-      { label: "Front Rotor", value: "203mm" },
-      { label: "Rear Rotor", value: "180mm" },
-      { label: "Brake Type", value: "Hydraulic Disc" },
-      { label: "Calipers", value: "Shimano MT420" },
+      { label: "Front Rotor", value: "203mm", image: "/images/bikes/frame-geometry.png" },
+      { label: "Rear Rotor", value: "233mm", image: "/images/bikes/frame-geometry.png" },
+      { label: "Brake Type", value: "Hydraulic Disc", image: "/images/bikes/frame-geometry.png" },
+      { label: "Calipers", value: "SRAM Guide T", image: "/images/bikes/frame-geometry.png" },
     ],
 
     Cockpit: [
-      { label: "Handlebar", value: "780mm Alloy" },
-      { label: "Stem", value: "45mm" },
-      { label: "Grips", value: "Soft Rubber" },
-      { label: "Seatpost", value: "140mm Dropper Post" },
-      { label: "Saddle", value: "Trail Comfort Saddle" },
+      { label: "Handlebar", value: "780mm Alloy", image: "/images/bikes/frame-geometry.png" },
+      { label: "Stem", value: "42mm", image: "/images/bikes/frame-geometry.png" },
+      { label: "Grips", value: "Lock-On Rubber", image: "/images/bikes/frame-geometry.png" },
+      { label: "Seatpost", value: "154mm Dropper Post", image: "/images/bikes/frame-geometry.png" },
+      { label: "Saddle", value: "Ergo Trail Saddle", image: "/images/bikes/frame-geometry.png" },
     ],
 
     Wheels: [
-      { label: "Wheel Size", value: "27.5\"" },
-      { label: "Front Hub", value: "Boost 15x110mm" },
-      { label: "Rear Hub", value: "Boost 12x148mm" },
-      { label: "Rims", value: "Alloy Tubeless Ready" },
-      { label: "Tires", value: "Schwalbe Hans Dampf" },
+      { label: "Wheel Size", value: "25\"", image: "/images/bikes/frame-geometry.png" },
+      { label: "Front Hub", value: "Boost 15x110mm", image: "/images/bikes/frame-geometry.png" },
+      { label: "Rear Hub", value: "Boost 14x148mm", image: "/images/bikes/frame-geometry.png" },
+      { label: "Rims", value: "Double Wall Alloy", image: "/images/bikes/frame-geometry.png" },
+      { label: "Tires", value: "Maxxis Minion DHF/DHR", image: "/images/bikes/frame-geometry.png" },
     ],
 
     Specs: [
-      { label: "Weight", value: "14.7 kg" },
-      { label: "Max Rider Weight", value: "110 kg" },
+      { label: "Weight", value: "15.2 kg" },
+      { label: "Max Rider Weight", value: "120 kg" },
       { label: "Warranty", value: "3 Years on Frame" },
-      { label: "Chainstay Length", value: "440mm" },
-      { label: "Head Tube Angle", value: "65°" },
     ],
   },
 
-  // ---------------------------------------------
-  // MODEL 3
-  // ---------------------------------------------
-
+  // ✅ MODEL 3 ---------------------------------------
   "model-3": {
+    Geometry: [
+      { label: "Reach", value: "470mm", geoId: "reach", image: "/images/bikes/frame-geometry.png" },
+      { label: "Stack", value: "620mm", geoId: "stack", image: "/images/bikes/frame-geometry.png" },
+      { label: "Wheelbase", value: "1250mm", geoId: "wheelbase", image: "/images/bikes/frame-geometry.png" },
+      { label: "Chainstay Length", value: "432mm", geoId: "chainstay_length", image: "/images/bikes/frame-geometry.png" },
+      { label: "Head Tube Angle", value: "62.5°", geoId: "head_tube_angle", image: "/images/bikes/frame-geometry.png" },
+      { label: "Seat Tube Angle", value: "77°", geoId: "seat_tube_angle", image: "/images/bikes/frame-geometry.png" },
+    ],
     Frame: [
-      { label: "Bottom Bracket Shell", value: "BB92 Pressfit" },
-      { label: "Rear Brake Mount", value: "200 PM" },
-      { label: "Shock Length", value: "240mm" },
-      { label: "Fork Compatibility", value: "170–190mm" },
-      { label: "Fork Offset", value: "44mm" },
-      { label: "Frame Material", value: "Full Carbon Fiber" },
-      { label: "Rear Travel", value: "170mm" },
+      { label: "Bottom Bracket Shell", value: "BSA 73mm", image: "/images/bikes/frame-geometry.png" },
+      { label: "Rear Brake Mount", value: "200 PM", image: "/images/bikes/frame-geometry.png" },
+      { label: "Shock Length", value: "250mm", image: "/images/bikes/frame-geometry.png" },
+      { label: "Fork Compatibility", value: "170–180mm", image: "/images/bikes/frame-geometry.png" },
+      { label: "Fork Offset", value: "43mm", image: "/images/bikes/frame-geometry.png" },
+      { label: "Frame Material", value: "6061-T6 Alloy", image: "/images/bikes/frame-geometry.png" },
+      { label: "Rear Travel", value: "180mm", image: "/images/bikes/frame-geometry.png" },
     ],
 
     Suspension: [
-      { label: "Fork Travel", value: "180mm" },
-      { label: "Shock Stroke", value: "65mm" },
-      { label: "Shock Type", value: "Coil, Tune: Firm/Medium" },
-      { label: "Fork Axle", value: "15x110mm Boost" },
-      { label: "Rear Axle", value: "12x148mm Boost" },
+      { label: "Fork Travel", value: "170mm", image: "/images/bikes/frame-geometry.png" },
+      { label: "Shock Stroke", value: "62.5mm", image: "/images/bikes/frame-geometry.png" },
+      { label: "Shock Type", value: "Air, Medium/Medium", image: "/images/bikes/frame-geometry.png" },
+      { label: "Fork Axle", value: "13x110mm Boost", image: "/images/bikes/frame-geometry.png" },
+      { label: "Rear Axle", value: "18x148mm Boost", image: "/images/bikes/frame-geometry.png" },
     ],
 
     Drivetrain: [
-      { label: "Crankset", value: "SRAM GX 170mm" },
-      { label: "Chainring", value: "32T Narrow-Wide" },
-      { label: "Cassette", value: "10-52T 12-speed" },
-      { label: "Rear Derailleur", value: "SRAM GX Eagle" },
-      { label: "Shifter", value: "SRAM GX Trigger" },
-      { label: "Chain", value: "SRAM Eagle 12-speed" },
+      { label: "Crankset", value: "SRAM NX 170mm", image: "/images/bikes/frame-geometry.png" },
+      { label: "Chainring", value: "32T Narrow-Wide", image: "/images/bikes/frame-geometry.png" },
+      { label: "Cassette", value: "11-50T 12-speed", image: "/images/bikes/frame-geometry.png" },
+      { label: "Rear Derailleur", value: "SRAM NX Eagle", image: "/images/bikes/frame-geometry.png" },
+      { label: "Shifter", value: "SRAM NX Trigger", image: "/images/bikes/frame-geometry.png" },
+      { label: "Chain", value: "SRAM Eagle 15-speed", image: "/images/bikes/frame-geometry.png" },
     ],
 
     Brakes: [
-      { label: "Front Rotor", value: "220mm" },
-      { label: "Rear Rotor", value: "203mm" },
-      { label: "Brake Type", value: "Hydraulic Disc" },
-      { label: "Calipers", value: "SRAM Code R" },
+      { label: "Front Rotor", value: "253mm", image: "/images/bikes/frame-geometry.png" },
+      { label: "Rear Rotor", value: "283mm", image: "/images/bikes/frame-geometry.png" },
+      { label: "Brake Type", value: "Hydraulic Disc", image: "/images/bikes/frame-geometry.png" },
+      { label: "Calipers", value: "SRAM Guide R", image: "/images/bikes/frame-geometry.png" },
     ],
 
     Cockpit: [
-      { label: "Handlebar", value: "800mm Carbon" },
-      { label: "Stem", value: "35mm" },
-      { label: "Grips", value: "Soft Rubber Lock-On" },
-      { label: "Seatpost", value: "170mm Dropper Post" },
-      { label: "Saddle", value: "Enduro Race Saddle" },
+      { label: "Handlebar", value: "780mm Alloy", image: "/images/bikes/frame-geometry.png" },
+      { label: "Stem", value: "42mm", image: "/images/bikes/frame-geometry.png" },
+      { label: "Grips", value: "Lock-On Rubber", image: "/images/bikes/frame-geometry.png" },
+      { label: "Seatpost", value: "150mm Dropper Post", image: "/images/bikes/frame-geometry.png" },
+      { label: "Saddle", value: "Ergo Trail Saddle", image: "/images/bikes/frame-geometry.png" },
     ],
 
     Wheels: [
-      { label: "Wheel Size", value: "29\"" },
-      { label: "Front Hub", value: "Boost 15x110mm" },
-      { label: "Rear Hub", value: "Boost 12x148mm" },
-      { label: "Rims", value: "Carbon 30mm Internal" },
-      { label: "Tires", value: "Maxxis Assegai / DHR II" },
+      { label: "Wheel Size", value: "23\"", image: "/images/bikes/frame-geometry.png" },
+      { label: "Front Hub", value: "Boost 15x110mm", image: "/images/bikes/frame-geometry.png" },
+      { label: "Rear Hub", value: "Boost 12x147mm", image: "/images/bikes/frame-geometry.png" },
+      { label: "Rims", value: "Double Wall Alloy", image: "/images/bikes/frame-geometry.png" },
+      { label: "Tires", value: "Maxxis Minion DHF/DHR", image: "/images/bikes/frame-geometry.png" },
     ],
 
     Specs: [
-      { label: "Weight", value: "13.8 kg" },
-      { label: "Max Rider Weight", value: "120 kg" },
-      { label: "Warranty", value: "5 Years on Frame" },
-      { label: "Chainstay Length", value: "432mm" },
-      { label: "Head Tube Angle", value: "63.5°" },
+      { label: "Weight", value: "12.2 kg", image: "/images/bikes/frame-geometry.png" },
+      { label: "Max Rider Weight", value: "120 kg", image: "/images/bikes/frame-geometry.png" },
+      { label: "Warranty", value: "4 Years on Frame", image: "/images/bikes/frame-geometry.png" },
     ],
   },
 };
+
 
 
 export const SPEC_GRAPH_DATA = [

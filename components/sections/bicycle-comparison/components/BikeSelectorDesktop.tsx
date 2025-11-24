@@ -1,5 +1,13 @@
 "use client";
 
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
+
 export default function BikeSelectorDesktop({
   selected,
   onSelect,
@@ -10,17 +18,32 @@ export default function BikeSelectorDesktop({
   options: string[];
 }) {
   return (
-    <select
-      value={selected}
-      onChange={(e) => onSelect(e.target.value)}
-      className="w-[200px] bg-transparent border border-white/30 rounded-sm 
-                 px-3 py-2 text-center text-white text-sm font-bold cursor-pointer"
-    >
-      {options.map((opt) => (
-        <option key={opt} value={opt} className="text-black">
-          {opt}
-        </option>
-      ))}
-    </select>
+    <Select value={selected} onValueChange={onSelect}>
+      <SelectTrigger
+        className="
+          w-[200px]
+          bg-transparent
+          border border-white/30
+          rounded-sm
+          text-white
+          text-sm font-bold
+          px-3 py-2
+        "
+      >
+        <SelectValue placeholder="Select Bike" />
+      </SelectTrigger>
+
+      <SelectContent className="bg-[#1a1a1a] text-white border border-white/20">
+        {options.map((opt) => (
+          <SelectItem
+            key={opt}
+            value={opt}
+            className="cursor-pointer text-sm font-semibold"
+          >
+            {opt}
+          </SelectItem>
+        ))}
+      </SelectContent>
+    </Select>
   );
 }

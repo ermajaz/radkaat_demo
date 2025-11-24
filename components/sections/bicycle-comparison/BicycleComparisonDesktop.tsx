@@ -27,18 +27,13 @@ export default function BicycleComparisonDesktop() {
   ]);
 
   return (
-    <section className="w-full min-h-screen z-10 bg-superblack text-white flex">
+   <section className="w-full h-screen bg-superblack text-white flex overflow-hidden">
       <SidebarProfilesDesktop profiles={BikeComparisonData.profiles} />
 
-      <div className="flex-1 p-8">
-        <CategoryTabsDesktop
-          categories={categories}
-          active={activeCategory}
-          setActive={setActiveCategory}
-        />
-
+      <div className="h-full w-full m-auto pl-5 pt-3 flex flex-col">
         <ComparisonTableDesktop
           category={activeCategory}
+          setCategory={setActiveCategory}
           selectedBikes={selectedBikes}
           data={BikeComparisonData}
           onSelectBike={(index, value) => {
@@ -48,7 +43,7 @@ export default function BicycleComparisonDesktop() {
           }}
         />
 
-        <div className="mt-0 flex justify-center">
+        <div className="flex-1 flex justify-center py-4">
           <RadarChartDesktop selectedBikes={selectedBikes} data={BikeComparisonData} />
         </div>
       </div>

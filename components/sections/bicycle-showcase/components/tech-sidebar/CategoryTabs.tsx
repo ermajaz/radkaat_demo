@@ -27,7 +27,7 @@ export default function CategoryTabs({
 
                                 {/* 🔥 Auto width underline */}
                                 {isActive && (
-                                    <span className="absolute left-0 bottom-0 h-0.5 w-full bg-white rounded-full" />
+                                    <span className="absolute left-0 bottom-0 h-0.5 w-full bg-sandstorm rounded-full" />
                                 )}
                             </button>
                         </li>
