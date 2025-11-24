@@ -1,19 +1,19 @@
 "use client";
 
-import AccessoriesCategoryGrid from "./components/AccessoriesCategoryGrid";
-import AccessoriesHero from "./components/AccessoriesHero";
-import AccessoriesInAction from "./components/AccessoriesInAction";
-import AccessoriesPerformanceStrip from "./components/AccessoriesPerformanceStrip";
+import AccessoriesCategoryMobile from "./components/mobile/AccessoriesCategoryMobile";
+import AccessoriesHeroMobile from "./components/mobile/AccessoriesHeroMobile";
+import AccessoriesShowcaseStripMobile from "./components/mobile/AccessoriesShowcaseStripMobile";
+import AccessoriesTechSectionMobile from "./components/mobile/AccessoriesTechSectionMobile";
 
 
 
 export default function AccessoriesMobile() {
   return (
     <div className="space-y-12">
-      <AccessoriesHero />
-      <AccessoriesCategoryGrid />
-      <AccessoriesPerformanceStrip />
-      <AccessoriesInAction />
+      <AccessoriesHeroMobile />
+      <AccessoriesCategoryMobile />
+      <AccessoriesTechSectionMobile />
+      <AccessoriesShowcaseStripMobile />
     </div>
   );
 }

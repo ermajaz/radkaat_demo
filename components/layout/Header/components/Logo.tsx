@@ -14,7 +14,7 @@ export default function Logo() {
         alt="Radkaat Logo"
         width={50}
         height={10}
-        className="w-[50px] h-auto"
+        className="w-[45px] md:w-[50px] h-auto"
       />
     </div>
   );

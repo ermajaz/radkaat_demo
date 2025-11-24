@@ -1,56 +1,73 @@
 "use client";
 
-import { useState, useEffect, useRef } from "react";
-import gsap from "gsap";
-import { useHeaderScrollBehavior } from "./useHeaderScrollBehaviour";
+import { useState, useEffect } from "react";
+import { motion } from "framer-motion";
+import Image from "next/image";
+import { Bell, Heart, MapPin, Menu } from "lucide-react";
+import BottomNavMobile from "./components/BottomNavMobile";
+import MobileMenuBar from "./components/overlays/MobileMenuBar";
 import Logo from "./components/Logo";
-import HeaderIcons from "./components/HeaderIcons";
-import SearchOverlay from "./components/SearchOverlay";
-import UserMenuModal from "./components/UserMenuModal";
-import ProductsOverlay from "./components/overlays/products/ProductsOverlay";
-export default function HeaderMobile() {
-  const headerRef = useRef<HTMLDivElement>(null);
-  const { showHeader } = useHeaderScrollBehavior();
-  const [confirmOpen, setConfirmOpen] = useState(false);
-  const [searchOpen, setSearchOpen] = useState(false);
-  const [productsOpen, setProductsOpen] = useState(false);
-  const [userMenuOpen, setUserMenuOpen] = useState(false);
 
-  // 🔥 When logout is clicked (from menu)
-  const handleLogoutClick = () => {
-    setUserMenuOpen(false);   // close menu first
-    setConfirmOpen(true);     // show confirm modal
-  };
+export default function HeaderMobile() {
+  const [scrolled, setScrolled] = useState(false);
+  const [menuOpen, setMenuOpen] = useState(false);
 
   useEffect(() => {
-    if (!headerRef.current) return;
-
-    gsap.to(headerRef.current, {
-      y: showHeader ? 0 : -headerRef.current.offsetHeight,
-      duration: 0.35,
-      ease: "power3.out",
-    });
-  }, [showHeader]);
+    const handleScroll = () => setScrolled(window.scrollY > 10);
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   return (
     <>
-      <header
-        ref={headerRef}
-        className="fixed top-0 text-white left-0 w-full z-50 px-6 py-3 bg-black/40 backdrop-blur-md flex items-center justify-between"
+      {/* ✅ TOP HEADER */}
+      <motion.header
+        initial={{ y: -16, opacity: 0 }}
+        animate={{ y: 0, opacity: 1 }}
+        transition={{ duration: 0.35 }}
+        className={`
+          fixed top-0 left-0 right-0 z-50 px-5 py-3
+          flex items-center justify-between
+          ${scrolled || menuOpen ? "bg-superblack backdrop-blur-xl shadow-lg" : "bg-transparent"}
+        `}
       >
+        {/* ✅ LOGO */}
         <Logo />
-        <HeaderIcons
-          onSearchOpen={() => setSearchOpen(true)}
-          onProductsOpen={() => setProductsOpen(true)}
-          userMenuOpen={userMenuOpen}
-          onUserMenuOpen={() => setUserMenuOpen(true)}
-          onUserMenuClose={() => setUserMenuOpen(false)}
-          onLogoutClick={handleLogoutClick}
-        />
-      </header>
 
-      {searchOpen && <SearchOverlay onClose={() => setSearchOpen(false)} />}
-      {productsOpen && <ProductsOverlay onClose={() => setProductsOpen(false)} onSearchOpen={() => setSearchOpen(true)} />}
+        {/* ✅ ACTION ICONS */}
+        <div className="flex items-center gap-4">
+
+          {/* ✅ Location */}
+          <button className="flex items-center gap-1 text-xs text-white/80">
+            <MapPin size={16} className="text-sandstorm" />
+            <span>Location</span>
+          </button>
+
+          {/* ✅ Notifications */}
+          <button className="relative">
+            <Bell size={20} className="text-white/80" />
+            <span className="absolute -top-1 -right-1 w-3 h-3 bg-sandstorm rounded-full" />
+          </button>
+
+          {/* ✅ Wishlist */}
+          <button>
+            <Heart size={20} className="text-white/80" />
+          </button>
+
+          {/* ✅ Menu */}
+          <button onClick={() => setMenuOpen(true)}>
+            <Menu size={22} className="text-white" />
+          </button>
+        </div>
+      </motion.header>
+
+      {/* ✅ MENU SHEET */}
+      {menuOpen && (
+        <MobileMenuBar open={menuOpen} onClose={() => setMenuOpen(false)} />
+      )}
+
+      {/* ✅ BOTTOM NAV */}
+      <BottomNavMobile open={menuOpen} onOpen={() => setMenuOpen(true)} onClose={() => setMenuOpen(false)}/>
     </>
   );
 }
