@@ -228,7 +228,7 @@ export default function BikeShowcaseDesktop() {
         {/* ✅ Tech Sidebar */}
         <AnimatePresence>
           {showTech && (
-            <div className="fixed inset-0 z-400">
+            <div className="fixed inset-0 z-400 max-w-[1440px] mx-auto">
               <motion.div
                 className="absolute inset-0 bg-black/40 backdrop-blur-sm"
                 initial={{ opacity: 0 }}
