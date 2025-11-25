@@ -57,7 +57,7 @@ export const BikeComparisonData = {
                 "Serow City": "Comfortable with artwork",
                 "Saola Urban": "MTB Specific",
                 "Takin Lite": "MTB Saddle",
-            },
+            }
         },
         "Performance": {
             "Bottle Holder Option": {

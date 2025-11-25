@@ -12,7 +12,7 @@ export default function CategoryTabsDesktop({
   setActive: (c: string) => void;
 }) {
   return (
-    <div className="relative w-full bg-[#121212] rounded-t-lg p-1.5 flex gap-2">
+    <div className="relative w-full bg-[#292929] rounded-t-md p-4 flex gap-2">
       {categories.map((cat) => {
         const isActive = active === cat;
 
@@ -20,7 +20,7 @@ export default function CategoryTabsDesktop({
           <button
             key={cat}
             onClick={() => setActive(cat)}
-            className="relative flex-1 p-4 text-xs cursor-pointer font-bold rounded-md text-center"
+            className="relative flex-1 p-2.5 text-xs cursor-pointer font-bold rounded-full text-center"
           >
             {/* Sliding background */}
             {isActive && (
@@ -31,12 +31,12 @@ export default function CategoryTabsDesktop({
                   stiffness: 300,
                   damping: 25,
                 }}
-                className="absolute inset-0 bg-white rounded-md shadow-md"
+                className="absolute inset-0 bg-superblack border border-white/20 rounded-full shadow-md"
               />
             )}
 
             {/* Text */}
-            <span className={isActive ? "text-black relative" : "text-white/80 relative"}>
+            <span className={isActive ? "relative text-white " : "relative text-white/70"}>
               {cat}
             </span>
           </button>

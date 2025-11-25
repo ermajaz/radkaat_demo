@@ -3,7 +3,6 @@
 import { BikeModel, ComparisonCategory } from "@/types/bikeComparison";
 import React from "react";
 import SidebarProfilesDesktop from "./components/SidebarProfilesDesktop";
-import CategoryTabsDesktop from "./components/CategoryTabsDesktop";
 import { ComparisonTableDesktop } from "./components/ComparisonTableDesktop";
 import { RadarChartDesktop } from "./components/RadarChartDesktop";
 import { BikeComparisonData } from "@/utils/bikeComparisonData";
@@ -30,7 +29,7 @@ export default function BicycleComparisonDesktop() {
    <section className="w-full h-screen bg-superblack text-white flex overflow-hidden">
       <SidebarProfilesDesktop profiles={BikeComparisonData.profiles} />
 
-      <div className="h-full w-full m-auto pl-5 pt-3 flex flex-col">
+      <div className="h-full w-full m-auto pl-5 pt-10 flex flex-col">
         <ComparisonTableDesktop
           category={activeCategory}
           setCategory={setActiveCategory}

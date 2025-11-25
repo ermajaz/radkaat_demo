@@ -12,7 +12,7 @@ export default function SidebarProfilesDesktop({
   const [isSelected, setIsSelected] = React.useState<number | null>(0);
 
   return (
-    <div className="w-80 bg-[#121212] p-3 py-10 flex flex-col gap-3 relative">
+    <div className="w-100 border-r border-white/10 p-5 py-10 flex flex-col gap-1 relative">
       {profiles.map((p) => {
         const active = isSelected === p.id;
 
@@ -20,7 +20,7 @@ export default function SidebarProfilesDesktop({
           <button
             key={p.id}
             onClick={() => setIsSelected(p.id)}
-            className="relative p-4 rounded-md cursor-pointer text-left transition-all"
+            className="relative p-2 rounded-md cursor-pointer text-left transition-all"
           >
             {/* ✅ Sliding background */}
             {active && (
@@ -42,7 +42,7 @@ export default function SidebarProfilesDesktop({
               </span>
 
               <p
-                className={`text-xs mt-1.5 font-semibold ${
+                className={`text-xs mt-1 font-semibold ${
                   active ? "text-black/60" : "text-white/60"
                 }`}
               >
@@ -50,7 +50,7 @@ export default function SidebarProfilesDesktop({
               </p>
 
               <p
-                className={`mt-1.5 text-xs font-semibold ${
+                className={`mt-1 text-xs font-semibold ${
                   active ? "text-black/70" : "text-white/80"
                 }`}
               >

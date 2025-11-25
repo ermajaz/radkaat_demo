@@ -24,7 +24,7 @@ export default function RadkaatLoader() {
             <div className="flex flex-col items-center w-[140px]">
                 <motion.button
                     whileTap={{ scale: 0.94 }}
-                    className="relative w-28 h-28 rounded-full flex flex-col items-center justify-center
+                    className="relative w-20 h-20 rounded-full flex flex-col items-center justify-center
                    cursor-pointer select-none overflow-hidden bg-[#0A0A0A]/70
                    border border-white/10 backdrop-blur-xl
                    shadow-[0_0_40px_rgba(255,200,80,0.08)]"
@@ -32,8 +32,8 @@ export default function RadkaatLoader() {
                     {/* ✅ Soft Pulse Glow */}
                     <motion.div
                         animate={{ opacity: [0.12, 0.25, 0.12], scale: [1, 1.08, 1] }}
-                        transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
-                        className="absolute w-30 h-30 rounded-full bg-sandstorm/25 blur-2xl"
+                        transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
+                        className="absolute w-20 h-20 rounded-full bg-sandstorm/25 blur-2xl"
                     />
 
                     {/* ✅ Thin Rotating Light Ring */}
@@ -52,7 +52,7 @@ export default function RadkaatLoader() {
                     <motion.div
                         whileHover={{ rotate: 360 }}
                         transition={{ duration: 0.8, ease: "easeOut" }}
-                        className="z-10 w-10 h-10 mb-0.5"
+                        className="z-10 w-8 h-8"
                     >
                         <motion.div
                             initial={{ scale: 0.6, opacity: 0 }}
@@ -63,8 +63,8 @@ export default function RadkaatLoader() {
                             <Image
                                 src="/images/website-logo.png"
                                 alt="Radkaat Logo"
-                                width={60}
-                                height={60}
+                                width={40}
+                                height={40}
                                 className="object-contain"
                             />
                         </motion.div>

@@ -54,7 +54,7 @@ export const RadarChartDesktop = ({
 
 
   return (
-    <div className="w-full flex justify-between items-center px-4">
+    <div className="w-full flex justify-center items-center px-4">
       
       {/* RADAR CHART */}
       <div className="w-[50%] h-full shrink-0 relative">
@@ -90,29 +90,6 @@ export const RadarChartDesktop = ({
         </ResponsiveContainer>
       </div>
 
-      {/* LEGEND */}
-      <div className="w-[50%] flex items-center justify-center gap-12">
-        {selectedBikes.map((uiName) => {
-          const radarKey = radarKeyMap[uiName];
-          return (
-            <div key={uiName} className="flex flex-col items-center text-white">
-              
-              <div className="flex items-center gap-1">
-                <span
-                  className="w-3 h-3 rounded-full"
-                  style={{ backgroundColor: bikeColors[radarKey] }}
-                />
-                <span className="text-base">{radarKey}</span>
-              </div>
-
-              <span className="text-base font-semibold pt-2">
-                {avg(radarKey)}
-              </span>
-
-            </div>
-          );
-        })}
-      </div>
 
     </div>
   );

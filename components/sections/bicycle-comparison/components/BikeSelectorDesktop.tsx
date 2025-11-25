@@ -18,22 +18,24 @@ export default function BikeSelectorDesktop({
   options: string[];
 }) {
   return (
-    <Select value={selected} onValueChange={onSelect}>
+    <div className="px-2">
+      <Select value={selected} onValueChange={onSelect}>
       <SelectTrigger
         className="
-          w-[200px]
+          w-full
           bg-transparent
-          border border-white/30
+          border border-white/10
           rounded-sm
           text-white
           text-sm font-bold
           px-3 py-2
+          cursor-pointer
         "
       >
         <SelectValue placeholder="Select Bike" />
       </SelectTrigger>
 
-      <SelectContent className="bg-[#1a1a1a] text-white border border-white/20">
+      <SelectContent className="bg-[#1a1a1a] text-white border border-white/10">
         {options.map((opt) => (
           <SelectItem
             key={opt}
@@ -45,5 +47,6 @@ export default function BikeSelectorDesktop({
         ))}
       </SelectContent>
     </Select>
+    </div>
   );
 }

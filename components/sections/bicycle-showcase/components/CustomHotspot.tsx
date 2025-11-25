@@ -18,14 +18,24 @@ export default function CustomHotspot({ hotspot }: { hotspot: Hotspot }) {
     >
       <div className="relative flex items-center justify-center">
 
-        {/* ✅ OUTER STATIC RING */}
-        <div
-          className="absolute rounded-full border border-white/30"
+        {/* ✅ OUTER BREATHING RING */}
+        <motion.div
+          className="absolute rounded-full border border-white/40 bg-sandstorm/25"
           style={{
-            width: 30,
-            height: 30,
+            width: 28,
+            height: 28,
+          }}
+          animate={{
+            scale: [1, 1.1, 1],   // smooth radius change
+            opacity: [0.7, 1, 0.7] // optional realistic fade
+          }}
+          transition={{
+            duration: 2.2,
+            repeat: Infinity,
+            ease: "easeInOut"
           }}
         />
+
 
         {/* ✅ SOFT GLOW BETWEEN RINGS */}
         <motion.div

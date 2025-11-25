@@ -41,7 +41,7 @@ export default function BikeShowcaseDesktop() {
   useEffect(() => {
     const unsub = scrollYProgress.on("change", (v) => {
       const count = bike.specs.length;
-      const index = Math.min(Math.floor(v * count), count - 1);
+      const index = Math.min(Math.floor(v * (count + 1)), count - 1);
       setActiveSpecKey(bike.specs[index].key);
     });
     return () => unsub();
@@ -66,7 +66,7 @@ export default function BikeShowcaseDesktop() {
     <section
       id="bike-showcase"
       ref={containerRef}
-      style={{ height: `${bike.specs.length * 120}vh` }}
+      style={{ height: `${bike.specs.length * 80}vh` }}
       className="max-sm:hidden w-full relative text-white bg-superblack"
     >
       <motion.div
@@ -110,7 +110,7 @@ export default function BikeShowcaseDesktop() {
             animate={{ opacity: focus360 ? 0 : 1 }}
             transition={{ duration: 0.4, ease: "easeOut" }}
             className="px-3 pt-3 flex flex-col gap-3 shrink-0"
-            // style={{ opacity: focus360 ? 0 : 1 }}
+          // style={{ opacity: focus360 ? 0 : 1 }}
           >
             <BikeTabs
               bikes={BIKES}
@@ -129,9 +129,9 @@ export default function BikeShowcaseDesktop() {
               key={bikeChangeKey + "-desc"}
               initial="fadeStart"
               animate={{
-              ...anim.fadeIn,
-              opacity: focus360 ? 0 : 1,
-            }}
+                ...anim.fadeIn,
+                opacity: focus360 ? 0 : 1,
+              }}
               variants={anim}
               transition={{ duration: 0.4, ease: "easeOut" }}
             >
@@ -148,12 +148,12 @@ export default function BikeShowcaseDesktop() {
                 key={bikeChangeKey + "-specs"}
                 initial="slideLeftStart"
                 animate={{
-              ...anim.slideLeftIn,
-              opacity: focus360 ? 0 : 1,
-            }}
+                  ...anim.slideLeftIn,
+                  opacity: focus360 ? 0 : 1,
+                }}
                 variants={anim}
                 transition={{ duration: 0.45, ease: "easeOut" }}
-                className="col-span-2 overflow-y-auto pt-10 pr-10"
+                className="col-span-2 overflow-y-auto pt-5"
                 style={{ opacity: focus360 ? 0 : 1 }}
               >
                 <SpecTabs
@@ -193,7 +193,7 @@ export default function BikeShowcaseDesktop() {
                 }}
                 variants={anim}
                 transition={{ duration: 0.45, ease: "easeOut" }}
-                className="col-span-2 flex items-start justify-end pt-10"
+                className="col-span-2 flex items-start justify-end pt-5"
                 style={{ opacity: focus360 ? 0 : 1 }}
               >
                 <RightButtonGroup open360={() => setFocus360(true)} />

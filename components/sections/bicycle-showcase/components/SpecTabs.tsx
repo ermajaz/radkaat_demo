@@ -18,7 +18,7 @@ export default function SpecTabs({
           const active = s.key === activeSpecKey;
 
           return (
-            <li key={s.key} className="relative pl-3">
+            <li key={s.key} className="relative">
               <button
                 onClick={() => setActiveSpecKey(s.key)}
                 className="relative cursor-pointer text-sm inline-block text-left py-1 transition-all text-white"
@@ -35,13 +35,13 @@ export default function SpecTabs({
         })}
 
         {/* ✅ VIEW MORE */}
-        <li className="relative pl-3 pt-5">
+        <li className="relative pl-0 pt-5">
           <button
             onClick={onViewMore}
-            className="group flex items-center text-[12px] text-white/70 cursor-pointer transition-all"
+            className="group flex items-center text-[11px] text-white/70 cursor-pointer transition-all"
           >
-            <span className="relative">
-              View More
+            <span className="relative whitespace-nowrap group-hover:text-white transition-all duration-300">
+              View Detailed Specs
               {/* Animated underline */}
               <span className="absolute left-0 -bottom-0.5 h-[1.5px] w-0 bg-sandstorm transition-all duration-300 group-hover:w-full"></span>
             </span>
@@ -49,7 +49,7 @@ export default function SpecTabs({
             {/* Arrow Icon */}
             <svg
               xmlns="http://www.w3.org/2000/svg"
-              className="w-3 h-3 translate-x-0 opacity-70 transition-all duration-300 group-hover:translate-x-1 group-hover:opacity-100"
+              className="w-3 h-3 translate-x-0 opacity-70 transition-all duration-300 group-hover:translate-x-0.5 group-hover:opacity-100"
               fill="none"
               viewBox="0 0 24 24"
               stroke="currentColor"

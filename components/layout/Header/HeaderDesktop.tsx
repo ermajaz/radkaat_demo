@@ -19,6 +19,7 @@ export default function HeaderDesktop() {
   const [productsOpen, setProductsOpen] = useState(false);
   const [userMenuOpen, setUserMenuOpen] = useState(false);
   const [confirmOpen, setConfirmOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
 
   // 🔥 When logout is clicked (from menu)
   const handleLogoutClick = () => {
@@ -36,16 +37,33 @@ export default function HeaderDesktop() {
     });
   }, [showHeader]);
 
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setScrolled(window.scrollY > 500);
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+
   return (
     <>
       <header
         ref={headerRef}
         onMouseEnter={onHoverStart}
         onMouseLeave={onHoverEnd}
-        className="fixed w-full max-w-[1440px] mx-auto top-0 z-50 
-        text-white flex items-center justify-between 
-        px-12 py-4 bg-black/10 backdrop-blur-sm"
+        className={`
+    fixed w-full max-w-[1440px] mx-auto top-0 z-50
+    flex items-center justify-between px-12 py-4 text-white transition-all duration-300
+    ${scrolled
+            ? "bg-black/10 backdrop-blur-sm"
+            : "bg-transparent backdrop-blur-0"
+          }
+  `}
       >
+
         <Logo />
         <NavList onProductsOpen={() => setProductsOpen(true)} isProductsOpen={productsOpen} />
 

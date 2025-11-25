@@ -17,8 +17,8 @@ const navItems = [
   { id: "overview", label: "OVERVIEW" },
   { id: "features", label: "FEATURES" },
   { id: "geometry", label: "GEOMETRY" },
-  { id: "experience", label: "EXPERIENCE" },
   { id: "bike-config", label: "CONFIGURATION" },
+  { id: "experience", label: "EXPERIENCE" },
   { id: "ride", label: "TEST RIDE" },
 ];
 

@@ -89,9 +89,8 @@ export default function BikeDetails({
           <button
             key={v.name}
             onClick={() => setActiveVariant(i)}
-            className={`relative z-10 px-[18px] h-[25px] rounded-full uppercase text-sm font-semibold transition-colors duration-300 ${
-              activeVariant === i ? "text-black" : "text-stone"
-            }`}
+            className={`relative z-10 px-[18px] h-[25px] rounded-full uppercase text-sm font-semibold transition-colors duration-300 ${activeVariant === i ? "text-black" : "text-stone"
+              }`}
           >
             {v.name}
           </button>
@@ -142,6 +141,46 @@ export default function BikeDetails({
           Buy Now
         </span>
       </Button>
+      {/* ✅ Divider */}
+      {/* ✅ Centered OR Divider */}
+      <div className="flex items-center justify-center w-full">
+        <div className="w-8 border-t border-white/20" />
+
+        <span className="mx-3 text-[11px] uppercase tracking-wider text-white/40">
+          or
+        </span>
+
+        <div className="w-8 border-t border-white/20" />
+      </div>
+
+      {/* ✅ Advanced Test Ride CTA (NOT a button) */}
+      <motion.div
+        whileHover={{ opacity: 1 }}
+        className="text-[13px] ml-1 font-semibold uppercase tracking-wide
+             text-sandstorm cursor-pointer select-none
+             flex items-center gap-2"
+        onClick={() => window.open("/test-ride", "_blank")}
+      >
+        <span className="relative">
+          Test Ride
+          {/* subtle underline glow */}
+          <motion.span
+            className="absolute left-0 -bottom-0.5 h-0.5 w-full bg-sandstorm/50"
+            initial={{ scaleX: 0 }}
+            whileHover={{ scaleX: 1 }}
+            transition={{ duration: 0.35, ease: "easeOut" }}
+          />
+        </span>
+
+        {/* minimal arrow shimmer */}
+        <motion.span
+          initial={{ x: 0 }}
+          whileHover={{ x: 3 }}
+          transition={{ duration: 0.25 }}
+        >
+          →
+        </motion.span>
+      </motion.div>
     </motion.div>
   );
 }
