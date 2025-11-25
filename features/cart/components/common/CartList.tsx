@@ -1,4 +1,3 @@
-// components/cart/CartList.tsx
 "use client";
 
 import React from "react";
@@ -10,22 +9,31 @@ type Props = {
   products: CartProduct[];
   onQtyChange: (id: string, qty: number) => void;
   onRemove: (id: string) => void;
+  onVariantChange: (
+    id: string,
+    variant: { model?: string; color?: string }
+  ) => void;
 };
 
-export const CartList: React.FC<Props> = ({ products, onQtyChange, onRemove }) => {
-  if (!products || products.length === 0) {
-    return (
-      <CartEmpty/>
-    );
-  }
+export const CartList: React.FC<Props> = ({
+  products,
+  onQtyChange,
+  onRemove,
+  onVariantChange,
+}) => {
+  if (!products || products.length === 0) return <CartEmpty />;
 
   return (
-    <div>
-      <AnimatePresence initial={false}>
-        {products.map((p) => (
-          <CartItem key={p.id} product={p} onQtyChange={onQtyChange} onRemove={onRemove} />
-        ))}
-      </AnimatePresence>
-    </div>
+    <AnimatePresence initial={false}>
+      {products.map((p) => (
+        <CartItem
+          key={p.id}
+          product={p}
+          onQtyChange={onQtyChange}
+          onRemove={onRemove}
+          onVariantChange={onVariantChange}
+        />
+      ))}
+    </AnimatePresence>
   );
 };

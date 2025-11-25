@@ -3,6 +3,7 @@
 import React from "react";
 import clsx from "clsx";
 import { motion } from "framer-motion";
+import { AnimatedQuantity } from "@/utils/numberFlow";
 
 type Props = {
   value: number;
@@ -52,7 +53,7 @@ export const QuantityStepper: React.FC<Props> = ({
           "bg-[#141414] text-white border-x border-[#2a2a2a]"
         )}
       >
-        {value}
+        <AnimatedQuantity value={value} />
       </div>
 
       {/* Increase Button */}

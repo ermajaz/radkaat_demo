@@ -4,6 +4,8 @@ import React from "react";
 import { usePathname } from "next/navigation";
 import { motion } from "framer-motion";
 import { Stepper } from "@/components/common/Stepper";
+import { useResponsiveComponent } from "@/hooks/useResponsiveComponent";
+import StepperMobile from "@/components/common/StepperMobile";
 
 export default function CartLayout({ children }: { children: React.ReactNode }) {
   const pathname = usePathname();
@@ -23,17 +25,17 @@ export default function CartLayout({ children }: { children: React.ReactNode }) 
           sticky top-0 z-40
           backdrop-blur-md
           border-b border-[#1a1a1a]
-          px-6 md:px-12
-          py-4
+          px-0 md:px-12
+          md:py-4
         "
       >
         <div className="w-full mx-auto flex items-center">
-          <Stepper step={step} />
+          {useResponsiveComponent(<StepperMobile step={step} />, <Stepper step={step} />)}
         </div>
       </motion.div>
 
       {/* ✅ FULL PAGE SCROLLING CONTENT */}
-      <div className="w-full mx-auto px-5 py-6">
+      <div className="w-full mx-auto md:px-5 py-6">
         {children}
       </div>
     </main>

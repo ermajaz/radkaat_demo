@@ -6,6 +6,7 @@ import Image from "next/image";
 import { X } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { LoginForm } from "@/features/auth/components/LoginForm";
+import { FormattedNumber } from "@/utils/numberFlow";
 
 type Props = {
   subtotal: number;
@@ -85,7 +86,7 @@ export const CartSummary: React.FC<Props> = ({
                 </h2>
 
                 <h3 className="text-5xl md:text-[2.8rem] font-bold text-white tracking-tight mb-2">
-                  ₹{subtotal.toLocaleString("en-IN")}
+                  <FormattedNumber value={subtotal} />
                 </h3>
 
                 <div className="flex flex-col items-center space-y-1">
