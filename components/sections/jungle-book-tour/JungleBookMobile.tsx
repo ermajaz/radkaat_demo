@@ -2,24 +2,32 @@
 
 import { useState, useRef, useEffect } from "react";
 import Lenis from "lenis";
-import StoryScroller from "./components/StoryScroller";
 import JungleBookNavMobile from "./components/JungleBookNavMobile";
 import { destinations } from "@/utils/destination";
+import StoryScrollerMobile from "./components/StoryScrollerMobile";
 
 export default function JungleBookMobile() {
   const scrollRef = useRef<HTMLDivElement>(null);
   const [activeIndex, setActiveIndex] = useState(0);
 
-  // Smooth Scroll
   useEffect(() => {
-    const lenis = new Lenis({ duration: 0.7 });
-    const raf = (t: number) => {
-      lenis.raf(t);
-      requestAnimationFrame(raf);
-    };
+  window.scrollTo(0, 0); // ✅ lock scroll at top on load
+
+  const lenis = new Lenis({
+    duration: 0.7,
+    autoRaf: false,
+  });
+
+  function raf(time: number) {
+    lenis.raf(time);
     requestAnimationFrame(raf);
-    return () => lenis.destroy();
-  }, []);
+  }
+
+  requestAnimationFrame(raf);
+
+  return () => lenis.destroy();
+}, []);
+
 
   const onStoryClick = (index: number) => {
     setActiveIndex(index);
@@ -33,9 +41,9 @@ export default function JungleBookMobile() {
   };
 
   return (
-    <section className="relative w-full bg-linear-to-b from-[#001644] to-black pb-10">
-      <div ref={scrollRef} className="flex overflow-x-auto hide-scrollbar snap-x snap-mandatory gap-4 px-3">
-        <StoryScroller destinations={destinations} activeIndex={activeIndex} />
+    <section className="relative w-full bg-linear-to-b from-[#001644] to-black">
+      <div ref={scrollRef} className="flex overflow-x-auto hide-scrollbar snap-x snap-mandatory gap-4 py-4">
+        <StoryScrollerMobile destinations={destinations} activeIndex={activeIndex} />
       </div>
 
       <JungleBookNavMobile

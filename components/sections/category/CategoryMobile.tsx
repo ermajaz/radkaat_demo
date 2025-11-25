@@ -1,18 +1,13 @@
 "use client";
 
-import CategoryMobileGrid from "./components/CategoryMobileGrid";
+import CategoryCarouselMobile from "./components/CategoryCarouselMobile";
 
 
 
-export default function CategoryMobile() {
+export default function CategoryMobile({ onClose }: { onClose?: () => void }) {
   return (
-     <section
-      className="
-        relative w-full h-[80vh] overflow-hidden 
-        bg-[#090909] text-white flex flex-col justify-center items-center px-4 py-6
-      "
-    >
-      <CategoryMobileGrid />
+    <section className="w-full bg-superblack text-white py-4">
+      <CategoryCarouselMobile onClose={onClose} />
     </section>
   );
 }

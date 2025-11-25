@@ -1,22 +1,31 @@
 "use client";
 
-import { useState } from "react";
-import CardImage from "./CardImage";
-import {motion} from "framer-motion";
+import { motion } from "framer-motion";
+import CardImageMobile from "./CardImageMobile";
 
-export default function StoryCardMobile({ destination, isActive }: any) {
-  const [hovered, setHovered] = useState(false);
-
+export default function StoryCardMobile({
+  destination,
+  isActive,
+}: {
+  destination: any;
+  isActive: boolean;
+}) {
   return (
     <motion.div
-      whileTap={{ scale: 0.97 }}
-      onMouseEnter={() => setHovered(true)}
-      onMouseLeave={() => setHovered(false)}
-      onClick={() => window.open(destination.link, "_blank")}
-      className={`relative w-[85vw] h-[420px] shrink-0 rounded-xl overflow-hidden shadow-xl transition-all duration-500
-                ${isActive ? "scale-[1.02] shadow-gold/30" : ""}`}
+      initial={{ opacity: 0, scale: 0.96, y: 20 }}
+      animate={{
+        opacity: 1,
+        scale: isActive ? 1 : 0.97,
+        y: 0,
+      }}
+      transition={{ duration: 0.45, ease: "easeOut" }}
+      className={`
+        relative rounded-3xl overflow-hidden shadow-xl
+        bg-[#111]/60 backdrop-blur-xl border
+        ${isActive ? "border-sandstorm/60" : "border-white/10"}
+      `}
     >
-      <CardImage destination={destination} hovered={hovered} />
+      <CardImageMobile destination={destination} />
     </motion.div>
   );
 }

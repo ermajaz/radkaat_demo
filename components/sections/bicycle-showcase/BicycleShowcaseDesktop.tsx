@@ -67,7 +67,7 @@ export default function BikeShowcaseDesktop() {
       id="bike-showcase"
       ref={containerRef}
       style={{ height: `${bike.specs.length * 120}vh` }}
-      className="w-full relative text-white bg-superblack"
+      className="max-sm:hidden w-full relative text-white bg-superblack"
     >
       <motion.div
         style={{ position: "sticky", top: 0, height: "100vh" }}
