@@ -141,7 +141,7 @@ export default function Leaderboard() {
             transition={{ duration: 0.6, delay: i * 0.2 }}
             viewport={{ once: true }}
             whileHover={{ scale: 1.05, y: -4 }}
-            className="relative pt-10 pb-8 md:p-8 text-center overflow-visible backdrop-blur-2xl border border-white/10 shadow-[0_8px_40px_rgba(0,0,0,0.5)] bg-[rgba(255,255,255,0.05)]"
+            className="relative pt-10 pb-8 md:p-8 text-center overflow-visible backdrop-blur-2xl border border-[#2a2a2a] shadow-[0_8px_40px_rgba(0,0,0,0.5)] bg-[rgba(255,255,255,0.05)]"
           >
             {/* ✨ Gradient aura */}
             <div
@@ -154,7 +154,7 @@ export default function Leaderboard() {
             <motion.div
               className={`absolute -top-7 left-1/2 -translate-x-1/2 bg-linear-to-br ${getRankColor(
                 leader.rank
-              )} w-12 h-12 flex items-center justify-center text-black font-extrabold text-lg shadow-xl border border-white/10`}
+              )} w-12 h-12 flex items-center justify-center text-black font-extrabold text-lg shadow-xl border border-[#2a2a2a]`}
               initial={{ y: -20, opacity: 0 }}
               whileInView={{ y: 5, opacity: 1 }}
               transition={{ delay: 0.2 }}
@@ -211,7 +211,7 @@ export default function Leaderboard() {
       </div>
 
       {/* 🏍️ Remaining Leaders Table */}
-      <div className="max-w-6xl mx-auto overflow-hidden border border-white/10 bg-[rgba(255,255,255,0.04)] backdrop-blur-2xl shadow-[0_8px_25px_rgba(0,0,0,0.4)]">
+      <div className="max-w-6xl mx-auto overflow-hidden border border-[#2a2a2a] bg-[rgba(255,255,255,0.04)] backdrop-blur-2xl shadow-[0_8px_25px_rgba(0,0,0,0.4)]">
         <table className="w-full text-left text-white/80">
           <thead className="bg-white/5 text-sm uppercase tracking-wide text-white/60">
             <tr>
@@ -233,7 +233,7 @@ export default function Leaderboard() {
                   scale: 1.01,
                   backgroundColor: "rgba(255,255,255,0.05)",
                 }}
-                className="border-t border-white/10 transition-all"
+                className="border-t border-[#2a2a2a] transition-all"
               >
                 <td className="py-3 px-5 font-semibold text-sandstorm">
                   #{leader.rank}

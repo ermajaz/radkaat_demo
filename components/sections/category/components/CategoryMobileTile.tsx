@@ -41,7 +41,7 @@ export default function CategoryMobileTile({ product,delay }: { product: any,del
       }}
       className={`
         relative h-[22vh] rounded-lg overflow-hidden 
-        bg-[#111]/70 border border-[#E4D27C]/10 cursor-pointer
+        bg-[#121212]/70 border border-[#E4D27C]/10 cursor-pointer
         shadow-[0_10px_30px_rgba(0,0,0,0.5)] transition-all duration-500
         group ${hovered ? "scale-[1.03]" : "scale-[1.0]"}
       `}

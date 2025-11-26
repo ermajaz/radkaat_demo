@@ -85,7 +85,7 @@ export default function AccessoriesHero() {
         {/* ✅ Static Product */}
         <div className="flex-1 flex justify-center">
           <div
-            className="relative w-80 h-80 rounded-xl bg-white/5 backdrop-blur-xl border border-white/10 shadow-[0_24px_80px_rgba(0,0,0,0.7)]"
+            className="relative w-80 h-80 rounded-xl bg-white/5 backdrop-blur-xl border border-[#2a2a2a] shadow-[0_24px_80px_rgba(0,0,0,0.7)]"
           >
             <Image
               src="/images/accessories.jpg"
@@ -99,7 +99,7 @@ export default function AccessoriesHero() {
               initial={{ y: 30, opacity: 0 }}
               animate={{ y: 0, opacity: 1 }}
               transition={{ delay: 0.4, duration: 0.7 }}
-              className="absolute -bottom-4 left-6 right-6 h-20 rounded-2xl bg-black/70 backdrop-blur-xl border border-white/10 px-4 flex items-center justify-between"
+              className="absolute -bottom-4 left-6 right-6 h-20 rounded-2xl bg-black/70 backdrop-blur-xl border border-[#2a2a2a] px-4 flex items-center justify-between"
             >
               <div>
                 <p className="text-xs uppercase tracking-[0.25em] text-neutral-400">

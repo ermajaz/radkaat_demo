@@ -63,7 +63,7 @@ export const AddressList: React.FC<AddressListProps> = ({
           relative flex flex-col items-center justify-center gap-3 
           border border-dashed border-army/40 text-army 
           h-full min-h-[220px] md:min-h-50
-          bg-linear-to-b from-[#111] to-[#0a0a0a]
+          bg-linear-to-b from-[#121212] to-[#0a0a0a]
           hover:bg-army/10 transition-all duration-300 
           cursor-pointer group overflow-hidden
         "

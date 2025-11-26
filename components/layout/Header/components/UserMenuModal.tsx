@@ -2,7 +2,7 @@
 
 import { motion, AnimatePresence } from "framer-motion";
 import { useEffect, useRef } from "react";
-import { LogOut, User, Package, Heart, Bell, LucideIcon, ShoppingCart } from "lucide-react";
+import { LogOut, ShoppingCart, UserRound, ShoppingBasket } from "lucide-react";
 import gsap from "gsap";
 import { useRouter } from "next/navigation";
 import Image from "next/image";
@@ -22,8 +22,8 @@ interface UserMenuModalProps {
 }
 
 const menuItems = [
-  { label: "Profile", icon: User, href: "/profile" },
-  { label: "My Orders", icon: Package, href: "/orders" },
+  { label: "Profile", icon: UserRound, href: "/profile" },
+  { label: "My Orders", icon: ShoppingBasket, href: "/orders" },
   { label: "Cart", icon: ShoppingCart, href: "/cart" },
   { label: "Logout", icon: LogOut, href: "/auth/logout", confirm: true },
 ];
@@ -91,7 +91,7 @@ export default function UserMenuModal({
           )}
         >
           {/* User info */}
-          <div className="flex items-center gap-3 mb-4 border-b border-white/10 pb-3">
+          <div className="flex items-center gap-3 mb-4 border-b border-[#2a2a2a] pb-3">
             <div className="relative w-10 h-10 rounded-full overflow-hidden">
               <Image
                 src={user.avatar || "/images/default-avatar.png"}

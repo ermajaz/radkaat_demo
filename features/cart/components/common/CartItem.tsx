@@ -100,13 +100,13 @@ export const CartItem: React.FC<Props> = ({
             {product.models && (
               <Popover>
                 <PopoverTrigger asChild>
-                  <button className="px-3 py-1.5 rounded-md bg-[#1c1c1c] text-xs text-white/80 flex items-center gap-1 border border-white/10 hover:border-white/30 transition">
+                  <button className="px-3 py-1.5 rounded-md bg-[#1c1c1c] text-xs text-white/80 flex items-center gap-1 border border-[#2a2a2a] hover:border-white/30 transition">
                     {product.selectedModel ?? "Model"}
                     <ChevronDown size={12} />
                   </button>
                 </PopoverTrigger>
 
-                <PopoverContent className="p-0 w-40 bg-[#111] border border-white/10">
+                <PopoverContent className="p-0 w-40 bg-[#121212] border border-[#2a2a2a]">
                   <Command>
                     <CommandList>
                       <CommandGroup>
@@ -150,7 +150,7 @@ export const CartItem: React.FC<Props> = ({
                       aria-label={c.name}
                     >
                       <span
-                        className="w-4.5 h-4.5 border border-white/10 cursor-pointer rounded-full"
+                        className="w-4.5 h-4.5 border border-[#2a2a2a] cursor-pointer rounded-full"
                         style={{ backgroundColor: c.hex }}
                       />
                     </button>
@@ -204,7 +204,7 @@ export const CartItem: React.FC<Props> = ({
         flex items-center gap-1.5
         text-xs cursor-pointer font-semibold
         px-5 py-2 rounded-md
-        bg-[#141414] border border-white/10
+        bg-[#141414] border border-[#2a2a2a]
         text-sandstorm
         hover:border-sandstorm/40 hover:bg-[#1d1d1d]
         transition-all duration-300

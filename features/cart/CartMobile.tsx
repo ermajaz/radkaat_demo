@@ -54,7 +54,7 @@ export default function CartMobile({ initial }: Props) {
   };
 
   return (
-    <section className="relative min-h-screen bg-superblack text-white flex flex-col">
+    <section className="relative min-h-screen bg-superblack text-white flex flex-col pt-5">
       {/* Top shipping banner (simpler on mobile) */}
       <div className="px-4">
         <div className="relative overflow-hidden rounded-md border border-sandstorm/40 bg-[#101010] py-3 text-center text-[11px] uppercase tracking-[0.18em] text-sandstorm">

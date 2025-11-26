@@ -64,7 +64,7 @@ export const CartItemMobile: React.FC<Props> = ({
                 dragConstraints={{ left: -80, right: 0 }}
                 onDragEnd={handleDragEnd}
                 animate={controls}
-                className="relative z-10 rounded-xl border border-[#2a2a2a] bg-[#111]/95 px-3 py-3 flex gap-3 shadow-lg"
+                className="relative z-10 rounded-xl border border-[#2a2a2a] bg-[#121212]/95 px-3 py-3 flex gap-3 shadow-lg"
             >
                 {/* Image */}
                 <div className="flex flex-col items-center w-[88px]">
@@ -88,7 +88,7 @@ export const CartItemMobile: React.FC<Props> = ({
       flex items-center justify-center gap-1.5
       rounded-md
       bg-[#141414]
-      border border-white/10
+      border border-[#2a2a2a]
       py-1.5
       active:scale-[0.97]
       transition-all duration-300
@@ -135,13 +135,13 @@ export const CartItemMobile: React.FC<Props> = ({
                         {product.models && (
                             <Popover>
                                 <PopoverTrigger asChild>
-                                    <button className="px-3 py-2 rounded-md bg-[#181818] text-[10px] text-white/80 flex items-center gap-1 border border-white/10 hover:border-white/30 active:scale-95 transition">
+                                    <button className="px-3 py-2 rounded-md bg-[#181818] text-[10px] text-white/80 flex items-center gap-1 border border-[#2a2a2a] hover:border-white/30 active:scale-95 transition">
                                         {product.selectedModel ?? "Model"}
                                         <ChevronDown size={10} />
                                     </button>
                                 </PopoverTrigger>
 
-                                <PopoverContent className="p-0 w-36 bg-[#111] border border-white/10">
+                                <PopoverContent className="p-0 w-36 bg-[#121212] border border-[#2a2a2a]">
                                     <Command>
                                         <CommandList>
                                             <CommandGroup>
@@ -175,7 +175,7 @@ export const CartItemMobile: React.FC<Props> = ({
                                             className={`
                         w-6 h-6 rounded-full flex items-center justify-center
                         transition-all duration-300
-                        ${isActive ? "ring-2 ring-sandstorm ring-offset-2 ring-offset-[#111]" : ""}
+                        ${isActive ? "ring-2 ring-sandstorm ring-offset-2 ring-offset-[#121212]" : ""}
                       `}
                                             aria-label={c.name}
                                         >

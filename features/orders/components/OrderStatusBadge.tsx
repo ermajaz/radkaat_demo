@@ -10,7 +10,7 @@ export default function OrderStatusBadge({ status }: { status: string }) {
 
   return (
     <span
-      className={`text-xs px-3 py-2 border font-semibold tracking-wide uppercase ${colors[status] || "bg-white/10 text-white/70 border-white/10"}`}
+      className={`text-xs px-3 py-2 border font-semibold tracking-wide uppercase ${colors[status] || "bg-white/10 text-white/70 border-[#2a2a2a]"}`}
     >
       {status}
     </span>

@@ -83,7 +83,7 @@ export default function ApparelHero() {
           transition={{ duration: 1.1, ease: "easeOut" }}
           className="flex-1 flex justify-center"
         >
-          <div className="relative w-80 h-80 rounded-xl bg-white/5 backdrop-blur-xl border border-white/10 shadow-[0_24px_80px_rgba(0,0,0,0.7)]">
+          <div className="relative w-80 h-80 rounded-xl bg-white/5 backdrop-blur-xl border border-[#2a2a2a] shadow-[0_24px_80px_rgba(0,0,0,0.7)]">
             <Image
               src="/images/apparel.jpg"
               alt="Radkaat jersey"
@@ -96,7 +96,7 @@ export default function ApparelHero() {
               initial={{ opacity: 0, y: 25 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 1, duration: 0.6 }}
-              className="absolute -bottom-4 left-6 right-6 h-20 rounded-2xl bg-black/70 backdrop-blur-xl border border-white/10 px-4 flex items-center justify-between"
+              className="absolute -bottom-4 left-6 right-6 h-20 rounded-2xl bg-black/70 backdrop-blur-xl border border-[#2a2a2a] px-4 flex items-center justify-between"
             >
               <div>
                 <p className="text-xs uppercase tracking-[0.25em] text-neutral-400">

@@ -24,7 +24,7 @@ export const OrderSummary: React.FC<OrderSummaryProps> = ({ order }) => {
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.7 }}
       className="
-        relative border border-[#2b2b2b] bg-linear-to-b from-[#111]/80 to-[#090909]/80
+        relative border border-[#2b2b2b] bg-linear-to-b from-[#121212]/80 to-[#090909]/80
         backdrop-blur-md p-8 md:p-10 space-y-5 shadow-[inset_0_0_15px_rgba(139,169,137,0.1)]
       "
     >

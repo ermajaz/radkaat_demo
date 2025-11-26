@@ -27,7 +27,7 @@ export default function ProfileHeader() {
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.5 }}
-      className="relative flex flex-col md:flex-row items-center justify-between gap-6 bg-white/5 backdrop-blur-2xl border border-white/10 p-6 shadow-[0_8px_30px_rgba(0,0,0,0.4)] overflow-hidden"
+      className="relative flex flex-col md:flex-row items-center justify-between gap-6 bg-white/5 backdrop-blur-2xl border border-[#2a2a2a] p-6 shadow-[0_8px_30px_rgba(0,0,0,0.4)] overflow-hidden"
     >
       {/* 👤 User Info */}
       <div className="flex items-center gap-6 w-full md:w-auto">

@@ -1,6 +1,6 @@
 "use client";
 
-import { Search, User } from "lucide-react";
+import { Search, UserRound } from "lucide-react";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import UserMenuModal from "./UserMenuModal";
@@ -56,7 +56,7 @@ export default function HeaderIcons({
           onClick={() => router.push("/signin")}
           className="relative group cursor-pointer"
         >
-          <User
+          <UserRound
             size={22}
             strokeWidth={1.7}
             className="group-hover:text-army transition"

@@ -34,7 +34,7 @@ export default function SearchOverlay({ onClose }: { onClose: () => void }) {
       className="fixed inset-0 z-200 bg-superblack text-white flex flex-col h-screen mx-auto max-w-[1440px] overflow-y-auto"
     >
       {/* ✅ FIXED HEADER */}
-      <div className="flex items-center justify-between px-6 py-4 border-b border-white/10 shrink-0 h-[72px]">
+      <div className="flex items-center justify-between px-6 py-4 border-b border-[#2a2a2a] shrink-0 h-[72px]">
         <Image
           src="/images/website-logo.png"
           alt="Radkaat"

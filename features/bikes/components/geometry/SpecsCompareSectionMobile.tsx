@@ -12,7 +12,7 @@ export default function SpecsCompareSectionMobile() {
     <section className="relative w-full bg-superblack text-stone py-10 px-4 overflow-hidden">
       {/* ===== Toggle Header ===== */}
       <div className="flex justify-center mb-6">
-        <div className="relative w-[90%] h-11 bg-[#111]/50 border border-[#E4D27C]/20 rounded-full flex overflow-hidden backdrop-blur-md">
+        <div className="relative w-[90%] h-11 bg-[#121212]/50 border border-[#E4D27C]/20 rounded-full flex overflow-hidden backdrop-blur-md">
           {/* Animated Highlight */}
           <motion.div
             layout

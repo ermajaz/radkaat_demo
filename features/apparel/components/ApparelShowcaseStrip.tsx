@@ -49,7 +49,7 @@ export default function ApparelShowcaseStrip() {
           <motion.div
             key={s.title}
             transition={{ type: "spring", stiffness: 200, damping: 18 }}
-            className="relative hide-scrollbar snap-start min-w-[550px] h-[420px] rounded-xl overflow-hidden border border-white/10 bg-white/5 backdrop-blur-xl shadow-[0_0_40px_rgba(0,0,0,0.5)] cursor-pointer group"
+            className="relative hide-scrollbar snap-start min-w-[550px] h-[420px] rounded-xl overflow-hidden border border-[#2a2a2a] bg-white/5 backdrop-blur-xl shadow-[0_0_40px_rgba(0,0,0,0.5)] cursor-pointer group"
           >
             {/* ✅ Image */}
             <Image

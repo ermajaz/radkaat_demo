@@ -18,7 +18,7 @@ export default function ProductCardMobile({ product, index, onOpenSheet }: Props
     const { discountPercent } = calculateDiscount(mrp, variant.price);
 
     return (
-        <article className="snap-start h-[220px] bg-white/5 border border-white/10 rounded-2xl overflow-hidden backdrop-blur-xl shadow-[0_14px_50px_rgba(0,0,0,0.55)] mx-4 mb-5 flex">
+        <article className="snap-start h-[220px] bg-white/5 border border-[#2a2a2a] rounded-2xl overflow-hidden backdrop-blur-xl shadow-[0_14px_50px_rgba(0,0,0,0.55)] mx-4 mb-5 flex">
 
             {/* ✅ LEFT IMAGE COLUMN */}
             <div className="relative w-[42%] h-full rounded-l-2xl overflow-hidden">
@@ -70,13 +70,13 @@ export default function ProductCardMobile({ product, index, onOpenSheet }: Props
 
                     {/* ✅ FEATURE BADGES */}
                     <div className="flex flex-wrap gap-2 mt-3">
-                        <span className="text-[9px] px-2 py-1 rounded-full bg-white/10 border border-white/10 uppercase tracking-wide text-neutral-300">
+                        <span className="text-[9px] px-2 py-1 rounded-full bg-white/10 border border-[#2a2a2a] uppercase tracking-wide text-neutral-300">
                             Aero Fit
                         </span>
-                        <span className="text-[9px] px-2 py-1 rounded-full bg-white/10 border border-white/10 uppercase tracking-wide text-neutral-300">
+                        <span className="text-[9px] px-2 py-1 rounded-full bg-white/10 border border-[#2a2a2a] uppercase tracking-wide text-neutral-300">
                             All-Weather
                         </span>
-                        <span className="text-[9px] px-2 py-1 rounded-full bg-white/10 border border-white/10 uppercase tracking-wide text-neutral-300">
+                        <span className="text-[9px] px-2 py-1 rounded-full bg-white/10 border border-[#2a2a2a] uppercase tracking-wide text-neutral-300">
                             Breathable
                         </span>
                     </div>

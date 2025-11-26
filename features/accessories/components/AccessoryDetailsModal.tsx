@@ -36,7 +36,7 @@ export default function AccessoryDetailsModal({ open, onClose, data }: Props) {
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.9, y: 20 }}
           >
-            <div className="bg-[#0C0C0C] border border-white/10 max-w-md w-full overflow-hidden shadow-xl">
+            <div className="bg-[#0C0C0C] border border-[#2a2a2a] max-w-md w-full overflow-hidden shadow-xl">
               <div className="relative h-56">
                 <Image src={data.image} alt={data.name} fill className="object-contain p-4" />
                 <X onClick={onClose} className="absolute top-4 right-4 text-white cursor-pointer" />
@@ -52,7 +52,7 @@ export default function AccessoryDetailsModal({ open, onClose, data }: Props) {
                   </p>
                   <div className="flex flex-wrap gap-2">
                     {data.features.map((f) => (
-                      <span key={f} className="px-2 py-1 text-[10px] bg-white/5 border border-white/10 rounded-sm text-neutral-200">
+                      <span key={f} className="px-2 py-1 text-[10px] bg-white/5 border border-[#2a2a2a] rounded-sm text-neutral-200">
                         {f}
                       </span>
                     ))}

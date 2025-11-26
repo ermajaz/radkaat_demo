@@ -14,8 +14,8 @@ export default function OrderSummary({ order }: { order: Order }) {
   };
 
   return (
-    <div className="bg-white/6 backdrop-blur-xl border border-white/10 p-6 space-y-5">
-      <h3 className="text-lg font-semibold border-b border-white/10 pb-2">
+    <div className="bg-white/6 backdrop-blur-xl border border-[#2a2a2a] p-6 space-y-5">
+      <h3 className="text-lg font-semibold border-b border-[#2a2a2a] pb-2">
         Order Summary
       </h3>
 
@@ -50,7 +50,7 @@ export default function OrderSummary({ order }: { order: Order }) {
           </span>
         </div>
 
-        <div className="border-t border-white/10 pt-3 flex justify-between font-semibold text-white">
+        <div className="border-t border-[#2a2a2a] pt-3 flex justify-between font-semibold text-white">
           <span>Total Payable</span>
           <span>₹{breakdown.total.toLocaleString("en-IN")}</span>
         </div>

@@ -34,7 +34,7 @@ export default function SearchOverlayMobile({
         transition={{ type: "spring", stiffness: 220, damping: 22 }}
         className="
           fixed bottom-0 left-0 right-0
-          h-[80vh] border-t border-white/10
+          h-[80vh] border-t border-[#2a2a2a]
           bg-superblack text-white z-1000
           rounded-t-3xl overflow-hidden
           shadow-[0_-20px_60px_rgba(0,0,0,0.6)]
@@ -42,7 +42,7 @@ export default function SearchOverlayMobile({
         "
       >
         {/* ✅ HANDLE + CLOSE */}
-        <div className="relative py-4 flex flex-col items-center border-b border-white/10">
+        <div className="relative py-4 flex flex-col items-center border-b border-[#2a2a2a]">
           <div className="w-20 h-1.5 bg-white/20 rounded-full" />
         </div>
 

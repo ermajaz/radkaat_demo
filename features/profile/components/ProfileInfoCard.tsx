@@ -14,7 +14,7 @@ export default function ProfileInfoCard() {
 
   return (
     <motion.div
-      className="relative bg-white/5 backdrop-blur-2xl border border-white/10 p-6 shadow-[0_8px_40px_rgba(0,0,0,0.4)]"
+      className="relative bg-white/5 backdrop-blur-2xl border border-[#2a2a2a] p-6 shadow-[0_8px_40px_rgba(0,0,0,0.4)]"
       initial={{ opacity: 0, y: 30 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.6 }}
@@ -28,7 +28,7 @@ export default function ProfileInfoCard() {
         <motion.button
           whileHover={{ scale: 1.05 }}
           whileTap={{ scale: 0.95 }}
-          className="flex items-center cursor-pointer gap-2 text-sm bg-white/10 hover:bg-white/20 px-3 py-1.5 border border-white/10 transition-all text-white/80"
+          className="flex items-center cursor-pointer gap-2 text-sm bg-white/10 hover:bg-white/20 px-3 py-1.5 border border-[#2a2a2a] transition-all text-white/80"
         >
           <Edit3 size={14} /> Edit
         </motion.button>
@@ -51,7 +51,7 @@ export default function ProfileInfoCard() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: idx * 0.1 }}
             >
-              <div className="p-2 bg-white/10 rounded-md border border-white/10 flex items-center justify-center transition-all duration-300 group-hover:bg-white/20">
+              <div className="p-2 bg-white/10 rounded-md border border-[#2a2a2a] flex items-center justify-center transition-all duration-300 group-hover:bg-white/20">
                 <Icon size={16} className="text-white/80" />
               </div>
               <div>

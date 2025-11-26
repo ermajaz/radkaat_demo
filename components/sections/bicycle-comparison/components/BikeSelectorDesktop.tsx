@@ -24,7 +24,7 @@ export default function BikeSelectorDesktop({
         className="
           w-full
           bg-transparent
-          border border-white/10
+          border border-[#2a2a2a]
           rounded-sm
           text-white
           text-sm font-bold
@@ -35,7 +35,7 @@ export default function BikeSelectorDesktop({
         <SelectValue placeholder="Select Bike" />
       </SelectTrigger>
 
-      <SelectContent className="bg-[#1a1a1a] text-white border border-white/10">
+      <SelectContent className="bg-[#1a1a1a] text-white border border-[#2a2a2a]">
         {options.map((opt) => (
           <SelectItem
             key={opt}

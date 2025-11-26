@@ -21,8 +21,8 @@ export default function StoryCardMobile({
       transition={{ duration: 0.45, ease: "easeOut" }}
       className={`
         relative rounded-3xl overflow-hidden shadow-xl
-        bg-[#111]/60 backdrop-blur-xl border
-        ${isActive ? "border-sandstorm/60" : "border-white/10"}
+        bg-[#121212]/60 backdrop-blur-xl border
+        ${isActive ? "border-sandstorm/60" : "border-[#2a2a2a]"}
       `}
     >
       <CardImageMobile destination={destination} />

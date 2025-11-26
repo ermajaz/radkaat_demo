@@ -15,7 +15,7 @@ export default function OrderDetailsHeader({ order }: { order: Order }) {
       initial={{ opacity: 0, y: 15 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.4 }}
-      className="relative overflow-hidden bg-white/6 backdrop-blur-xl border border-white/10 p-6 shadow-lg"
+      className="relative overflow-hidden bg-white/6 backdrop-blur-xl border border-[#2a2a2a] p-6 shadow-lg"
     >
       <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
         {/* Left Section — Order Info */}

@@ -23,7 +23,7 @@ export const AddressCard: React.FC<AddressCardProps> = ({
       transition={{ type: "spring", stiffness: 200, damping: 18 }}
       className={`
         max-h-[250px] relative cursor-pointer border p-6 md:p-7 rounded-none
-        bg-linear-to-b from-[#111] to-[#0a0a0a] overflow-hidden
+        bg-linear-to-b from-[#121212] to-[#0a0a0a] overflow-hidden
         transition-all duration-500 group
         ${
           isSelected

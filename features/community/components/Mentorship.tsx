@@ -120,7 +120,7 @@ export const Mentorship: React.FC<{ data?: Mentor[] }> = ({ data }) => {
               transition={{ duration: 0.2, delay: 0 }}
               viewport={{ once: true }}
               whileHover={{ scale: 1.03 }}
-              className="relative group overflow-hidden border border-white/10 bg-white/3 backdrop-blur-2xl p-6 flex flex-col justify-between transition-all duration-500"
+              className="relative group overflow-hidden border border-[#2a2a2a] bg-white/3 backdrop-blur-2xl p-6 flex flex-col justify-between transition-all duration-500"
             >
               {/* Glow background */}
               <div className="absolute inset-0 bg-linear-to-br from-rust/10 via-transparent to-sandstorm/10 opacity-0 group-hover:opacity-100 transition-opacity duration-700 blur-2xl" />
@@ -161,7 +161,7 @@ export const Mentorship: React.FC<{ data?: Mentor[] }> = ({ data }) => {
                 {mentor.expertise.map((exp, idx) => (
                   <span
                     key={idx}
-                    className="px-3 py-1 bg-white/10 border border-white/10 text-xs font-medium text-white/80 backdrop-blur-sm"
+                    className="px-3 py-1 bg-white/10 border border-[#2a2a2a] text-xs font-medium text-white/80 backdrop-blur-sm"
                   >
                     {exp}
                   </span>

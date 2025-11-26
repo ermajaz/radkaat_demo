@@ -37,7 +37,7 @@ export default function BikeConfigSection() {
       <div className="flex w-full gap-5 items-start">
 
         {/* ✅ LEFT — Video Thumbnail */}
-        <div className="relative w-[520px] h-[500px] overflow-hidden border border-white/10 bg-black rounded-md">
+        <div className="relative w-[520px] h-[500px] overflow-hidden border border-[#2a2a2a] bg-black rounded-md">
           <Image
             src="https://m.media-amazon.com/images/I/81xtd9KWxTL._AC_SL1500_.jpg"
             alt="Bike Configuration Video"
@@ -80,7 +80,7 @@ export default function BikeConfigSection() {
           ].map((src, i) => (
             <div
               key={i}
-              className="relative w-full h-60 overflow-hidden border border-white/10 bg-black rounded-md"
+              className="relative w-full h-60 overflow-hidden border border-[#2a2a2a] bg-black rounded-md"
             >
               <Image src={src} alt="" fill className="object-cover scale-125" />
             </div>

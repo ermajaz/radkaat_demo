@@ -35,7 +35,7 @@ export default function OrderTimeline({ status }: OrderTimelineProps) {
   const progressPercent = (currentStage / (stages.length - 1)) * 100;
 
   return (
-    <div className="px-10 sm:px-30 md:px-50 relative mx-auto overflow-hidden bg-linear-to-br from-[#0f0f0f]/90 via-[#111]/90 to-[#0b0b0b]/90 border border-white/10 p-8 backdrop-blur-xl shadow-[0_0_25px_rgba(0,0,0,0.6)]">
+    <div className="px-10 sm:px-30 md:px-50 relative mx-auto overflow-hidden bg-linear-to-br from-[#0f0f0f]/90 via-[#121212]/90 to-[#0b0b0b]/90 border border-[#2a2a2a] p-8 backdrop-blur-xl shadow-[0_0_25px_rgba(0,0,0,0.6)]">
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_20%,rgba(0,255,180,0.08),transparent_70%)] pointer-events-none" />
 
       <h3 className="text-lg font-semibold mb-10 tracking-wide text-center">
@@ -71,14 +71,14 @@ export default function OrderTimeline({ status }: OrderTimelineProps) {
             >
               {/* Description bubble (absolute) */}
               <motion.div
-                className={`absolute bottom-[110%] px-3 py-2 w-44 text-xs text-white/70 bg-white/[0.07] backdrop-blur-sm border border-white/10 shadow-[0_0_10px_rgba(0,0,0,0.2)] transition-all duration-300 ${
+                className={`absolute bottom-[110%] px-3 py-2 w-44 text-xs text-white/70 bg-white/[0.07] backdrop-blur-sm border border-[#2a2a2a] shadow-[0_0_10px_rgba(0,0,0,0.2)] transition-all duration-300 ${
                   active
                     ? "opacity-100 translate-y-0"
                     : "opacity-0 translate-y-2 pointer-events-none"
                 }`}
               >
                 {stage.desc}
-                <div className="absolute left-1/2 bottom-[-5px] -translate-x-1/2 w-2 h-2 bg-white/[0.07] rotate-45 border-b border-r border-white/10" />
+                <div className="absolute left-1/2 bottom-[-5px] -translate-x-1/2 w-2 h-2 bg-white/[0.07] rotate-45 border-b border-r border-[#2a2a2a]" />
               </motion.div>
 
               {/* Node Circle */}
@@ -87,7 +87,7 @@ export default function OrderTimeline({ status }: OrderTimelineProps) {
                 className={`relative flex items-center justify-center w-14 h-14 rounded-full border-2 transition-all duration-300 ${
                   active
                     ? "border-emerald-400 bg-linear-to-br from-emerald-500/20 to-lime-500/10 shadow-[0_0_20px_rgba(34,197,94,0.3)]"
-                    : "border-white/10 bg-white/5"
+                    : "border-[#2a2a2a] bg-white/5"
                 }`}
               >
                 <Icon

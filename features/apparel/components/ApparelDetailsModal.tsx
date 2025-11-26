@@ -42,7 +42,7 @@ export default function ApparelDetailsModal({ open, onClose, data }: Props) {
                         exit={{ scale: 0.92, opacity: 0, y: 20 }}
                         transition={{ duration: 0.25, ease: "easeOut" }}
                     >
-                        <div className="bg-[#0C0C0C] border border-white/10 shadow-2xl max-w-xl w-full overflow-hidden">
+                        <div className="bg-[#0C0C0C] border border-[#2a2a2a] shadow-2xl max-w-xl w-full overflow-hidden">
 
                             {/* IMAGE */}
                             <div className="relative h-64 w-full">
@@ -86,7 +86,7 @@ export default function ApparelDetailsModal({ open, onClose, data }: Props) {
                                                 initial={{ opacity: 0, y: 6 }}
                                                 animate={{ opacity: 1, y: 0 }}
                                                 transition={{ duration: 0.25 }}
-                                                className="px-3 py-1 text-[11px] bg-white/5 border border-white/10 rounded-sm text-neutral-200 backdrop-blur-sm"
+                                                className="px-3 py-1 text-[11px] bg-white/5 border border-[#2a2a2a] rounded-sm text-neutral-200 backdrop-blur-sm"
                                             >
                                                 {f}
                                             </motion.div>

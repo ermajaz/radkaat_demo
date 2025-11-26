@@ -17,7 +17,7 @@ export default function StoryCardDesktop({ destination, isActive }: any) {
       onMouseLeave={() => setHovered(false)}
       onClick={() => window.open(destination.link, "_blank")}
       className={`relative w-full mx-auto h-[560px] cursor-pointer flex overflow-hidden shadow-2xl group transition-all duration-500 
-                border ${isActive ? "bg-[#111] border-white/30" : "bg-black/20 border-white/10"}`}
+                border ${isActive ? "bg-[#121212] border-white/30" : "bg-black/20 border-[#2a2a2a]"}`}
     >
       {/* CardImage → 70% width */}
       <div className="relative w-[70%] h-full">

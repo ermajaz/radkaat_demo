@@ -3,7 +3,7 @@ import { X } from "lucide-react";
 
 export default function Header({ onClose }: { onClose: () => void }) {
   return (
-    <div className="flex items-center justify-between px-10 tracking-wider py-5 border-b border-white/10">
+    <div className="flex items-center justify-between px-10 tracking-wider py-5 border-b border-[#2a2a2a]">
       <span className="text-3xl font-bold">SPECIFICATIONS</span>
 
       <button

@@ -45,7 +45,7 @@ export default function AccessoriesShowcaseStripMobile() {
                   snap-center
                   relative min-w-[85%] h-[65vh]
                   rounded-2xl overflow-hidden
-                  bg-white/5 border border-white/10 backdrop-blur-xl
+                  bg-white/5 border border-[#2a2a2a] backdrop-blur-xl
                   shadow-[0_12px_50px_rgba(0,0,0,0.55)]
                 "
                     >
@@ -90,7 +90,7 @@ export default function AccessoriesShowcaseStripMobile() {
                             className="
                     absolute bottom-5 left-1/2 -translate-x-1/2
                     w-[85%] rounded-xl p-4
-                    bg-black/40 backdrop-blur-xl border border-white/10
+                    bg-black/40 backdrop-blur-xl border border-[#2a2a2a]
                   "
                         >
                             <p className="text-[14px] font-medium leading-snug">

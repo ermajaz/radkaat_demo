@@ -65,7 +65,7 @@ export default function FeatureShowcaseMobile({ features }: Props) {
       className="
         relative w-full h-screen overflow-hidden
         flex items-center justify-center
-        bg-linear-to-b from-black via-[#0B0B0B] to-[#111]
+        bg-linear-to-b from-black via-[#0B0B0B] to-[#121212]
         text-white
       "
     >

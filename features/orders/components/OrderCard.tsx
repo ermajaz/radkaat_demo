@@ -23,7 +23,7 @@ export default function OrderCard({ order }: { order: Order }) {
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.45, ease: "easeOut" }}
       whileHover={{ y: -4 }}
-      className="relative overflow-hidden border border-white/10 bg-white/4 hover:bg-white/[0.07] transition-all duration-500 backdrop-blur-2xl p-6 shadow-[0_0_25px_rgba(0,0,0,0.4)] group"
+      className="relative overflow-hidden border border-[#2a2a2a] bg-white/4 hover:bg-white/[0.07] transition-all duration-500 backdrop-blur-2xl p-6 shadow-[0_0_25px_rgba(0,0,0,0.4)] group"
     >
       {/* ✨ Ambient Glow */}
       <motion.div
@@ -70,7 +70,7 @@ export default function OrderCard({ order }: { order: Order }) {
                   }}
                   transition={{ type: "spring", stiffness: 300, damping: 20 }}
                 >
-                  <div className="relative w-[90px] h-[90px] rounded-xl overflow-hidden border border-white/10 bg-[#101010] shadow-[0_8px_20px_rgba(0,0,0,0.4)] hover:shadow-[0_0_18px_rgba(255,255,255,0.2)] transition-all">
+                  <div className="relative w-[90px] h-[90px] rounded-xl overflow-hidden border border-[#2a2a2a] bg-[#101010] shadow-[0_8px_20px_rgba(0,0,0,0.4)] hover:shadow-[0_0_18px_rgba(255,255,255,0.2)] transition-all">
                     <Image
                       src={
                         p.image && p.image.startsWith("http")
@@ -105,10 +105,10 @@ export default function OrderCard({ order }: { order: Order }) {
       )}
 
       {/* Bottom Section */}
-      <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 border-t border-white/10 pt-4">
+      <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 border-t border-[#2a2a2a] pt-4">
         {/* Order Info */}
         <div className="flex items-center gap-3">
-          <div className="w-10 h-10 bg-white/10 border border-white/10 rounded-lg flex items-center justify-center shadow-[inset_0_0_6px_rgba(255,255,255,0.1)]">
+          <div className="w-10 h-10 bg-white/10 border border-[#2a2a2a] rounded-lg flex items-center justify-center shadow-[inset_0_0_6px_rgba(255,255,255,0.1)]">
             <PackageOpen size={18} className="text-white/70" />
           </div>
           <div>

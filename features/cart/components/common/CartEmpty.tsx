@@ -13,7 +13,7 @@ export const CartEmpty = () => {
         initial={{ scale: 0.7, opacity: 0 }}
         animate={{ scale: 1, opacity: 1 }}
         transition={{ duration: 0.6, ease: "easeOut" }}
-        className="w-28 h-28 flex items-center justify-center bg-superblack border border-white/10 rounded-full shadow-[0_0_40px_rgba(0,0,0,0.25)]"
+        className="w-28 h-28 flex items-center justify-center bg-superblack border border-[#2a2a2a] rounded-full shadow-[0_0_40px_rgba(0,0,0,0.25)]"
       >
         <ShoppingBag size={52} className="text-stone" strokeWidth={1.5} />
       </motion.div>

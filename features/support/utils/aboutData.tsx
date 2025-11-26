@@ -80,12 +80,12 @@ export const brandData: SupportSection[] = [
           grounded in action. No gloss, just purpose.
         </p>
         <div className="p-4 rounded-lg text-sm text-white grid grid-cols-3 gap-2">
-          <div className="h-12 w-full border-2 border-white/10 bg-[#0f0708] rounded" title="Super Black"></div>
-          <div className="h-12 w-full border-2 border-white/10 bg-[#003a5d] rounded" title="Petrol Blue"></div>
-          <div className="h-12 w-full border-2 border-white/10 bg-[#516316] rounded" title="Army Green"></div>
-          <div className="h-12 w-full border-2 border-white/10 bg-[#c6b783] rounded" title="Sandstorm"></div>
-          <div className="h-12 w-full border-2 border-white/10 bg-[#8D363B] rounded" title="Rust"></div>
-          <div className="h-12 w-full border-2 border-white/10 bg-[#001644] rounded" title="Navy Blue"></div>
+          <div className="h-12 w-full border-2 border-[#2a2a2a] bg-[#0f0708] rounded" title="Super Black"></div>
+          <div className="h-12 w-full border-2 border-[#2a2a2a] bg-[#003a5d] rounded" title="Petrol Blue"></div>
+          <div className="h-12 w-full border-2 border-[#2a2a2a] bg-[#516316] rounded" title="Army Green"></div>
+          <div className="h-12 w-full border-2 border-[#2a2a2a] bg-[#c6b783] rounded" title="Sandstorm"></div>
+          <div className="h-12 w-full border-2 border-[#2a2a2a] bg-[#8D363B] rounded" title="Rust"></div>
+          <div className="h-12 w-full border-2 border-[#2a2a2a] bg-[#001644] rounded" title="Navy Blue"></div>
         </div>
       </div>
     ),

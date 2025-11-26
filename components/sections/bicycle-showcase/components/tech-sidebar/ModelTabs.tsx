@@ -10,7 +10,7 @@ export default function ModelTabs({
   setActive: (m: string) => void;
 }) {
   return (
-    <div className="w-fit flex gap-8 border-b border-white/10">
+    <div className="w-fit flex gap-8 border-b border-[#2a2a2a]">
       {models.map((m) => {
         const isActive = active === m;
 

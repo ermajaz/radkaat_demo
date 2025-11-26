@@ -53,7 +53,7 @@ export default function VariantBottomSheet({
         animate={{ y: 0 }}
         exit={{ y: "100%" }}
         transition={{ type: "spring", stiffness: 260, damping: 28 }}
-        className="fixed inset-x-0 bottom-0 z-50 rounded-t-3xl bg-superblack border-t border-white/10 p-6 pb-10 max-h-[80vh] overflow-y-auto"
+        className="fixed inset-x-0 bottom-0 z-50 rounded-t-3xl bg-superblack border-t border-[#2a2a2a] p-6 pb-10 max-h-[80vh] overflow-y-auto"
         onClick={(e) => e.stopPropagation()}
       >
         {/* HANDLE */}
@@ -103,7 +103,7 @@ export default function VariantBottomSheet({
                   px-3 py-1.5 rounded-full text-[11px] uppercase font-medium border
                   ${
                     !v.inStock
-                      ? "border-white/10 text-neutral-600 line-through cursor-not-allowed"
+                      ? "border-[#2a2a2a] text-neutral-600 line-through cursor-not-allowed"
                       : activeVariant.id === v.id
                       ? "bg-sandstorm/20 border-sandstorm text-sandstorm"
                       : "border-white/20 text-neutral-200"
@@ -198,7 +198,7 @@ export default function VariantBottomSheet({
         </div>
 
         {/* ✅ APPLE STYLE SWIPE */}
-        <div className="relative mt-7 rounded-[999px] h-16 w-full bg-sandstorm/60 overflow-hidden backdrop-blur-xl border border-white/10">
+        <div className="relative mt-7 rounded-[999px] h-16 w-full bg-sandstorm/60 overflow-hidden backdrop-blur-xl border border-[#2a2a2a]">
           {/* Dynamic Opacity */}
           <motion.div
             style={{ opacity: 0.6 + progress * 0.4 }}

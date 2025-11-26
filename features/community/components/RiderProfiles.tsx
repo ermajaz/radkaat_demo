@@ -81,7 +81,7 @@ function RiderCard({ rider, delay }: { rider: Rider; delay: number }) {
         visible: { opacity: 1, y: 0, transition: { duration: 0.6, delay } },
       }}
       whileHover={{ scale: 1.05 }}
-      className="relative bg-linear-to-br from-[#1a1f2a] to-[#111519] backdrop-blur-md border border-white/10 p-6 flex flex-col items-center text-white shadow-lg hover:shadow-2xl cursor-pointer"
+      className="relative bg-linear-to-br from-[#1a1f2a] to-[#111519] backdrop-blur-md border border-[#2a2a2a] p-6 flex flex-col items-center text-white shadow-lg hover:shadow-2xl cursor-pointer"
     >
       {/* Avatar */}
       <div className="relative w-28 h-28">

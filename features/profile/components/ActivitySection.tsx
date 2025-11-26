@@ -27,7 +27,7 @@ const activities: Activity[] = [
 export default function ActivitySection() {
   return (
     <motion.div
-      className="relative bg-white/5 backdrop-blur-2xl border border-white/10 p-6 shadow-[0_8px_40px_rgba(0,0,0,0.4)] space-y-5 overflow-hidden"
+      className="relative bg-white/5 backdrop-blur-2xl border border-[#2a2a2a] p-6 shadow-[0_8px_40px_rgba(0,0,0,0.4)] space-y-5 overflow-hidden"
       initial={{ opacity: 0, y: 30 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.6 }}
@@ -79,7 +79,7 @@ export default function ActivitySection() {
                 <div className="flex items-start justify-between">
                   <div className="flex items-center gap-3">
                     <motion.div
-                      className="w-8 h-8 flex items-center justify-center bg-white/10 border border-white/10 rounded-md group-hover:bg-white/20 transition-all"
+                      className="w-8 h-8 flex items-center justify-center bg-white/10 border border-[#2a2a2a] rounded-md group-hover:bg-white/20 transition-all"
                       whileHover={{ scale: 1.1 }}
                     >
                       <Icon size={16} className="text-white/80" />

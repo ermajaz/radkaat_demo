@@ -14,7 +14,7 @@ import { SPEC_GRAPH_DATA } from "../../utils/bicycle-showcase";
 
 export default function ComparisonGraph() {
   return (
-    <div className="mt-4 bg-white/5 p-6 rounded-xl border border-white/10">
+    <div className="mt-4 bg-white/5 p-6 rounded-xl border border-[#2a2a2a]">
       <h3 className="text-lg font-semibold mb-4">Advanced Comparison Graph</h3>
 
       <div className="w-full h-80">

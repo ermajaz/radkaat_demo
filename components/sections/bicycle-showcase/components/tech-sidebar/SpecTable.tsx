@@ -45,7 +45,7 @@ export default function SpecTable({
           key={i}
           onMouseEnter={() => onHover(row.values[0].image ?? null)}
           onMouseLeave={() => onHover(null)}
-          className="grid grid-cols-4 py-3 border-b border-white/10 hover:bg-white/5 cursor-pointer"
+          className="grid grid-cols-4 py-3 border-b border-[#2a2a2a] hover:bg-white/5 cursor-pointer"
         >
           <span className="text-white/70 text-sm">{row.label}</span>
           {row.values.map((v: any, idx: number) => (

@@ -26,7 +26,7 @@ export default function RadkaatLoader() {
                     whileTap={{ scale: 0.94 }}
                     className="relative w-20 h-20 rounded-full flex flex-col items-center justify-center
                    cursor-pointer select-none overflow-hidden bg-[#0A0A0A]/70
-                   border border-white/10 backdrop-blur-xl
+                   border border-[#2a2a2a] backdrop-blur-xl
                    shadow-[0_0_40px_rgba(255,200,80,0.08)]"
                 >
                     {/* ✅ Soft Pulse Glow */}

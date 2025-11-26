@@ -60,7 +60,7 @@ from across the world, but accessible only for few months in a year.`;
         animate={hovered ? { opacity: 1, x: 0 } : { opacity: 1, x: 0 }}
         transition={{ duration: 0.6 }}
         className="absolute right-5 bottom-5 w-[360px] 
-                   bg-black/40 backdrop-blur-md border border-white/10 
+                   bg-black/40 backdrop-blur-md border border-[#2a2a2a] 
                    p-5 rounded-lg shadow-2xl"
       >
         {/* Title */}

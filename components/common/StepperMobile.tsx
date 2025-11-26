@@ -23,7 +23,7 @@ export default function StepperMobile({ step }: StepperMobileProps) {
   };
 
   return (
-    <div className="w-full px-4 py-3 bg-[#0b0b0b] border-b border-white/10">
+    <div className="w-full px-4 py-3 bg-[#0b0b0b] border-b border-[#2a2a2a]">
       <div className="flex items-center justify-between w-full">
 
         {steps.map((item, index) => {

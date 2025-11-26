@@ -1,7 +1,7 @@
 "use client";
 
 import { motion, AnimatePresence } from "framer-motion";
-import { X, User, Package, ShoppingBag, Heart, Settings, HelpCircle, LogOut, Clock } from "lucide-react";
+import { X, UserRound, ShoppingCart, Settings, HelpCircle, LogOut, ShoppingBasket, Ship } from "lucide-react";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 
@@ -14,12 +14,12 @@ export default function MobileMenuBar({ open, onClose }: Props) {
     const router = useRouter();
 
     const menuItems = [
-  { label: "Profile", icon: User, href: "/profile" },
-  { label: "My Orders", icon: Package, href: "/orders" },
-  { label: "Cart", icon: ShoppingBag, href: "/cart" },
-  { label: "Pre-Order", icon: Clock, href: "/preorder" },
+  { label: "Profile", icon: UserRound, href: "/profile" },
+  { label: "My Orders", icon: ShoppingBasket, href: "/orders" },
+  { label: "Cart", icon: ShoppingCart, href: "/cart" },
+  { label: "Pre-Order", icon: Ship, href: "/orders" },
   { label: "Settings", icon: Settings, href: "/settings" },
-  { label: "Support", icon: HelpCircle, href: "/support" },
+  { label: "Support", icon: HelpCircle, href: "/support/contact" },
 ];
 
     return (
@@ -51,7 +51,7 @@ export default function MobileMenuBar({ open, onClose }: Props) {
                             className="
     flex items-center justify-between
     px-5 py-4
-    border-b border-white/10
+    border-b border-[#2a2a2a]
     bg-superblack
   "
                         >
@@ -81,7 +81,7 @@ export default function MobileMenuBar({ open, onClose }: Props) {
 
 
                         {/* ✅ USER SECTION */}
-                        <div className="relative px-6 py-7 border-b border-white/10">
+                        <div className="relative px-6 py-7 border-b border-[#2a2a2a]">
                             <div className="flex items-center gap-5 relative z-10">
                                 <div className="relative w-16 h-16 rounded-full overflow-hidden border border-sandstorm/40">
                                     <Image
@@ -113,7 +113,7 @@ export default function MobileMenuBar({ open, onClose }: Props) {
                             <button
                                 className="
       mt-5 w-full text-center py-3
-      bg-white/5 border border-white/10
+      bg-white/5 border border-[#2a2a2a]
       rounded-lg text-xs text-neutral-300
       tracking-[0.18em] uppercase
       hover:bg-white/10 transition
@@ -135,9 +135,9 @@ export default function MobileMenuBar({ open, onClose }: Props) {
                                             router.push(item.href);
                                             onClose();
                                         }}
-                                        className="bg-white/5 border border-white/10 backdrop-blur-xl rounded-xl p-5 flex flex-col items-center justify-center gap-3 text-white hover:bg-white/10 transition"
+                                        className="bg-white/5 border border-[#2a2a2a] backdrop-blur-xl rounded-xl p-5 flex flex-col items-center justify-center gap-3 text-white hover:bg-white/10 transition"
                                     >
-                                        <Icon size={22} className="w-10 h-10 p-2 text-sandstorm border border-white/10 rounded-lg" />
+                                        <Icon size={22} className="w-10 h-10 p-2 text-sandstorm border border-[#2a2a2a] rounded-lg" />
                                         <span className="text-sm">{item.label}</span>
                                     </button>
                                 );
@@ -159,7 +159,7 @@ export default function MobileMenuBar({ open, onClose }: Props) {
     text-red-400
     bg-white/3
     backdrop-blur-xl
-    border-t border-white/10
+    border-t border-[#2a2a2a]
   "
                         >
                             {/* Glow Pulse */}

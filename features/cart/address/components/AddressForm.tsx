@@ -152,7 +152,7 @@ export const AddressForm: React.FC<AddressFormProps> = ({ onSubmit }) => {
               px-5 py-2 text-sm cursor-pointer uppercase tracking-wide border 
               ${form.addressType === type
                 ? "border-army bg-army/10 text-army"
-                : "border-white/10 text-gray-400 hover:border-army/40 hover:text-army"
+                : "border-[#2a2a2a] text-gray-400 hover:border-army/40 hover:text-army"
               } 
               transition-all duration-300
             `}

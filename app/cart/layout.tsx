@@ -35,7 +35,7 @@ export default function CartLayout({ children }: { children: React.ReactNode }) 
       </motion.div>
 
       {/* ✅ FULL PAGE SCROLLING CONTENT */}
-      <div className="w-full mx-auto md:px-5 py-6">
+      <div className="w-full mx-auto md:px-5 md:py-6">
         {children}
       </div>
     </main>

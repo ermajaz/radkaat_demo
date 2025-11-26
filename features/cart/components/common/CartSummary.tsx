@@ -135,7 +135,7 @@ export const CartSummary: React.FC<Props> = ({
               className="flex flex-col h-full"
             >
               {/* Header */}
-              <div className="flex justify-between items-center border-b border-white/10 pb-4 mb-5">
+              <div className="flex justify-between items-center border-b border-[#2a2a2a] pb-4 mb-5">
                 <h3 className="text-sm uppercase tracking-widest font-semibold">
                   Login to Continue
                 </h3>

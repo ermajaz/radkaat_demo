@@ -68,7 +68,7 @@ export const ComparisonTableDesktop = ({
         <Table className="w-full border-collapse hover:bg-transparent">
           <TableHeader className="hover:bg-transparent">
             {/* ROW 2: Category Tabs */}
-            <TableRow className="w-full border-b border-white/10 bg-transparent hover:bg-transparent">
+            <TableRow className="w-full border-b border-[#2a2a2a] bg-transparent hover:bg-transparent">
 
               <TableHead colSpan={selectedBikes?.length + 1} className="hover:bg-transparent px-0">
                 <CategoryTabsDesktop
@@ -101,7 +101,7 @@ export const ComparisonTableDesktop = ({
                 initial={{ opacity: 0, y: 10 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.05 * i }}
-                className="border-b border-white/10 transition-colors"
+                className="border-b border-[#2a2a2a] transition-colors"
               >
                 <TableCell className="h-14 py-2 pl-5 text-left text-xs font-bold text-white/40 whitespace-nowrap">
                   {spec}
@@ -122,7 +122,7 @@ export const ComparisonTableDesktop = ({
               initial={{ opacity: 0, y: 10 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.25 }}
-              className="border-b border-white/10 bg-[#151515]"
+              className="border-b border-[#2a2a2a] bg-[#151515]"
             >
               <TableCell className="h-14 py-2 pl-5 text-left text-xs font-bold text-white/40">
                 Points

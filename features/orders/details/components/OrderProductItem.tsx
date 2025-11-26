@@ -19,11 +19,11 @@ export default function OrderProductItem({
       <motion.div
         initial={{ opacity: 0, y: 15 }}
         animate={{ opacity: 1, y: 0 }}
-        className="border border-white/10 bg-white/4 backdrop-blur-lg p-5 flex gap-5 hover:bg-white/[0.07] transition-all cursor-pointer"
+        className="border border-[#2a2a2a] bg-white/4 backdrop-blur-lg p-5 flex gap-5 hover:bg-white/[0.07] transition-all cursor-pointer"
         onClick={() => setOpen(true)}
       >
         {/* 🖼️ Image */}
-        <div className="relative w-[100px] h-[90px] overflow-hidden shrink-0 bg-[#101010] border border-white/10 flex items-center justify-center">
+        <div className="relative w-[100px] h-[90px] overflow-hidden shrink-0 bg-[#101010] border border-[#2a2a2a] flex items-center justify-center">
           <Image
             src={product.image ?? "/images/placeholder-product.png"}
             alt={product.title}
@@ -43,7 +43,7 @@ export default function OrderProductItem({
 
               {/* 🏷️ Variant Badge */}
               {product.variant && (
-                <span className="flex items-center gap-2 bg-white/10 border border-white/10 text-xs px-3 py-1.5 text-white/70 font-medium">
+                <span className="flex items-center gap-2 bg-white/10 border border-[#2a2a2a] text-xs px-3 py-1.5 text-white/70 font-medium">
                   {/* 🎨 Color Dot */}
                   {product.color && (
                     <span
@@ -84,7 +84,7 @@ export default function OrderProductItem({
               animate={{ scale: 1, opacity: 1, y: 0 }}
               exit={{ scale: 0.9, opacity: 0, y: 30 }}
               transition={{ duration: 0.3, ease: "easeOut" }}
-              className="relative bg-[#111] border border-white/10 max-w-lg w-full shadow-[0_0_40px_rgba(0,0,0,0.5)] overflow-hidden flex flex-col"
+              className="relative bg-[#121212] border border-[#2a2a2a] max-w-lg w-full shadow-[0_0_40px_rgba(0,0,0,0.5)] overflow-hidden flex flex-col"
             >
               {/* ❌ Close Button */}
               <button
@@ -95,7 +95,7 @@ export default function OrderProductItem({
               </button>
 
               {/* 🖼️ Product Image */}
-              <div className="relative w-full h-[260px] bg-[#0b0b0b] flex items-center justify-center border-b border-white/10">
+              <div className="relative w-full h-[260px] bg-[#0b0b0b] flex items-center justify-center border-b border-[#2a2a2a]">
                 <Image
                   src={product.image ?? "/images/placeholder-product.png"}
                   alt={product.title}
@@ -119,7 +119,7 @@ export default function OrderProductItem({
                       />
                     )}
                     {product.variant && (
-                      <span className="text-sm text-white/80 bg-white/10 px-3 py-1 border border-white/10">
+                      <span className="text-sm text-white/80 bg-white/10 px-3 py-1 border border-[#2a2a2a]">
                         {product.variant}
                       </span>
                     )}
@@ -145,7 +145,7 @@ export default function OrderProductItem({
                   </div>
 
                   {/* 💰 Pricing Section */}
-                  <div className="flex justify-between items-center pt-5 border-t border-white/10 mt-3">
+                  <div className="flex justify-between items-center pt-5 border-t border-[#2a2a2a] mt-3">
                     <p className="text-sm text-white/60">
                       Quantity: {product.qty}
                     </p>
@@ -156,8 +156,8 @@ export default function OrderProductItem({
                 </div>
 
                 {/* ✨ Gradient Fades (Top/Bottom) */}
-                <div className="absolute top-0 left-0 right-0 h-10 bg-linear-to-b from-[#111] to-transparent pointer-events-none" />
-                <div className="absolute bottom-0 left-0 right-0 h-10 bg-linear-to-t from-[#111] to-transparent pointer-events-none" />
+                <div className="absolute top-0 left-0 right-0 h-10 bg-linear-to-b from-[#121212] to-transparent pointer-events-none" />
+                <div className="absolute bottom-0 left-0 right-0 h-10 bg-linear-to-t from-[#121212] to-transparent pointer-events-none" />
               </div>
             </motion.div>
           </motion.div>

@@ -61,7 +61,7 @@ export default function TestRideFlow() {
       />
 
       {/* Header */}
-      <header className="h-20 fixed top-0 left-0 w-full bg-superblack/80 backdrop-blur-xl border-b border-white/10 z-50 px-6 md:px-10 flex items-center justify-between">
+      <header className="h-20 fixed top-0 left-0 w-full bg-superblack/80 backdrop-blur-xl border-b border-[#2a2a2a] z-50 px-6 md:px-10 flex items-center justify-between">
         {/* Logo + Title */}
         <div className="flex items-center gap-3">
           <Link href="/" className="mr-4">
@@ -110,7 +110,7 @@ export default function TestRideFlow() {
 
       {/* Sidebar */}
       {/* Sidebar */}
-      <aside className="hidden md:flex flex-col w-80 fixed top-20 left-0 h-[calc(100vh-80px)] p-5 gap-4 border-r border-white/10 bg-white/5 backdrop-blur-xl overflow-y-auto scrollbar-thin scrollbar-thumb-rust/60 scrollbar-track-white/10">
+      <aside className="hidden md:flex flex-col w-80 fixed top-20 left-0 h-[calc(100vh-80px)] p-5 gap-4 border-r border-[#2a2a2a] bg-white/5 backdrop-blur-xl overflow-y-auto scrollbar-thin scrollbar-thumb-rust/60 scrollbar-track-white/10">
         <h2 className="text-xl font-bold text-white mb-4">Your Selection</h2>
 
         <motion.div layout className="space-y-4">

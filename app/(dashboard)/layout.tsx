@@ -19,7 +19,7 @@ export default function DashboardLayout({ children }: { children: ReactNode }) {
   }, [router]);
 
   return (
-    <div className="min-h-screen container mx-auto py-8">
+    <div className="min-h-screen mt-10 container mx-auto py-8">
       {/* optionally a dashboard sidebar/nav */}
       {children}
     </div>

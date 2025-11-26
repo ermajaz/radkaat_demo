@@ -73,7 +73,7 @@ export const PhoneInputWrapper: React.FC<PhoneInputWrapperProps> = ({
           inputClass="!w-full !h-[48px] !bg-transparent !text-white !text-sm !pl-[58px] !pr-4 !outline-none !border-none placeholder-gray-500"
           buttonClass="!h-[48px] !bg-transparent !border-none !outline-none !px-2 !text-white"
           dropdownClass="!absolute !z-[9999] !max-h-[250px] !overflow-y-auto !bg-[#0a0a0a] !text-white !border !border-white/20 !rounded-md !shadow-xl"
-          searchClass="!text-white !bg-[#111]"
+          searchClass="!text-white !bg-[#121212]"
           specialLabel=""
         />
       </div>

@@ -52,7 +52,7 @@ export default function ProfileAddressSection() {
 
   return (
     <motion.div
-      className="bg-white/5 backdrop-blur-xl border border-white/10 p-6 shadow-lg space-y-6"
+      className="bg-white/5 backdrop-blur-xl border border-[#2a2a2a] p-6 shadow-lg space-y-6"
       initial={{ opacity: 0, y: 30 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.6 }}

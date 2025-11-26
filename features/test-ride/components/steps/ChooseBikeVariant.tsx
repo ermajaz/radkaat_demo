@@ -74,7 +74,7 @@ export default function ChooseBikeVariant({ onNext }: ChooseBikeVariantProps) {
               className={`cursor-pointer transform transition-all duration-300 overflow-hidden bg-[#121212] rounded-2xl border-2 relative group ${
                 selectedBike?.id === bike.id
                   ? "border-rust shadow-[0_0_30px_rgba(141,54,59,0.6)] scale-105"
-                  : "border-white/10 hover:scale-105 hover:shadow-lg"
+                  : "border-[#2a2a2a] hover:scale-105 hover:shadow-lg"
               }`}
             >
               <CardContent className="p-6 flex flex-col items-center">

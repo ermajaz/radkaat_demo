@@ -59,7 +59,7 @@ export default function ApparelTechSectionMobile() {
               <motion.div
                 key={item.title}
                 transition={{ duration: 0.4 }}
-                className="relative group bg-white/3 border border-white/10 rounded-lg p-4 backdrop-blur-xl shadow-[0_0_25px_rgba(0,0,0,0.3)]"
+                className="relative group bg-white/3 border border-[#2a2a2a] rounded-lg p-4 backdrop-blur-xl shadow-[0_0_25px_rgba(0,0,0,0.3)]"
               >
                 {/* Glow */}
                 <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition duration-500 bg-linear-to-br from-sandstorm/10 to-transparent rounded-lg" />

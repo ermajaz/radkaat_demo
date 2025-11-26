@@ -22,7 +22,7 @@ export const CartSummaryMobile: React.FC<Props> = ({
       transition={{ duration: 0.4, ease: "easeOut" }}
       className="
         fixed bottom-0 left-0 right-0
-        bg-[#050505]/95 border-t border-white/10
+        bg-[#050505]/95 border-t border-[#2a2a2a]
         px-4 py-3 pb-5
         backdrop-blur-md
         z-40

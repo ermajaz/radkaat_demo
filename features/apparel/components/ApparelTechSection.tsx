@@ -75,7 +75,7 @@ export default function ApparelTechSection() {
               <motion.div
                 key={item.title}
                 transition={{ duration: 0.4 }}
-                className="relative group bg-white/3 border border-white/10 rounded-xl p-6 backdrop-blur-xl shadow-[0_0_40px_rgba(255,0,0,0.08)] cursor-default"
+                className="relative group bg-white/3 border border-[#2a2a2a] rounded-xl p-6 backdrop-blur-xl shadow-[0_0_40px_rgba(255,0,0,0.08)] cursor-default"
               >
                 {/* ✅ Subtle glow on hover (no movement) */}
                 <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition duration-500 bg-linear-to-br from-sandstorm/10 to-transparent rounded-xl" />

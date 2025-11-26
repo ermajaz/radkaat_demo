@@ -78,7 +78,7 @@ export default function EventsCalendar() {
             transition={{ duration: 0.6, delay: index * 0.15 }}
             viewport={{ once: true }}
             whileHover={{ y: -6 }}
-            className="relative overflow-hidden group border border-white/10 bg-[rgba(15,15,15,0.6)] backdrop-blur-2xl p-6 shadow-[0_4px_30px_rgba(0,0,0,0.5)] transition-all duration-500"
+            className="relative overflow-hidden group border border-[#2a2a2a] bg-[rgba(15,15,15,0.6)] backdrop-blur-2xl p-6 shadow-[0_4px_30px_rgba(0,0,0,0.5)] transition-all duration-500"
           >
             {/* Glow sweep on hover */}
             <motion.div
@@ -140,7 +140,7 @@ export default function EventsCalendar() {
               animate={{ scale: 1, opacity: 1, y: 0 }}
               exit={{ scale: 0.9, opacity: 0, y: 20 }}
               transition={{ duration: 0.35, ease: "easeOut" }}
-              className="relative w-full max-w-lg bg-[rgba(20,20,20,0.85)] border border-white/10 rounded-2xl backdrop-blur-2xl p-8 shadow-[0_0_40px_rgba(0,0,0,0.6)] overflow-hidden"
+              className="relative w-full max-w-lg bg-[rgba(20,20,20,0.85)] border border-[#2a2a2a] rounded-2xl backdrop-blur-2xl p-8 shadow-[0_0_40px_rgba(0,0,0,0.6)] overflow-hidden"
             >
               {/* Glow Layer */}
               <motion.div

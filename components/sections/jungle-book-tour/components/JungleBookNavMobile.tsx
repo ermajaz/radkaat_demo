@@ -34,7 +34,7 @@ export default function JungleBookNavMobile({
                 "backdrop-blur-md border transition-all active:scale-95",
                 isActive
                   ? "border-transparent"
-                  : "bg-white/5 border-white/10"
+                  : "bg-white/5 border-[#2a2a2a]"
               )}
             >
               {/* ✅ Animated active background */}

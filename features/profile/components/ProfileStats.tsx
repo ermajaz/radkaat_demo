@@ -22,7 +22,7 @@ export default function ProfileStats() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: idx * 0.1, duration: 0.5 }}
-            className="relative flex flex-col items-center justify-center bg-white/8 backdrop-blur-xl border border-white/10 p-6 hover:bg-white/12 transition-all duration-300 shadow-[inset_0_0_0_1px_rgba(255,255,255,0.1)]"
+            className="relative flex flex-col items-center justify-center bg-white/8 backdrop-blur-xl border border-[#2a2a2a] p-6 hover:bg-white/12 transition-all duration-300 shadow-[inset_0_0_0_1px_rgba(255,255,255,0.1)]"
           >
             {/* Glow layer */}
             <motion.div

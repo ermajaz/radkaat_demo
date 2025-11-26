@@ -68,7 +68,7 @@ export default function DiscussionForum() {
             transition={{ duration: 0.7, delay: index * 0.2 }}
             viewport={{ once: true }}
             whileHover={{ y: -4 }}
-            className="relative group overflow-hidden border border-white/10 bg-[rgba(18,18,18,0.7)] backdrop-blur-2xl backdrop-saturate-150 p-6 md:p-8 shadow-[0_4px_30px_rgba(0,0,0,0.6)] transition-all duration-500"
+            className="relative group overflow-hidden border border-[#2a2a2a] bg-[rgba(18,18,18,0.7)] backdrop-blur-2xl backdrop-saturate-150 p-6 md:p-8 shadow-[0_4px_30px_rgba(0,0,0,0.6)] transition-all duration-500"
           >
             {/* Glow overlay */}
             <motion.div

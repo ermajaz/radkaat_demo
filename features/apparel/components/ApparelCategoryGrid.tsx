@@ -74,7 +74,7 @@ export function ProductCard({ product, onOpen }: Props) {
                   className={`
                     px-3 py-1.5 rounded-full cursor-pointer text-[11px] uppercase font-medium border
                     ${!v.inStock
-                      ? "border-white/10 text-neutral-600 line-through cursor-not-allowed"
+                      ? "border-[#2a2a2a] text-neutral-600 line-through cursor-not-allowed"
                       : activeVariant?.id === v.id
                       ? "bg-sandstorm/20 border-sandstorm text-sandstorm"
                       : "border-white/20 text-neutral-200"
