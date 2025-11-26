@@ -2,7 +2,8 @@
 
 import { useResponsiveComponent } from "@/hooks/useResponsiveComponent";
 import BikeShowcaseDesktop from "./BicycleShowcaseDesktop";
+import BikeShowcaseMobile from "./BicycleShowcaseMobile";
 
 export default function BicycleShowcase() {
-  return useResponsiveComponent(<BikeShowcaseDesktop />, <BikeShowcaseDesktop />);
+  return useResponsiveComponent(<BikeShowcaseMobile />, <BikeShowcaseDesktop />);
 }

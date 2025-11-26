@@ -65,7 +65,7 @@ export default function JungleBookNavMobile({
                     story?.urgent
                       ? "text-rust":
                       story?.seat
-                      ? "text-sandstorm"
+                      ? "text-rust"
                       : isActive
                       ? "text-black/60"
                       : "text-white/50"

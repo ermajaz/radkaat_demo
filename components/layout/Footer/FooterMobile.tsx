@@ -1,29 +1,31 @@
 "use client";
 
-import FooterBottomBar from "./components/FooterBottomBar";
-import FooterContact from "./components/FooterContact";
-import FooterHeading from "./components/FooterHeading";
-import FooterImage from "./components/FooterImage";
-import FooterMenu from "./components/FooterMenu";
-import FooterSocials from "./components/FooterSocials";
-
+import FooterBottomBarMobile from "./components/mobile/FooterBottomBarMobile";
+import FooterContactMobile from "./components/mobile/FooterContactMobile";
+import FooterHeadingMobile from "./components/mobile/FooterHeadingMobile";
+import FooterMenuMobile from "./components/mobile/FooterMenuMobile";
+import FooterSocialsMobile from "./components/mobile/FooterSocialsMobile";
 
 
 export default function FooterMobile() {
   return (
-    <footer className="w-full text-white bg-superblack max-sm:pb-20">
-      <div className="grid grid-cols-1 lg:grid-cols-2">
-        <FooterImage />
+    <footer className="w-full bg-superblack text-white px-6 pt-10 pb-20">
+      <FooterHeadingMobile />
 
-        <div className="flex flex-col justify-between pl-10 sm:pt-10 pb-6 z-10 bg-superblack max-sm:pt-10">
-          <FooterHeading />
-          <div className="flex flex-col sm:flex-row justify-between gap-10 mb-6">
-            <FooterMenu />
-            <FooterContact />
-          </div>
-          <FooterSocials />
-          <FooterBottomBar />
-        </div>
+      <div className="mt-6">
+        <FooterMenuMobile />
+      </div>
+
+      <div className="mt-6">
+        <FooterContactMobile />
+      </div>
+
+      <div className="mt-8">
+        <FooterSocialsMobile />
+      </div>
+
+      <div className="mt-5 mb-10">
+        <FooterBottomBarMobile />
       </div>
     </footer>
   );

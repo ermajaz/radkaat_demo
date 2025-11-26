@@ -1,55 +1,59 @@
 "use client";
 
-import React from "react";
-import SidebarProfilesMobile from "./components/mobile/SidebarProfilesMobile";
+import { useState } from "react";
+import { BikeComparisonData } from "@/utils/bikeComparisonData";
 import CategoryTabsMobile from "./components/mobile/CategoryTabsMobile";
-import BikeSelectorMobile from "./components/mobile/BikeSelectorMobile";
 import ComparisonTableMobile from "./components/mobile/ComparisonTableMobile";
 import RadarChartMobile from "./components/mobile/RadarChartMobile";
-import { BikeComparisonData } from "@/utils/bikeComparisonData";
+import ProfileCarouselMobile from "./components/mobile/ProfileCarouselMobile";
+import { ComparisonCategory } from "@/types/bikeComparison";
+
+const categories: ComparisonCategory[] = [
+    "Comfort & Ergonomics",
+    "Performance",
+    "Durability & Build",
+    "Utility & Convenience",
+    "Terrain Adaptability",
+    "Price",
+  ];
 
 export default function BicycleComparisonMobile() {
-  const categories = Object.keys(BikeComparisonData.table);
 
-  const [activeCategory, setActiveCategory] = React.useState(categories[0]);
-  const [selectedBikes, setSelectedBikes] = React.useState([
+  const [activeCategory, setActiveCategory] = useState(categories[0]);
+  const [selectedBikes, setSelectedBikes] = useState([
     "Serow City",
     "Saola Urban",
+    "Takin Lite"
   ]);
 
   return (
-    <section className="w-full bg-superblack text-white py-6 px-4 space-y-8">
+    <section className="w-full min-h-screen bg-superblack text-white p-4">
+      {/* ✅ Profiles */}
+      <ProfileCarouselMobile
+        profiles={BikeComparisonData.profiles}
+        selectedBikes={selectedBikes}
+        onSelect={setSelectedBikes}
+      />
 
-      <SidebarProfilesMobile profiles={BikeComparisonData.profiles} />
-
+      {/* ✅ Category Tabs */}
       <CategoryTabsMobile
         categories={categories}
         active={activeCategory}
         setActive={setActiveCategory}
       />
 
-      <BikeSelectorMobile
-        bikes={selectedBikes}
-        options={BikeComparisonData.models}
-        onChange={(i: number, val: string) => {
-          const arr = [...selectedBikes];
-          arr[i] = val;
-          setSelectedBikes(arr);
-        }}
-      />
-
-
+      {/* ✅ Comparison Table */}
       <ComparisonTableMobile
         category={activeCategory}
         selectedBikes={selectedBikes}
         data={BikeComparisonData}
       />
 
+      {/* ✅ Radar */}
       <RadarChartMobile
         selectedBikes={selectedBikes}
         data={BikeComparisonData}
       />
-
     </section>
   );
 }
