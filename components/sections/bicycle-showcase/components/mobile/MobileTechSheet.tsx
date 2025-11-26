@@ -32,7 +32,7 @@ export default function MobileTechSheet({ bike, onClose }: Props) {
 
       {/* content */}
       <div className="flex-1 overflow-y-auto px-4 py-4 space-y-4">
-        {bike.specs.map((s) => (
+        {bike.specs.map((s: any) => (
           <div
             key={s.key}
             className="rounded-xl bg-[#141414] border border-white/10 p-4"
