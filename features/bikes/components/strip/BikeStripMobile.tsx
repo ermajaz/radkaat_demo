@@ -19,7 +19,7 @@ const navItems = [
     { id: "overview", label: "Overview" },
     { id: "features", label: "Features" },
     { id: "geometry", label: "Geometry" },
-    { id: "experience", label: "Experience" },
+    { id: "bike-config", label: "Configure" },
     { id: "ride", label: "Ride" },
 ];
 
@@ -31,6 +31,7 @@ export default function BikeStripMobile({
     selectedBike,
     selectedModel
 }: BikeStripMobileProps) {
+
     const [active, setActive] = useState("overview");
     const [hovered, setHovered] = useState<string | null>(null);
 
@@ -40,7 +41,7 @@ export default function BikeStripMobile({
             const visible = navItems.find((item) => {
                 const el = document.getElementById(item.id);
                 if (!el) return false;
-                const top = el.offsetTop - 120;
+                const top = el.offsetTop - 140;
                 const bottom = top + el.offsetHeight;
                 return scrollY >= top && scrollY < bottom;
             });
@@ -54,136 +55,143 @@ export default function BikeStripMobile({
     const scrollTo = (id: string) => {
         const el = document.getElementById(id);
         if (el) {
-            const y = el.getBoundingClientRect().top + window.scrollY - 60;
+            const y = el.getBoundingClientRect().top + window.scrollY - 90;
             window.scrollTo({ top: y, behavior: "smooth" });
         }
     };
 
-    /* -- compute activeIndex somewhere above render -- */
-    const activeIndex = Math.max(
-        0,
-        navItems.findIndex((it) => it.id === active)
-    );
+    const activeIndex = Math.max(0, navItems.findIndex((it) => it.id === active));
 
     return (
         <motion.div
-            initial={{ y: 80, opacity: 0 }}
+            initial={{ y: 90, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
-            transition={{ duration: 0.5, ease: "easeOut" }}
+            transition={{ duration: 0.45, ease: "easeOut" }}
             className="
-        fixed bottom-0 left-0 z-100 w-full
-        bg-[#0A0A0A]/85 backdrop-blur-2xl
-        border-t border-[#E4D27C]/15
-        shadow-[0_-6px_30px_rgba(0,0,0,0.5)]
-        flex flex-col
-      "
-            style={{ WebkitBackdropFilter: "blur(16px)" }}
+                fixed bottom-0 left-0 z-50 w-full
+                bg-[#121212]/80 backdrop-blur-2xl
+                border-t border-[#2a2a2a]
+                shadow-[0_-8px_35px_rgba(0,0,0,0.7)]
+                flex flex-col
+                rounded-t-3xl
+            "
+            style={{ WebkitBackdropFilter: "blur(18px)" }}
         >
-            {/* Header Info + Buttons */}
-            <div className="w-full px-5 py-3 flex items-center justify-between">
+
+            {/* Header */}
+            <div className="w-full px-6 py-4 flex items-center justify-between">
+
                 <div className="flex flex-col uppercase">
-                    <span className="text-[#E4D27C] text-[13px] font-medium uppercase tracking-wide">
+                    <span className="text-[#E4D27C] text-[13px] tracking-wider font-semibold">
                         {selectedBike}
                     </span>
-                    <span className="text-white text-[18px] font-bold leading-none">
+                    <span className="text-white text-[19px] font-extrabold leading-none">
                         {selectedModel}
                     </span>
                 </div>
 
                 <div className="flex items-center gap-3">
-                    <Button
-                        className="h-[38px] px-6! bg-linear-to-r from-[#E4D27C] to-[#CBB860] text-black text-[13px] font-semibold rounded-full shadow-[0_0_15px_rgba(228,210,124,0.25)] active:scale-95 transition-all"
+
+                    <motion.button
+                        whileHover={{ scale: 1.05 }}
+                        whileTap={{ scale: 0.92 }}
                         onClick={onBuy}
+                        className="
+                            h-10 px-5 rounded-full
+                            bg-sandstorm
+                            text-black text-[13px] font-semibold
+                            flex items-center gap-1
+                        "
                     >
-                        <ShoppingBag className="w-4 h-4 mr-1.5" /> Buy
-                    </Button>
-                    <Button
-                        variant="outline"
-                        className="h-[38px] px-6! border-[#E4D27C]/40 text-[#E4D27C] text-[13px] rounded-full active:scale-95 transition-all"
+                        <ShoppingBag className="w-4 h-4" /> Buy
+                    </motion.button>
+
+                    <motion.button
+                        whileHover={{ scale: 1.05 }}
+                        whileTap={{ scale: 0.92 }}
                         onClick={onBookTestRide}
+                        className="
+                            h-10 px-5 rounded-full border border-sandstorm/50
+                            text-[#E4D27C] bg-transparent
+                            font-semibold text-[13px] flex items-center gap-1
+                        "
                     >
-                        <Bike className="w-4 h-4 mr-1.5" /> Ride
-                    </Button>
+                        <Bike className="w-4 h-4" /> Ride
+                    </motion.button>
+
                 </div>
             </div>
 
-            {/* Liquid Tabs */}
-            <div
-                className="
-    relative flex justify-around items-center
-    py-3 px-3 border-t border-[#E4D27C]/10 
-    text-[12px] font-medium uppercase tracking-wide
-  "
-            >
-                {/* 🫧 Water Drop Background */}
+            {/* Liquid Navigation */}
+            <div className="
+                relative flex justify-between items-center
+                py-3 px-4 border-t border-sandstorm/20
+                text-[12px] font-medium tracking-wide uppercase
+            ">
+
+                {/* Magnetic liquid indicator */}
                 <motion.div
-                    layoutId="activeBubble"
+                    layoutId="liquidBubble"
                     transition={{
                         type: "spring",
-                        stiffness: 400,
-                        damping: 30,
+                        stiffness: 450,
+                        damping: 32,
                     }}
                     className="
-      absolute top-1.5 bottom-1.5
-      bg-sandstorm/25
-      backdrop-blur-md rounded-full
-      pointer-events-none
-      shadow-[0_0_25px_rgba(228,210,124,0.15)]
-    "
+                        absolute top-1.5 bottom-1.5
+                        bg-sandstorm/20
+                        backdrop-blur-xl rounded-full
+                    "
                     style={{
-                        // Each tab’s usable width (minus total side padding)
-                        width: `calc((100% - 24px) / ${navItems.length})`,
-                        // Properly offset bubble inside the padded container
-                        left: `calc(
-        12px + (${activeIndex} * ((100% - 24px) / ${navItems.length}))
-      )`,
+                        width: `calc((100% - 32px) / ${navItems.length})`,
+                        left: `calc(16px + ${activeIndex} * ((100% - 32px) / ${navItems.length}))`,
                     }}
                 />
 
+                {/* Tabs */}
                 {navItems.map((item) => {
                     const isActive = active === item.id;
-                    const isHovered = hovered === item.id;
+                    const isHover = hovered === item.id;
+
                     return (
                         <motion.button
                             key={item.id}
                             onClick={() => scrollTo(item.id)}
                             onMouseEnter={() => setHovered(item.id)}
                             onMouseLeave={() => setHovered(null)}
-                            className="
-          relative z-10 flex flex-col items-center justify-center 
-          w-[20%] text-center cursor-pointer transition-all
-        "
+                            className="relative z-10 w-[20%] flex flex-col items-center"
                         >
+
                             <motion.span
-                                className={`transition-all duration-300 ${isActive
-                                    ? "text-[#E4D27C] font-semibold"
-                                    : isHovered
-                                        ? "text-white"
-                                        : "text-gray-400"
-                                    }`}
+                                className={`
+                                    transition-all duration-300
+                                    ${isActive ? "text-sandstorm" : isHover ? "text-white" : "text-gray-400"}
+                                `}
                             >
                                 {item.label}
                             </motion.span>
 
                             {isActive && (
                                 <motion.div
-                                    layoutId="liquidUnderline"
+                                    layoutId="goldUnderline"
                                     transition={{
                                         type: "spring",
-                                        stiffness: 300,
-                                        damping: 25,
+                                        stiffness: 350,
+                                        damping: 28,
                                     }}
                                     className="
-              w-6 h-1 rounded-full mt-0.5
-              bg-[#E4D27C]/80
-            "
+                                        w-7 h-1 rounded-full mt-1
+                                        bg-[#E4D27C]
+                                        shadow-[0_0_10px_rgba(228,210,124,0.4)]
+                                    "
                                 />
                             )}
+
                         </motion.button>
                     );
                 })}
-            </div>
 
+            </div>
         </motion.div>
     );
 }

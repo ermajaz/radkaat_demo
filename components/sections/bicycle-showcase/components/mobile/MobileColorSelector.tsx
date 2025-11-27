@@ -97,7 +97,7 @@ export default function MobileColorSelector({
                 {active && (
                   <motion.span
                     layoutId="activeColorRing"
-                    className="absolute inset-0 rounded-full border-[2px] border-white/85"
+                    className="absolute inset-0 rounded-full border-0.5 border-white/85"
                     transition={{ type: "spring", stiffness: 300, damping: 26 }}
                   />
                 )}

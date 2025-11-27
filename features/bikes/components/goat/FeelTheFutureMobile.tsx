@@ -4,143 +4,164 @@ import { useEffect, useRef } from "react";
 import Image from "next/image";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import {motion} from "framer-motion";
 
 export default function FeelTheFutureMobile() {
-    const sectionRef = useRef<HTMLDivElement>(null);
-    const imgRef = useRef<HTMLDivElement>(null);
-    const titleRef = useRef<HTMLHeadingElement>(null);
-    const textRef = useRef<HTMLParagraphElement>(null);
+  const sectionRef = useRef<HTMLDivElement>(null);
+  const imgRef = useRef<HTMLDivElement>(null);
+  const titleRef = useRef<HTMLHeadingElement>(null);
+  const textRef = useRef<HTMLParagraphElement>(null);
 
-    useEffect(() => {
-        gsap.registerPlugin(ScrollTrigger);
+  useEffect(() => {
+    gsap.registerPlugin(ScrollTrigger);
 
-        if (!sectionRef.current) return;
-        const ctx = gsap.context(() => {
-            // Parallax image entrance
-            gsap.fromTo(
-                imgRef.current,
-                { y: 80, opacity: 0 },
-                {
-                    y: 0,
-                    opacity: 1,
-                    duration: 1.2,
-                    ease: "power3.out",
-                    scrollTrigger: {
-                        trigger: sectionRef.current,
-                        start: "top 85%",
-                        toggleActions: "play none none reverse",
-                    },
-                }
-            );
+    const ctx = gsap.context(() => {
+      /* -------------------------
+         Bike Image Float Parallax
+      --------------------------*/
+      gsap.fromTo(
+        imgRef.current,
+        { y: 60, opacity: 0, scale: 0.9 },
+        {
+          y: 0,
+          opacity: 1,
+          scale: 1,
+          duration: 1.2,
+          ease: "power3.out",
+          scrollTrigger: {
+            trigger: sectionRef.current,
+            start: "top 85%",
+          },
+        }
+      );
 
-            // Title split animation
-            const title = titleRef.current?.innerText.split(" ");
-            if (title && titleRef.current) {
-                titleRef.current.innerHTML = title
-                    .map((word) => `<span class='inline-block opacity-0 translate-y-4'>${word}</span>`)
-                    .join(" ");
+      /* -------------------------
+         Split Title Reveal
+      --------------------------*/
+      const words = titleRef.current?.innerText.split(" ");
 
-                gsap.to(titleRef.current.querySelectorAll("span"), {
-                    opacity: 1,
-                    y: 0,
-                    stagger: 0.12,
-                    duration: 0.8,
-                    ease: "power3.out",
-                    scrollTrigger: {
-                        trigger: titleRef.current,
-                        start: "top 90%",
-                    },
-                });
-            }
+      if (titleRef.current && words) {
+        titleRef.current.innerHTML = words
+          .map(
+            (word) =>
+              `<span class="inline-block opacity-0 translate-y-4">${word}</span>`
+          )
+          .join(" ");
 
-            // Text fade-in
-            gsap.fromTo(
-                textRef.current,
-                { opacity: 0, y: 40 },
-                {
-                    opacity: 1,
-                    y: 0,
-                    duration: 1.2,
-                    ease: "power2.out",
-                    scrollTrigger: {
-                        trigger: textRef.current,
-                        start: "top 90%",
-                    },
-                }
-            );
-        }, sectionRef);
+        gsap.to(titleRef.current.querySelectorAll("span"), {
+          opacity: 1,
+          y: 0,
+          duration: 0.7,
+          ease: "power3.out",
+          stagger: 0.1,
+          scrollTrigger: {
+            trigger: titleRef.current,
+            start: "top 90%",
+          },
+        });
+      }
 
-        return () => ctx.revert();
-    }, []);
+      /* -------------------------
+         Description Fade-Up
+      --------------------------*/
+      gsap.fromTo(
+        textRef.current,
+        { opacity: 0, y: 30 },
+        {
+          opacity: 1,
+          y: 0,
+          duration: 1,
+          ease: "power2.out",
+          scrollTrigger: {
+            trigger: textRef.current,
+            start: "top 95%",
+          },
+        }
+      );
+    }, sectionRef);
 
-    return (
-        <section
-            ref={sectionRef}
-            className="
-        relative w-fit flex flex-col items-center justify-start 
-        bg-[#0A0A0A] overflow-hidden text-white
-        pt-12 pb-10 px-5
+    return () => ctx.revert();
+  }, []);
+
+  return (
+    <section
+      ref={sectionRef}
+      className="
+        relative w-full h-[70vh]
+        flex flex-col items-center justify-start
+        bg-superblack overflow-hidden text-white
+        px-5 pt-10 pb-6
       "
-        >
-            {/* Tech aura glow behind image */}
-            <div className="absolute top-28 left-1/2 -translate-x-1/2 w-full h-60 bg-[#E4D27C]/15 blur-[90px] rounded-full z-0" />
+    >
+      {/* === Ambient Glow */}
+      <div className="absolute inset-0 flex items-center justify-center z-0">
+        <div className="w-[90%] h-[45%] bg-[#E4D27C]/12 blur-[130px] rounded-full" />
+      </div>
 
-            {/* Image section */}
-            <div
-                ref={imgRef}
-                className="
-          relative w-full max-w-[420px] h-60 sm:h-80 mb-6 rounded-lg overflow-hidden z-10
-          shadow-[0_0_40px_rgba(228,210,124,0.1)]
+      {/* === Floating Bike Card */}
+      <div
+        ref={imgRef}
+        className="
+          relative w-full max-w-[430px] h-[55%] mb-3 rounded-xl 
+          overflow-hidden shadow-[0_0_50px_rgba(228,210,124,0.15)]
+          z-5
         "
-            >
-                <Image
-                    src="/images/bikes/goat-img.png"
-                    alt="Serow Bike with Mountain Goat"
-                    fill
-                    quality={100}
-                    priority
-                    className="object-cover object-center scale-105"
-                />
-                <div className="absolute inset-0 bg-linear-to-t from-black/80 via-black/20 to-transparent" />
-            </div>
+      >
+        <Image
+          src="/images/bikes/goat-img.png"
+          alt="Serow Bike"
+          fill
+          quality={100}
+          priority
+          className="object-cover object-center scale-[1.15]"
+        />
 
-            {/* Text section */}
-            <div className="relative z-10 flex flex-col items-center text-center max-w-[90%]">
-                <h2
-                    ref={titleRef}
-                    className="
-            text-[32px] sm:text-[36px] font-extrabold leading-snug
-            tracking-wide uppercase text-stone drop-shadow-[0_4px_10px_rgba(0,0,0,0.6)]
+        {/* Top → Transparent Light Fade */}
+        <div className="absolute inset-0 bg-linear-to-t from-black/80 via-black/30 to-transparent" />
+      </div>
+
+      {/* === Text Block */}
+      <div className="relative z-6 w-full flex flex-col items-center text-center">
+        <h2
+          ref={titleRef}
+          className="
+            text-[30px] font-extrabold
+            uppercase tracking-widest leading-tight
+            drop-shadow-[0_3px_10px_rgba(0,0,0,0.7)]
           "
-                >
-                    FEEL THE FUTURE
-                </h2>
+        >
+          FEEL THE FUTURE
+        </h2>
 
-                <p
-                    ref={textRef}
-                    className="
-            text-[14px] sm:text-[15px] leading-relaxed text-gray-300 font-light
-            backdrop-blur-md bg-black/30 px-4 py-3 rounded-lg
+        {/* Description */}
+        <p
+          ref={textRef}
+          className="
+            mt-3 text-[14px] text-gray-300 leading-relaxed
+            bg-black/50 backdrop-blur-md px-5 py-3 rounded-lg
             shadow-[0_0_25px_rgba(0,0,0,0.3)]
+            max-w-[340px]
           "
-                >
-                    The Serow is inspired by the Himalayan mountain goat — a master of
-                    balance, agility, and endurance. Built with high-end alloy, Serow
-                    merges lightweight precision with unshakable strength — ready to
-                    conquer every climb and descent.
-                </p>
+        >
+          Inspired by the Himalayan mountain goat — master of balance,
+          agility, and endurance. Serow merges lightweight alloy precision
+          with unshakable strength for every climb and descent.
+        </p>
 
-                <button
-                    className="
-            mt-4 bg-linear-to-r from-[#E4D27C] to-[#D4B64F]
+        {/* CTA Button */}
+        <motion.button
+          whileTap={{ scale: 0.95 }}
+          whileHover={{ scale: 1.03 }}
+          className="
+            mt-4 px-8 py-3 rounded-full
+            bg-sandstorm
             text-black text-[14px] font-semibold tracking-wide
-            px-8 py-3 rounded-full shadow-[0_0_25px_rgba(228,210,124,0.25)]
-            active:scale-[0.97] transition-all duration-300
+            transition-all
           "
-                >
-                    EXPLORE SEROW
-                </button>
-            </div>
-        </section>
-    );
+        >
+          Explore Serow
+        </motion.button>
+      </div>
+    </section>
+  );
 }
