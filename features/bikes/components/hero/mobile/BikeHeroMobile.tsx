@@ -37,7 +37,7 @@ export default function BikeHeroMobile({
 
     return (
         <section
-            className="relative w-full h-[74vh] flex flex-col justify-between pt-3 pb-4 px-4 overflow-hidden bg-black"
+            className="relative w-full h-[85vh] flex flex-col justify-between pt-3 pb-4 px-4 overflow-hidden bg-black"
         >
             {/* BG IMAGE */}
             <Image

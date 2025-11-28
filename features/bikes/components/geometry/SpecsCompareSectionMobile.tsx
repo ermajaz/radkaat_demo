@@ -37,7 +37,7 @@ export default function SpecsCompareSectionMobile() {
       </div>
 
       {/* ===== Animated Content Switch ===== */}
-      <div className="relative min-h-screen">
+      <div className="relative h-fit min-h-[60vh]">
         <AnimatePresence mode="wait">
           {activeTab === "specs" && (
             <motion.div

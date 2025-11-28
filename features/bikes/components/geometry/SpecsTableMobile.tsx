@@ -81,8 +81,6 @@ export default function SpecsTableMobile() {
         ))}
       </div>
 
-      {/* 📏 Subtle Gradient Footer */}
-      <div className="absolute bottom-0 h-20 w-full bg-linear-to-t from-black via-transparent to-transparent pointer-events-none" />
     </section>
   );
 }

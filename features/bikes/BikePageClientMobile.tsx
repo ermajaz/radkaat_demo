@@ -6,16 +6,14 @@ import { TableBikeName, TableModelName } from "./components/geometry/utils/geome
 import BikeHero from "./components/hero/BikeHero";
 import BikeStripMobile from "./components/strip/BikeStripMobile";
 import FeelTheFutureMobile from "./components/goat/FeelTheFutureMobile";
-import FeaturesFirstSectionMobile from "./components/features/FeaturesFirstSectionMobile";
-import FeatureShowcaseMobile from "./components/features/FeatureShowcaseMobile";
-import { FEATURES } from "./utils/bikes-data";
+import { FEATURES_MOBILE } from "./utils/bikes-data";
 import SpecsCompareSectionMobile from "./components/geometry/SpecsCompareSectionMobile";
-import BikeConfigSection from "./components/bike-config/BikeConfigSection";
-import SpecsExperienceSection from "./components/specsToExperience/SpecsExperienceSection";
 import BicycleRide from "@/components/sections/bicycle-ride/BicycleRide";
 import BikeHeroMobile from "./components/hero/mobile/BikeHeroMobile";
 import BikeConfigSectionMobile from "./components/bike-config/BikeConfigSectionMobile";
 import SpecsExperienceSectionMobile from "./components/specsToExperience/SpecsExperienceSectionMobile";
+import FeaturesIntroMobile from "./components/features/mobile/FeaturesIntroMobile";
+import FeatureShowcaseMobile from "./components/features/mobile/FeatureShowcaseMobile";
 export default function BikePageClientMobile({
     bikeName,
     modelName,
@@ -58,8 +56,8 @@ export default function BikePageClientMobile({
             <FeelTheFutureMobile />
 
             <section id="features">
-                <FeaturesFirstSectionMobile />
-                <FeatureShowcaseMobile features={FEATURES} />
+                <FeaturesIntroMobile />
+                <FeatureShowcaseMobile features={FEATURES_MOBILE} />
             </section>
             <section id="geometry">
                 <SpecsCompareSectionMobile />
