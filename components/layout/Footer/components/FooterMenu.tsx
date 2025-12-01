@@ -41,14 +41,6 @@ export default function FooterMenu() {
           transition={{ duration: 0.3, ease: "easeOut" }}
           className="pt-4 flex flex-col gap-3 text-white"
         >
-          <div className="flex flex-col gap-1">
-            {contactInfo.map((text, i) => (
-              <p key={i} className="text-[12px] text-gray-300 leading-tight">
-                {text}
-              </p>
-            ))}
-          </div>
-
           <div className="flex gap-6 mt-1">
             {linkItems.map((item, i) => (
               <Link
@@ -60,6 +52,14 @@ export default function FooterMenu() {
               </Link>
             ))}
           </div>
+          <div className="flex flex-col gap-1">
+            {contactInfo.map((text, i) => (
+              <p key={i} className="text-[12px] text-gray-300 leading-tight">
+                {text}
+              </p>
+            ))}
+          </div>
+
         </motion.div>
       </AnimatePresence>
 

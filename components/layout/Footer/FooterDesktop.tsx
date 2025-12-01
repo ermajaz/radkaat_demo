@@ -17,8 +17,8 @@ export default function FooterDesktop() {
 
         <div className="flex flex-col justify-between pl-10 sm:pt-5 pb-3 z-10 bg-superblack max-sm:pt-10">
           <FooterHeading />
-          <div className="w-1/2 flex flex-col gap-8">
-            <div className="flex flex-col gap-6">
+          <div className="w-full flex flex-col gap-8">
+            <div className="w-full flex items-start justify-between gap-6 pb-30 pr-10">
               <FooterMenu />
               <FooterContact />
             </div>

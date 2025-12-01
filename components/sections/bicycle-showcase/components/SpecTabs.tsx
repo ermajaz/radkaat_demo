@@ -40,7 +40,7 @@ export default function SpecTabs({
             onClick={onViewMore}
             className="group flex items-center text-[11px] text-white/70 cursor-pointer transition-all"
           >
-            <span className="relative whitespace-nowrap group-hover:text-white transition-all duration-300">
+            <span className="relative whitespace-nowrap group-hover:text-white transition-all tracking-wider duration-300">
               View Detailed Specs
               {/* Animated underline */}
               <span className="absolute left-0 -bottom-0.5 h-[1.5px] w-0 bg-sandstorm transition-all duration-300 group-hover:w-full"></span>

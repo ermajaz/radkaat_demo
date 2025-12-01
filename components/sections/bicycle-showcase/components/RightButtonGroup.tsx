@@ -16,7 +16,7 @@ export default function RightButtonGroup({
         initial={{ opacity: 0.8 }}
         whileHover={{ opacity: 1 }}
         transition={{ duration: 0.3 }}
-        className="relative w-25 h-25 rounded-full flex flex-col items-center justify-center
+        className="relative w-20 h-20 rounded-full flex flex-col items-center justify-center
                    cursor-pointer select-none overflow-hidden bg-[#0A0A0A]/70
                    border border-[#2a2a2a] backdrop-blur-xl
                    shadow-[0_0_40px_rgba(255,200,80,0.08)]"
@@ -25,7 +25,7 @@ export default function RightButtonGroup({
         <motion.div
           animate={{ opacity: [0.12, 0.25, 0.12], scale: [1, 1.08, 1] }}
           transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
-          className="absolute w-30 h-30 rounded-full bg-sandstorm/25 blur-2xl"
+          className="absolute w-25 h-25 rounded-full bg-sandstorm/25 blur-2xl"
         />
 
         {/* ✅ Thin Rotating Light Ring */}
@@ -42,14 +42,14 @@ export default function RightButtonGroup({
 
         {/* ✅ Central Spinning Icon */}
         <motion.div
-          className="z-10 w-8 h-8 mb-0.5 text-white"
+          className="z-10 w-5 h-5 mb-1 text-white"
         >
-          <Bike size={30} />
+          <Bike size={20} />
         </motion.div>
 
         {/* ✅ 360 VIEW Text Inside */}
         <motion.p
-          className="z-10 text-[10px] tracking-[0.2em] text-white font-semibold"
+          className="z-10 text-[8px] tracking-[0.2em] text-white font-semibold"
         >
           360 VIEW
         </motion.p>
