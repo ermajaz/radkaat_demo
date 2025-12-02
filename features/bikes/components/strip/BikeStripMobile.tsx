@@ -5,6 +5,7 @@ import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { ShoppingBag, Bike } from "lucide-react";
 import { TableBikeName, TableModelName } from "../geometry/utils/geometry.types";
+import { useScroll } from "@/hooks/useScroll";
 
 interface BikeStripMobileProps {
     name: string;
@@ -31,7 +32,7 @@ export default function BikeStripMobile({
     selectedBike,
     selectedModel
 }: BikeStripMobileProps) {
-
+    const { direction } = useScroll();
     const [active, setActive] = useState("overview");
     const [hovered, setHovered] = useState<string | null>(null);
 
@@ -65,7 +66,10 @@ export default function BikeStripMobile({
     return (
         <motion.div
             initial={{ y: 90, opacity: 0 }}
-            animate={{ y: 0, opacity: 1 }}
+            animate={{
+                y: direction === "down" ? 100 : 0,
+                opacity: direction === "down" ? 0 : 1,
+            }}
             transition={{ duration: 0.45, ease: "easeOut" }}
             className="
                 fixed bottom-0 left-0 z-50 w-full
