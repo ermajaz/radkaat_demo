@@ -57,14 +57,8 @@ export default function EventsCalendar() {
 
   return (
     <section className="relative py-20 px-6 bg-superblack overflow-hidden">
-      {/* 🧊 Background Layers */}
-      {/* <div className="absolute inset-0 -z-10">
-        <div className="absolute inset-0 bg-linear-to-b from-[#0a0a0a] via-[#111519] to-[#0a0a0a]" />
-        <div className="absolute top-[-10%] left-[-10%] w-[600px] h-[600px] rounded-full bg-gradient-to-tr from-army/20 via-sandstorm/10 to-transparent blur-[120px]" />
-        <div className="absolute bottom-[-10%] right-[-10%] w-[500px] h-[500px] rounded-full bg-gradient-to-tr from-rust/10 via-army/10 to-transparent blur-[120px]" />
-      </div> */}
 
-      <h2 className="text-3xl md:text-4xl font-bold mb-12 text-center text-army tracking-wide drop-shadow-lg">
+      <h2 className="text-3xl md:text-4xl font-bold mb-12 text-center text-sandstorm tracking-wide drop-shadow-lg">
         Upcoming Events
       </h2>
 
@@ -78,19 +72,15 @@ export default function EventsCalendar() {
             transition={{ duration: 0.6, delay: index * 0.15 }}
             viewport={{ once: true }}
             whileHover={{ y: -6 }}
-            className="relative overflow-hidden group border border-[#2a2a2a] bg-[rgba(15,15,15,0.6)] backdrop-blur-2xl p-6 shadow-[0_4px_30px_rgba(0,0,0,0.5)] transition-all duration-500"
+            className="relative overflow-hidden group border border-[#2a2a2a] bg-[rgba(15,15,15,0.6)] backdrop-blur-2xl p-6 transition-all duration-500"
           >
-            {/* Glow sweep on hover */}
-            <motion.div
-              className="absolute inset-0 bg-linear-to-r from-transparent via-white/10 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-[1.2s]"
-            />
 
             <div className="space-y-4 relative z-10">
               <h3 className="text-2xl font-bold text-sandstorm">
                 {event.title}
               </h3>
               <div className="flex items-center gap-3 text-sm text-white/70">
-                <Calendar size={16} className="text-army" /> {event.date}
+                <Calendar size={16} className="text-sandstorm" /> {event.date}
               </div>
               <div className="flex items-center gap-3 text-sm text-white/70">
                 <MapPin size={16} className="text-sandstorm" />{" "}
@@ -108,18 +98,12 @@ export default function EventsCalendar() {
             {/* Join Ride button */}
             <motion.button
               onClick={() => setSelectedEvent(event)}
-              whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.96 }}
-              className="mt-6 inline-flex items-center justify-center gap-2 bg-linear-to-r from-army/90 via-army to-army/90 cursor-pointer px-6 py-2.5 font-semibold text-black shadow-[0_0_20px_rgba(255,255,255,0.1)] hover:shadow-[0_0_30px_rgba(255,255,255,0.25)] transition-all"
+              className="mt-6 inline-flex items-center justify-center gap-2 bg-linear-to-r from-sandstorm/90 via-sandstorm to-sandstorm/90 cursor-pointer px-6 py-2.5 font-semibold text-black"
             >
               Join Ride
               <ArrowRight size={18} />
             </motion.button>
-
-            {/* Gradient glow on hover */}
-            <motion.div
-              className="absolute inset-0 pointer-events-none opacity-0 group-hover:opacity-100 bg-linear-to-t from-army/10 via-transparent to-transparent transition-all duration-700"
-            />
           </motion.div>
         ))}
       </div>
@@ -131,7 +115,7 @@ export default function EventsCalendar() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="fixed inset-0 z-50 flex items-center justify-center bg-black/70 backdrop-blur-3xl"
+            className="fixed inset-0 z-50 flex items-center justify-center bg-superblack/70 backdrop-blur-3xl"
             onClick={() => setSelectedEvent(null)}
           >
             <motion.div
@@ -140,7 +124,7 @@ export default function EventsCalendar() {
               animate={{ scale: 1, opacity: 1, y: 0 }}
               exit={{ scale: 0.9, opacity: 0, y: 20 }}
               transition={{ duration: 0.35, ease: "easeOut" }}
-              className="relative w-full max-w-lg bg-[rgba(20,20,20,0.85)] border border-[#2a2a2a] rounded-2xl backdrop-blur-2xl p-8 shadow-[0_0_40px_rgba(0,0,0,0.6)] overflow-hidden"
+              className="relative w-full max-w-lg bg-[#121212] border border-[#2a2a2a] rounded-sm backdrop-blur-2xl p-8 shadow-[0_0_40px_rgba(0,0,0,0.6)] overflow-hidden"
             >
               {/* Glow Layer */}
               <motion.div
@@ -152,17 +136,17 @@ export default function EventsCalendar() {
               {/* Close Button */}
               <button
                 onClick={() => setSelectedEvent(null)}
-                className="absolute top-4 right-4 p-2 rounded-full hover:bg-white/10 transition"
+                className="absolute top-4 right-4 p-2 cursor-pointer rounded-full hover:bg-white/10 transition"
               >
                 <X className="w-5 h-5 text-white/70 hover:text-white" />
               </button>
 
               {/* Event Info */}
-              <h3 className="text-2xl font-bold text-army mb-4">
+              <h3 className="text-2xl font-bold text-sandstorm mb-4">
                 {selectedEvent.title}
               </h3>
               <p className="text-white/70 mb-2 flex items-center gap-2">
-                <Calendar size={16} className="text-army" />{" "}
+                <Calendar size={16} className="text-sandstorm" />{" "}
                 {selectedEvent.date}
               </p>
               <p className="text-white/70 mb-2 flex items-center gap-2">
@@ -179,9 +163,8 @@ export default function EventsCalendar() {
 
               {/* Confirm Button */}
               <motion.button
-                whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.96 }}
-                className="w-full py-3 bg-linear-to-r from-army via-sandstorm to-rust text-black font-semibold rounded-xl shadow-[0_0_25px_rgba(255,255,255,0.15)] hover:shadow-[0_0_35px_rgba(255,255,255,0.25)] transition-all"
+                className="w-full py-3 bg-sandstorm cursor-pointer text-black font-semibold rounded-sm"
               >
                 Confirm RSVP
               </motion.button>

@@ -50,93 +50,71 @@ const posts: Post[] = [
 export default function DiscussionForum() {
   return (
     <section className="relative w-full min-h-screen bg-superblack py-20 px-6 overflow-hidden">
-      {/* Ambient lighting background */}
-      {/* <div className="absolute inset-0 -z-10 bg-linear-to-b from-[#0a0a0a] via-[#121212] to-[#0a0a0a]" />
-      <div className="absolute top-[-10%] left-[-10%] w-[600px] h-[600px] bg-gradient-to-tr from-army/20 via-sandstorm/10 to-transparent rounded-full blur-[120px]" />
-      <div className="absolute bottom-[-10%] right-[-10%] w-[600px] h-[600px] bg-gradient-to-tl from-rust/15 via-transparent to-transparent rounded-full blur-[120px]" /> */}
-
-      <h2 className="text-4xl md:text-5xl font-bold text-center text-army mb-20 tracking-wide">
+      <h2 className="text-4xl md:text-5xl font-bold text-center text-sandstorm mb-20 tracking-wide">
         Discussion Forum
       </h2>
 
-      <div className="max-w-6xl mx-auto space-y-12">
-        {posts.map((post, index) => (
+      <div className="max-w-6xl mx-auto space-y-10">
+        {posts.map((post, i) => (
           <motion.div
             key={post.id}
-            initial={{ opacity: 0, y: 60 }}
+            initial={{ opacity: 0, y: 10 }}
             whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7, delay: index * 0.2 }}
+            transition={{ duration: 0.5, ease: "easeOut", delay: i * 0.1 }}
             viewport={{ once: true }}
-            whileHover={{ y: -4 }}
-            className="relative group overflow-hidden border border-[#2a2a2a] bg-[rgba(18,18,18,0.7)] backdrop-blur-2xl backdrop-saturate-150 p-6 md:p-8 shadow-[0_4px_30px_rgba(0,0,0,0.6)] transition-all duration-500"
+            className="
+              relative
+              border border-white/10 
+              bg-[rgba(18,18,18,0.85)]
+              backdrop-blur-2xl 
+              p-6 md:p-8
+              shadow-[0_4px_30px_rgba(0,0,0,0.5)]
+            "
           >
-            {/* Glow overlay */}
-            <motion.div
-              className="absolute inset-0 -z-10 bg-linear-to-br from-army/10 via-transparent to-sandstorm/10 opacity-0 group-hover:opacity-40 blur-2xl transition-opacity duration-700"
-            />
+            {/* Top accent line - Static */}
+            <div className="absolute top-0 left-0 h-[3px] w-full bg-linear-to-r from-rust via-sandstorm to-army opacity-70" />
 
-            {/* Top Accent Line */}
-            <motion.div
-              className="absolute top-0 left-0 h-[3px] w-0 bg-linear-to-r from-army via-sandstorm to-rust group-hover:w-full transition-all duration-700"
-            />
+            <div className="flex flex-col md:flex-row items-start md:items-center gap-6 md:gap-10 mt-3">
+              {/* Avatar */}
+              <div className="relative shrink-0">
+                <div className="absolute inset-0 rounded-full bg-rust/20 blur-xl"></div>
 
-            {/* Content layout */}
-            <div className="flex flex-col md:flex-row items-start md:items-center gap-6 md:gap-10">
-              {/* Author Avatar */}
-              <div className="shrink-0 relative">
-                <div className="absolute inset-0 rounded-full bg-linear-to-tr from-army via-sandstorm to-transparent blur-xl opacity-30 group-hover:opacity-70 transition-opacity duration-700" />
                 <Image
                   src={post.avatar}
                   alt={post.author}
                   width={72}
                   height={72}
-                  quality={100}
                   className="rounded-full border border-white/20 relative z-10"
                 />
               </div>
 
-              {/* Post Details */}
+              {/* Content */}
               <div className="flex-1 flex flex-col gap-4">
                 <div>
                   <h3 className="text-2xl font-semibold text-sandstorm mb-1">
                     {post.title}
                   </h3>
-                  <p className="text-white/60 text-sm">{post.author}</p>
+                  <p className="text-white/50 text-sm">{post.author}</p>
                 </div>
+
                 <p className="text-white/80 text-sm md:text-base leading-relaxed">
                   {post.content}
                 </p>
 
-                {/* Actions */}
+                {/* Static actions (no hover motion) */}
                 <div className="flex gap-6 mt-3">
-                  <motion.button
-                    whileHover={{ scale: 1.1 }}
-                    whileTap={{ scale: 0.95 }}
-                    className="flex items-center gap-1.5 text-white/60 hover:text-army transition"
-                  >
-                    <ThumbsUp
-                      size={18}
-                      className="transition-colors cursor-pointer group-hover:text-army"
-                    />
+                  <button className="flex items-center gap-1.5 text-white/60 hover:text-sandstorm transition">
+                    <ThumbsUp size={18} />
                     <span className="text-sm">{post.likes}</span>
-                  </motion.button>
+                  </button>
 
-                  <motion.button
-                    whileHover={{ scale: 1.1 }}
-                    whileTap={{ scale: 0.95 }}
-                    className="flex items-center gap-1.5 text-white/60 hover:text-sandstorm transition"
-                  >
-                    <MessageSquare size={18}  className="cursor-pointer"/>
+                  <button className="flex items-center gap-1.5 text-white/60 hover:text-sandstorm transition">
+                    <MessageSquare size={18} />
                     <span className="text-sm">{post.comments}</span>
-                  </motion.button>
+                  </button>
                 </div>
               </div>
             </div>
-
-            {/* Hover light sweep */}
-            <motion.div
-              className="absolute inset-0 bg-linear-to-r from-transparent via-white/10 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-[1.3s] ease-in-out"
-            />
           </motion.div>
         ))}
       </div>

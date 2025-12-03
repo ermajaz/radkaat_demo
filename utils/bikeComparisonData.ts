@@ -1,3 +1,5 @@
+import { Bikee } from "@/types/bikeComparison";
+
 export const BikeComparisonData = {
     profiles: [
         {
@@ -179,3 +181,69 @@ export const BikeComparisonData = {
         { label: "Durability & Build", Serow: 6, Saola: 7, Takin: 6 },
     ]
 };
+
+export const bikes: Bikee[] = [
+  {
+    id: "serow",
+    name: "SEROW",
+    logo: "/images/Serow-white.png",
+    logoBlack: "/images/serow-black.png",
+    img: "/images/bike-front.png",
+    stats: {
+      suspension: 9,
+      braking: 7,
+      frame: 9,
+      tire: 8,
+      weight: 9,
+      comfort: 7,
+    },
+    description: [
+      "High suspension",
+      "Balanced braking power",
+      "Lightweight",
+      "Strong frame durability",
+    ],
+  },
+  {
+    id: "saola",
+    name: "SAOLA",
+    logo: "/images/Saola-white.png",
+    logoBlack: "/images/saola-black.png",
+    img: "/images/bike-front.png",
+    stats: {
+      suspension: 7,
+      braking: 8,
+      frame: 7,
+      tire: 6,
+      weight: 8,
+      comfort: 6,
+    },
+    description: [
+      "Efficient climbing",
+      "Responsive braking",
+      "Comfortable ride",
+      "Good weight balance",
+    ],
+  },
+  {
+    id: "takin",
+    name: "TAKIN",
+    logo: "/images/Takin-white.png",
+    logoBlack: "/images/takin-black.png",
+    img: "/images/bike-front.png",
+    stats: {
+      suspension: 8,
+      braking: 9,
+      frame: 8,
+      tire: 7,
+      weight: 7,
+      comfort: 8,
+    },
+    description: [
+      "Excellent control",
+      "Durable build",
+      "Powerful braking",
+      "All-terrain grip",
+    ],
+  },
+];

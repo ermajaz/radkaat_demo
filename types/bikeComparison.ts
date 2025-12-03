@@ -22,3 +22,24 @@ export type ComparisonCategory =
   | "Utility & Convenience"
   | "Terrain Adaptability"
   | "Price";
+
+
+
+  export interface BikeStats {
+  suspension: number;
+  braking: number;
+  frame: number;
+  tire: number;
+  weight: number;
+  comfort: number;
+}
+
+  export interface Bikee {
+  id: string;
+  name: string;
+  logo: string;
+  logoBlack: string;
+  img: string;
+  stats: BikeStats;
+  description: string[];
+}

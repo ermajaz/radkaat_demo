@@ -46,16 +46,15 @@ const riders: Rider[] = [
 
 export default function RiderProfiles() {
   return (
-    <section className="pb-16 h-[80vh] bg-superblack">
-       <h2 className="text-3xl md:text-4xl font-bold mb-12 text-center text-sandstorm">
+    <section className="pb-28 pt-10 bg-superblack">
+      <h2 className="text-4xl md:text-5xl font-bold mb-16 text-center text-sandstorm tracking-wide">
         Top Riders
       </h2>
-      <div className="max-w-6xl mx-auto space-y-12">
-        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
-          {riders.map((rider, index) => (
-            <RiderCard key={rider.id} rider={rider} delay={index * 0.2} />
-          ))}
-        </div>
+
+      <div className="max-w-6xl mx-auto grid sm:grid-cols-2 lg:grid-cols-3 gap-12 px-5">
+        {riders.map((rider, index) => (
+          <RiderCard key={rider.id} rider={rider} delay={index * 0.15} />
+        ))}
       </div>
     </section>
   );
@@ -63,95 +62,126 @@ export default function RiderProfiles() {
 
 function RiderCard({ rider, delay }: { rider: Rider; delay: number }) {
   const ref = useRef<HTMLDivElement>(null);
-  const inView = useInView(ref, { once: true });
+  const isInView = useInView(ref, { once: true });
   const controls = useAnimation();
 
+  // Smooth reveal animation
   useEffect(() => {
-    if (inView) {
+    if (isInView) {
       controls.start("visible");
     }
-  }, [inView, controls]);
+  }, [isInView]);
 
   return (
     <motion.div
       ref={ref}
-      initial={{ opacity: 0, y: 40 }}
+      initial="hidden"
       animate={controls}
       variants={{
-        visible: { opacity: 1, y: 0, transition: { duration: 0.6, delay } },
+        hidden: { opacity: 0, y: 30 },
+        visible: {
+          opacity: 1,
+          y: 0,
+          transition: {
+            duration: 0.7,
+            delay,
+            ease: "easeOut",
+          },
+        },
       }}
-      whileHover={{ scale: 1.05 }}
-      className="relative bg-linear-to-br from-[#1a1f2a] to-[#111519] backdrop-blur-md border border-[#2a2a2a] p-6 flex flex-col items-center text-white shadow-lg hover:shadow-2xl cursor-pointer"
+      className="
+        relative p-6
+        bg-[#121212]/95
+        border border-white/10
+        shadow-[0_0_25px_rgba(0,0,0,0.45)]
+        backdrop-blur-xl
+        cursor-pointer overflow-hidden
+        transition-all duration-300
+        hover:border-sandstorm/40
+        hover:shadow-[0_0_35px_rgba(255,204,102,0.15)]
+      "
     >
       {/* Avatar */}
-      <div className="relative w-28 h-28">
-        <div className="absolute -inset-1 bg-linear-to-tr from-rust to-sandstorm rounded-full blur-xl opacity-40 animate-pulse"></div>
-        <Image quality={100}
+      <div className="relative w-28 h-28 mx-auto">
+        <Image
           src={rider.avatar}
           alt={rider.name}
           width={112}
           height={112}
-          className="rounded-full relative border-2 border-white/30"
+          className="rounded-full border-2 border-white/20 object-cover"
         />
       </div>
 
-      {/* Info */}
-      <div className="mt-4 text-center space-y-1">
-        <h3 className="text-xl md:text-2xl font-bold text-sandstorm drop-shadow-md">
-          {rider.name}
-        </h3>
-        <p className="text-sm md:text-base text-gray-300">{rider.tagline}</p>
+      {/* Name + Tagline */}
+      <div className="text-center mt-5 space-y-1">
+        <h3 className="text-2xl font-bold text-sandstorm">{rider.name}</h3>
+        <p className="text-gray-400 text-sm">{rider.tagline}</p>
       </div>
 
       {/* Badges */}
-      <div className="flex flex-wrap justify-center gap-2 mt-3">
+      <div className="flex flex-wrap justify-center gap-2 mt-4">
         {rider.badges.map((badge, i) => (
-          <motion.span
+          <span
             key={i}
-            whileHover={{ scale: 1.05 }}
-            className="text-xs bg-rust/90 text-white px-3 py-1 font-medium shadow-md"
+            className="
+              text-xs px-3 py-1 rounded-full 
+              bg-white/5 border border-white/10 
+              text-white/80
+            "
           >
             {badge}
-          </motion.span>
+          </span>
         ))}
       </div>
 
-      {/* Stats with animated circular progress */}
+      {/* Stats */}
       <div className="grid grid-cols-3 gap-4 mt-6">
         {Object.entries(rider.stats).map(([key, value], i) => {
           const radius = 24;
           const circumference = 2 * Math.PI * radius;
+
           return (
             <div key={i} className="flex flex-col items-center">
-              <div className="relative w-16 h-16 mb-1">
+              <div className="relative w-16 h-16">
                 <svg className="absolute top-0 left-0 w-full h-full">
                   <circle
                     cx="50%"
                     cy="50%"
                     r={radius}
-                    className="stroke-white/10 fill-none stroke-2"
+                    className="stroke-white/10 fill-none stroke-[4px]"
                   />
+                </svg>
+
+                <svg className="absolute top-0 left-0 w-full h-full">
                   <motion.circle
                     cx="50%"
                     cy="50%"
                     r={radius}
-                    className="stroke-rust/90 fill-none stroke-2"
+                    className="stroke-sandstorm fill-none stroke-[4px]"
                     strokeDasharray={circumference}
-                    strokeDashoffset={
-                      inView ? circumference * (1 - value / 60) : circumference
+                    strokeDashoffset={circumference}
+                    animate={
+                      isInView
+                        ? {
+                            strokeDashoffset:
+                              circumference * (1 - value / 60),
+                          }
+                        : {}
                     }
-                    initial={{ strokeDashoffset: circumference }}
-                    animate={{
-                      strokeDashoffset: circumference * (1 - value / 60),
+                    transition={{
+                      duration: 1.6,
+                      delay: delay + i * 0.2,
+                      ease: "easeInOut",
                     }}
-                    transition={{ duration: 1.2, delay: delay + i * 0.2 }}
+                    strokeLinecap="round"
                   />
                 </svg>
-                <span className="absolute inset-0 flex items-center justify-center text-xs md:text-sm font-semibold">
+
+                <span className="absolute inset-0 flex items-center justify-center text-sm font-semibold text-white">
                   {value}
                 </span>
               </div>
-              <p className="text-xs text-gray-300 capitalize">{key}</p>
+              <p className="text-xs text-gray-400 capitalize">{key}</p>
             </div>
           );
         })}

@@ -12,19 +12,21 @@ export default function CommunityHero() {
     offset: ["start start", "end start"],
   });
 
-  // Parallax layers
-  const yBackground = useTransform(scrollYProgress, [0, 1], [0, -120]);
+  // 🌄 Smooth Zoom Parallax (No Upward Movement)
+  const scaleBackground = useTransform(scrollYProgress, [0, 1], [1, 1.18]);
+
+  // Glow and content still parallax
   const yGlow = useTransform(scrollYProgress, [0, 1], [0, -60]);
   const yContent = useTransform(scrollYProgress, [0, 1], [0, 40]);
 
   return (
     <section
       ref={heroRef}
-      className="relative h-screen flex items-center justify-center text-center overflow-hidden bg-black"
+      className="relative h-screen flex items-center justify-center text-center overflow-hidden"
     >
-      {/* 🌄 Background Parallax Image */}
+      {/* 🌄 Background Zoom Parallax */}
       <motion.div
-        style={{ y: yBackground }}
+        style={{ scale: scaleBackground }}
         className="absolute inset-0 w-full h-full z-0"
       >
         <Image
@@ -35,17 +37,20 @@ export default function CommunityHero() {
           className="object-cover object-center"
           priority
         />
-        {/* Gradient Overlay */}
+
+        {/* Overlay */}
         <div className="absolute inset-0 bg-linear-to-b from-black/70 via-black/40 to-black/90" />
       </motion.div>
 
-      {/* 🌌 Ambient Glow Layer */}
+      {/* 🌌 Ambient Glow */}
       <motion.div
         style={{ y: yGlow }}
-        className="absolute -top-40 left-1/2 -translate-x-1/2 w-[800px] h-[800px] bg-[radial-gradient(circle,rgba(255,160,80,0.2),transparent_70%)] blur-[120px] opacity-60"
+        className="absolute -top-40 left-1/2 -translate-x-1/2 w-[800px] h-[800px] 
+        bg-[radial-gradient(circle,rgba(255,160,80,0.2),transparent_70%)]
+        blur-[120px] opacity-60"
       />
 
-      {/* ✨ Floating particles */}
+      {/* ✨ Floating Particles */}
       <div className="absolute inset-0 z-10 pointer-events-none">
         {Array.from({ length: 40 }).map((_, i) => (
           <motion.div
@@ -71,7 +76,7 @@ export default function CommunityHero() {
         ))}
       </div>
 
-      {/* 🧭 Hero Content */}
+      {/* 🧭 Content */}
       <motion.div
         style={{ y: yContent }}
         className="relative z-20 space-y-8 max-w-3xl px-6"
@@ -89,43 +94,14 @@ export default function CommunityHero() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1.2, ease: "easeOut" }}
-          className="text-lg md:text-xl text-white/80 drop-shadow-md"
+          className="text-lg md:text-xl text-white/80"
         >
           Unite. Ride. Explore. Share stories with{" "}
           <span className="text-rust font-semibold">Riders Who Live Now.</span>
         </motion.p>
-
-        {/* Button */}
-        <motion.button
-          whileHover={{
-            scale: 1.05,
-            boxShadow: "0 0 20px rgba(255,170,100,0.3)",
-          }}
-          whileTap={{ scale: 0.96 }}
-          transition={{ duration: 0.2 }}
-          className="group relative inline-flex items-center gap-3 overflow-hidden px-8 py-3 font-semibold text-white bg-linear-to-r from-rust to-sandstorm cursor-pointer"
-        >
-          <span className="relative z-10">Join the Movement</span>
-          <ArrowRight
-            size={18} 
-            className="relative z-10 transition-transform group-hover:translate-x-1"
-          />
-
-          {/* Shimmer effect */}
-          <motion.div
-            className="absolute inset-0 bg-linear-to-r from-transparent via-white/30 to-transparent -translate-x-full"
-            animate={{ x: ["-100%", "100%"] }}
-            transition={{
-              repeat: Infinity,
-              duration: 2.5,
-              ease: "linear",
-              delay: 1,
-            }}
-          />
-        </motion.button>
       </motion.div>
 
-      {/* 🕶 Soft edge fade */}
+      {/* Bottom fade */}
       <div className="absolute bottom-0 left-0 w-full h-32 bg-linear-to-t from-black to-transparent z-20" />
     </section>
   );
