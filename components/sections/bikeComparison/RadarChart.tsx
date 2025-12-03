@@ -1,4 +1,5 @@
-import { Bikee } from "@/types";
+
+import { Bikee } from "@/types/bikeComparison";
 import {
   Radar,
   RadarChart,
