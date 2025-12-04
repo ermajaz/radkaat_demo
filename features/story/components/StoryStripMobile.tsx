@@ -3,19 +3,17 @@
 import { motion } from "framer-motion";
 import { ShoppingBag } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import React from "react";
+import React, { useState } from "react";
+import EnquiryFormSheet from "./EnquireFormSheet";
 
 interface StoryStripMobileProps {
   name: string;
-  price?: number;
-  onBuy?: () => void;
 }
 
 export const StoryStripMobile: React.FC<StoryStripMobileProps> = ({
   name,
-  price,
-  onBuy,
 }) => {
+  const [open, setOpen] = useState(false);
   return (
     <motion.div
       initial={{ y: 80, opacity: 0 }}
@@ -39,16 +37,11 @@ export const StoryStripMobile: React.FC<StoryStripMobileProps> = ({
         <p className="text-[#E4D27C] text-[15px] font-semibold leading-tight">
           {name}
         </p>
-        {price && (
-          <p className="text-white text-[18px] font-bold leading-snug">
-            ₹{price.toLocaleString("en-IN")}
-          </p>
-        )}
       </div>
 
       {/* Right side: Buy Now Button */}
       <Button
-        onClick={onBuy}
+        onClick={() => setOpen(true)}
         className="
           flex items-center gap-2 
           bg-linear-to-r from-[#E4D27C] to-[#D2B95C] 
@@ -60,8 +53,10 @@ export const StoryStripMobile: React.FC<StoryStripMobileProps> = ({
         "
       >
         <ShoppingBag size={18} />
-        Buy Now
+        Enquire Now
       </Button>
+
+      <EnquiryFormSheet open={open} onClose={() => setOpen(false)} />
     </motion.div>
   );
 };

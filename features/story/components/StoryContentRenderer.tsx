@@ -9,6 +9,8 @@ import { StoryContentCard } from "./StoryContentCard";
 import WhatToPackSection from "./WhatToPackSection";
 import TestimonialSection from "./TestimonialSection";
 import StoryGallerySection from "./StoryGallerySection";
+import InclusionsSection from "./InclusionsSection";
+import ExclusionsSection from "./ExclusionsSection";
 
 interface Props {
   section: any;
@@ -56,6 +58,14 @@ export const StoryContentRenderer: React.FC<Props> = ({
 
     case "gallery":
       content = <StoryGallerySection title={section.title} images={section.data} />;
+      break;
+
+      case "inclusions":
+      content = <InclusionsSection title={section.title} data={section.data} />;
+      break;
+
+      case "exclusions":
+      content = <ExclusionsSection title={section.title} data={section.data} />;
       break;
 
     default:

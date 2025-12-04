@@ -47,7 +47,7 @@ export const StorySidebarMobile: React.FC<Props> = ({
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, ease: "easeOut" }}
             className="
-        sticky top-0 z-40 
+        sticky top-0 z-40  hide-scrollbar
         flex overflow-x-auto gap-2 p-2.5 sm:p-3 rounded-lg 
         border border-[#E4D27C]/10
         bg-[#141414]/50 

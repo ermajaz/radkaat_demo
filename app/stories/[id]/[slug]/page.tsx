@@ -43,7 +43,7 @@ export default function StoryPage() {
       {/* HERO */}
       <section className="relative w-full h-[85vh] md:h-screen">
         <Image
-          src={story.img}
+          src={story.leftImage}
           alt={story.title}
           fill
           quality={100}
@@ -51,13 +51,13 @@ export default function StoryPage() {
         />
         <div className="absolute inset-0 bg-black/20" />
         <div className="relative z-10">
-          <HeroTout title={story.title} />
+          <HeroTout title={story.title} tour={story} />
         </div>
 
         {/* Gallery Button */}
         <button
           onClick={() => setGalleryOpen(true)}
-          className="absolute bottom-20 right-4 z-20 rounded-lg sm:rounded-sm flex items-center gap-2 px-4 py-2 bg-[#1A1A1A]/80 text-stone-200 cursor-pointer border border-stone-700 text-sm md:text-base"
+          className="absolute bottom-25 right-4 z-20 rounded-lg sm:rounded-sm flex items-center gap-2 px-4 py-2 bg-[#1A1A1A]/80 text-stone-200 cursor-pointer border border-stone-700 text-sm md:text-base"
         >
           <Image
             src="/icons/gallery-icon.png"
@@ -120,14 +120,10 @@ export default function StoryPage() {
       {isMobile ? (
         <StoryStripMobile
           name={story.title}
-          price={story.price ?? 24999}
-          onBuy={() => alert(`Buying ${story.title}`)}
         />
       ) : (
         <StoryStrip
           name={story.title}
-          price={story.price ?? 24999}
-          onBuy={() => alert(`Buying ${story.title}`)}
         />
       )}
 

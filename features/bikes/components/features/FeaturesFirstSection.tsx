@@ -80,12 +80,13 @@ export default function FeaturesFirstSection() {
           {/* Background Image */}
           <Image
             quality={100}
-            src="/images/bikes/frameset.png"
+            src="/images/feature/feature-intro-left.webp"
             alt="Bike Frame"
             width={600}
             height={600}
             className="w-full h-full object-cover"
           />
+          <div className="absolute inset-0 bg-sandstorm/10"/>
 
           {/* Overlay Text */}
           <div
@@ -117,15 +118,15 @@ export default function FeaturesFirstSection() {
         {/* Right Side */}
         <div
           ref={rightRef}
-          className="flex items-center justify-center bg-black overflow-hidden"
+          className="flex items-center justify-center overflow-hidden"
         >
           <Image
             quality={100}
-            src="/images/bikes/feature-right.png"
+            src="/images/feature/feature-1.webp"
             alt="Bike"
             width={800}
             height={600}
-            className="object-contain"
+            className="object-cover h-full"
           />
         </div>
       </div>

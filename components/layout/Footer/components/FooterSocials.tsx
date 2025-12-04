@@ -14,14 +14,14 @@ export default function FooterSocials() {
         <Facebook size={15} /> Facebook
       </Link>
       <Link
-        href="https://instagram.com"
+        href="https://www.instagram.com/radkaatofficial"
         target="_blank"
         className="flex items-center gap-2 hover:text-rust transition-colors"
       >
         <Instagram size={15} /> Instagram
       </Link>
       <Link
-        href="https://youtube.com"
+        href="http://youtube.com/@cyclecircle5922"
         target="_blank"
         className="flex items-center gap-2 hover:text-rust transition-colors"
       >

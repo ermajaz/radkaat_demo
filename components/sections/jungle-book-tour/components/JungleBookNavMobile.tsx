@@ -2,13 +2,14 @@
 
 import { motion } from "framer-motion";
 import { cn } from "@/lib/utils";
+import { Tour } from "@/features/story/types/story.types";
 
 export default function JungleBookNavMobile({
   destinations,
   activeIndex,
   onStoryClick,
 }: {
-  destinations: any[];
+  destinations: Tour[];
   activeIndex: number;
   onStoryClick: (index: number) => void;
 }) {
@@ -62,8 +63,6 @@ export default function JungleBookNavMobile({
                 <span
                   className={cn(
                     "text-[9.5px] font-medium mt-1",
-                    story?.urgent
-                      ? "text-rust":
                       story?.seat
                       ? "text-rust"
                       : isActive
@@ -71,7 +70,7 @@ export default function JungleBookNavMobile({
                       : "text-white/50"
                   )}
                 >
-                  {story?.urgent || story?.seat || story?.date}
+                  {story?.seat || story?.date}
                 </span>
               </div>
             </button>

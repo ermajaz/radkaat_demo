@@ -1,44 +1,40 @@
 "use client";
 
-import React from "react";
+import { useState } from "react";
 import { Button } from "@/components/ui/button";
+import EnquiryFormModal from "./EnquireFormModal";
 
 interface StoryStripProps {
   name: string;
-  price?: number;
-  onBuy?: () => void;
 }
 
-export default function StoryStrip({ name, price, onBuy }: StoryStripProps) {
-  return (
-    <div
-      className="
-        sticky w-full bottom-0 left-0 z-50
-        bg-stone backdrop-blur-md
-        flex items-center justify-between
-        px-6 md:px-10 py-3
-      "
-    >
-      {/* Left Side: Story Name */}
-      <div className="text-superblack text-[20px] md:text-[22px] font-semibold truncate">
-        {name.toUpperCase()}
-      </div>
+export default function StoryStrip({ name }: StoryStripProps) {
+  const [open, setOpen] = useState(false);
 
-      {/* Right Side: Price + Buy Now Button */}
-      <div className="flex items-center gap-8">
-        {price !== undefined && (
-          <span className="text-superblack text-[25px] font-bold">
-            ₹{price.toLocaleString("en-IN")}/-
-          </span>
-        )}
+  return (
+    <>
+      <div
+        className="
+          sticky w-full bottom-0 left-0 z-50
+          bg-stone backdrop-blur-md
+          flex items-center justify-between
+          px-6 md:px-10 py-3
+        "
+      >
+        <div className="text-superblack text-[20px] md:text-[22px] font-semibold truncate">
+          {name.toUpperCase()}
+        </div>
 
         <Button
-          className="bg-superblack rounded-none px-6 py-6 cursor-pointer text-white text-[18px] hover:bg-gray-800"
-          onClick={onBuy}
+          className="bg-superblack rounded-none px-6 py-6 cursor-pointer text-white text-[18px] hover:bg-gray-900"
+          onClick={() => setOpen(true)}
         >
-          BUY NOW
+          ENQUIRE NOW
         </Button>
       </div>
-    </div>
+
+      {/* Desktop → ShadCN Modal */}
+      <EnquiryFormModal open={open} onClose={() => setOpen(false)} />
+    </>
   );
 }

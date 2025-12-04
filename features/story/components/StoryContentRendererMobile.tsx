@@ -9,6 +9,8 @@ import ItineraryAccordion from "./ItineraryAccordian";
 import WhatToPackSection from "./WhatToPackSection";
 import TestimonialSection from "./TestimonialSection";
 import StoryGallerySection from "./StoryGallerySection";
+import ExclusionsSection from "./ExclusionsSection";
+import InclusionsSection from "./InclusionsSection";
 
 interface Props {
     section: any;
@@ -46,6 +48,14 @@ export const StoryContentRendererMobile: React.FC<Props> = ({
             {section.type === "gallery" && (
                 <StoryGallerySection title={section.title} images={section.data} />
             )}
+
+            {section.type === "inclusions" && (
+                <InclusionsSection title={section.title} data={section.data} />
+            )}
+            {section.type === "exclusions" && (
+                <ExclusionsSection title={section.title} data={section.data} />
+            )}
+
 
             {/* Divider */}
             <div className="border-t border-gray-800/70 mt-12 mb-8" />

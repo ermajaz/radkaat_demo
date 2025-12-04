@@ -10,8 +10,9 @@ import {
   UtensilsCrossed,
   BadgeCheck,
 } from "lucide-react";
+import { Tour } from "@/features/story/types/story.types";
 
-export default function CardImageMobile({ destination }: { destination: any }) {
+export default function CardImageMobile({ destination }: { destination: Tour }) {
   const title =
     destination?.title?.trim()?.split(/\s+/)[0] || "EXPEDITION";
 

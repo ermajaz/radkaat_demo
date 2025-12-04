@@ -1,11 +1,17 @@
 "use client";
 
-export default function JungleBookNavDesktop({ destinations, activeIndex, onStoryClick }: any) {
+import { Tour } from "@/features/story/types/story.types";
+
+export default function JungleBookNavDesktop({ destinations, activeIndex, onStoryClick }: {
+  destinations: Tour[];
+  activeIndex: number;
+  onStoryClick: (index: number) => void;
+}) {
   return (
-    <div className="flex justify-between items-center h-[110px] px-10 py-2 bg-[#121212]">
+    <div className="flex justify-between items-center h-[110px] px-5 py-2 bg-[#121212]">
       {/* Left Section */}
-      <div className="flex flex-col w-[350px]">
-        <h2 className="text-white text-[48px] font-bold leading-tight">
+      <div className="flex flex-col">
+        <h2 className="text-white text-[45px] font-bold whitespace-nowrap leading-tight">
           THE JUNGLE BOOK
         </h2>
         <p className="text-stone text-[10px] font-normal max-w-full">
@@ -14,7 +20,7 @@ export default function JungleBookNavDesktop({ destinations, activeIndex, onStor
       </div>
 
       {/* Right Section */}
-      <div className="flex gap-10 pr-10 overflow-x-auto hide-scrollbar">
+      <div className="flex gap-5 overflow-x-auto hide-scrollbar">
         {destinations.map((story: any, index: number) => (
           <div
             key={index}
@@ -28,18 +34,14 @@ export default function JungleBookNavDesktop({ destinations, activeIndex, onStor
               {story.title}
             </span>
             <span
-              className={`text-[10.5px] font-normal ${story?.urgent
-                ? "text-sandstorm"
-                : activeIndex === index
+              className={`text-[10.5px] font-normal ${activeIndex === index
                   ? "text-stone"
                   : "text-gray-400"
                 }`}
             >
-              {story?.urgent
-                ? story.urgent
-                : story?.seat
-                  ? story.seat
-                  : story.date}
+              {story?.seat
+                ? story.seat
+                : story.date}
             </span>
 
             {activeIndex === index && (

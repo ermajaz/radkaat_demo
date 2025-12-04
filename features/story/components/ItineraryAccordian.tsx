@@ -1,7 +1,7 @@
 "use client";
 
-import  { useState } from "react";
-import {  ChevronDown } from "lucide-react";
+import { useState } from "react";
+import { ChevronDown } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { cn } from "@/lib/utils";
 import { ItineraryItem } from "../types/story.types";
@@ -89,6 +89,7 @@ export default function ItineraryAccordion({
 
 
               {/* Animated Content */}
+              {/* Animated Content */}
               <AnimatePresence initial={false}>
                 {isOpen && (
                   <motion.div
@@ -97,22 +98,49 @@ export default function ItineraryAccordion({
                     animate={{ height: "auto", opacity: 1 }}
                     exit={{ height: 0, opacity: 0 }}
                     transition={{ duration: 0.4, ease: "easeInOut" }}
-                    className="px-6 md:px-8 py-3 text-[15px] leading-relaxed text-stone-300 border-t border-neutral-800/60"
+                    className="px-6 md:px-8 py-4 text-[15px] leading-relaxed text-stone-300 border-t border-neutral-800/60"
                   >
-                    {item.highlights && (
-                      <p className="text-[15px] font-semibold mb-3 text-[#E4D27C]">
-                        Highlights:{" "}
-                        <span className="font-normal text-stone-200">
-                          {item.highlights.join(", ")}
+                    {/* Highlights */}
+                    {item.title && (
+                      <p className="text-[15px] font-semibold mb-4 text-[#E4D27C]">
+                        Highlights:
+                        <span className="font-normal text-stone-200 ml-1">
+                          {item.title}
                         </span>
                       </p>
                     )}
-                    {item.description && (
+
+                    {/* DESCRIPTION LIST */}
+                    {Array.isArray(item.description) && (
+                      <ul className="space-y-2">
+                        {item.description.map((point, idx) => (
+                          <motion.li
+                            key={idx}
+                            initial={{ opacity: 0, x: -10 }}
+                            animate={{ opacity: 1, x: 0 }}
+                            transition={{ delay: idx * 0.06, duration: 0.3 }}
+                            className="flex items-start gap-3"
+                          >
+                            {/* Bullet Icon */}
+                            <span className="mt-1 h-2 w-2 rounded-full bg-[#E4D27C]/80 shadow-[0_0_6px_rgba(228,210,124,0.7)]" />
+
+                            {/* Bullet Text */}
+                            <span className="text-stone-300 leading-[1.55] tracking-[0.2px]">
+                              {point}
+                            </span>
+                          </motion.li>
+                        ))}
+                      </ul>
+                    )}
+
+                    {/* FALLBACK if someone passes a string */}
+                    {typeof item.description === "string" && (
                       <p className="text-stone-300">{item.description}</p>
                     )}
                   </motion.div>
                 )}
               </AnimatePresence>
+
             </motion.div>
           );
         })}

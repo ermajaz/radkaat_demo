@@ -2,7 +2,6 @@
 
 import Image from "next/image";
 import { motion } from "framer-motion";
-import { Destination } from "@/types/destination";
 import {
   Mountain,
   Ruler,
@@ -12,16 +11,17 @@ import {
   BadgeCheck,
   Car
 } from "lucide-react";
+import { Tour } from "@/features/story/types/story.types";
 
 export default function CardImage({
   destination,
   hovered,
 }: {
-  destination: Destination;
+  destination: Tour;
   hovered: boolean;
 }) {
   // Fallback static content (when data missing)
-  const title = destination?.title?.trim()?.split(/\s+/)[0] || "MANALI";
+  const title = destination?.title;
   const subtitle =
     destination?.subtitle ||
     "Remarkable experience to inspire the mind";
@@ -33,15 +33,8 @@ Cold Deserts ; a culture preserved for centuries!.
 This is the heart of the Himalaya! Manali–Leh is a highly popular cycling jaunt, frequented by cyclists 
 from across the world, but accessible only for few months in a year.`;
 
-  const rightPanelDetails = [
-    { icon: Bike, text: "8 Days Adventure" },
-    { icon: Mountain, text: "Altitude: 6,700 ft" },
-    { icon: Ruler, text: "Total Distance: ~120 km" },
-    { icon: MapPin, text: "Stay: 3-star lodge + 2 nights camping" },
-    { icon: UtensilsCrossed, text: "Meals: Breakfast & Dinner included" },
-    { icon: BadgeCheck, text: "Difficulty: Moderate" },
-    { icon: Car, text: "Support Vehicle: Included" },
-  ];
+  const rightPanelDetails = destination?.rightPanelDetails || [];
+
 
   return (
     <div className="relative w-full h-full overflow-hidden">
@@ -64,17 +57,17 @@ from across the world, but accessible only for few months in a year.`;
                    p-5 rounded-lg shadow-2xl"
       >
         {/* Title */}
-        <h1 className="text-5xl text-center font-extrabold tracking-wide text-white mb-2">
+        <h1 className="text-2xl text-start font-extrabold tracking-wide text-white mb-1">
           {title}
         </h1>
 
         {/* Subtitle */}
-        <p className="italic text-[15px] text-sandstorm leading-snug mb-2">
+        <p className="italic text-[15px] text-sandstorm leading-snug mb-1">
           “{subtitle}”
         </p>
 
         {/* Description */}
-        <p className="text-sm text-gray-200 leading-relaxed mb-2 whitespace-pre-line">
+        <p className="text-xs text-gray-200 leading-relaxed mb-1 whitespace-pre-line">
           {description}
         </p>
 
@@ -84,8 +77,8 @@ from across the world, but accessible only for few months in a year.`;
             const Icon = item.icon;
             return (
               <li key={i} className="flex items-start gap-3 text-gray-200">
-                <Icon size={16} className="text-sandstorm mt-0.5" />
-                <span className="text-sm">{item.text}</span>
+                <Icon size={16} className="text-sandstorm" />
+                <span className="text-[13px]">{item.text}</span>
               </li>
             );
           })}

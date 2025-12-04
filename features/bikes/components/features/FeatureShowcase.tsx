@@ -85,7 +85,7 @@ export default function FeatureShowcase({ features }: Props) {
       </div>
 
       {/* RIGHT SIDE (Sticky Image) */}
-      <div className="w-[45%] h-[calc(100vh-70px)] mt-[70px] sticky top-[70px] flex items-center justify-center">
+      <div className="w-[45%] h-[calc(100vh-70px)] mt-[70px] sticky top-[70px] px-12.5 flex items-center justify-center">
         <AnimatePresence mode="wait">
           <motion.div
             key={features[activeIndex].image}

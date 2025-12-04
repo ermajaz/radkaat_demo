@@ -3,8 +3,8 @@
 import { useEffect, useRef, useState } from "react";
 import Lenis from "lenis";
 import StoryScroller from "./components/StoryScroller";
-import { destinations } from "@/utils/destination";
 import JungleBookNavDesktop from "./components/JungleBookNavDesktop";
+import { stories } from "@/features/story/utils/story-data";
 
 export default function JungleBookDesktop() {
   const scrollRef = useRef<HTMLDivElement>(null);
@@ -35,11 +35,11 @@ export default function JungleBookDesktop() {
   return (
     <section className="relative w-full bg-linear-to-b from-[#001644] to-black">
       <div ref={scrollRef} className="flex overflow-x-auto hide-scrollbar gap-6 snap-x snap-mandatory scroll-smooth">
-        <StoryScroller destinations={destinations} activeIndex={activeIndex} />
+        <StoryScroller destinations={stories} activeIndex={activeIndex} />
       </div>
 
       <JungleBookNavDesktop
-        destinations={destinations}
+        destinations={stories}
         activeIndex={activeIndex}
         onStoryClick={onStoryClick}
       />

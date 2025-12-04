@@ -27,7 +27,19 @@ export default function HeaderMobile() {
   const hideStrip =
     pathname.startsWith("/bikes/") ||
     pathname.startsWith("/apparel") ||
+    pathname.startsWith("/stories") ||
     pathname.startsWith("/accessories");
+
+
+  // BOTTOM NAV SHOULD HIDE ON SOME ROUTES
+  const hideBottomNav =
+    pathname.startsWith("/stories") ||
+    pathname.startsWith("/bikes") ||
+    pathname.startsWith("/carts") ||
+    pathname.startsWith("/address") ||
+    pathname.startsWith("/payment") ||
+    pathname.startsWith("/confirmation");
+
 
   /* --------------------------------------------
         ACTIVE CHECK FOR STRIP BUTTONS
@@ -147,11 +159,15 @@ export default function HeaderMobile() {
       )}
 
       {/* ⭐ BOTTOM NAVIGATION */}
-      <BottomNavMobile
-        open={menuOpen}
-        onOpen={() => setMenuOpen(true)}
-        onClose={() => setMenuOpen(false)}
-      />
+      {/* ⭐ BOTTOM NAVIGATION */}
+      {!hideBottomNav && (
+        <BottomNavMobile
+          open={menuOpen}
+          onOpen={() => setMenuOpen(true)}
+          onClose={() => setMenuOpen(false)}
+        />
+      )}
+
     </>
   );
 }

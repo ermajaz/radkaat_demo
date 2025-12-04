@@ -2,12 +2,13 @@
 
 import { motion } from "framer-motion";
 import CardImageMobile from "./CardImageMobile";
+import { Tour } from "@/features/story/types/story.types";
 
 export default function StoryCardMobile({
   destination,
   isActive,
 }: {
-  destination: any;
+  destination: Tour;
   isActive: boolean;
 }) {
   return (
