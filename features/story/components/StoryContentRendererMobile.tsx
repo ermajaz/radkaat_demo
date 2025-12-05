@@ -2,7 +2,7 @@
 
 import React from "react";
 import { motion } from "framer-motion";
-import { ArrowLeft, ArrowRight } from "lucide-react";
+import { ArrowLeft, ArrowRight, Download } from "lucide-react";
 import Link from "next/link";
 import { StoryContentCard } from "./StoryContentCard";
 import ItineraryAccordion from "./ItineraryAccordian";
@@ -25,6 +25,7 @@ export const StoryContentRendererMobile: React.FC<Props> = ({
     onNextTourClick,
     homepageLink = "/",
 }) => {
+    const pdfUrl = "/pdfs/zanskar-itinerary.pdf";
     return (
         <motion.div
             key={section.title}
@@ -33,6 +34,26 @@ export const StoryContentRendererMobile: React.FC<Props> = ({
             transition={{ duration: 0.4, ease: "easeOut" }}
             className="w-full px-1 mb-20 sm:px-2"
         >
+            {/* PDF Download Button */}
+            {pdfUrl && (
+                <motion.a
+                    href={pdfUrl}
+                    download
+                    initial={{ opacity: 0, y: 10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.5 }}
+                    className="
+      w-fit flex items-center gap-2 mb-3 rounded-lg
+      bg-linear-to-r from-[#E4D27C]/90 to-[#E4D27C]/70
+      text-black font-semibold text-[14px]
+      px-4 py-2
+      cursor-pointer
+    "
+                >
+                    <Download size={18} />
+                    Download Itinerary PDF
+                </motion.a>
+            )}
             {section.type === "story" && (
                 <StoryContentCard
                     content={section.data}

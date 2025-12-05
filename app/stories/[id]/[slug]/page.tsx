@@ -95,7 +95,7 @@ export default function StoryPage() {
             </div>
           </div>
 
-          <div className="flex-1 pt-10 pl-0 lg:pl-10 flex flex-col gap-8">
+          <div className="flex-1 pt-2 pl-0 lg:pl-10 flex flex-col gap-8">
             <StoryContentRenderer
               section={contents[activeIndex]}
               nextTourName={nextStory.title}

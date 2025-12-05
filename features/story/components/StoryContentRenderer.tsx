@@ -3,7 +3,7 @@
 import React from "react";
 import { motion } from "framer-motion";
 import Link from "next/link";
-import { ArrowLeft, ArrowRight } from "lucide-react";
+import { ArrowLeft, ArrowRight, Download } from "lucide-react";
 import ItineraryAccordion from "./ItineraryAccordian";
 import { StoryContentCard } from "./StoryContentCard";
 import WhatToPackSection from "./WhatToPackSection";
@@ -26,6 +26,7 @@ export const StoryContentRenderer: React.FC<Props> = ({
   homepageLink = "/",
 }) => {
   let content: React.ReactNode;
+  const pdfUrl = "/pdfs/zanskar-itinerary.pdf";
 
   // ✅ Render appropriate section
   switch (section.type) {
@@ -60,11 +61,11 @@ export const StoryContentRenderer: React.FC<Props> = ({
       content = <StoryGallerySection title={section.title} images={section.data} />;
       break;
 
-      case "inclusions":
+    case "inclusions":
       content = <InclusionsSection title={section.title} data={section.data} />;
       break;
 
-      case "exclusions":
+    case "exclusions":
       content = <ExclusionsSection title={section.title} data={section.data} />;
       break;
 
@@ -79,6 +80,31 @@ export const StoryContentRenderer: React.FC<Props> = ({
   // ✅ Unified return with Bottom Navigation
   return (
     <div className="flex flex-col w-full">
+      {/* PDF Download Button */}
+      {pdfUrl && (
+        <motion.a
+          href={pdfUrl}
+          download
+          initial={{ opacity: 0, y: 10 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5 }}
+          className="
+      md:self-end
+      flex items-center gap-2
+      bg-linear-to-r from-[#E4D27C]/90 to-[#E4D27C]/70
+      text-black font-semibold text-[14px]
+      px-4 py-2
+      hover:scale-[1.03]
+      active:scale-[0.97]
+      transition-all duration-300
+      cursor-pointer
+    "
+        >
+          <Download size={18} />
+          Download Itinerary PDF
+        </motion.a>
+      )}
+
       {content}
 
       {/* Divider */}
