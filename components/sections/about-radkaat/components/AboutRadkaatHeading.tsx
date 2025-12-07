@@ -1,8 +1,6 @@
 export default function AboutRadkaatHeading() {
   return (
-    <h1
-      className="heading text-[48px] font-bold text-stone leading-tight uppercase"
-    >
+    <h1 className="heading text-[54px] font-extrabold text-[#E6E2DF] leading-[1.05] uppercase">
       THE FLAG WE CARRY
     </h1>
   );

@@ -1,32 +1,46 @@
 "use client";
 
-type Colors = {
-  gradient: string; // comma-separated: "#C6B783, #806D2A"
-  cta: string;
-};
+import { motion, AnimatePresence } from "framer-motion";
 
 export default function BackgroundName({
   name,
-  colors,
+  gradient,
 }: {
   name: string;
-  colors: Colors;
+  gradient: string;
 }) {
-  const [from, to] = colors.gradient.split(",").map((c) => c.trim());
+  const [from, to] = gradient.split(",");
+
+  const variants = {
+    hidden: { opacity: 0, y: -60 },
+    visible: { opacity: 0.45, y: 0 },
+    exit: { opacity: 0, y: 60 },
+  };
 
   return (
-    <div className="absolute bottom-[50%] left-10 right-0 flex items-center justify-center pointer-events-none">
-      <h1
-        className="text-[260px] font-extrabold tracking-[70px] select-none
-                   bg-clip-text text-transparent opacity-[0.5]"
+    <AnimatePresence mode="wait">
+      <motion.h1
+        key={name} // IMPORTANT → triggers animation on bike switch
+        variants={variants}
+        initial="hidden"
+        animate="visible"
+        exit="exit"
+        transition={{ duration: 0.3, ease: "easeOut" }}
+        className="
+          absolute top-20 left-14
+          text-[180px] font-extrabold 
+          tracking-[45px] 
+          select-none pointer-events-none 
+          whitespace-nowrap
+        "
         style={{
-          backgroundImage: `linear-gradient(to bottom, ${from}, ${to})`,
+          backgroundImage: `linear-gradient(${from.trim()}, ${to.trim()})`,
           WebkitBackgroundClip: "text",
+          color: "transparent",
         }}
-        aria-hidden
       >
         {name}
-      </h1>
-    </div>
+      </motion.h1>
+    </AnimatePresence>
   );
 }

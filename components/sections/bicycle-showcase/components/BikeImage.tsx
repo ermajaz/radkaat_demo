@@ -1,39 +1,47 @@
 "use client";
 
+import { motion } from "framer-motion";
 import Image from "next/image";
-import { Hotspot } from "../utils/bicycle-showcase";
-import CustomHotspot from "./CustomHotspot";
+import ViewProductButton from "../ViewProductButton";
 
-export default function BikeImage({
-  bike,
-  activeSpec,
-  hideHotspots = false,
-}: {
-  bike: any;
-  activeSpec: any;
-  hideHotspots?: boolean;
-}) {
+export default function BikeImage({ image }: { image: string }) {
   return (
-    <div className="relative w-full h-[650px] flex items-center justify-center overflow-visible">
-      {/* Bike Image Wrapper */}
-      <div className="relative w-full mb-[12%] max-w-[1200px] h-[650px] z-0">
-        <div className="absolute -bottom-10 left-1/2 -translate-x-1/2 w-[900px] h-[260px] z-1 pointer-events-none bg-[radial-gradient(ellipse_at_center,rgba(255,220,120,0.05)_0%,rgba(255,180,60,0.03)_35%,rgba(0,0,0,0)_100%)] blur-2xl" />
-        
-        <Image
-          src={bike.image}
-          alt={bike.uiName}
-          fill
-          quality={100}
-          className="object-contain z-0 pointer-events-none"
-          priority
-        />
+    <div className="relative w-full h-full flex items-center justify-center overflow-hidden">
 
-        {/* ✅ Hotspots (Hidden in 360 Mode) */}
-        {!hideHotspots &&
-          (activeSpec.hotspots ?? []).map((hp: Hotspot) => (
-            <CustomHotspot key={hp.id} hotspot={hp} />
-          ))}
-      </div>
+      {/* BIKE ANIMATION */}
+      <motion.div
+        key={image}
+        initial={{ opacity: 0, scale: 0.6, x: -120, y: 120 }}
+        animate={{ opacity: 1, scale: 1, x: 0, y: 0 }}
+        transition={{
+          duration: 0.9,
+          ease: [0.16, 1, 0.3, 1],
+        }}
+        className="relative w-full h-full max-w-[900px] max-h-[600px]"
+      >
+        <Image
+          src={image}
+          alt="Bike"
+          fill
+          className="object-contain"
+          quality={100}
+        />
+      </motion.div>
+
+      {/* BUTTON ANIMATION — FIXED OVERLAY */}
+      <motion.div
+        initial={{ opacity: 0, y: 80 }}      // fully below
+        animate={{ opacity: 1, y: 0 }}       // move to final spot
+        transition={{
+          duration: 0.65,
+          delay: 0.35,                       // starts after bike animation begins
+          ease: "easeOut",
+        }}
+        className="absolute bottom-5 left-1/2 -translate-x-1/2 z-20"
+      >
+        <ViewProductButton link={`/bikes/serow/model-1`} />
+      </motion.div>
+
     </div>
   );
 }

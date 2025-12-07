@@ -16,17 +16,24 @@ export default function CategoryTile({
     const title = product.title?.toLowerCase();
 
     if (title === "bikes") {
-      // ✅ Go to homepage + scroll to bike showcase
       onClose?.();
-      router.push("/#bike-showcase");
+
+      // STEP 1 → Go to homepage
+      router.push("/");
+
+      // STEP 2 → Smooth scroll AFTER navigation
+      setTimeout(() => {
+        const section = document.getElementById("bike-showcase");
+        section?.scrollIntoView({ behavior: "smooth" });
+      }, 350); // allow page transition to complete
+
       return;
     }
 
-    // ✅ Route for all other categories
+    // other categories  
     onClose?.();
     router.push(`/${title}`);
   };
-
 
   return (
     <div className="relative group cursor-pointer" onClick={handleClick}>

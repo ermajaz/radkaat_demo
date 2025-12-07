@@ -1,3 +1,5 @@
+import { BikeStats } from "@/types/bikeComparison";
+
 // components/bike-showcase/data.ts
 export type Hotspot = {
   id: string;
@@ -26,9 +28,17 @@ export type Bike = {
     gradient: string;
     cta: string;
   };
+  stats: BikeStats;
   specs: BikeSpec[];
   techSpec: { label: string; value: string }[]; // full technical table
 };
+
+export type BikeMap = {
+  serow: Bike;
+  saola: Bike;
+  takin: Bike;
+};
+
 
 
 export const BIKES: Bike[] = [
@@ -36,12 +46,20 @@ export const BIKES: Bike[] = [
     id: "serow",
     uiName: "Serow",
     bgWord: "SEROW",
-    image: "/images/dummy-cycle.png",
+    image: "/images/bg/serow-new.png",
     logo: "/icons/Serow-white.png",
     description: "A versatile mountain bike designed for all terrains.A versatile mountain bike designed for all terrains.A versatile mountain bike designed for all terrains.A versatile mountain bike designed for all terrains.A versatile mountain bike designed for all terrains.A versatile mountain bike designed for all terrains.A versatile mountain bike designed for all terrains.A versatile mountain bike designed for all terrains.A versatile mountain bike designed for all terrains.",
     colors: {
       gradient: "#C6B783, #806D2A", // top → bottom
       cta: "var(--color-sandstorm)",
+    },
+    stats: {
+      suspension: 8,
+      braking: 9,
+      frame: 9,
+      tire: 8,
+      weight: 9,
+      comfort: 7,
     },
     specs: [
       {
@@ -97,12 +115,20 @@ export const BIKES: Bike[] = [
     id: "saola",
     uiName: "Saola",
     bgWord: "SAOLA",
-    image: "/images/dummy-cycle.png",
+    image: "/images/bg/saola-new.png",
     logo: "/icons/Saola-white.png",
     description: "A versatile mountain bike designed for all terrains.A versatile mountain bike designed for all terrains.A versatile mountain bike designed for all terrains.A versatile mountain bike designed for all terrains.A versatile mountain bike designed for all terrains.A versatile mountain bike designed for all terrains.A versatile mountain bike designed for all terrains.A versatile mountain bike designed for all terrains.A versatile mountain bike designed for all terrains.",
     colors: {
       gradient: "#0046D7, #FFFFFF",
       cta: "var(--color-airforce)",
+    },
+    stats: {
+      suspension: 9,
+      braking: 7,
+      frame: 9,
+      tire: 8,
+      weight: 9,
+      comfort: 7,
     },
     specs: [
       {
@@ -152,12 +178,20 @@ export const BIKES: Bike[] = [
     id: "takin",
     uiName: "Takin",
     bgWord: "TAKIN",
-    image: "/images/dummy-cycle.png",
+    image: "/images/bg/takin-new.png",
     logo: "/icons/Takin-white.png",
     description: "A versatile mountain bike designed for all terrains.A versatile mountain bike designed for all terrains.A versatile mountain bike designed for all terrains.A versatile mountain bike designed for all terrains.A versatile mountain bike designed for all terrains.A versatile mountain bike designed for all terrains.A versatile mountain bike designed for all terrains.A versatile mountain bike designed for all terrains.A versatile mountain bike designed for all terrains.",
     colors: {
       gradient: "#516316, #F1FFC3",
       cta: "var(--color-army)",
+    },
+    stats: {
+      suspension: 8,
+      braking: 7,
+      frame: 9,
+      tire: 8,
+      weight: 8,
+      comfort: 7,
     },
     specs: [
       {
@@ -204,6 +238,13 @@ export const BIKES: Bike[] = [
     ],
   },
 ];
+
+export const bikes: BikeMap = {
+  serow: BIKES[0],
+  saola: BIKES[1],
+  takin: BIKES[2],
+};
+
 
 
 
@@ -279,66 +320,66 @@ export const SPEC_TABLE = {
     Geometry: [
       { label: "Reach", value: "455mm", geoId: "reach", image: "/images/bikes/frame-chainstay.jpg" },
       { label: "Stack", value: "615mm", geoId: "stack", image: "/images/bikes/frame-stack.jpg" },
-      { label: "Wheelbase", value: "1230mm", geoId: "wheelbase", image: "/images/bikes/frame-stack.jpg"  },
+      { label: "Wheelbase", value: "1230mm", geoId: "wheelbase", image: "/images/bikes/frame-stack.jpg" },
       { label: "Chainstay Length", value: "435mm", geoId: "chainstay_length", image: "/images/bikes/frame-stack.jpg" },
-      { label: "Head Tube Angle", value: "64.5°", geoId: "head_tube_angle", image: "/images/bikes/frame-stack.jpg"  },
-      { label: "Seat Tube Angle", value: "76°", geoId: "seat_tube_angle", image: "/images/bikes/frame-stack.jpg"  },
+      { label: "Head Tube Angle", value: "64.5°", geoId: "head_tube_angle", image: "/images/bikes/frame-stack.jpg" },
+      { label: "Seat Tube Angle", value: "76°", geoId: "seat_tube_angle", image: "/images/bikes/frame-stack.jpg" },
     ],
 
     Frame: [
       { label: "Bottom Bracket Shell", value: "BSA 73mm", image: "/images/bikes/frame-chainstay.jpg" },
-      { label: "Rear Brake Mount", value: "200 PM",  image: "/images/bikes/frame-chainstay.jpg" },
+      { label: "Rear Brake Mount", value: "200 PM", image: "/images/bikes/frame-chainstay.jpg" },
       { label: "Shock Length", value: "230mm", image: "/images/bikes/frame-stack.jpg" },
       { label: "Fork Compatibility", value: "170–180mm", image: "/images/bikes/frame-wheel.jpg" },
-      { label: "Fork Offset", value: "44mm", image: "/images/bikes/frame-chainstay.jpg"},
-      { label: "Frame Material", value: "6061-T6 Alloy", image: "/images/bikes/frame-chainstay.jpg"},
+      { label: "Fork Offset", value: "44mm", image: "/images/bikes/frame-chainstay.jpg" },
+      { label: "Frame Material", value: "6061-T6 Alloy", image: "/images/bikes/frame-chainstay.jpg" },
       { label: "Rear Travel", value: "160mm", image: "/images/bikes/frame-wheel.jpg" },
     ],
 
     Suspension: [
       { label: "Fork Travel", value: "170mm", image: "/images/bikes/frame-chainstay.jpg" },
-      { label: "Shock Stroke", value: "62.5mm", image: "/images/bikes/frame-stack.jpg"  },
+      { label: "Shock Stroke", value: "62.5mm", image: "/images/bikes/frame-stack.jpg" },
       { label: "Shock Type", value: "Air, Medium/Medium", image: "/images/bikes/frame-wheel.jpg" },
-      { label: "Fork Axle", value: "15x110mm Boost", image: "/images/bikes/frame-chainstay.jpg"},
+      { label: "Fork Axle", value: "15x110mm Boost", image: "/images/bikes/frame-chainstay.jpg" },
       { label: "Rear Axle", value: "12x148mm Boost", image: "/images/bikes/frame-stack.jpg" },
     ],
 
     Drivetrain: [
-      { label: "Crankset", value: "SRAM NX 170mm", image: "/images/bikes/frame-stack.jpg"  },
-      { label: "Chainring", value: "32T Narrow-Wide", image: "/images/bikes/frame-wheel.jpg"},
-      { label: "Cassette", value: "11-50T 12-speed", image: "/images/bikes/frame-stack.jpg"  },
-      { label: "Rear Derailleur", value: "SRAM NX Eagle", image: "/images/bikes/frame-stack.jpg"},
+      { label: "Crankset", value: "SRAM NX 170mm", image: "/images/bikes/frame-stack.jpg" },
+      { label: "Chainring", value: "32T Narrow-Wide", image: "/images/bikes/frame-wheel.jpg" },
+      { label: "Cassette", value: "11-50T 12-speed", image: "/images/bikes/frame-stack.jpg" },
+      { label: "Rear Derailleur", value: "SRAM NX Eagle", image: "/images/bikes/frame-stack.jpg" },
       { label: "Shifter", value: "SRAM NX Trigger", image: "/images/bikes/frame-chainstay.jpg" },
       { label: "Chain", value: "SRAM Eagle 12-speed", image: "/images/bikes/frame-stack.jpg" },
     ],
 
     Brakes: [
       { label: "Front Rotor", value: "203mm", image: "/images/bikes/frame-chainstay.jpg" },
-      { label: "Rear Rotor", value: "203mm", image: "/images/bikes/frame-stack.jpg"  },
+      { label: "Rear Rotor", value: "203mm", image: "/images/bikes/frame-stack.jpg" },
       { label: "Brake Type", value: "Hydraulic Disc", image: "/images/bikes/frame-stack.jpg" },
-      { label: "Calipers", value: "SRAM Guide R", image: "/images/bikes/frame-wheel.jpg"},
+      { label: "Calipers", value: "SRAM Guide R", image: "/images/bikes/frame-wheel.jpg" },
     ],
 
     Cockpit: [
-      { label: "Handlebar", value: "780mm Alloy", image: "/images/bikes/frame-stack.jpg"  },
-      { label: "Stem", value: "40mm", image: "/images/bikes/frame-stack.jpg"  },
-      { label: "Grips", value: "Lock-On Rubber", image: "/images/bikes/frame-stack.jpg"  },
-      { label: "Seatpost", value: "150mm Dropper Post", image: "/images/bikes/frame-stack.jpg"},
-      { label: "Saddle", value: "Ergo Trail Saddle", image: "/images/bikes/frame-stack.jpg"  },
+      { label: "Handlebar", value: "780mm Alloy", image: "/images/bikes/frame-stack.jpg" },
+      { label: "Stem", value: "40mm", image: "/images/bikes/frame-stack.jpg" },
+      { label: "Grips", value: "Lock-On Rubber", image: "/images/bikes/frame-stack.jpg" },
+      { label: "Seatpost", value: "150mm Dropper Post", image: "/images/bikes/frame-stack.jpg" },
+      { label: "Saddle", value: "Ergo Trail Saddle", image: "/images/bikes/frame-stack.jpg" },
     ],
 
     Wheels: [
-      { label: "Wheel Size", value: "29\"", image: "/images/bikes/frame-stack.jpg"  },
+      { label: "Wheel Size", value: "29\"", image: "/images/bikes/frame-stack.jpg" },
       { label: "Front Hub", value: "Boost 15x110mm", image: "/images/bikes/frame-chainstay.jpg" },
-      { label: "Rear Hub", value: "Boost 12x148mm", image: "/images/bikes/frame-stack.jpg"  },
+      { label: "Rear Hub", value: "Boost 12x148mm", image: "/images/bikes/frame-stack.jpg" },
       { label: "Rims", value: "Double Wall Alloy", image: "/images/bikes/frame-wheel.jpg" },
-      { label: "Tires", value: "Maxxis Minion DHF/DHR",image: "/images/bikes/frame-stack.jpg" },
+      { label: "Tires", value: "Maxxis Minion DHF/DHR", image: "/images/bikes/frame-stack.jpg" },
     ],
 
     Specs: [
-      { label: "Weight", value: "15.2 kg",image: "/images/bikes/frame-chainstay.jpg" },
-      { label: "Max Rider Weight", value: "120 kg" ,image: "/images/bikes/frame-chainstay.jpg"},
-      { label: "Warranty", value: "3 Years on Frame",image: "/images/bikes/frame-stack.jpg" },
+      { label: "Weight", value: "15.2 kg", image: "/images/bikes/frame-chainstay.jpg" },
+      { label: "Max Rider Weight", value: "120 kg", image: "/images/bikes/frame-chainstay.jpg" },
+      { label: "Warranty", value: "3 Years on Frame", image: "/images/bikes/frame-stack.jpg" },
     ],
   },
 
@@ -346,60 +387,60 @@ export const SPEC_TABLE = {
   "model-2": {
     Geometry: [
       { label: "Reach", value: "40mm", geoId: "reach", image: "/images/bikes/frame-wheel.jpg" },
-      { label: "Stack", value: "620mm", geoId: "stack", image: "/images/bikes/frame-stack.jpg"  },
-      { label: "Wheelbase", value: "120mm", geoId: "wheelbase", image: "/images/bikes/frame-stack.jpg"  },
-      { label: "Chainstay Length", value: "440mm", geoId: "chainstay_length", image: "/images/bikes/frame-stack.jpg"  },
+      { label: "Stack", value: "620mm", geoId: "stack", image: "/images/bikes/frame-stack.jpg" },
+      { label: "Wheelbase", value: "120mm", geoId: "wheelbase", image: "/images/bikes/frame-stack.jpg" },
+      { label: "Chainstay Length", value: "440mm", geoId: "chainstay_length", image: "/images/bikes/frame-stack.jpg" },
       { label: "Head Tube Angle", value: "65°", geoId: "head_tube_angle", image: "/images/bikes/frame-wheel.jpg" },
-      { label: "Seat Tube Angle", value: "75°", geoId: "seat_tube_angle", image: "/images/bikes/frame-stack.jpg"  },
+      { label: "Seat Tube Angle", value: "75°", geoId: "seat_tube_angle", image: "/images/bikes/frame-stack.jpg" },
     ],
     Frame: [
-      { label: "Bottom Bracket Shell", value: "BSA 7mm", image: "/images/bikes/frame-stack.jpg"  },
-      { label: "Rear Brake Mount", value: "20 PM", image: "/images/bikes/frame-stack.jpg"  },
+      { label: "Bottom Bracket Shell", value: "BSA 7mm", image: "/images/bikes/frame-stack.jpg" },
+      { label: "Rear Brake Mount", value: "20 PM", image: "/images/bikes/frame-stack.jpg" },
       { label: "Shock Length", value: "23mm", image: "/images/bikes/frame-wheel.jpg" },
-      { label: "Fork Compatibility", value: "70–10mm", image: "/images/bikes/frame-stack.jpg"  },
-      { label: "Fork Offset", value: "44mm", image: "/images/bikes/frame-stack.jpg"  },
+      { label: "Fork Compatibility", value: "70–10mm", image: "/images/bikes/frame-stack.jpg" },
+      { label: "Fork Offset", value: "44mm", image: "/images/bikes/frame-stack.jpg" },
       { label: "Frame Material", value: "6061-T6 Alloy", image: "/images/bikes/frame-wheel.jpg" },
-      { label: "Rear Travel", value: "160mm", image: "/images/bikes/frame-stack.jpg"  },
+      { label: "Rear Travel", value: "160mm", image: "/images/bikes/frame-stack.jpg" },
     ],
 
     Suspension: [
-      { label: "Fork Travel", value: "170mm", image: "/images/bikes/frame-stack.jpg"  },
-      { label: "Shock Stroke", value: "6.5mm", image: "/images/bikes/frame-stack.jpg"  },
-      { label: "Shock Type", value: "Air, Medium/Medium", image: "/images/bikes/frame-stack.jpg"  },
-      { label: "Fork Axle", value: "15x10mm Boost", image: "/images/bikes/frame-stack.jpg"  },
-      { label: "Rear Axle", value: "12x148mm Boost", image: "/images/bikes/frame-stack.jpg"  },
+      { label: "Fork Travel", value: "170mm", image: "/images/bikes/frame-stack.jpg" },
+      { label: "Shock Stroke", value: "6.5mm", image: "/images/bikes/frame-stack.jpg" },
+      { label: "Shock Type", value: "Air, Medium/Medium", image: "/images/bikes/frame-stack.jpg" },
+      { label: "Fork Axle", value: "15x10mm Boost", image: "/images/bikes/frame-stack.jpg" },
+      { label: "Rear Axle", value: "12x148mm Boost", image: "/images/bikes/frame-stack.jpg" },
     ],
 
     Drivetrain: [
-      { label: "Crankset", value: "SRM NX 170mm", image: "/images/bikes/frame-stack.jpg"  },
-      { label: "Chainring", value: "32T Narrow-Wide", image: "/images/bikes/frame-stack.jpg"  },
-      { label: "Cassette", value: "11-5T 12-speed", image: "/images/bikes/frame-stack.jpg"  },
-      { label: "Rear Derailleur", value: "SRAM NX Eagle", image: "/images/bikes/frame-stack.jpg"  },
-      { label: "Shifter", value: "SRAM NX Trigger", image: "/images/bikes/frame-stack.jpg"  },
-      { label: "Chain", value: "SRM Eagle 12-speed", image: "/images/bikes/frame-stack.jpg"  },
+      { label: "Crankset", value: "SRM NX 170mm", image: "/images/bikes/frame-stack.jpg" },
+      { label: "Chainring", value: "32T Narrow-Wide", image: "/images/bikes/frame-stack.jpg" },
+      { label: "Cassette", value: "11-5T 12-speed", image: "/images/bikes/frame-stack.jpg" },
+      { label: "Rear Derailleur", value: "SRAM NX Eagle", image: "/images/bikes/frame-stack.jpg" },
+      { label: "Shifter", value: "SRAM NX Trigger", image: "/images/bikes/frame-stack.jpg" },
+      { label: "Chain", value: "SRM Eagle 12-speed", image: "/images/bikes/frame-stack.jpg" },
     ],
 
     Brakes: [
-      { label: "Front Rotor", value: "203mm", image: "/images/bikes/frame-stack.jpg"  },
-      { label: "Rear Rotor", value: "233mm", image: "/images/bikes/frame-stack.jpg"  },
-      { label: "Brake Type", value: "Hydraulic Disc", image: "/images/bikes/frame-stack.jpg"  },
-      { label: "Calipers", value: "SRAM Guide T", image: "/images/bikes/frame-stack.jpg"  },
+      { label: "Front Rotor", value: "203mm", image: "/images/bikes/frame-stack.jpg" },
+      { label: "Rear Rotor", value: "233mm", image: "/images/bikes/frame-stack.jpg" },
+      { label: "Brake Type", value: "Hydraulic Disc", image: "/images/bikes/frame-stack.jpg" },
+      { label: "Calipers", value: "SRAM Guide T", image: "/images/bikes/frame-stack.jpg" },
     ],
 
     Cockpit: [
-      { label: "Handlebar", value: "780mm Alloy", image: "/images/bikes/frame-stack.jpg"  },
-      { label: "Stem", value: "42mm", image: "/images/bikes/frame-stack.jpg"  },
-      { label: "Grips", value: "Lock-On Rubber", image: "/images/bikes/frame-stack.jpg"  },
-      { label: "Seatpost", value: "154mm Dropper Post", image: "/images/bikes/frame-stack.jpg"  },
-      { label: "Saddle", value: "Ergo Trail Saddle", image: "/images/bikes/frame-stack.jpg"  },
+      { label: "Handlebar", value: "780mm Alloy", image: "/images/bikes/frame-stack.jpg" },
+      { label: "Stem", value: "42mm", image: "/images/bikes/frame-stack.jpg" },
+      { label: "Grips", value: "Lock-On Rubber", image: "/images/bikes/frame-stack.jpg" },
+      { label: "Seatpost", value: "154mm Dropper Post", image: "/images/bikes/frame-stack.jpg" },
+      { label: "Saddle", value: "Ergo Trail Saddle", image: "/images/bikes/frame-stack.jpg" },
     ],
 
     Wheels: [
-      { label: "Wheel Size", value: "25\"", image: "/images/bikes/frame-stack.jpg"  },
-      { label: "Front Hub", value: "Boost 15x110mm", image: "/images/bikes/frame-stack.jpg"  },
-      { label: "Rear Hub", value: "Boost 14x148mm", image: "/images/bikes/frame-stack.jpg"  },
-      { label: "Rims", value: "Double Wall Alloy", image: "/images/bikes/frame-stack.jpg"  },
-      { label: "Tires", value: "Maxxis Minion DHF/DHR", image: "/images/bikes/frame-stack.jpg"  },
+      { label: "Wheel Size", value: "25\"", image: "/images/bikes/frame-stack.jpg" },
+      { label: "Front Hub", value: "Boost 15x110mm", image: "/images/bikes/frame-stack.jpg" },
+      { label: "Rear Hub", value: "Boost 14x148mm", image: "/images/bikes/frame-stack.jpg" },
+      { label: "Rims", value: "Double Wall Alloy", image: "/images/bikes/frame-stack.jpg" },
+      { label: "Tires", value: "Maxxis Minion DHF/DHR", image: "/images/bikes/frame-stack.jpg" },
     ],
 
     Specs: [
@@ -412,67 +453,67 @@ export const SPEC_TABLE = {
   // ✅ MODEL 3 ---------------------------------------
   "model-3": {
     Geometry: [
-      { label: "Reach", value: "470mm", geoId: "reach", image: "/images/bikes/frame-stack.jpg"  },
-      { label: "Stack", value: "620mm", geoId: "stack", image: "/images/bikes/frame-stack.jpg"  },
-      { label: "Wheelbase", value: "1250mm", geoId: "wheelbase", image: "/images/bikes/frame-stack.jpg"  },
-      { label: "Chainstay Length", value: "432mm", geoId: "chainstay_length", image: "/images/bikes/frame-stack.jpg"  },
-      { label: "Head Tube Angle", value: "62.5°", geoId: "head_tube_angle", image: "/images/bikes/frame-stack.jpg"  },
-      { label: "Seat Tube Angle", value: "77°", geoId: "seat_tube_angle", image: "/images/bikes/frame-stack.jpg"  },
+      { label: "Reach", value: "470mm", geoId: "reach", image: "/images/bikes/frame-stack.jpg" },
+      { label: "Stack", value: "620mm", geoId: "stack", image: "/images/bikes/frame-stack.jpg" },
+      { label: "Wheelbase", value: "1250mm", geoId: "wheelbase", image: "/images/bikes/frame-stack.jpg" },
+      { label: "Chainstay Length", value: "432mm", geoId: "chainstay_length", image: "/images/bikes/frame-stack.jpg" },
+      { label: "Head Tube Angle", value: "62.5°", geoId: "head_tube_angle", image: "/images/bikes/frame-stack.jpg" },
+      { label: "Seat Tube Angle", value: "77°", geoId: "seat_tube_angle", image: "/images/bikes/frame-stack.jpg" },
     ],
     Frame: [
-      { label: "Bottom Bracket Shell", value: "BSA 73mm", image: "/images/bikes/frame-stack.jpg"  },
-      { label: "Rear Brake Mount", value: "200 PM", image: "/images/bikes/frame-stack.jpg"  },
-      { label: "Shock Length", value: "250mm", image: "/images/bikes/frame-stack.jpg"  },
-      { label: "Fork Compatibility", value: "170–180mm", image: "/images/bikes/frame-stack.jpg"  },
-      { label: "Fork Offset", value: "43mm", image: "/images/bikes/frame-stack.jpg"  },
-      { label: "Frame Material", value: "6061-T6 Alloy", image: "/images/bikes/frame-stack.jpg"  },
-      { label: "Rear Travel", value: "180mm", image: "/images/bikes/frame-stack.jpg"  },
+      { label: "Bottom Bracket Shell", value: "BSA 73mm", image: "/images/bikes/frame-stack.jpg" },
+      { label: "Rear Brake Mount", value: "200 PM", image: "/images/bikes/frame-stack.jpg" },
+      { label: "Shock Length", value: "250mm", image: "/images/bikes/frame-stack.jpg" },
+      { label: "Fork Compatibility", value: "170–180mm", image: "/images/bikes/frame-stack.jpg" },
+      { label: "Fork Offset", value: "43mm", image: "/images/bikes/frame-stack.jpg" },
+      { label: "Frame Material", value: "6061-T6 Alloy", image: "/images/bikes/frame-stack.jpg" },
+      { label: "Rear Travel", value: "180mm", image: "/images/bikes/frame-stack.jpg" },
     ],
 
     Suspension: [
-      { label: "Fork Travel", value: "170mm", image: "/images/bikes/frame-stack.jpg"  },
-      { label: "Shock Stroke", value: "62.5mm", image: "/images/bikes/frame-stack.jpg"  },
-      { label: "Shock Type", value: "Air, Medium/Medium", image: "/images/bikes/frame-stack.jpg"  },
-      { label: "Fork Axle", value: "13x110mm Boost", image: "/images/bikes/frame-stack.jpg"  },
-      { label: "Rear Axle", value: "18x148mm Boost", image: "/images/bikes/frame-stack.jpg"  },
+      { label: "Fork Travel", value: "170mm", image: "/images/bikes/frame-stack.jpg" },
+      { label: "Shock Stroke", value: "62.5mm", image: "/images/bikes/frame-stack.jpg" },
+      { label: "Shock Type", value: "Air, Medium/Medium", image: "/images/bikes/frame-stack.jpg" },
+      { label: "Fork Axle", value: "13x110mm Boost", image: "/images/bikes/frame-stack.jpg" },
+      { label: "Rear Axle", value: "18x148mm Boost", image: "/images/bikes/frame-stack.jpg" },
     ],
 
     Drivetrain: [
-      { label: "Crankset", value: "SRAM NX 170mm", image: "/images/bikes/frame-stack.jpg"  },
-      { label: "Chainring", value: "32T Narrow-Wide", image: "/images/bikes/frame-stack.jpg"  },
-      { label: "Cassette", value: "11-50T 12-speed", image: "/images/bikes/frame-stack.jpg"  },
-      { label: "Rear Derailleur", value: "SRAM NX Eagle", image: "/images/bikes/frame-stack.jpg"  },
-      { label: "Shifter", value: "SRAM NX Trigger", image: "/images/bikes/frame-stack.jpg"  },
-      { label: "Chain", value: "SRAM Eagle 15-speed", image: "/images/bikes/frame-stack.jpg"  },
+      { label: "Crankset", value: "SRAM NX 170mm", image: "/images/bikes/frame-stack.jpg" },
+      { label: "Chainring", value: "32T Narrow-Wide", image: "/images/bikes/frame-stack.jpg" },
+      { label: "Cassette", value: "11-50T 12-speed", image: "/images/bikes/frame-stack.jpg" },
+      { label: "Rear Derailleur", value: "SRAM NX Eagle", image: "/images/bikes/frame-stack.jpg" },
+      { label: "Shifter", value: "SRAM NX Trigger", image: "/images/bikes/frame-stack.jpg" },
+      { label: "Chain", value: "SRAM Eagle 15-speed", image: "/images/bikes/frame-stack.jpg" },
     ],
 
     Brakes: [
-      { label: "Front Rotor", value: "253mm", image: "/images/bikes/frame-stack.jpg"  },
-      { label: "Rear Rotor", value: "283mm", image: "/images/bikes/frame-stack.jpg"  },
-      { label: "Brake Type", value: "Hydraulic Disc", image: "/images/bikes/frame-stack.jpg"  },
-      { label: "Calipers", value: "SRAM Guide R", image: "/images/bikes/frame-stack.jpg"  },
+      { label: "Front Rotor", value: "253mm", image: "/images/bikes/frame-stack.jpg" },
+      { label: "Rear Rotor", value: "283mm", image: "/images/bikes/frame-stack.jpg" },
+      { label: "Brake Type", value: "Hydraulic Disc", image: "/images/bikes/frame-stack.jpg" },
+      { label: "Calipers", value: "SRAM Guide R", image: "/images/bikes/frame-stack.jpg" },
     ],
 
     Cockpit: [
-      { label: "Handlebar", value: "780mm Alloy", image: "/images/bikes/frame-stack.jpg"  },
-      { label: "Stem", value: "42mm", image: "/images/bikes/frame-stack.jpg"  },
-      { label: "Grips", value: "Lock-On Rubber", image: "/images/bikes/frame-stack.jpg"  },
-      { label: "Seatpost", value: "150mm Dropper Post", image: "/images/bikes/frame-stack.jpg"  },
-      { label: "Saddle", value: "Ergo Trail Saddle", image: "/images/bikes/frame-stack.jpg"  },
+      { label: "Handlebar", value: "780mm Alloy", image: "/images/bikes/frame-stack.jpg" },
+      { label: "Stem", value: "42mm", image: "/images/bikes/frame-stack.jpg" },
+      { label: "Grips", value: "Lock-On Rubber", image: "/images/bikes/frame-stack.jpg" },
+      { label: "Seatpost", value: "150mm Dropper Post", image: "/images/bikes/frame-stack.jpg" },
+      { label: "Saddle", value: "Ergo Trail Saddle", image: "/images/bikes/frame-stack.jpg" },
     ],
 
     Wheels: [
-      { label: "Wheel Size", value: "23\"", image: "/images/bikes/frame-stack.jpg"  },
-      { label: "Front Hub", value: "Boost 15x110mm", image: "/images/bikes/frame-stack.jpg"  },
-      { label: "Rear Hub", value: "Boost 12x147mm", image: "/images/bikes/frame-stack.jpg"  },
-      { label: "Rims", value: "Double Wall Alloy", image: "/images/bikes/frame-stack.jpg"  },
-      { label: "Tires", value: "Maxxis Minion DHF/DHR", image: "/images/bikes/frame-stack.jpg"  },
+      { label: "Wheel Size", value: "23\"", image: "/images/bikes/frame-stack.jpg" },
+      { label: "Front Hub", value: "Boost 15x110mm", image: "/images/bikes/frame-stack.jpg" },
+      { label: "Rear Hub", value: "Boost 12x147mm", image: "/images/bikes/frame-stack.jpg" },
+      { label: "Rims", value: "Double Wall Alloy", image: "/images/bikes/frame-stack.jpg" },
+      { label: "Tires", value: "Maxxis Minion DHF/DHR", image: "/images/bikes/frame-stack.jpg" },
     ],
 
     Specs: [
-      { label: "Weight", value: "12.2 kg", image: "/images/bikes/frame-stack.jpg"  },
-      { label: "Max Rider Weight", value: "120 kg", image: "/images/bikes/frame-stack.jpg"  },
-      { label: "Warranty", value: "4 Years on Frame", image: "/images/bikes/frame-stack.jpg"  },
+      { label: "Weight", value: "12.2 kg", image: "/images/bikes/frame-stack.jpg" },
+      { label: "Max Rider Weight", value: "120 kg", image: "/images/bikes/frame-stack.jpg" },
+      { label: "Warranty", value: "4 Years on Frame", image: "/images/bikes/frame-stack.jpg" },
     ],
   },
 };
