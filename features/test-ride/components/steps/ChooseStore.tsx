@@ -5,140 +5,131 @@ import { motion, AnimatePresence } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Calendar } from "@/components/ui/calendar";
-import { MapPin, Search, Check, MoveRight } from "lucide-react";
+import { Search, Check, MoveRight, Clock } from "lucide-react";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { Store } from "../types/store.types";
 import { stores } from "../../utils/store-data";
 
 interface ChooseStoreProps {
-  onNext: (store: { store: Store; date: string }) => void;
+  onNext: (store: { store: Store; date: string; time: string }) => void;
   onBack: () => void;
 }
+
+const timeSlots = [
+  "10:00 AM - 11:00 AM",
+  "12:00 PM - 1:00 PM",
+  "2:00 PM - 3:00 PM",
+  "4:00 PM - 5:00 PM",
+];
 
 export default function ChooseStore({ onNext, onBack }: ChooseStoreProps) {
   const [search, setSearch] = useState("");
   const [filteredStores, setFilteredStores] = useState<Store[]>(stores);
   const [selectedStore, setSelectedStore] = useState<Store | null>(null);
-  const [date, setDate] = useState<Date | undefined>(undefined);
+  const [date, setDate] = useState<Date | undefined>();
+  const [selectedTime, setSelectedTime] = useState<string>("");
 
-  // Debounced search
+  // Debounced Search
   useEffect(() => {
     const handler = setTimeout(() => {
-      const input = search.trim().toLowerCase();
-      if (!input) {
+      const q = search.trim().toLowerCase();
+      if (!q) {
         setFilteredStores(stores);
         return;
       }
-      const matches = stores.filter(
-        (s) =>
-          s.name.toLowerCase().includes(input) ||
-          s.city.toLowerCase().includes(input) ||
-          s.state.toLowerCase().includes(input) ||
-          s.address.toLowerCase().includes(input)
+
+      setFilteredStores(
+        stores.filter(
+          (s) =>
+            s.name.toLowerCase().includes(q) ||
+            s.city.toLowerCase().includes(q) ||
+            s.state.toLowerCase().includes(q) ||
+            s.address.toLowerCase().includes(q)
+        )
       );
-      setFilteredStores(matches);
       setSelectedStore(null);
+      setSelectedTime("");
+      setDate(undefined);
     }, 300);
+
     return () => clearTimeout(handler);
   }, [search]);
 
-  const useCurrentLocation = () => {
-    if (!navigator.geolocation) return alert("Geolocation not supported.");
-    navigator.geolocation.getCurrentPosition(
-      (pos) => {
-        const { latitude, longitude } = pos.coords;
-        let nearest = stores[0];
-        let minDist = Infinity;
-        stores.forEach((s) => {
-          const dist = Math.hypot(s.lat - latitude, s.lng - longitude);
-          if (dist < minDist) {
-            nearest = s;
-            minDist = dist;
-          }
-        });
-        setSearch(nearest.city);
-        setFilteredStores([nearest]);
-        setSelectedStore(nearest);
-      },
-      () => alert("Unable to get location.")
-    );
-  };
-
   const handleNext = () => {
-    if (!selectedStore || !date) return;
-    onNext({ store: selectedStore, date: date.toDateString() });
+    if (!selectedStore || !date || !selectedTime) return;
+    onNext({
+      store: selectedStore,
+      date: date.toDateString(),
+      time: selectedTime,
+    });
   };
 
   return (
     <motion.div
-      initial={{ opacity: 0, y: 30 }}
+      initial={{ opacity: 0, y: 25 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.5 }}
-      className="flex flex-col gap-8 w-full max-w-6xl mx-auto px-4"
+      className="flex flex-col gap-10 w-full max-w-6xl mx-auto"
     >
-      <h2 className="text-3xl font-bold text-white text-center">
-        Choose Your Store
+      {/* Title */}
+      <h2 className="text-3xl font-bold text-center text-white">
+        Choose Your <span className="text-sandstorm">Store</span>
       </h2>
 
-      <div className="flex flex-col md:flex-row gap-8 w-full">
-        {/* Left: Search + Store List */}
-        <div className="w-full md:w-1/2 flex flex-col gap-4">
-          <div className="flex gap-2">
-            <div className="relative flex-1">
-              <Input
-                placeholder="Search by city, state, or store name..."
-                className="bg-white/10 text-white pl-10 focus:ring-rust focus:border-rust placeholder:text-white/60"
-                value={search}
-                onChange={(e) => setSearch(e.target.value)}
-              />
-              <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-white/70" />
-            </div>
-            <Button
-              variant="secondary"
-              onClick={useCurrentLocation}
-              className="bg-rust hover:bg-rust text-white flex items-center gap-2"
-            >
-              <MapPin className="w-4 h-4" /> My Location
-            </Button>
+      <div className="flex flex-col md:flex-row gap-8">
+        {/* LEFT SIDE – SEARCH + STORE LIST */}
+        <div className="w-full md:w-[60%] flex flex-col gap-5">
+          {/* Search Bar */}
+          <div className="relative">
+            <Input
+              placeholder="Search by city, state, or store name..."
+              className="bg-white/10 text-white pl-12 placeholder:text-white/60 border-white/20 focus:border-sandstorm focus:ring-sandstorm"
+              value={search}
+              onChange={(e) => setSearch(e.target.value)}
+            />
+            <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-white/70 pointer-events-none" />
           </div>
 
           {/* Store List */}
-          <ScrollArea className="h-[400px] w-full pr-1">
-            <div className="space-y-3">
+          <ScrollArea className="h-[420px] pr-2">
+            <div className="space-y-4">
               <AnimatePresence>
-                {filteredStores.length > 0 ? (
-                  filteredStores.map((store, i) => (
-                    <motion.div
-                      key={store.id}
-                      initial={i === 0 ? false : { opacity: 0, y: 20 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      exit={{ opacity: 0, y: 20 }}
-                      transition={{ delay: i === 0 ? 0 : i * 0.05 }}
-                      onClick={() => setSelectedStore(store)}
-                      className={`flex justify-between items-center p-4 rounded-xl cursor-pointer border-2 transition-all ${
+                {filteredStores.map((store, i) => (
+                  <motion.div
+                    key={store.id}
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.25, delay: i * 0.03 }}
+                    onClick={() => setSelectedStore(store)}
+                    className={`
+                      flex justify-between items-center p-5 rounded-xl border bg-white/5 cursor-pointer transition-all select-none
+                      ${
                         selectedStore?.id === store.id
-                          ? "border-rust bg-rust/20 shadow-lg"
-                          : "border-white/20 hover:bg-white/10"
-                      }`}
-                    >
-                      <div>
-                        <p className="font-semibold text-white">{store.name}</p>
-                        <p className="text-white/70 text-sm">
-                          {store.address}, {store.city}, {store.state}
-                        </p>
-                      </div>
-                      {selectedStore?.id === store.id && (
-                        <Check className="w-6 h-6 text-rust" />
-                      )}
-                    </motion.div>
-                  ))
-                ) : (
+                          ? "border-sandstorm shadow-[0_0_15px_rgba(255,190,80,0.35)] bg-sandstorm/10"
+                          : "border-white/10 hover:bg-white/10"
+                      }
+                    `}
+                  >
+                    <div>
+                      <p className="text-white font-semibold">{store.name}</p>
+                      <p className="text-white/60 text-sm">
+                        {store.address}, {store.city}, {store.state}
+                      </p>
+                    </div>
+
+                    {selectedStore?.id === store.id && (
+                      <Check className="w-6 h-6 text-sandstorm" />
+                    )}
+                  </motion.div>
+                ))}
+
+                {filteredStores.length === 0 && (
                   <motion.p
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
-                    className="text-white/60 italic mt-4"
+                    className="text-white/60 text-center italic mt-10"
                   >
-                    No stores found for “{search}”
+                    No stores found matching “{search}”
                   </motion.p>
                 )}
               </AnimatePresence>
@@ -146,38 +137,79 @@ export default function ChooseStore({ onNext, onBack }: ChooseStoreProps) {
           </ScrollArea>
         </div>
 
-        {/* Right: Calendar */}
-        <div className="w-full md:w-1/2 flex flex-col items-center md:items-end">
-          <p className="mb-2 text-white/80 font-medium self-start md:self-end">
-            Select a Date
-          </p>
-          <Calendar
-            mode="single"
-            selected={date}
-            onSelect={setDate}
-            disabled={(day) => day < new Date()}
-            className="rounded-xl border border-rust bg-white/5 text-white shadow-md p-2"
-          />
+        {/* RIGHT SIDE – CALENDAR + TIME SLOTS */}
+        <div className="w-full md:w-[40%] flex flex-col items-center gap-6">
+          {/* SHOW CALENDAR WHEN STORE SELECTED */}
+          {selectedStore ? (
+            <Calendar
+              mode="single"
+              selected={date}
+              onSelect={(d) => {
+                setDate(d);
+                setSelectedTime("");
+              }}
+              disabled={(day) => day < new Date()}
+              className="w-[320px] rounded-xl border border-sandstorm bg-white/5 text-white shadow-md p-3 backdrop-blur-xl"
+            />
+          ) : (
+            <div className="w-full h-full flex items-center justify-center opacity-60">
+              <p className="text-white/50 text-sm">
+                Select a store to choose an available date.
+              </p>
+            </div>
+          )}
+
+          {/* TIME SLOTS */}
+          {selectedStore && date && (
+            <div className="w-full bg-white/5 border border-white/10 rounded-xl p-4 backdrop-blur-xl">
+              <p className="text-white/80 text-sm mb-3 flex items-center gap-2">
+                <Clock className="w-4 h-4 text-sandstorm" /> Select a Time Slot
+              </p>
+
+              <div className="grid grid-cols-2 gap-3">
+                {timeSlots.map((slot) => (
+                  <div
+                    key={slot}
+                    onClick={() => setSelectedTime(slot)}
+                    className={`
+                      text-center py-3 text-xs rounded-lg border cursor-pointer transition-all
+                      ${
+                        selectedTime === slot
+                          ? "bg-sandstorm text-black border-sandstorm shadow-lg"
+                          : "bg-white/10 text-white hover:bg-white/20 border-white/10"
+                      }
+                    `}
+                  >
+                    {slot}
+                  </div>
+                ))}
+              </div>
+            </div>
+          )}
         </div>
       </div>
 
-      {/* Navigation */}
-      <div className="flex flex-col md:flex-row justify-between mt-6 gap-4">
+      {/* NAVIGATION */}
+      <div className="flex flex-col md:flex-row justify-between gap-4 pt-4">
         <Button
           variant="outline"
           onClick={onBack}
-          className="border-white/40 bg-transparent text-white w-full cursor-pointer rounded-full md:w-auto"
+          className="border-white/30 text-black w-full md:w-auto rounded-full cursor-pointer"
         >
           Back
         </Button>
+
         <Button
           onClick={handleNext}
-          disabled={!selectedStore || !date}
-          className={`py-3 px-6 font-semibold w-full rounded-full md:w-auto transition-colors duration-300 ${
-            selectedStore && date
-              ? "bg-linear-to-r from-rust to-rust/80 hover:scale-110 hover:shadow-2xl transition-transform cursor-pointer text-white"
-              : "bg-gray-700 text-gray cursor-not-allowed"
-          }`}
+          disabled={!selectedStore || !date || !selectedTime}
+          className={`
+            py-3 px-8 font-semibold rounded-full cursor-pointer flex items-center gap-2 w-full md:w-auto transition-all
+            ${
+              selectedStore && date && selectedTime
+                ? "bg-sandstorm text-black"
+                : "bg-gray-700 text-gray-400 cursor-not-allowed"
+            }
+          `}
         >
           Next <MoveRight />
         </Button>

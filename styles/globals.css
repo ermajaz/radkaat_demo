@@ -165,3 +165,12 @@ textarea:focus {
   -ms-overflow-style: none;
   scrollbar-width: none;
 }
+
+
+.glass-input {
+  @apply bg-white/10 text-white placeholder:text-white/40 
+         px-5 py-4 rounded-2xl border border-white/10 
+         focus:bg-white/20 focus:border-sandstorm/70 
+         focus:ring-2 focus:ring-sandstorm/40 
+         transition-all text-[15px];
+}

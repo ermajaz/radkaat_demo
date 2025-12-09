@@ -6,7 +6,7 @@ import { Checkbox } from "@/components/ui/checkbox";
 import { useForm, SubmitHandler } from "react-hook-form";
 import { motion, Variants } from "framer-motion";
 import { useState } from "react";
-import { MoveRight } from "lucide-react";
+import { MoveRight, Wallet, ShieldCheck, X } from "lucide-react";
 
 export interface ContactFormValues {
   firstName: string;
@@ -21,29 +21,31 @@ interface ContactDetailsProps {
   onBack: () => void;
 }
 
-export default function ContactDetails({
-  onNext,
-  onBack,
-}: ContactDetailsProps) {
+export default function ContactDetails({ onNext, onBack }: ContactDetailsProps) {
   const { register, handleSubmit, watch } = useForm<ContactFormValues>();
   const termsChecked = watch("terms", false);
+
   const [submitting, setSubmitting] = useState(false);
+  const [showPaymentModal, setShowPaymentModal] = useState(false);
+  const [tempData, setTempData] = useState<ContactFormValues | null>(null);
 
   const onSubmit: SubmitHandler<ContactFormValues> = (data) => {
     setSubmitting(true);
+
     setTimeout(() => {
       setSubmitting(false);
-      onNext(data);
-    }, 800); // fake loading for smoother UX
+      setTempData(data);
+      setShowPaymentModal(true); // open modal instead of onNext
+    }, 800);
   };
 
-  // Framer Motion variants
+  // Animations
   const containerVariants: Variants = {
     hidden: { opacity: 0, y: 50 },
     visible: {
       opacity: 1,
       y: 0,
-      transition: { duration: 0.6, type: "spring", stiffness: 80, damping: 20 },
+      transition: { duration: 0.5, ease: "easeOut" },
     },
   };
 
@@ -52,154 +54,175 @@ export default function ContactDetails({
     visible: (i: number) => ({
       opacity: 1,
       y: 0,
-      transition: {
-        delay: i * 0.1,
-        duration: 0.5,
-        type: "spring",
-        stiffness: 80,
-      },
+      transition: { delay: i * 0.07, duration: 0.4 },
     }),
   };
 
+  // Handle Pay Now
+  const handlePayment = () => {
+    if (!tempData) return;
+
+    // Simulated delay
+    setTimeout(() => {
+      setShowPaymentModal(false);
+      onNext(tempData);
+    }, 500);
+  };
+
   return (
-    <motion.form
-      onSubmit={handleSubmit(onSubmit)}
-      className="relative w-full max-w-lg p-10 rounded-3xl space-y-8 overflow-hidden bg-superblack/50"
-      initial="hidden"
-      animate="visible"
-      variants={containerVariants}
-    >
-      {/* Decorative Background Glow */}
-      <div className="absolute inset-0 -z-10">
-        <div className="absolute -top-20 -right-20 w-60 h-60 rounded-full bg-rust/20 animate-pulse" />
-        <div className="absolute -bottom-16 -left-16 w-72 h-72 rounded-full blur-2xl bg-rust/10" />
-      </div>
-
-      {/* Heading */}
-      <h2 className="text-4xl md:text-5xl font-bold text-white text-center drop-shadow-lg">
-        Contact Details
-      </h2>
-
-      {/* Progress Bar */}
-      <motion.div
-        initial={{ width: 0 }}
-        animate={{ width: "80%" }}
-        transition={{ duration: 1, ease: "easeInOut" }}
-        className="h-1 bg-rust rounded-full mb-6 mx-auto"
-      />
-
-      <p className="text-center text-gray-300 text-sm max-w-md mx-auto">
-        Enter your details to confirm your ride. We’ll contact you shortly!
-      </p>
-
-      {/* Name Fields */}
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-        <motion.div
-          custom={0}
-          variants={inputVariants}
-          className="relative group"
-        >
-          <Input
-            id="firstName"
-            placeholder="First Name"
-            {...register("firstName", { required: true })}
-            className="peer bg-white/10 text-white py-4 px-4 rounded-lg focus:bg-white/20 focus:ring-2 focus:ring-rust text-lg"
-          />
-        </motion.div>
-
-        <motion.div
-          custom={1}
-          variants={inputVariants}
-          className="relative group"
-        >
-          <Input
-            id="lastName"
-            placeholder="Last Name"
-            {...register("lastName", { required: true })}
-            className="peer bg-white/10 text-white py-4 px-4 rounded-lg focus:bg-white/20 focus:ring-2 focus:ring-rust text-lg"
-          />
-        </motion.div>
-      </div>
-
-      {/* Contact Fields */}
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-        <motion.div
-          custom={2}
-          variants={inputVariants}
-          className="relative group"
-        >
-          <Input
-            id="phone"
-            type="tel"
-            placeholder="Phone Number"
-            {...register("phone", { required: true })}
-            className="peer bg-white/10 text-white py-4 px-4 rounded-lg focus:bg-white/20 focus:ring-2 focus:ring-rust text-lg"
-          />
-        </motion.div>
-
-        <motion.div
-          custom={3}
-          variants={inputVariants}
-          className="relative group"
-        >
-          <Input
-            id="email"
-            type="email"
-            placeholder="Email"
-            {...register("email", { required: true })}
-            className="peer bg-white/10 text-white py-4 px-4 rounded-lg focus:bg-white/20 focus:ring-2 focus:ring-rust text-lg"
-          />
-        </motion.div>
-      </div>
-
-      {/* Terms Checkbox */}
-      <motion.div
-        custom={4}
-        variants={inputVariants}
-        className="flex items-center space-x-3"
+    <>
+      {/* MAIN FORM */}
+      <motion.form
+        onSubmit={handleSubmit(onSubmit)}
+        className="flex flex-col items-center gap-10 w-full px-4"
+        variants={containerVariants}
+        initial="hidden"
+        animate="visible"
       >
-        <motion.div whileTap={{ scale: 0.9 }} whileHover={{ scale: 1.05 }}>
+        <h2 className="text-4xl md:text-5xl font-bold text-white text-center">
+          Contact Details
+        </h2>
+
+        <p className="text-center text-gray-300 text-sm max-w-md">
+          Enter your details to confirm your ride. After this you will complete a refundable ₹500 booking step.
+        </p>
+
+        {/* Name */}
+        <div className="w-full grid grid-cols-1 md:grid-cols-2 gap-6">
+          <motion.div custom={0} variants={inputVariants}>
+            <Input
+              placeholder="First Name"
+              {...register("firstName", { required: true })}
+              className="bg-white/10 text-white p-5 rounded-none focus:bg-white/20 focus:ring-2 focus:ring-sandstorm text-lg"
+            />
+          </motion.div>
+
+          <motion.div custom={1} variants={inputVariants}>
+            <Input
+              placeholder="Last Name"
+              {...register("lastName", { required: true })}
+              className="bg-white/10 text-white p-5 rounded-none focus:bg-white/20 focus:ring-2 focus:ring-sandstorm text-lg"
+            />
+          </motion.div>
+        </div>
+
+        {/* Contact */}
+        <div className="w-full grid grid-cols-1 md:grid-cols-2 gap-6">
+          <motion.div custom={2} variants={inputVariants}>
+            <Input
+              type="tel"
+              placeholder="Phone Number"
+              {...register("phone", { required: true })}
+              className="bg-white/10 text-white p-5 rounded-none focus:bg-white/20 focus:ring-2 focus:ring-sandstorm text-lg"
+            />
+          </motion.div>
+
+          <motion.div custom={3} variants={inputVariants}>
+            <Input
+              type="email"
+              placeholder="Email Address"
+              {...register("email", { required: true })}
+              className="bg-white/10 text-white p-5 rounded-none focus:bg-white/20 focus:ring-2 focus:ring-sandstorm text-lg"
+            />
+          </motion.div>
+        </div>
+
+        {/* Terms */}
+        <motion.div custom={4} variants={inputVariants} className="flex items-center gap-3 w-full">
           <Checkbox
-            id="terms"
             {...register("terms", { required: true })}
-            className="accent-rust border-white/50"
+            className="accent-sandstorm border-white cursor-pointer"
           />
+          <label className="text-white/70 cursor-pointer">
+            I accept the terms & conditions
+          </label>
         </motion.div>
-        <label
-          htmlFor="terms"
-          className="text-white/70 mb-1 hover:text-white/90 text-sm md:text-lg cursor-pointer"
-        >
-          I accept the terms & conditions
-        </label>
-      </motion.div>
 
-      {/* Buttons */}
-      <motion.div
-        custom={5}
-        variants={inputVariants}
-        className="flex justify-between mt-6 gap-4"
-      >
-        <Button
-          type="button"
-          variant="outline"
-          onClick={onBack}
-          className="w-full md:w-auto bg-transparent text-white rounded-full border-white/50 py-4 px-8 text-lg hover:bg-white/10 transition"
+        {/* Buttons */}
+        <motion.div custom={5} variants={inputVariants} className="w-full flex justify-between gap-4">
+          <Button
+            type="button"
+            variant="outline"
+            onClick={onBack}
+            className="w-full md:w-auto rounded-full text-black bg-white py-4 px-8"
+          >
+            Back
+          </Button>
+
+          <Button
+            type="submit"
+            disabled={!termsChecked || submitting}
+            className={`w-full md:w-auto py-4 px-8 rounded-full text-lg font-semibold flex items-center gap-2 ${
+              termsChecked
+                ? "bg-sandstorm text-black cursor-pointer"
+                : "bg-gray-700 text-gray-500 cursor-not-allowed"
+            }`}
+          >
+            {submitting ? "Processing..." : "Continue"} <MoveRight />
+          </Button>
+        </motion.div>
+      </motion.form>
+
+      {/* ============================= */}
+      {/*        PAYMENT MODAL          */}
+      {/* ============================= */}
+      {showPaymentModal && (
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          className="fixed inset-0 bg-black/70 backdrop-blur-xl flex justify-center items-center z-50 p-6"
         >
-          Back
-        </Button>
-        <Button
-          type="submit"
-          disabled={!termsChecked || submitting}
-          className={`w-full md:w-auto py-4 px-8 text-lg font-semibold rounded-full transition-all duration-300 ${
-            termsChecked && !submitting
-              ? "bg-linear-to-r from-rust to-rust/80 hover:scale-110 hover:shadow-2xl cursor-pointer text-white"
-              : "bg-gray-700 text-gray cursor-not-allowed"
-          }`}
-        >
-          {submitting ? "Booking..." : "Book Your Ride"}{" "}
-          <MoveRight className="inline ml-2" />
-        </Button>
-      </motion.div>
-    </motion.form>
+          {/* Modal Card */}
+          <motion.div
+            initial={{ scale: 0.8, opacity: 0, y: 40 }}
+            animate={{ scale: 1, opacity: 1, y: 0 }}
+            transition={{ duration: 0.35, ease: "easeOut" }}
+            className="bg-[#111] w-full max-w-md rounded-sm p-8 shadow-xl border border-white/10"
+          >
+            {/* Close Button */}
+            <button
+              onClick={() => setShowPaymentModal(false)}
+              className="absolute top-5 right-5 text-white/60 hover:text-white"
+            >
+              <X size={22} />
+            </button>
+
+            {/* Icon */}
+            <div className="w-16 h-16 mx-auto flex items-center justify-center rounded-full bg-sandstorm/20 mb-5">
+              <Wallet className="text-sandstorm" size={32} />
+            </div>
+
+            {/* Title */}
+            <h3 className="text-2xl font-bold text-white text-center mb-3">
+              ₹500 Refundable Deposit
+            </h3>
+
+            {/* Description */}
+            <p className="text-white/70 text-center text-sm mb-6">
+              This amount is fully refunded once you complete the test ride at your selected store.
+            </p>
+
+            {/* Info Card */}
+            <div className="bg-white/5 p-4 rounded-sm border border-white/10 mb-7">
+              <div className="flex items-center gap-3 text-white">
+                <ShieldCheck className="text-sandstorm" size={20} />
+                <p className="font-medium">Secured Payment Gateway</p>
+              </div>
+              <p className="text-white/60 text-sm mt-2">
+                Your booking will be confirmed immediately after payment.
+              </p>
+            </div>
+
+            {/* Pay Button */}
+            <Button
+              onClick={handlePayment}
+              className="w-full bg-sandstorm text-black font-semibold py-4 rounded-full hover:bg-sandstorm/90 cursor-pointer"
+            >
+              Pay Now • ₹500
+            </Button>
+          </motion.div>
+        </motion.div>
+      )}
+    </>
   );
 }

@@ -5,81 +5,82 @@ import { motion, AnimatePresence } from "framer-motion";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
+import RideDetailsSummary from "./RideDetailsSummary";
 
 interface BookingConfirmationProps {
   contact: { firstName: string; lastName: string };
+  setShowRideDetails: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
-export default function BookingConfirmation({ contact }: BookingConfirmationProps) {
+export default function BookingConfirmation({ contact, setShowRideDetails }: BookingConfirmationProps) {
   const router = useRouter();
   const [showGif, setShowGif] = useState(true);
 
   useEffect(() => {
-    const GIF_DURATION = 1200; // match GIF length
-    const timer = setTimeout(() => setShowGif(false), GIF_DURATION);
+    const timer = setTimeout(() => setShowGif(false), 1200);
     return () => clearTimeout(timer);
   }, []);
 
   return (
-    <div className="w-full h-full relative flex justify-center items-center px-4">
-      {/* Subtle Background Animation */}
-      <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1, scale: [1, 1.1, 1] }}
-        transition={{ duration: 6, repeat: Infinity }}
-        className="absolute w-full h-full rounded-full blur-3xl top-0 left-1/2 -translate-x-1/2"
-      />
+    <div className="w-full h-full flex justify-center items-center relative">
 
-      {/* Card */}
+      {/* Main Card */}
       <motion.div
-        initial={{ scale: 0.9, opacity: 0 }}
-        animate={{ scale: 1, opacity: 1 }}
-        transition={{ duration: 0.6, type: "spring", stiffness: 120 }}
-        className="relative flex flex-col justify-center items-center text-center space-y-6 p-10 pt-0 h-full w-full max-w-md overflow-hidden rounded-3xl"
+        initial={{ opacity: 0, scale: 0.94 }}
+        animate={{ opacity: 1, scale: 1 }}
+        transition={{ duration: 0.55, ease: "easeOut" }}
+        className="
+         backdrop-blur-xl
+          rounded-3xl shadow-2xl
+          w-full
+          flex flex-col items-center text-center
+        "
       >
-        {/* Confetti Effect (simple floating circles) */}
+
+        {/* Confetti Particles */}
         <AnimatePresence>
           {!showGif &&
-            Array.from({ length: 20 }).map((_, i) => (
+            Array.from({ length: 16 }).map((_, i) => (
               <motion.span
                 key={i}
                 initial={{ y: 0, opacity: 1 }}
-                animate={{ y: -200, opacity: 0 }}
-                transition={{ duration: 2, delay: i * 0.05 }}
-                className="absolute w-2 h-2 rounded-full bg-rust"
+                animate={{ y: -140, opacity: 0 }}
+                transition={{ duration: 1.8, delay: i * 0.05 }}
+                className="absolute w-2 h-2 rounded-full bg-sandstorm"
                 style={{
                   top: "50%",
                   left: "50%",
-                  translateX: `${Math.random() * 200 - 100}px`,
-                  translateY: `${Math.random() * 100 - 50}px`,
+                  translateX: `${Math.random() * 180 - 90}px`,
+                  translateY: `${Math.random() * 50 - 25}px`,
                 }}
               />
             ))}
         </AnimatePresence>
 
-        {/* Tick Animation */}
+        {/* Tick animation */}
         {showGif ? (
-          <Image quality={100}
+          <Image
             src="/gif/tick-animation.gif"
             alt="Tick Animation"
-            width={160}
-            height={160}
-            className="w-40 h-40 mx-auto object-contain"
+            width={150}
+            height={150}
+            className="w-32 h-32 object-contain mb-2"
           />
         ) : (
           <motion.div
-            initial={{ scale: 0.5, opacity: 0 }}
+            initial={{ scale: 0.7, opacity: 0 }}
             animate={{ scale: 1, opacity: 1 }}
-            transition={{ type: "spring", stiffness: 200, damping: 15 }}
-            className="relative flex items-center justify-center w-28 h-28 rounded-full border-4 border-green-400"
+            transition={{ type: "spring", stiffness: 180, damping: 15 }}
+            className="relative flex items-center justify-center w-28 h-28 rounded-full border-4 border-sandstorm"
           >
+            {/* Clean Checkmark */}
             <motion.svg
               xmlns="http://www.w3.org/2000/svg"
               fill="none"
               viewBox="0 0 24 24"
               strokeWidth={3}
               stroke="currentColor"
-              className="w-16 h-16 text-green-400"
+              className="w-14 h-14 text-sandstorm"
             >
               <motion.path
                 strokeLinecap="round"
@@ -87,60 +88,56 @@ export default function BookingConfirmation({ contact }: BookingConfirmationProp
                 d="M5 13l4 4L19 7"
                 initial={{ pathLength: 0 }}
                 animate={{ pathLength: 1 }}
-                transition={{ duration: 0.8, ease: "easeInOut" }}
+                transition={{ duration: 0.7, ease: "easeInOut" }}
               />
             </motion.svg>
-            {/* Glow ring */}
-            <motion.div
-              className="absolute inset-0 rounded-full border-4 border-green-400/40"
-              initial={{ scale: 1, opacity: 1 }}
-              animate={{ scale: 1.5, opacity: 0 }}
-              transition={{ duration: 1.2, repeat: Infinity }}
-            />
           </motion.div>
         )}
 
-        {/* Heading */}
+        {/* Title */}
         <motion.h2
-          initial={{ y: 20, opacity: 0 }}
-          animate={{ y: 0, opacity: 1 }}
-          transition={{ delay: 0.3, duration: 0.6 }}
-          className="text-2xl font-bold text-white drop-shadow-lg"
+          initial={{ opacity: 0, y: 12 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.3 }}
+          className="text-3xl font-semibold text-white mt-8 leading-snug"
         >
-          Hey {contact.firstName} {contact.lastName}, your test ride is booked!
+          Your Test Ride is Confirmed,
+          <br />
+          <span className="text-sandstorm">{contact.firstName} {contact.lastName}</span>
         </motion.h2>
 
-        {/* Subtext */}
+        {/* Subtitle */}
         <motion.p
-          initial={{ y: 20, opacity: 0 }}
-          animate={{ y: 0, opacity: 1 }}
-          transition={{ delay: 0.5, duration: 0.6 }}
-          className="text-white/70 text-sm"
+          initial={{ opacity: 0, y: 12 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.45 }}
+          className="text-white/60 text-sm max-w-sm mt-2"
         >
-          Thank you for choosing <span className="text-rust font-semibold">Radkaat 🚴</span>
+          Thank you for choosing <span className="text-sandstorm font-medium">Radkaat</span>.
+          Our team will reach out with your ride details shortly.
         </motion.p>
 
         {/* CTA Button */}
         <motion.div
-          initial={{ y: 20, opacity: 0 }}
-          animate={{ y: 0, opacity: 1 }}
-          transition={{ delay: 0.7, duration: 0.6 }}
-          className="w-full"
+          initial={{ opacity: 0, y: 12 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.6 }}
+          className="mt-8 flex items-center justify-center gap-10"
         >
-          <motion.div
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
-            animate={{ scale: [1, 1.05, 1] }}
-            transition={{ repeat: Infinity, duration: 2, ease: "easeInOut" }}
-          >
+          <motion.div whileHover={{ scale: 1.04 }} whileTap={{ scale: 0.96 }}>
             <Button
               onClick={() => router.push("/")}
-              className="w-full bg-rust hover:bg-rust/90 text-white font-semibold py-5 cursor-pointer shadow-lg rounded-full transition"
+              className="bg-sandstorm text-black font-semibold py-4 rounded-full cursor-pointer hover:bg-sandstorm/90 shadow-lg"
             >
-              Go Home
+              Continue to Home
             </Button>
           </motion.div>
+          <motion.div whileHover={{ scale: 1.04 }} whileTap={{ scale: 0.96 }}>
+            <Button className="bg-sandstorm text-black font-semibold py-4 rounded-full cursor-pointer hover:bg-sandstorm/90 shadow-lg" onClick={() => setShowRideDetails(true)}>View Ride Details</Button>
+          </motion.div>
         </motion.div>
+
+
       </motion.div>
     </div>
   );
