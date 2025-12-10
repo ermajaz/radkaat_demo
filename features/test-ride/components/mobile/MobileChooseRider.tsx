@@ -68,7 +68,7 @@ export default function MobileChooseRider({ onNext, onBack }: Props) {
       initial={{ opacity: 0.6, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.45, ease: "easeOut" }}
-      className="relative w-full pt-30"
+      className="relative w-full"
     >
       {/* Title */}
       <h2 className="text-[26px] font-extrabold text-center text-white mb-8 tracking-tight">
@@ -187,7 +187,7 @@ export default function MobileChooseRider({ onNext, onBack }: Props) {
           onClick={onBack}
           variant="outline"
           className="
-            w-32 rounded-full border-white/30 bg-white/10
+            w-32 py-6 rounded-full border-white/30 bg-white/10
             text-white/80 hover:bg-white/20 transition-all
           "
         >
@@ -198,7 +198,7 @@ export default function MobileChooseRider({ onNext, onBack }: Props) {
           disabled={!selected}
           onClick={handleNext}
           className={`
-            flex-1 py-4 rounded-full text-lg font-semibold 
+            flex-1 py-6 rounded-full text-lg font-semibold 
             flex items-center justify-center gap-2
             ${
               selected

@@ -29,7 +29,7 @@ export default function MobileRideDetailsSummary({
     <motion.div
       initial={{ opacity: 0, y: 30 }}
       animate={{ opacity: 1, y: 0 }}
-      className="w-full min-h-screen px-6 pt-24 pb-20 text-white bg-black relative"
+      className="w-full min-h-screen text-white relative"
     >
       {/* Page Header */}
       <motion.h2
@@ -195,7 +195,7 @@ export default function MobileRideDetailsSummary({
           disabled={!rider?.phone}
           onClick={() => rider?.phone && window.open(`tel:${rider.phone}`)}
           className="
-            w-full py-4 rounded-full 
+            w-full py-6 rounded-full 
             bg-white/10 text-white border border-white/15
             font-medium text-base
             hover:bg-white/20 disabled:opacity-50
@@ -208,7 +208,7 @@ export default function MobileRideDetailsSummary({
         <Button
           onClick={onClose}
           className="
-            w-full py-4 rounded-full 
+            w-full py-6 rounded-full 
             bg-sandstorm text-black 
             font-semibold text-base
             hover:bg-sandstorm/85

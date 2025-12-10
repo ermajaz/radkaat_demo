@@ -68,7 +68,7 @@ export default function MobileContactDetails({ onNext, onBack }: Props) {
       {/* -------------------------------------------------- */}
       <motion.form
         onSubmit={handleSubmit(onSubmit)}
-        className="w-full pt-30"
+        className="w-full relative"
         initial={{ opacity: 0.6, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.45, ease: "easeOut" }}
@@ -79,7 +79,7 @@ export default function MobileContactDetails({ onNext, onBack }: Props) {
         </h2>
 
         <p className="text-white/60 text-center text-[14px] leading-relaxed max-w-[90%] mx-auto mb-10">
-          Enter your information to continue.  
+          Enter your information to continue.
           A fully refundable <span className="text-sandstorm font-semibold">₹500 deposit</span> will confirm your booking.
         </p>
 
@@ -91,16 +91,16 @@ export default function MobileContactDetails({ onNext, onBack }: Props) {
             variants={fieldAnim}
             initial="hidden"
             animate="visible"
-            className="grid grid-cols-1 gap-4"
+            className="grid grid-cols-1 gap-5"
           >
             <Input
               placeholder="First Name"
-              className="glass-input"
+              className="glass-input h-14"
               {...register("firstName", { required: true })}
             />
             <Input
               placeholder="Last Name"
-              className="glass-input"
+              className="glass-input h-14"
               {...register("lastName", { required: true })}
             />
           </motion.div>
@@ -116,13 +116,13 @@ export default function MobileContactDetails({ onNext, onBack }: Props) {
             <Input
               placeholder="Phone Number"
               type="tel"
-              className="glass-input"
+              className="glass-input h-14"
               {...register("phone", { required: true })}
             />
             <Input
               placeholder="Email Address"
               type="email"
-              className="glass-input"
+              className="glass-input h-14"
               {...register("email", { required: true })}
             />
           </motion.div>
@@ -136,7 +136,7 @@ export default function MobileContactDetails({ onNext, onBack }: Props) {
             className="flex items-center gap-3 mt-2"
           >
             <Checkbox
-              className="border-white/40"
+              className="border-white/40 h-6 w-6"
               {...register("terms", { required: true })}
             />
             <p className="text-white/70 text-sm">
@@ -145,6 +145,7 @@ export default function MobileContactDetails({ onNext, onBack }: Props) {
           </motion.div>
         </div>
 
+
         {/* FLOATING CTA BUTTONS */}
         <div className="mt-10 w-full flex gap-3">
           {/* Back */}
@@ -152,7 +153,7 @@ export default function MobileContactDetails({ onNext, onBack }: Props) {
             type="button"
             onClick={onBack}
             className="
-              w-32 rounded-full border border-white/30 bg-white/10 
+              w-32 py-6 rounded-full border border-white/30 bg-white/10 
               text-white/80 hover:bg-white/20 transition-all
             "
           >
@@ -164,12 +165,11 @@ export default function MobileContactDetails({ onNext, onBack }: Props) {
             type="submit"
             disabled={!termsChecked || loading}
             className={`
-              flex-1 py-4 rounded-full text-lg font-semibold 
+              flex-1 py-6 rounded-full text-lg font-semibold 
               flex items-center justify-center gap-2 transition-all
-              ${
-                termsChecked
-                  ? "bg-sandstorm text-black shadow-lg"
-                  : "bg-white/10 text-white/40"
+              ${termsChecked
+                ? "bg-sandstorm text-black shadow-lg"
+                : "bg-white/10 text-white/40"
               }
             `}
           >
@@ -235,7 +235,7 @@ export default function MobileContactDetails({ onNext, onBack }: Props) {
               <Button
                 onClick={handlePayment}
                 className="
-                  w-full rounded-full py-4 bg-sandstorm 
+                  w-full rounded-full py-6 bg-sandstorm 
                   text-black font-semibold text-lg hover:bg-sandstorm/90
                 "
               >

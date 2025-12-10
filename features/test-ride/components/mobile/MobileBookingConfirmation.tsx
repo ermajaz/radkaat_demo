@@ -67,7 +67,7 @@ export default function MobileBookingConfirmation({
         className="
           relative w-full max-w-md 
           rounded-4xl 
-          px-8 pt-12 pb-16
+          px-4 pt-12 pb-16
           text-center
         "
       >
@@ -173,14 +173,14 @@ export default function MobileBookingConfirmation({
         >
           <Button
             onClick={() => setShowRideDetails(true)}
-            className="w-full rounded-full bg-sandstorm text-black py-4 font-semibold shadow-lg hover:bg-sandstorm/90"
+            className="w-full rounded-full bg-sandstorm text-black py-6 font-semibold shadow-lg hover:bg-sandstorm/90"
           >
             View Ride Details
           </Button>
 
           <Button
             onClick={() => window.location.href = "/"}
-            className="w-full rounded-full bg-white/10 text-white border border-white/20 py-4 font-semibold backdrop-blur-xl hover:bg-white/20"
+            className="w-full rounded-full bg-white/10 text-white border border-white/20 py-6 font-semibold backdrop-blur-xl hover:bg-white/20"
           >
             Continue to Home
           </Button>

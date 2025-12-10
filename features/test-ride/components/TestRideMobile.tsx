@@ -52,7 +52,7 @@ export default function TestRideMobile() {
   return (
     <div
       ref={containerRef}
-      className="relative w-full min-h-screen bg-superblack text-white overflow-hidden"
+      className="relative w-full h-full bg-superblack text-white overflow-hidden"
     >
       {/* Animated Glow Blob */}
       <motion.div
@@ -62,42 +62,12 @@ export default function TestRideMobile() {
       />
 
       {/* ------------------------------------------------------------ */}
-      {/* HEADER (Fixed) */}
-      {/* ------------------------------------------------------------ */}
-      <header
-        className="
-        fixed top-0 left-0 w-full z-40
-        h-16 flex items-center px-4
-        bg-black/70 backdrop-blur-xl 
-        border-b border-white/10
-      "
-      >
-        {step > 0 && !summaryOpen && (
-          <button
-            onClick={back}
-            className="active:scale-95 transition"
-          >
-            <ChevronLeft size={26} className="text-sandstorm" />
-          </button>
-        )}
-
-        <p className="mx-auto text-base font-semibold tracking-wide text-sandstorm">
-          {summaryOpen ? "Summary" : steps[step]}
-        </p>
-      </header>
-
-      {/* ------------------------------------------------------------ */}
       {/* MAIN CONTENT — Always Below Header */}
       {/* ------------------------------------------------------------ */}
       <main
         className="
     mobile-step relative z-10
-    pt-20
-    pb-32
-    px-4
-    min-h-[calc(100vh-4rem)]
-    overflow-y-auto
-    scrollbar-none
+    px-4 top-14 py-5 pb-10 h-[calc(100vh-56px)] overflow-y-auto hide-scrollbar
   "
       >
         <AnimatePresence mode="wait">
@@ -179,7 +149,7 @@ export default function TestRideMobile() {
       {!summaryOpen && (
         <div
           className="
-          fixed bottom-0 left-0 w-full 
+          fixed top-0 left-0 w-full 
           flex justify-center
           bg-black/60 backdrop-blur-xl
           border-t border-white/10
