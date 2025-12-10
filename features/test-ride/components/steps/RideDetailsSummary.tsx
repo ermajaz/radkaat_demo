@@ -58,7 +58,7 @@ export default function RideDetailsSummary({
                 {/* ----------------------------- */}
                 {/* BIKE DETAILS CARD */}
                 {/* ----------------------------- */}
-                <div className="bg-[#111]/60 border border-white/10 rounded-2xl p-8 backdrop-blur-xl flex flex-col items-center">
+                <div className="bg-[#111]/60 border border-white/10 rounded-sm p-8 backdrop-blur-xl flex flex-col items-center">
                     <p className="text-xl font-semibold tracking-wide mb-4 uppercase">
                         {bike.name}
                     </p>
@@ -105,7 +105,7 @@ export default function RideDetailsSummary({
                 {/* ----------------------------- */}
                 {/* RIDER DETAILS CARD */}
                 {/* ----------------------------- */}
-                <div className="bg-[#111]/60 border border-white/10 rounded-2xl p-8 backdrop-blur-xl">
+                <div className="bg-[#111]/60 border border-white/10 rounded-sm p-8 backdrop-blur-xl">
 
                     {/* Rider Avatar + Name */}
                     <div className="flex flex-col items-center gap-4 mb-6">
@@ -152,7 +152,7 @@ export default function RideDetailsSummary({
                 {/* BACK BUTTON */}
                 <Button
                     onClick={() => router.push("/")}
-                    className="bg-black px-8 py-5 text-white rounded-full cursor-pointer border border-white/10 flex items-center gap-2 hover:bg-black/80"
+                    className="bg-black px-8 py-5 text-white rounded-sm cursor-pointer border border-white/10 flex items-center gap-2 hover:bg-black/80"
                 >
                     <ArrowLeft size={20} /> Homepage
                 </Button>
@@ -160,7 +160,7 @@ export default function RideDetailsSummary({
                 {/* BOOK AGAIN BUTTON */}
                 <Button
                     onClick={() => window.location.reload()}
-                    className="bg-[#D6C894] text-black font-medium px-8 py-5 cursor-pointer rounded-full flex items-center gap-2 hover:bg-[#D6C894]/90"
+                    className="bg-[#D6C894] text-black px-8 py-5 cursor-pointer rounded-sm flex items-center gap-2 hover:bg-[#D6C894]/90"
                 >
                     Book a New Test Ride <ArrowRight size={20} />
                 </Button>

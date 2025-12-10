@@ -92,7 +92,7 @@ export default function ChooseRider({ onNext, onBack }: ChooseRiderProps) {
             <Card
               onClick={() => setSelectedId(rider.id)}
               className={`
-                cursor-pointer rounded-2xl p-0 gap-0 overflow-hidden bg-stone border transition-all duration-300
+                cursor-pointer rounded-sm p-0 gap-0 overflow-hidden bg-stone border transition-all duration-300
                 ${
                   selectedId === rider.id
                     ? "border-sandstorm shadow-[0_0_20px_rgba(255,190,80,0.4)]"
@@ -163,7 +163,7 @@ export default function ChooseRider({ onNext, onBack }: ChooseRiderProps) {
         <Button
           variant="outline"
           onClick={onBack}
-          className="border-white/30 text-black rounded-full cursor-pointer"
+          className="border-white/30 text-black rounded-sm cursor-pointer"
         >
           Back
         </Button>
@@ -172,7 +172,7 @@ export default function ChooseRider({ onNext, onBack }: ChooseRiderProps) {
           onClick={handleNext}
           disabled={!selectedId}
           className={`
-            py-3 px-8 rounded-full font-semibold flex items-center gap-2
+            py-3 px-8 rounded-sm font-semibold flex items-center gap-2
             ${
               selectedId
                 ? "bg-sandstorm text-black cursor-pointer"

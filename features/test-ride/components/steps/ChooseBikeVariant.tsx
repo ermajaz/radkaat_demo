@@ -91,7 +91,7 @@ export default function ChooseBikeVariant({ onNext }: ChooseBikeVariantProps) {
                   setFrameSize("");
                 }}
                 className={`
-                  cursor-pointer rounded-xl bg-white/5 border transition-all p-3
+                  cursor-pointer rounded-sm bg-white/5 border transition-all p-3
                   ${selectedBike?.id === bike.id
                     ? "border-sandstorm shadow-[0_0_15px_rgba(255,190,80,0.45)]"
                     : "border-white/10 hover:border-white/20"
@@ -106,7 +106,7 @@ export default function ChooseBikeVariant({ onNext }: ChooseBikeVariantProps) {
                       alt={bike.name}
                       width={160}
                       height={90}
-                      className="rounded-md object-cover mx-auto"
+                      className="rounded-sm object-cover mx-auto"
                     />
                   </div>
 
@@ -146,7 +146,7 @@ export default function ChooseBikeVariant({ onNext }: ChooseBikeVariantProps) {
                 whileHover={{ y: -4 }}
                 transition={{ duration: 0.25 }}
                 className={`
-                  rounded-xl border p-5 bg-white/5 cursor-pointer transition-all
+                  rounded-sm border p-5 bg-white/5 cursor-pointer transition-all
                   ${selectedVariantGroup === vg
                     ? "border-sandstorm shadow-[0_0_15px_rgba(255,190,80,0.4)]"
                     : "border-white/10 hover:border-white/20"
@@ -164,7 +164,7 @@ export default function ChooseBikeVariant({ onNext }: ChooseBikeVariantProps) {
                     alt={selectedBike.name}
                     width={220}
                     height={120}
-                    className="rounded-lg object-cover mx-auto"
+                    className="rounded-sm object-cover mx-auto"
                   />
 
                   <div className="flex items-center justify-between gap-5">
@@ -247,7 +247,7 @@ export default function ChooseBikeVariant({ onNext }: ChooseBikeVariantProps) {
                   key={wheel}
                   onClick={() => setWheelSize(wheel)}
                   className={`
-                    px-4 py-2 rounded-full text-sm transition-all cursor-pointer
+                    px-4 py-2 rounded-sm text-sm transition-all cursor-pointer
                     ${wheelSize === wheel
                       ? "bg-sandstorm text-black shadow-[0_0_15px_rgba(255,190,80,0.5)]"
                       : "bg-white/10 text-white hover:bg-white/20"
@@ -271,7 +271,7 @@ export default function ChooseBikeVariant({ onNext }: ChooseBikeVariantProps) {
                   key={frame}
                   onClick={() => setFrameSize(frame)}
                   className={`
-                    px-4 py-2 rounded-full text-sm transition-all cursor-pointer
+                    px-4 py-2 rounded-sm text-sm transition-all cursor-pointer
                     ${frameSize === frame
                       ? "bg-sandstorm text-black shadow-[0_0_15px_rgba(255,190,80,0.5)]"
                       : "bg-white/10 text-white hover:bg-white/20"
@@ -305,7 +305,7 @@ export default function ChooseBikeVariant({ onNext }: ChooseBikeVariantProps) {
           }
           disabled={!isNextEnabled}
           className={`
-            py-3 px-10 font-semibold rounded-full transition-all cursor-pointer flex items-center gap-2 
+            py-3 px-10 font-semibold rounded-sm transition-all cursor-pointer flex items-center gap-2 
             ${isNextEnabled
               ? "bg-sandstorm text-black"
               : "bg-gray-700 text-gray-400 cursor-not-allowed"

@@ -31,7 +31,7 @@ export default function BookingConfirmation({ contact, setShowRideDetails }: Boo
         transition={{ duration: 0.55, ease: "easeOut" }}
         className="
          backdrop-blur-xl
-          rounded-3xl shadow-2xl
+          rounded-sm shadow-2xl
           w-full
           flex flex-col items-center text-center
         "
@@ -127,13 +127,13 @@ export default function BookingConfirmation({ contact, setShowRideDetails }: Boo
           <motion.div whileHover={{ scale: 1.04 }} whileTap={{ scale: 0.96 }}>
             <Button
               onClick={() => router.push("/")}
-              className="bg-sandstorm text-black font-semibold py-4 rounded-full cursor-pointer hover:bg-sandstorm/90 shadow-lg"
+              className="bg-sandstorm text-black font-semibold py-4 rounded-sm cursor-pointer hover:bg-sandstorm/90 shadow-lg"
             >
               Continue to Home
             </Button>
           </motion.div>
           <motion.div whileHover={{ scale: 1.04 }} whileTap={{ scale: 0.96 }}>
-            <Button className="bg-sandstorm text-black font-semibold py-4 rounded-full cursor-pointer hover:bg-sandstorm/90 shadow-lg" onClick={() => setShowRideDetails(true)}>View Ride Details</Button>
+            <Button className="bg-sandstorm text-black font-semibold py-4 rounded-sm cursor-pointer hover:bg-sandstorm/90 shadow-lg" onClick={() => setShowRideDetails(true)}>View Ride Details</Button>
           </motion.div>
         </motion.div>
 

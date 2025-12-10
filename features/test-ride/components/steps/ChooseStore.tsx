@@ -102,7 +102,7 @@ export default function ChooseStore({ onNext, onBack }: ChooseStoreProps) {
                     transition={{ duration: 0.25, delay: i * 0.03 }}
                     onClick={() => setSelectedStore(store)}
                     className={`
-                      flex justify-between items-center p-5 rounded-xl border bg-white/5 cursor-pointer transition-all select-none
+                      flex justify-between items-center p-5 rounded-sm border bg-white/5 cursor-pointer transition-all select-none
                       ${
                         selectedStore?.id === store.id
                           ? "border-sandstorm shadow-[0_0_15px_rgba(255,190,80,0.35)] bg-sandstorm/10"
@@ -149,7 +149,7 @@ export default function ChooseStore({ onNext, onBack }: ChooseStoreProps) {
                 setSelectedTime("");
               }}
               disabled={(day) => day < new Date()}
-              className="w-[320px] rounded-xl border border-sandstorm bg-white/5 text-white shadow-md p-3 backdrop-blur-xl"
+              className="w-[320px] rounded-sm border border-sandstorm bg-white/5 text-white shadow-md p-3 backdrop-blur-xl"
             />
           ) : (
             <div className="w-full h-full flex items-center justify-center opacity-60">
@@ -161,7 +161,7 @@ export default function ChooseStore({ onNext, onBack }: ChooseStoreProps) {
 
           {/* TIME SLOTS */}
           {selectedStore && date && (
-            <div className="w-full bg-white/5 border border-white/10 rounded-xl p-4 backdrop-blur-xl">
+            <div className="w-full bg-white/5 border border-white/10 rounded-sm p-4 backdrop-blur-xl">
               <p className="text-white/80 text-sm mb-3 flex items-center gap-2">
                 <Clock className="w-4 h-4 text-sandstorm" /> Select a Time Slot
               </p>
@@ -172,7 +172,7 @@ export default function ChooseStore({ onNext, onBack }: ChooseStoreProps) {
                     key={slot}
                     onClick={() => setSelectedTime(slot)}
                     className={`
-                      text-center py-3 text-xs rounded-lg border cursor-pointer transition-all
+                      text-center py-3 text-xs rounded-sm border cursor-pointer transition-all
                       ${
                         selectedTime === slot
                           ? "bg-sandstorm text-black border-sandstorm shadow-lg"
@@ -194,7 +194,7 @@ export default function ChooseStore({ onNext, onBack }: ChooseStoreProps) {
         <Button
           variant="outline"
           onClick={onBack}
-          className="border-white/30 text-black w-full md:w-auto rounded-full cursor-pointer"
+          className="border-white/30 text-black w-full md:w-auto rounded-sm cursor-pointer"
         >
           Back
         </Button>
@@ -203,7 +203,7 @@ export default function ChooseStore({ onNext, onBack }: ChooseStoreProps) {
           onClick={handleNext}
           disabled={!selectedStore || !date || !selectedTime}
           className={`
-            py-3 px-8 font-semibold rounded-full cursor-pointer flex items-center gap-2 w-full md:w-auto transition-all
+            py-3 px-8 font-semibold rounded-sm cursor-pointer flex items-center gap-2 w-full md:w-auto transition-all
             ${
               selectedStore && date && selectedTime
                 ? "bg-sandstorm text-black"

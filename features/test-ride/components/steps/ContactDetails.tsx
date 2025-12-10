@@ -93,7 +93,7 @@ export default function ContactDetails({ onNext, onBack }: ContactDetailsProps) 
             <Input
               placeholder="First Name"
               {...register("firstName", { required: true })}
-              className="bg-white/10 text-white p-5 rounded-none focus:bg-white/20 focus:ring-2 focus:ring-sandstorm text-lg"
+              className="bg-white/10 text-white p-5 rounded-sm focus:bg-white/20 focus:ring-2 focus:ring-sandstorm text-lg"
             />
           </motion.div>
 
@@ -101,7 +101,7 @@ export default function ContactDetails({ onNext, onBack }: ContactDetailsProps) 
             <Input
               placeholder="Last Name"
               {...register("lastName", { required: true })}
-              className="bg-white/10 text-white p-5 rounded-none focus:bg-white/20 focus:ring-2 focus:ring-sandstorm text-lg"
+              className="bg-white/10 text-white p-5 rounded-sm focus:bg-white/20 focus:ring-2 focus:ring-sandstorm text-lg"
             />
           </motion.div>
         </div>
@@ -113,7 +113,7 @@ export default function ContactDetails({ onNext, onBack }: ContactDetailsProps) 
               type="tel"
               placeholder="Phone Number"
               {...register("phone", { required: true })}
-              className="bg-white/10 text-white p-5 rounded-none focus:bg-white/20 focus:ring-2 focus:ring-sandstorm text-lg"
+              className="bg-white/10 text-white p-5 rounded-sm focus:bg-white/20 focus:ring-2 focus:ring-sandstorm text-lg"
             />
           </motion.div>
 
@@ -122,7 +122,7 @@ export default function ContactDetails({ onNext, onBack }: ContactDetailsProps) 
               type="email"
               placeholder="Email Address"
               {...register("email", { required: true })}
-              className="bg-white/10 text-white p-5 rounded-none focus:bg-white/20 focus:ring-2 focus:ring-sandstorm text-lg"
+              className="bg-white/10 text-white p-5 rounded-sm focus:bg-white/20 focus:ring-2 focus:ring-sandstorm text-lg"
             />
           </motion.div>
         </div>
@@ -144,7 +144,7 @@ export default function ContactDetails({ onNext, onBack }: ContactDetailsProps) 
             type="button"
             variant="outline"
             onClick={onBack}
-            className="w-full md:w-auto rounded-full text-black bg-white py-4 px-8"
+            className="w-full md:w-auto rounded-sm text-black bg-white py-4 px-8"
           >
             Back
           </Button>
@@ -152,7 +152,7 @@ export default function ContactDetails({ onNext, onBack }: ContactDetailsProps) 
           <Button
             type="submit"
             disabled={!termsChecked || submitting}
-            className={`w-full md:w-auto py-4 px-8 rounded-full text-lg font-semibold flex items-center gap-2 ${
+            className={`w-full md:w-auto py-4 px-8 rounded-sm text-lg font-semibold flex items-center gap-2 ${
               termsChecked
                 ? "bg-sandstorm text-black cursor-pointer"
                 : "bg-gray-700 text-gray-500 cursor-not-allowed"
@@ -188,7 +188,7 @@ export default function ContactDetails({ onNext, onBack }: ContactDetailsProps) 
             </button>
 
             {/* Icon */}
-            <div className="w-16 h-16 mx-auto flex items-center justify-center rounded-full bg-sandstorm/20 mb-5">
+            <div className="w-16 h-16 mx-auto flex items-center justify-center rounded-sm bg-sandstorm/20 mb-5">
               <Wallet className="text-sandstorm" size={32} />
             </div>
 
@@ -216,7 +216,7 @@ export default function ContactDetails({ onNext, onBack }: ContactDetailsProps) 
             {/* Pay Button */}
             <Button
               onClick={handlePayment}
-              className="w-full bg-sandstorm text-black font-semibold py-4 rounded-full hover:bg-sandstorm/90 cursor-pointer"
+              className="w-full bg-sandstorm text-black font-semibold py-4 rounded-sm hover:bg-sandstorm/90 cursor-pointer"
             >
               Pay Now • ₹500
             </Button>
