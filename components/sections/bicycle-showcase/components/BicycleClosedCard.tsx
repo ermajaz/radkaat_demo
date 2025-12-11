@@ -31,7 +31,7 @@ export default function BicycleClosedCard({
       </div>
 
       {/* LOGO */}
-      <div className="w-full flex items-center gap-0.5 justify-center mt-2">
+      <div className="w-full flex items-center gap-1 justify-center mt-2">
         <Image
           src={bike.logo}
           alt={bike.uiName + ' logo'}

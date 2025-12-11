@@ -1,12 +1,21 @@
 "use client";
 
+import Link from "next/link";
+
 export default function ViewProductButton({ link }: { link: string }) {
   return (
-    <a
+    <Link
       href={link}
-      className="absolute bottom-5 left-1/2 -translate-x-1/2 px-6 py-2 bg-white text-black whitespace-nowrap w-fit text-sm font-semibold"
+      className="
+        px-6 py-2 
+        bg-white text-black 
+        whitespace-nowrap 
+        text-sm font-semibold cursor-pointer
+        rounded-none
+        inline-block
+      "
     >
       View Product
-    </a>
+    </Link>
   );
 }

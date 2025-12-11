@@ -4,7 +4,6 @@ import { RadarChart as RChart, PolarGrid, PolarAngleAxis, Radar, ResponsiveConta
 
 export default function RadarChart({ stats, color = "#9f7aea" }: { stats: any; color?: string }) {
 
-  // Convert stats object into Recharts format
   const data = [
     { label: "Performance", value: stats.suspension },
     { label: "Durability & Bulk", value: stats.braking },
@@ -15,20 +14,19 @@ export default function RadarChart({ stats, color = "#9f7aea" }: { stats: any; c
   ];
 
   return (
-    <div className="w-[320px] h-[300px]">
+    <div className="w-[300px] h-[300px]">
       <ResponsiveContainer width="100%" height="100%">
-        <RChart data={data} outerRadius={90}>
+        <RChart
+          data={data}
+          outerRadius={80}
+        >
+          <PolarGrid stroke="#88888880" />
 
-
-          <PolarGrid
-            stroke="#88888880"
-          />
           <PolarAngleAxis
             dataKey="label"
             tick={{ fill: "#ffffffb0", fontSize: 10 }}
           />
 
-          {/* Radar Shape */}
           <Radar
             dataKey="value"
             stroke={color}

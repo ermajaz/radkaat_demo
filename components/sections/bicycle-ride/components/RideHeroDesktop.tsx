@@ -10,7 +10,7 @@ export default function RideHeroDesktop() {
   const router = useRouter();
 
   return (
-    <div className="relative w-full flex flex-col pt-10 pb-10 items-center justify-center overflow-hidden z-10 bg-superblack">
+    <div className="relative w-full flex flex-col mt-3 pt-10 pb-10 items-center justify-center overflow-hidden z-10 bg-superblack">
       {/* Background */}
       <Image
         src="/images/test-ride.jpg"

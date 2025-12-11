@@ -1,9 +1,7 @@
 import AboutRadkaat from "@/components/sections/about-radkaat";
-import BicycleComparison from "@/components/sections/bicycle-comparison/BicycleComparison";
 import BicycleRide from "@/components/sections/bicycle-ride/BicycleRide";
 import BicycleShowcase from "@/components/sections/bicycle-showcase/BicycleShowcase";
-import BikeShowcase from "@/components/sections/bike-showcase/BikeShowcase";
-import BikeComparison from "@/components/sections/bikeComparison/BikeComparison";
+import BikeIntro from "@/components/sections/bike-intro/BikeIntro";
 import Category from "@/components/sections/category";
 import HeroSection from "@/components/sections/hero";
 import JungleBook from "@/components/sections/jungle-book-tour/JungleBook";
@@ -13,7 +11,7 @@ export default function LandingPage() {
     <div>
       <HeroSection />
       <AboutRadkaat />
-      <BikeShowcase />
+      <BikeIntro />
       <BicycleShowcase />
       {/* <BikeComparison /> */}
       {/* <BicycleComparison /> */}

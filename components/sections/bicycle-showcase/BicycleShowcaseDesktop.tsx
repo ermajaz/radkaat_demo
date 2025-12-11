@@ -1,15 +1,209 @@
 "use client";
 
-import { useState } from "react";
-import { bikes } from "./utils/bicycle-showcase";
-import BikeModelSwitcher from "./components/BikeModalSwitcher";
+import { motion, AnimatePresence } from "motion/react";
+import { useEffect, useRef, useState } from "react";
+import { BIKES } from "./utils/bicycle-showcase";
+import BikesStrip from "./components/BikesStrip";
+import ShowcaseBg from "./components/ShowcaseBg";
+import BikeNameInGradient from "./components/BikeNameInGradient";
+import BikeImage from "./components/BikeImage";
+import RadarChart from "./components/RadarChart";
+import BikeSpecsCard from "./components/BikeSpecsCard";
+import ViewProductButton from "./ViewProductButton";
+import Image from "next/image";
+import BicycleClosedCard from "./components/BicycleClosedCard";
+
 
 export default function BikeShowcaseDesktop() {
-  const [active, setActive] = useState<"serow" | "saola" | "takin">("serow");
+  const [active, setActive] = useState(0);
+  const isProgrammaticScroll = useRef(false);
+  const stickyRef = useRef<HTMLDivElement>(null);
+  const scrollZoneRef = useRef<HTMLDivElement>(null);
+
+  const SECTION_HEIGHT = typeof window !== "undefined" ? window.innerHeight : 800;
+  const TOTAL_BIKES = BIKES.length;
+
+  /** ------------------------------
+   * STICKY LOGIC:
+   * While the sticky section is pinned,
+   * scroll inside to switch bikes.
+   * ------------------------------ */
+  useEffect(() => {
+    const sticky = stickyRef.current;
+    const zone = scrollZoneRef.current;
+    if (!sticky || !zone) return;
+
+    function handleScroll() {
+      if (isProgrammaticScroll.current) return; // <-- add this line
+      if (!zone) return;
+
+      const rect = zone.getBoundingClientRect();
+      const activated = rect.top <= 0 && rect.bottom >= window.innerHeight;
+
+      if (activated) {
+        const totalScrollableHeight = rect.height - window.innerHeight;
+
+        const scrollProgress = Math.min(
+          Math.max((0 - rect.top) / totalScrollableHeight, 0),
+          1
+        );
+
+        const bikeIndex = Math.round(scrollProgress * (TOTAL_BIKES - 1));
+
+        if (bikeIndex !== active) {
+          setActive(bikeIndex);
+        }
+      }
+    }
+
+
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, [active]);
+
+  /** Accordion widths */
+  function widthFor(idx: number) {
+    return idx === active ? "w-[82%]" : "w-[9%]";
+  }
+
+  function scrollToBike(index: number) {
+    if (!scrollZoneRef.current) return;
+
+    isProgrammaticScroll.current = true; // disable scroll logic temporarily
+
+    const target = index * SECTION_HEIGHT;
+
+    window.scrollTo({
+      top: scrollZoneRef.current.offsetTop + target,
+      behavior: "smooth",
+    });
+
+    // re-enable scroll logic AFTER animation
+    setTimeout(() => {
+      isProgrammaticScroll.current = false;
+    }, 700); // duration must match scroll ease
+  }
+
+
 
   return (
-    <section className="w-full h-screen">
-      <BikeModelSwitcher bikes={bikes} active={active} setActive={setActive} />
-    </section>
+    <div
+      ref={scrollZoneRef}
+      className="relative"
+      style={{ height: `${SECTION_HEIGHT * BIKES.length}px` }}
+    >
+      {/* Sticky region */}
+      <div
+        ref={stickyRef}
+        className="sticky top-0 w-full h-screen overflow-hidden bg-black"
+      >
+        {/* Top strip */}
+        <div className="absolute top-0 left-0 right-0 z-50">
+          <BikesStrip bike={BIKES[active]} />
+        </div>
+
+        {/* Main row */}
+        <div className="absolute inset-0 top-9"> {/* leave space for top strip (9) */}
+          <div className="h-[calc(100vh-36px)] flex flex-row w-full">
+            {BIKES.map((bike, idx) => {
+              const isActive = idx === active;
+              const widthClass = widthFor(idx);
+              // motion animate layout for smooth width
+              return (
+                <motion.div
+                  key={bike.id}
+                  layout
+                  transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
+                  className={`${widthClass} relative shrink-0 h-full`}
+                  style={{ minWidth: 0 }}
+                >
+                  {/* background */}
+                  <ShowcaseBg />
+
+                  {/* overlay content */}
+                  <div className="relative z-10 h-full flex flex-col">
+                    {/* center content for OPEN */}
+                    <AnimatePresence mode="popLayout">
+                      {isActive ? (
+                        <motion.div
+                          key={`open-${bike.id}`}
+                          initial={{ opacity: 0, x: 30 }}
+                          animate={{ opacity: 1, x: 0 }}
+                          exit={{ opacity: 0, x: -20 }}
+                          transition={{ duration: 0.7 }}
+                          className="flex-1 flex items-center justify-center"
+                        >
+                          <div className="w-full h-full flex items-center justify-between">
+                            {/* Left large bike + big background word */}
+                            <div className="flex-1 h-full flex items-center px-8">
+                              <div className="relative w-full h-full max-w-full">
+                                {/* big background word (partially visible left) */}
+                                <div className="w-full absolute left-0 right-0 mx-auto top-[12%] opacity-30 pointer-events-none">
+                                  <BikeNameInGradient name={bike.bgWord ?? bike.uiName.toUpperCase()} gradient={bike.colors.bgGradient} />
+                                </div>
+
+                                {/* bike image centered */}
+                                <div className="absolute top-[45%] -translate-y-[30%] z-20 w-full h-full">
+                                  <BikeImage image={bike.image} />
+                                </div>
+                                <div className="absolute left-1/2 -translate-x-1/2 bottom-[5%] z-30">
+                                  <ViewProductButton link={"/bikes/serow/model-1"} />
+                                </div>
+                              </div>
+                            </div>
+
+                            {/* Right column: radar + specs + CTA */}
+                            <div className="w-[350px] flex flex-col items-end justify-center gap-10 mr-10">
+                              <RadarChart stats={bike.stats} color={bike.colors.gradient.split(",")[0]} />
+                              <BikeSpecsCard bike={bike} />
+
+                            </div>
+                          </div>
+                        </motion.div>
+                      ) : (
+                        /* CLOSED layout (tiny column): centered logo + name */
+                        <motion.div
+                          key={`closed-${bike.id}`}
+                          initial={{ opacity: 0.6 }}
+                          animate={{ opacity: 1 }}
+                          exit={{ opacity: 0.6 }}
+                          transition={{ duration: 0 }}
+                          className={`flex-1 flex items-center justify-center cursor-pointer`}
+                          onClick={() => setActive(idx)}
+                          role="button"
+                          aria-label={`Open ${bike.uiName}`}
+                        >
+                          <BicycleClosedCard
+                            bike={bike}
+                            onClick={() => {
+                              scrollToBike(idx);
+                              setActive(idx);
+                            }}
+                          />
+
+                        </motion.div>
+                      )}
+                    </AnimatePresence>
+
+                    {/* clickable overlay for closed columns (full height) */}
+                    {!isActive && (
+                      <button
+                        onClick={() => {
+                          scrollToBike(idx);
+                          setActive(idx);
+                        }}
+                        className="absolute cursor-pointer inset-0 w-full h-full bg-transparent"
+                        aria-hidden
+                      />
+
+                    )}
+                  </div>
+                </motion.div>
+              );
+            })}
+          </div>
+        </div>
+      </div>
+    </div>
   );
 }

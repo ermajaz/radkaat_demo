@@ -1,21 +1,14 @@
 "use client";
 
-import { motion } from "framer-motion";
-
-export default function BikeDetailsCard({ bike }: any) {
+export default function BikeSpecsCard({ bike }: { bike: any }) {
   return (
-    <motion.div
-      key={bike.id}  // When bike changes → animation triggers automatically
-      initial={{ opacity: 0, x: 40 }}
-      animate={{ opacity: 1, x: 0 }}
-      exit={{ opacity: 0, x: 40 }}
-      transition={{ duration: 0.6, ease: "easeOut" }}
+    <div
       className="
         bg-[#121212]/95
         backdrop-blur-md 
-        p-6
+        px-5 py-3
         rounded-[6px]
-        w-[300px]
+        w-[280px]
         border border-white/10
       "
     >
@@ -33,26 +26,34 @@ export default function BikeDetailsCard({ bike }: any) {
       {/* FRAME GEOMETRY */}
       <div className="mb-2">
         <p className="text-xs text-stone">Frame Geometry</p>
-        <p className="text-[16px] text-white font-semibold mt-1">Trail-Optimized</p>
+        <p className="text-[16px] text-white font-semibold mt-1">
+          Trail-Optimized
+        </p>
       </div>
 
       {/* TERRAIN TYPE */}
       <div className="mb-2">
         <p className="text-xs text-stone">Terrain Type</p>
-        <p className="text-[16px] text-white font-semibold mt-1">Multi-Mountain</p>
+        <p className="text-[16px] text-white font-semibold mt-1">
+          Multi-Mountain
+        </p>
       </div>
 
       {/* STABILITY */}
       <div className="mb-2">
         <p className="text-xs text-stone">Stability</p>
-        <p className="text-[16px] text-white font-semibold mt-1">Rock-Solid</p>
+        <p className="text-[16px] text-white font-semibold mt-1">
+          Rock-Solid
+        </p>
       </div>
 
       {/* AGILITY */}
       <div>
         <p className="text-xs text-stone">Agility</p>
-        <p className="text-[16px] text-white font-semibold mt-1">Cliff-Nimble</p>
+        <p className="text-[16px] text-white font-semibold mt-1">
+          Cliff-Nimble
+        </p>
       </div>
-    </motion.div>
+    </div>
   );
 }

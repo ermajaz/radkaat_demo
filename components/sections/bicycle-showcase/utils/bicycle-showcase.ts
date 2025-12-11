@@ -26,6 +26,7 @@ export type Bike = {
   description: string;
   colors: {
     gradient: string;
+    bgGradient:string;
     cta: string;
   };
   stats: BikeStats;
@@ -50,8 +51,9 @@ export const BIKES: Bike[] = [
     logo: "/icons/Serow-white.png",
     description: "A versatile mountain bike designed for all terrains.A versatile mountain bike designed for all terrains.A versatile mountain bike designed for all terrains.A versatile mountain bike designed for all terrains.A versatile mountain bike designed for all terrains.A versatile mountain bike designed for all terrains.A versatile mountain bike designed for all terrains.A versatile mountain bike designed for all terrains.A versatile mountain bike designed for all terrains.",
     colors: {
-      gradient: "#C6B783, #806D2A", // top → bottom
-      cta: "var(--color-sandstorm)",
+      gradient: "#5D7510, #252E0A", // top → bottom
+      cta: "var(--color-army)",
+      bgGradient:"linear-gradient(179.55deg, rgba(93, 117, 16, 1) 44.21%, rgba(37, 46, 10, 1) 99.61%)"
     },
     stats: {
       suspension: 8,
@@ -119,8 +121,9 @@ export const BIKES: Bike[] = [
     logo: "/icons/Saola-white.png",
     description: "A versatile mountain bike designed for all terrains.A versatile mountain bike designed for all terrains.A versatile mountain bike designed for all terrains.A versatile mountain bike designed for all terrains.A versatile mountain bike designed for all terrains.A versatile mountain bike designed for all terrains.A versatile mountain bike designed for all terrains.A versatile mountain bike designed for all terrains.A versatile mountain bike designed for all terrains.",
     colors: {
-      gradient: "#0046D7, #FFFFFF",
-      cta: "var(--color-airforce)",
+      gradient: "#FB000E, #511B1E",
+      cta: "var(--color-rust)",
+      bgGradient:"linear-gradient(179.55deg, rgba(251, 0, 14, 1) 44.21%, rgba(81, 27, 30, 1) 99.61%)"
     },
     stats: {
       suspension: 9,
@@ -182,8 +185,9 @@ export const BIKES: Bike[] = [
     logo: "/icons/Takin-white.png",
     description: "A versatile mountain bike designed for all terrains.A versatile mountain bike designed for all terrains.A versatile mountain bike designed for all terrains.A versatile mountain bike designed for all terrains.A versatile mountain bike designed for all terrains.A versatile mountain bike designed for all terrains.A versatile mountain bike designed for all terrains.A versatile mountain bike designed for all terrains.A versatile mountain bike designed for all terrains.",
     colors: {
-      gradient: "#516316, #F1FFC3",
-      cta: "var(--color-army)",
+      gradient: "#ABEAFF, #151532",
+      cta: "var(--color-airforce-blue)",
+      bgGradient:"linear-gradient(179.9deg, rgba(171, 234, 255, 1) 43.47%, rgba(21, 21, 50, 1) 79.45%)"
     },
     stats: {
       suspension: 8,

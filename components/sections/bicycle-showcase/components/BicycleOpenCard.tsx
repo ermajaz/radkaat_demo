@@ -1,44 +1,60 @@
 "use client";
 
-import Image from "next/image";
-import BackgroundName from "./BackgroundName";
-import BikeImage from "./BikeImage";
 import ViewProductButton from "../ViewProductButton";
+import BikeNameInGradient from "./BikeNameInGradient";
+import BikeSpecsCard from "./BikeSpecsCard";
+import BikeImage from "./BikeImage";
 import RadarChart from "./RadarChart";
-import BikeDetailsCard from "./BikeDetailsCard";
-import { Bike } from "../utils/bicycle-showcase";
+import ShowcaseBg from "./ShowcaseBg";
 
-export default function BicycleOpenCard({ bike }: { bike: Bike }) {
+
+
+export default function BicycleOpenCard({ bike }: { bike: any }) {
+  // color for radar chart from bike.colors.gradient first color
+  const radarColor = bike.colors?.gradient?.split(",")?.[0] ?? "#9f7aea";
+
   return (
-    <div className="relative w-full h-full overflow-hidden">
+    <div className="relative w-full h-full">
+      {/* Top strip is handled at section level */}
+      {/* Background image */}
+      <ShowcaseBg src={bike.image} alt={`${bike.uiName} background`} />
 
-      {/* BG Image */}
-      <Image
-        src="/images/bg/showcase-bg.png"
-        alt="background"
-        fill
-        className="object-cover"
-      />
+      {/* Large background word */}
+      <div className="absolute inset-0 pointer-events-none z-10 flex items-start">
+        <div className="pl-14 pt-8">
+          <BikeNameInGradient
+            name={bike.bgWord ?? bike.uiName.toUpperCase()}
+            gradient={bike.colors.gradient}
+            className="opacity-40"
+          />
+        </div>
+      </div>
 
-      <div className="relative h-full grid grid-cols-20 gap-1 items-center">
-
-        {/* BACKGROUND NAME */}
-        <BackgroundName name={bike.bgWord} gradient={bike.colors.gradient} />
-
-        {/* MAIN BIKE IMAGE */}
-        <div className="col-span-14 h-[80%] mt-30 flex items-center justify-center">
-          <BikeImage image={bike.image} />
+      {/* Foreground layout */}
+      <div className="relative z-20 h-full px-12 py-10 flex items-center">
+        {/* Left: Bike visual */}
+        <div className="flex-1 flex items-center justify-start max-w-[60%]">
+          <div className="w-full max-w-[900px] max-h-[600px]">
+            <BikeImage image={bike.image} />
+          </div>
         </div>
 
-        {/* RIGHT CONTENT (Chart + Details + Button) */}
-        <div className="col-span-6 flex flex-col gap-10">
+        {/* Right: Radar + Specs */}
+        <div className="w-[420px] flex flex-col items-end gap-6">
+          <div className="mr-6">
+            <RadarChart stats={bike.stats} color={radarColor} />
+          </div>
 
-          <RadarChart stats={bike.stats} color={bike.colors.cta} />
+          <div className="mr-6">
+            <BikeSpecsCard bike={bike} />
+          </div>
 
-          <BikeDetailsCard bike={bike} />
-
+          <div className="mr-6 pt-4">
+            <ViewProductButton link={`#${bike.id}`} />
+          </div>
         </div>
       </div>
     </div>
   );
 }
+
