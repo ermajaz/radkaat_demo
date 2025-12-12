@@ -86,7 +86,7 @@ export default function HeroTout({ subtitle = "stories", title, tour }: HeroTout
           autoPlay
           className="absolute inset-0 w-full h-full object-cover z-0"
         >
-          <source src="/videos/drone.mp4" type="video/mp4" />
+          <source src={tour.video} type="video/mp4" />
         </motion.video>
       )}
 

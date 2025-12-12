@@ -15,12 +15,12 @@ export const stories: Tour[] = [
         description: `A 10-day Himalayan mountain biking adventure across glacial lakes, high passes, snow peaks, vast plains, cold deserts, and preserved culture. This world-renowned route is designed for riders seeking altitude, endurance, and spectacular landscapes.`,
         price: 74990,
 
-        leftImage: "/images/kali-img.jpg",
+        leftImage: "/images/manali-img.jpg",
         mapImage: "/images/tour-map.png",
         contourImage: "/images/contour.png",
         link: "/stories/1/manali",
         className: "absolute top-20 left-[8%] rotate-[-5deg]",
-
+        video: "/videos/2.mp4",
         source: { lat: 32.2432, lng: 77.1890 },
         destination: { lat: 34.1526, lng: 77.5771 },
 
@@ -300,7 +300,7 @@ export const stories: Tour[] = [
         contourImage: "/images/spiti/spiti-contour.png",
         link: "/stories/2/spiti",
         className: "absolute top-20 left-[8%] rotate-[-5deg]",
-
+        video: "/videos/1.mp4",
         source: { lat: 31.633, lng: 76.756 },      // Chandigarh approx
         destination: { lat: 32.2432, lng: 77.189 }, // Manali approx
 
@@ -547,7 +547,7 @@ export const stories: Tour[] = [
         contourImage: "/images/badabhangal/contour.png",
         link: "/stories/3/bada-bhangal",
         className: "absolute top-20 left-[8%] rotate-[-5deg]",
-
+        video: "/videos/4.mp4",
         price: 55000,
 
         source: { lat: 32.0893, lng: 76.5534 }, // Kardhar approx
@@ -824,7 +824,7 @@ export const stories: Tour[] = [
         contourImage: "/images/shimla-bir/contour.png",
         link: "/stories/4/shimla-bir-mcleod",
         className: "absolute top-20 left-[8%] rotate-[-5deg]",
-
+        video: "/videos/2.mp4",
         source: { lat: 31.1048, lng: 77.1734 }, // Shimla
         destination: { lat: 32.2426, lng: 76.3213 }, // McLeod Ganj
 
@@ -1125,7 +1125,7 @@ export const stories: Tour[] = [
         contourImage: "/images/zanskar/contour.png",
         link: "/stories/5/zanskar",
         className: "absolute top-20 left-[8%] rotate-[-5deg]",
-
+        video: "/videos/5.mp4",
         source: { lat: 32.2432, lng: 77.1890 },    // Manali
         destination: { lat: 34.5563, lng: 76.1320 }, // Kargil
 

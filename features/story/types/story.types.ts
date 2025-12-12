@@ -110,7 +110,7 @@ export interface Tour {
   contourImage: string;
   link: string;
   className?: string;
-
+  video?: string;
   source: LocationPoint;
   destination: LocationPoint;
 
