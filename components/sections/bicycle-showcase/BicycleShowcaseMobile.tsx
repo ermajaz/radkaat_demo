@@ -1,135 +1,118 @@
 "use client";
 
-import { useState, useMemo } from "react";
-import { motion, AnimatePresence } from "framer-motion";
-import { useStopScroll } from "@/hooks/useStopScroll";
-import { BIKES, variants } from "./utils/bicycle-showcase";
-import type { Bike } from "./utils/bicycle-showcase";
+import { useState, useMemo, useRef, useEffect } from "react";
+import { BIKES } from "./utils/bicycle-showcase";
 
-import MobileBikeSwiper from "./components/mobile/MobileBikeSwiper";
-import MobileColorSelector from "./components/mobile/MobileColorSelector";
-import MobileSpecTabs from "./components/mobile/MobileSpecTabs";
-import MobileHotspotLayer from "./components/mobile/MobileHotspotLayer";
-import MobileHotspotPopup from "./components/mobile/MobileHotspotPopup";
-import MobileVariantSheet from "./components/mobile/MobileVariantSheet";
-import Mobile360Viewer from "./components/mobile/Mobile360Viewer";
-import MobileTechSheet from "./components/mobile/MobileTechSheet";
+import MobileBikesStrip from "./components/mobile/MobileBikesStrip";
+import MobileOpenBikeCard from "./components/mobile/MobileOpenBikeCard";
+import MobileClosedBikeCard from "./components/mobile/MobileClosedBikeCard";
 
-export default function BikeShowcaseMobile() {
-  // Bike / spec state
-  const [activeBikeId, setActiveBikeId] = useState(BIKES[0].id);
-  const [activeSpecKey, setActiveSpecKey] = useState(BIKES[0].specs[0].key);
+export default function BicycleShowcaseMobile() {
+  const [active, setActive] = useState(0);
+  const isProgrammatic = useRef(false);
+  const zoneRef = useRef<HTMLDivElement>(null);
 
-  // Variant / color
-  const [activeModel, setActiveModel] = useState("model-1");
-  const [activeColor, setActiveColor] = useState(variants[0].colors[0]);
+  const VIEW_HEIGHT =
+    typeof window !== "undefined" ? window.innerHeight : 800;
 
-  // Overlays
-  const [showVariants, setShowVariants] = useState(false);
-  const [show360, setShow360] = useState(false);
-  const [showTech, setShowTech] = useState(false);
-  const [hotspotData, setHotspotData] = useState<any | null>(null);
+  /** Reorder bikes so active stays on top */
+  const ordered = useMemo(() => {
+    const bikes = [...BIKES];
+    const top = bikes[active];
+    return [top, ...bikes.filter((b) => b.id !== top.id)];
+  }, [active]);
 
-  const bike: Bike = useMemo(
-    () => BIKES.find((b) => b.id === activeBikeId)!,
-    [activeBikeId]
-  );
+  /** Auto-change bike while scrolling */
+  useEffect(() => {
+    const zone = zoneRef.current;
+    if (!zone) return;
 
-  const activeSpec = useMemo(
-    () =>
-      bike.specs.find((s) => s.key === activeSpecKey) ?? bike.specs[0],
-    [bike, activeSpecKey]
-  );
+    function onScroll() {
+      if (isProgrammatic.current) return;
+      const rect = zone?.getBoundingClientRect();
+      if(!rect) return;
 
-  // Lock scroll when any full-screen UI is open
-  useStopScroll(showVariants || show360 || showTech || !!hotspotData);
+      const isInside =
+        rect.top <= 0 && rect.bottom >= window.innerHeight;
 
-  const handleChangeBike = (id: string) => {
-    const next = BIKES.find((b) => b.id === id);
-    if (!next) return;
-    setActiveBikeId(id);
-    setActiveSpecKey(next.specs[0].key);
-  };
+      if (isInside) {
+        const scrollRange = rect.height - window.innerHeight;
+        const progress = Math.min(
+          Math.max((0 - rect.top) / scrollRange, 0),
+          1
+        );
+
+        const newIndex = Math.round(progress * (BIKES.length - 1));
+        if (newIndex !== active) setActive(newIndex);
+      }
+    }
+
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, [active]);
+
+  /** Scroll to bike when selecting closed card */
+  function scrollToBike(idx: number) {
+    const zone = zoneRef.current;
+    if (!zone) return;
+
+    isProgrammatic.current = true;
+
+    const targetY = zone.offsetTop + idx * VIEW_HEIGHT;
+
+    window.scrollTo({
+      top: targetY,
+      behavior: "smooth",
+    });
+
+    setTimeout(() => {
+      isProgrammatic.current = false;
+    }, 700);
+  }
 
   return (
-    <section className="md:hidden w-full bg-superblack text-white py-3 relative overflow-hidden">
-      {/* Bike swiper (image, title, CTA, 360 button) */}
-      <MobileBikeSwiper
-        bikes={BIKES}
-        activeBikeId={activeBikeId}
-        onChange={handleChangeBike}
-        onOpen360={() => setShow360(true)}
-      />
-      {/* Specs selector */}
-      <MobileSpecTabs
-        specs={bike.specs}
-        activeKey={activeSpecKey}
-        onChange={setActiveSpecKey}
-        onViewMore={() => setShowTech(true)}
-      />
-      {/* Hotspots overlay (absolute on top of bike area) */}
-      <MobileHotspotLayer
-        bike={bike}
-        activeSpec={activeSpec}
-        onHotspotClick={(hp) => setHotspotData(hp)}
-      />
+    <div
+      ref={zoneRef}
+      className="relative"
+      style={{
+        height: `${VIEW_HEIGHT * BIKES.length}px`,
+      }}
+    >
+      {/* Top 65px strip stays fixed at screen top */}
+      <div className="sticky top-[65px] left-0 right-0 z-50">
+        <MobileBikesStrip bike={BIKES[active]} />
+      </div>
 
-      {/* Color / Model selector (bottom of hero) */}
-      <MobileColorSelector
-        variants={variants}
-        activeModel={activeModel}
-        setActiveModel={setActiveModel}
-        activeColor={activeColor}
-        setActiveColor={setActiveColor}
-      />
+      {/* Sticky section starts exactly BELOW the strip */}
+      <div
+        className="
+          sticky 
+          top-[65px]
+          w-full 
+          h-[calc(100vh-65px)]
+          bg-black 
+          overflow-hidden
+        "
+      >
 
-      {/* Sticky bottom CTA */}
-      {/* <div className="fixed bottom-4 left-1/2 -translate-x-1/2 w-[92%] z-[55]">
-        <button
-          onClick={() => setShowVariants(true)}
-          className="w-full h-12 rounded-full bg-white text-black text-xs font-semibold uppercase tracking-[0.25em] active:scale-[0.97] transition"
-        >
-          Choose Variant
-        </button>
-      </div> */}
+        {/* OPEN CARD */}
+        <MobileOpenBikeCard bike={ordered[0]} />
 
-      {/* Hotspot popup */}
-      <AnimatePresence>
-        {hotspotData && (
-          <MobileHotspotPopup
-            hotspot={hotspotData}
-            onClose={() => setHotspotData(null)}
-          />
-        )}
-      </AnimatePresence>
-
-      {/* Bottom sheet: variants */}
-      <AnimatePresence>
-        {showVariants && (
-          <MobileVariantSheet
-            variants={variants}
-            activeModel={activeModel}
-            setActiveModel={setActiveModel}
-            activeColor={activeColor}
-            setActiveColor={setActiveColor}
-            onClose={() => setShowVariants(false)}
-          />
-        )}
-      </AnimatePresence>
-
-      {/* Full-screen 360 viewer */}
-      <AnimatePresence>
-        {show360 && (
-          <Mobile360Viewer bike={bike} onClose={() => setShow360(false)} />
-        )}
-      </AnimatePresence>
-
-      {/* Full spec sheet */}
-      <AnimatePresence>
-        {showTech && (
-          <MobileTechSheet bike={bike} onClose={() => setShowTech(false)} />
-        )}
-      </AnimatePresence>
-    </section>
+        {/* CLOSED CARDS */}
+        <div className="absolute bottom-0 left-0 w-full">
+          {ordered.slice(1).map((bike) => (
+            <MobileClosedBikeCard
+              key={bike.id}
+              bike={bike}
+              onSelect={() => {
+                const index = BIKES.findIndex((b) => b.id === bike.id);
+                scrollToBike(index);
+                setActive(index);
+              }}
+            />
+          ))}
+        </div>
+      </div>
+    </div>
   );
 }

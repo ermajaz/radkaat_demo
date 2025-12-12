@@ -1,9 +1,9 @@
-import GoatIntroDesktop from "./component/desktop/GoatIntroDesktop";
+import GoatIntroMobile from "./component/mobile/GoatIntroMobile";
 
 export default function BikeIntroMobile() {
     return (
-        <div>
-            <GoatIntroDesktop />
+        <div id="bike-showcase">
+            <GoatIntroMobile />
         </div>
     )
 }

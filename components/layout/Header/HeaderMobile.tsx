@@ -95,7 +95,7 @@ export default function HeaderMobile() {
       </motion.header>
 
       {/* ⭐ EXPERIENCE + COMMUNITY STRIP */}
-      <AnimatePresence>
+      {/* <AnimatePresence>
         {!hideStrip && showTopStrip && (
           <motion.div
             initial={{ y: -40, opacity: 0 }}
@@ -108,7 +108,6 @@ export default function HeaderMobile() {
               ${headerBg}
             `}
           >
-            {/* EXPERIENCES BUTTON */}
             <button
               onClick={() => router.push("/experiences")}
               className={getBtnClasses(isExp)}
@@ -129,7 +128,6 @@ export default function HeaderMobile() {
               </span>
             </button>
 
-            {/* COMMUNITY BUTTON */}
             <button
               onClick={() => router.push("/community")}
               className={getBtnClasses(isCommunity)}
@@ -151,7 +149,7 @@ export default function HeaderMobile() {
             </button>
           </motion.div>
         )}
-      </AnimatePresence>
+      </AnimatePresence> */}
 
       {/* ⭐ SIDE MENU */}
       {menuOpen && (

@@ -1,85 +1,130 @@
 "use client";
 
-import { motion } from "framer-motion";
 import Image from "next/image";
+import { motion, useScroll, useTransform } from "framer-motion";
+import { useRef } from "react";
 
 export default function HeroMobile() {
-  const handleScroll = () => {
-    document.getElementById("bike-showcase")?.scrollIntoView({
-      behavior: "smooth",
-    });
-  };
+  const heroRef = useRef(null);
+
+  // Track scroll progress for zoom effect
+  const { scrollYProgress } = useScroll({
+    target: heroRef,
+    offset: ["start start", "end start"], // zoom ends before leaving viewport
+  });
+
+  // Smooth zoom from 1 → 1.25
+  const bgScale = useTransform(scrollYProgress, [0, 1], [1, 1.22]);
 
   return (
-    <section className="relative w-full h-[77vh] overflow-hidden bg-superblack flex items-center justify-center">
-
-      {/* ✅ Soft spotlight behind bike */}
-      <div className="absolute inset-0">
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_65%,rgba(255,215,140,0.28)_0%,rgba(0,0,0,0.9)_60%)]" />
-      </div>
-
-      {/* ✅ Bike with cinematic entrance */}
+    <section
+      ref={heroRef}
+      className="relative w-full h-screen overflow-hidden md:hidden" // mobile only
+    >
+      {/* BACKGROUND IMAGE WITH ZOOM ON SCROLL */}
       <motion.div
-        initial={{ opacity: 0, y: 60, scale: 1.15 }}
-        animate={{ opacity: 1, y: 0, scale: 1 }}
-        transition={{ duration: 1.1, ease: "easeOut" }}
-        className="absolute bottom-0 w-full flex justify-center"
+        initial={{ scale: 1.15, opacity: 0 }}
+        animate={{ scale: 1, opacity: 1 }}
+        transition={{ duration: 1.6, ease: [0.25, 0.1, 0.25, 1] }}
+        style={{ scale: bgScale }}
+        className="absolute inset-0 w-full h-full"
       >
         <Image
-          src="/images/hero-cycle.png"
-          alt="Radkaat Bike"
-          width={900}
-          height={550}
+          src="/images/hero/hero-img-1.jpg"
+          alt="Radkaat Hero Background"
+          fill
           priority
-          className="object-contain drop-shadow-[0_25px_60px_rgba(0,0,0,0.6)]"
+          quality={100}
+          className="
+            object-cover 
+            object-[30%]
+            saturate-[1.3] 
+            brightness-[0.95]
+          "
         />
       </motion.div>
 
-      {/* ✅ Floating glass info card */}
+      {/* OVERLAY CONTENT */}
       <motion.div
-        initial={{ opacity: 0, y: 30 }}
+        className="
+          absolute 
+          top-[22%]
+          w-full 
+          flex flex-col 
+          items-center 
+          text-center 
+          z-20 px-4
+        "
+        initial={{ opacity: 0, y: 50 }}
         animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 1, delay: 0.3 }}
-        className="absolute top-[20%] w-[85%] mx-auto text-center"
+        transition={{
+          duration: 1.1,
+          ease: [0.25, 0.1, 0.25, 1],
+        }}
       >
-        <Image
-          src="/images/website-logo.png"
-          alt="Radkaat"
-          width={65}
-          height={50}
-          className="mx-auto mb-2"
-        />
-
-        <h1 className="text-[30px] font-extrabold text-white tracking-wide">
-          RADKAAT
-        </h1>
-
-        <motion.p
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 0.6 }}
-          className="text-sandstorm text-[22px] font-bold uppercase mt-1 leading-tight"
+        {/* LOGO */}
+        <motion.div
+          initial={{ opacity: 0, y: 15 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.2, duration: 0.8 }}
         >
-          #Nothing But Now
-        </motion.p>
+          <Image
+            src="/images/hero/Radkaat-1.png"
+            alt="Radkaat Logo"
+            width={80}
+            height={40}
+            className="mb-1"
+          />
+        </motion.div>
+
+        {/* RADKAAT TEXT */}
+        <motion.div
+          initial={{ opacity: 0, y: 15 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.35, duration: 0.8 }}
+          className="text-[22px] font-extrabold tracking-wide text-black uppercase"
+        >
+          RADKAAT
+        </motion.div>
+
+        {/* MAIN TAGLINE */}
+        <motion.h1
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.5, duration: 0.9 }}
+          className="
+            text-[38px]
+            leading-tight
+            font-extrabold
+            uppercase 
+            text-sandstorm
+            mt-2
+            [text-shadow:2px_2px_0px_black,2px_-2px_0px_black,-2px_2px_0px_black,-2px_-2px_0px_black]
+          "
+        >
+          #NOTHING BUT NOW
+        </motion.h1>
+
+        {/* SUBTEXT */}
+        <motion.div
+          initial={{ opacity: 0, y: 12 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.65, duration: 0.8 }}
+          className="
+            text-[14px] 
+            font-medium 
+            text-black 
+            tracking-wide 
+            mt-3
+            leading-relaxed
+          "
+        >
+          cycling / trekking / hiking / campaign / trail running / paragliding / rafting
+        </motion.div>
       </motion.div>
 
-      {/* ✅ Liquid-glass CTA */}
-      <motion.button
-        onClick={handleScroll}
-        initial={{ opacity: 0, y: 15 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.7, delay: 0.8 }}
-        className="absolute bottom-8 w-[200px] h-12 rounded-full
-                  bg-sandstorm text-black font-semibold text-sm
-                  tracking-wide backdrop-blur-md
-                  active:scale-95 transition-all"
-      >
-        Explore Bike
-      </motion.button>
-
-      {/* ✅ Soft top + bottom fade */}
-      <div className="absolute inset-0 pointer-events-none bg-linear-to-t from-black/30 via-transparent to-transparent" />
+      {/* BLACK GRADIENT FADE AT THE BOTTOM FOR BETTER TEXT VISIBILITY */}
+      <div className="absolute bottom-0 left-0 right-0 h-[120px] bg-linear-to-t from-black/70 to-transparent z-10" />
     </section>
   );
 }

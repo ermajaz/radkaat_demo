@@ -138,7 +138,7 @@ export default function BikeShowcaseDesktop() {
                             <div className="flex-1 h-full flex items-center px-8">
                               <div className="relative w-full h-full max-w-full">
                                 {/* big background word (partially visible left) */}
-                                <div className="w-full absolute left-0 right-0 mx-auto top-[12%] opacity-30 pointer-events-none">
+                                <div className="w-full absolute left-0 right-0 mx-auto top-[12%] pointer-events-none">
                                   <BikeNameInGradient name={bike.bgWord ?? bike.uiName.toUpperCase()} gradient={bike.colors.bgGradient} />
                                 </div>
 

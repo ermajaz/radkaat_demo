@@ -13,8 +13,6 @@ export default function LandingPage() {
       <AboutRadkaat />
       <BikeIntro />
       <BicycleShowcase />
-      {/* <BikeComparison /> */}
-      {/* <BicycleComparison /> */}
       <BicycleRide />
       <Category/>
       <JungleBook />

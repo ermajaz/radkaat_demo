@@ -1,9 +1,9 @@
 "use client";
 
 import { useResponsiveComponent } from "@/hooks/useResponsiveComponent";
-import BikeShowcaseMobile from "./BikeIntroMobile";
-import BikeShowcaseDesktop from "./BikeIntroDesktop";
+import BikeIntroMobile from "./BikeIntroMobile";
+import BikeIntroDesktop from "./BikeIntroDesktop";
 
 export default function BikeIntro() {
-  return useResponsiveComponent(<BikeShowcaseMobile />, <BikeShowcaseDesktop />);
+  return useResponsiveComponent(<BikeIntroMobile />, <BikeIntroDesktop />);
 }
