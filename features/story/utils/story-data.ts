@@ -15,7 +15,7 @@ export const stories: Tour[] = [
         description: `A 10-day Himalayan mountain biking adventure across glacial lakes, high passes, snow peaks, vast plains, cold deserts, and preserved culture. This world-renowned route is designed for riders seeking altitude, endurance, and spectacular landscapes.`,
         price: 74990,
 
-        leftImage: "/images/manali-img.jpg",
+        leftImage: "/images/bada-bhangal.webp",
         mapImage: "/images/tour-map.png",
         contourImage: "/images/contour.png",
         link: "/stories/1/manali",
