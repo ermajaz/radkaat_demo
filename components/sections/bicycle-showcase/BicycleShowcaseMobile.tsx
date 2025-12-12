@@ -12,8 +12,9 @@ export default function BicycleShowcaseMobile() {
   const isProgrammatic = useRef(false);
   const zoneRef = useRef<HTMLDivElement>(null);
 
-  const VIEW_HEIGHT =
-    typeof window !== "undefined" ? window.innerHeight : 800;
+  const VIEW_HEIGHT = typeof window !== "undefined"
+  ? window.innerHeight
+  : 800;
 
   /** Reorder bikes so active stays on top */
   const ordered = useMemo(() => {
@@ -74,9 +75,8 @@ export default function BicycleShowcaseMobile() {
     <div
       ref={zoneRef}
       className="relative"
-      style={{
-        height: `${VIEW_HEIGHT * BIKES.length}px`,
-      }}
+      style={{ height: `calc(100dvh * ${BIKES.length})` }}
+
     >
       {/* Top 65px strip stays fixed at screen top */}
       <div className="sticky top-[65px] left-0 right-0 z-50">
@@ -87,9 +87,9 @@ export default function BicycleShowcaseMobile() {
       <div
         className="
           sticky 
-          top-[65px]
-          w-full 
-          h-[calc(100vh-65px)]
+          w-full
+          top-[clamp(48px,7vh,65px)]
+          h-[calc(100dvh-clamp(48px,7vh,65px))]
           bg-black 
           overflow-hidden
         "

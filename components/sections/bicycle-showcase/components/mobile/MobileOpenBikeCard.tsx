@@ -10,7 +10,7 @@ import MobileViewProductButton from "./MobileViewProductButton";
 
 export default function MobileOpenBikeCard({ bike }: any) {
   return (
-    <div className="w-full h-[80%] relative overflow-hidden">
+    <div className="w-full h-[82.5%] relative overflow-hidden">
       {/* background */}
       <ShowcaseBg />
 

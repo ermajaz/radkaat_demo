@@ -105,3 +105,14 @@
     -webkit-text-stroke: 2px black;
     paint-order: stroke fill;
 }
+
+
+@layer utilities {
+  @media (max-height: 700px) {
+    .mobile-short\:min-h-\[28dvh\] { min-height: 28dvh; }
+  }
+
+  @media (min-height: 900px) {
+    .mobile-tall\:max-h-\[40dvh\] { max-height: 40dvh; }
+  }
+}

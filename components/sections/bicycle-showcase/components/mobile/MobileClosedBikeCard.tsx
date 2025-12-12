@@ -8,7 +8,7 @@ export default function MobileClosedBikeCard({ bike, onSelect }: any) {
       onClick={onSelect}
       className="
         w-full 
-        h-[90px] 
+        h-[70px] 
         bg-[#121212]/95
         border-t border-white/10 
         flex items-center gap-4 px-4
