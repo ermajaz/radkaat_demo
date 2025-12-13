@@ -20,7 +20,7 @@ export const stories: Tour[] = [
         contourImage: "/images/contour.png",
         link: "/stories/1/manali",
         className: "absolute top-20 left-[8%] rotate-[-5deg]",
-        video: "/videos/2.mp4",
+        video: "/videos/2.webm",
         source: { lat: 32.2432, lng: 77.1890 },
         destination: { lat: 34.1526, lng: 77.5771 },
 
@@ -300,7 +300,7 @@ export const stories: Tour[] = [
         contourImage: "/images/spiti/spiti-contour.png",
         link: "/stories/2/spiti",
         className: "absolute top-20 left-[8%] rotate-[-5deg]",
-        video: "/videos/1.mp4",
+        video: "/videos/1.webm",
         source: { lat: 31.633, lng: 76.756 },      // Chandigarh approx
         destination: { lat: 32.2432, lng: 77.189 }, // Manali approx
 
@@ -824,7 +824,7 @@ export const stories: Tour[] = [
         contourImage: "/images/shimla-bir/contour.png",
         link: "/stories/4/shimla-bir-mcleod",
         className: "absolute top-20 left-[8%] rotate-[-5deg]",
-        video: "/videos/2.mp4",
+        video: "/videos/2.webm",
         source: { lat: 31.1048, lng: 77.1734 }, // Shimla
         destination: { lat: 32.2426, lng: 76.3213 }, // McLeod Ganj
 

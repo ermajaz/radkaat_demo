@@ -81,7 +81,7 @@ export default function BottomNavMobile({
         <>
             {/* 🌟 Bottom Navigation */}
             <motion.nav
-                initial={{ y: 90, opacity: 0 }}
+                initial={false}
                 animate={{
                     y: direction === "down" ? 100 : 0,
                     opacity: direction === "down" ? 0 : 1,

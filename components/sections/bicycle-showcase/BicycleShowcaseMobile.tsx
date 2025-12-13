@@ -79,7 +79,7 @@ export default function BicycleShowcaseMobile() {
 
     >
       {/* Top 65px strip stays fixed at screen top */}
-      <div className="sticky top-[65px] left-0 right-0 z-50">
+      <div className="sticky top-16 left-0 right-0 z-50">
         <MobileBikesStrip bike={BIKES[active]} />
       </div>
 
