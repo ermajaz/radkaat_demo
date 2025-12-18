@@ -80,7 +80,7 @@ export default function HeroDesktop() {
       <motion.div
         className="
           absolute 
-          top-[14%]
+          top-[20%]
           left-1/2 
           -translate-x-1/2 
           flex flex-col 
@@ -139,14 +139,14 @@ export default function HeroDesktop() {
         </motion.h1>
 
         {/* SUBTEXT */}
-        <motion.span
+        {/* <motion.span
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.65, duration: 1 }}
           className={`text-[20px] font-medium tracking-wide mt-1 ${isVideo ? "text-white" : "text-black"}`}
         >
           cycling / trekking – hiking – campaign / trail running / paragliding / rafting
-        </motion.span>
+        </motion.span> */}
       </motion.div>
 
       {/* ======================

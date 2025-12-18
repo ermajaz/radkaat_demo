@@ -106,7 +106,7 @@ export default function HeroMobile() {
         </motion.h1>
 
         {/* SUBTEXT */}
-        <motion.div
+        {/* <motion.div
           initial={{ opacity: 0, y: 12 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.65, duration: 0.8 }}
@@ -120,7 +120,7 @@ export default function HeroMobile() {
           "
         >
           cycling / trekking / hiking / campaign / trail running / paragliding / rafting
-        </motion.div>
+        </motion.div> */}
       </motion.div>
 
       {/* BLACK GRADIENT FADE AT THE BOTTOM FOR BETTER TEXT VISIBILITY */}
