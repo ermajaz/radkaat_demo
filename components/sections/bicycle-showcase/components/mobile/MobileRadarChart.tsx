@@ -14,7 +14,7 @@ export default function MobileRadarChart({ stats, color = "#9f7aea" }: { stats: 
   ];
 
   return (
-    <div className="w-[200px] h-[200px]">
+    <div className="w-full h-[200px]">
       <ResponsiveContainer width="100%" height="100%">
         <RChart
           data={data}

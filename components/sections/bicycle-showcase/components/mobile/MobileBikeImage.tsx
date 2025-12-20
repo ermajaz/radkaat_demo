@@ -4,7 +4,7 @@ import Image from "next/image";
 
 export default function MobileBikeImage({ image }: any) {
   return (
-    <div className="relative w-full h-full mx-4 bottom-18">
+    <div className="relative w-full h-[250px] mx-auto">
       <Image 
         src={image}
         alt="Bike"

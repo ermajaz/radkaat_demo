@@ -78,7 +78,7 @@ export default function BicycleShowcaseMobile() {
       style={{ height: `calc(100dvh * ${BIKES.length})` }}
 
     >
-      {/* Top 65px strip stays fixed at screen top */}
+      {/* Top 64px strip stays fixed at screen top */}
       <div className="sticky top-16 left-0 right-0 z-50">
         <MobileBikesStrip bike={BIKES[active]} />
       </div>
@@ -88,8 +88,8 @@ export default function BicycleShowcaseMobile() {
         className="
           sticky 
           w-full
-          top-[clamp(48px,7vh,65px)]
-          h-[calc(100dvh-clamp(48px,7vh,65px))]
+          top-16
+          h-[calc(100dvh-clamp(48px,7vh,64px))]
           bg-black 
           overflow-hidden
         "

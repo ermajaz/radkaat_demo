@@ -10,7 +10,7 @@ import MobileViewProductButton from "./MobileViewProductButton";
 
 export default function MobileOpenBikeCard({ bike }: any) {
   return (
-    <div className="w-full h-[82.5%] relative overflow-hidden">
+    <div className="w-full h-[calc(100%-140px)] relative overflow-hidden">
       {/* background */}
       <ShowcaseBg />
 
@@ -23,18 +23,18 @@ export default function MobileOpenBikeCard({ bike }: any) {
       </div>
 
       {/* Bike Image */}
-      <div className="absolute inset-0 flex items-center justify-center mt-6">
+      <div className="absolute w-full top-[20%]">
         <MobileBikeImage image={bike.image} />
       </div>
 
       {/* Radar + Specs */}
-      <div className="absolute bottom-20 w-full px-4 flex justify-between items-end">
+      <div className="absolute bottom-2.5 w-full flex justify-between items-center">
         <MobileRadarChart stats={bike.stats} color={bike.colors.gradient.split(",")[0]} />
-        <MobileBikeSpecsCard bike={bike} />
+        {/* <MobileBikeSpecsCard bike={bike} /> */}
       </div>
 
       {/* View Product */}
-      <div className="absolute bottom-5 w-full flex justify-center">
+      <div className="absolute bottom-2.5 right-5">
         <MobileViewProductButton link="/bikes/serow/model-1" />
       </div>
 
