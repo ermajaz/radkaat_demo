@@ -38,7 +38,7 @@ export default function AboutRadkaatDesktop() {
     <section id="about-radkaat" className="relative bg-superblack py-20">
 
       {/* Top fade transition */}
-      <SectionTopFade />
+      {/* <SectionTopFade /> */}
 
       {/* Your content */}
       <div className="max-w-[1440px] mx-auto pl-25 pr-10 flex items-center justify-between">

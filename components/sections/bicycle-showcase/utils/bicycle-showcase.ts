@@ -26,7 +26,7 @@ export type Bike = {
   description: string;
   colors: {
     gradient: string;
-    bgGradient:string;
+    bgGradient: string;
     cta: string;
   };
   stats: BikeStats;
@@ -53,7 +53,7 @@ export const BIKES: Bike[] = [
     colors: {
       gradient: "#5D7510, #252E0A", // top → bottom
       cta: "var(--color-army)",
-      bgGradient:"linear-gradient(179.55deg, rgba(93, 117, 16, 0.4) 44.21%, rgba(37, 46, 10, 0.4) 99.61%)"
+      bgGradient: "linear-gradient(179.55deg, rgba(93, 117, 16, 0.4) 44.21%, rgba(37, 46, 10, 0.4) 99.61%)"
     },
     stats: {
       suspension: 8,
@@ -123,7 +123,7 @@ export const BIKES: Bike[] = [
     colors: {
       gradient: "#FB000E, #511B1E",
       cta: "var(--color-rust)",
-      bgGradient:"linear-gradient(179.55deg, rgba(251, 0, 14, 0.4) 44.21%, rgba(81, 27, 30, 0.4) 99.61%)"
+      bgGradient: "linear-gradient(179.55deg, rgba(251, 0, 14, 0.4) 44.21%, rgba(81, 27, 30, 0.4) 99.61%)"
     },
     stats: {
       suspension: 9,
@@ -137,36 +137,42 @@ export const BIKES: Bike[] = [
       {
         key: "frame",
         label: "Frame",
-        content: "Carbon monocoque frame focused on agility.",
-        hotspots: [{
-          id: "h3", leftPct: 46, topPct: 34, angle: -10, title: "REACH ADJUST HEADSET CUPS",
-          description: "-8mm / 0 / +8mm. Dials in fit for rider and terrain."
-        }],
+        content:
+          "Alloy full-suspension frame. Lightweight and durable with 140mm travel.",
+        hotspots: [
+          {
+            id: "reach",
+            leftPct: 53,
+            topPct: 50,
+            angle: -10,
+            title: "REACH ADJUST HEADSET CUPS",
+            description: "-8mm / 0 / +8mm. Dials in fit for rider and terrain."
+          }
+        ],
       },
       {
         key: "suspension",
         label: "Suspension",
-        content: "140mm trail tuned.",
-        hotspots: [{
-          id: "h4", leftPct: 38, topPct: 38, angle: -10, title: "REACH ADJUST HEADSET CUPS",
-          description: "-8mm / 0 / +8mm. Dials in fit for rider and terrain."
-        }],
+        content: "Fox Float 36 fork + DPX2 rear shock. Tuned for mixed trails.",
+        hotspots: [
+          { id: "h0", leftPct: 38, topPct: 36, angle: -10, title: "Fork travel 150mm", description: "-8mm / 0 / +8mm. Dials in fit for rider and terrain." },
+        ],
       },
       {
         key: "drivetrain",
         label: "Drivetrain",
-        content: "12 speed SRAM GX.",
+        content: "12-speed Shimano XT with wide-range cassette.",
         hotspots: [{
-          id: "h5", leftPct: 50, topPct: 38, angle: -10, title: "REACH ADJUST HEADSET CUPS",
+          id: "h1", leftPct: 38, topPct: 60, angle: -10, title: "REACH ADJUST HEADSET CUPS",
           description: "-8mm / 0 / +8mm. Dials in fit for rider and terrain."
         }],
       },
       {
         key: "brakes",
         label: "Brakes",
-        content: "Hydraulic discs 180/160.",
+        content: "Hydraulic disc brakes with 203mm rotors.",
         hotspots: [{
-          id: "h6", leftPct: 20, topPct: 38, angle: -10, title: "REACH ADJUST HEADSET CUPS",
+          id: "h2", leftPct: 12, topPct: 46, angle: -10, title: "REACH ADJUST HEADSET CUPS",
           description: "-8mm / 0 / +8mm. Dials in fit for rider and terrain."
         }],
       },
@@ -187,7 +193,7 @@ export const BIKES: Bike[] = [
     colors: {
       gradient: "#ABEAFF, #151532",
       cta: "var(--color-airforce-blue)",
-      bgGradient:"linear-gradient(179.9deg, rgba(171, 234, 255, 0.4) 43.47%, rgba(21, 21, 50, 0.4) 79.45%)"
+      bgGradient: "linear-gradient(179.9deg, rgba(171, 234, 255, 0.4) 43.47%, rgba(21, 21, 50, 0.4) 79.45%)"
     },
     stats: {
       suspension: 8,
@@ -201,36 +207,42 @@ export const BIKES: Bike[] = [
       {
         key: "frame",
         label: "Frame",
-        content: "Robust alloy frame for hardpack and enduro.",
-        hotspots: [{
-          id: "h7", leftPct: 30, topPct: 28, angle: -10, title: "REACH ADJUST HEADSET CUPS",
-          description: "-8mm / 0 / +8mm. Dials in fit for rider and terrain."
-        }],
+        content:
+          "Alloy full-suspension frame. Lightweight and durable with 140mm travel.",
+        hotspots: [
+          {
+            id: "reach",
+            leftPct: 53,
+            topPct: 50,
+            angle: -10,
+            title: "REACH ADJUST HEADSET CUPS",
+            description: "-8mm / 0 / +8mm. Dials in fit for rider and terrain."
+          }
+        ],
       },
       {
         key: "suspension",
         label: "Suspension",
-        content: "160 / 150 mm travel setup.",
-        hotspots: [{
-          id: "h8", leftPct: 42, topPct: 36, angle: -10, title: "REACH ADJUST HEADSET CUPS",
-          description: "-8mm / 0 / +8mm. Dials in fit for rider and terrain."
-        }],
+        content: "Fox Float 36 fork + DPX2 rear shock. Tuned for mixed trails.",
+        hotspots: [
+          { id: "h0", leftPct: 38, topPct: 36, angle: -10, title: "Fork travel 150mm", description: "-8mm / 0 / +8mm. Dials in fit for rider and terrain." },
+        ],
       },
       {
         key: "drivetrain",
         label: "Drivetrain",
-        content: "SRAM Eagle 12-speed.",
+        content: "12-speed Shimano XT with wide-range cassette.",
         hotspots: [{
-          id: "h9", leftPct: 26, topPct: 38, angle: -10, title: "REACH ADJUST HEADSET CUPS",
+          id: "h1", leftPct: 38, topPct: 60, angle: -10, title: "REACH ADJUST HEADSET CUPS",
           description: "-8mm / 0 / +8mm. Dials in fit for rider and terrain."
         }],
       },
       {
         key: "brakes",
         label: "Brakes",
-        content: "4-piston hydraulic brakes.",
+        content: "Hydraulic disc brakes with 203mm rotors.",
         hotspots: [{
-          id: "h10", leftPct: 38, topPct: 38, angle: -10, title: "REACH ADJUST HEADSET CUPS",
+          id: "h2", leftPct: 12, topPct: 46, angle: -10, title: "REACH ADJUST HEADSET CUPS",
           description: "-8mm / 0 / +8mm. Dials in fit for rider and terrain."
         }],
       },

@@ -2,7 +2,7 @@
 
 import { motion, AnimatePresence } from "motion/react";
 import { useEffect, useRef, useState } from "react";
-import { BIKES } from "./utils/bicycle-showcase";
+import { BIKES, variants } from "./utils/bicycle-showcase";
 import BikesStrip from "./components/BikesStrip";
 import ShowcaseBg from "./components/ShowcaseBg";
 import BikeNameInGradient from "./components/BikeNameInGradient";
@@ -12,6 +12,11 @@ import BikeSpecsCard from "./components/BikeSpecsCard";
 import ViewProductButton from "./ViewProductButton";
 import Image from "next/image";
 import BicycleClosedCard from "./components/BicycleClosedCard";
+import BottomVariantSelector from "./components/BottomVariantSelector";
+import Button360 from "./components/Button360";
+import BikeNameInGradientWide from "./components/BikeNameInGradientWide";
+import Bike3D from "./components/Bike3D";
+import Bike3Dcard from "./components/Bike3Dcard";
 
 
 export default function BikeShowcaseDesktop() {
@@ -19,7 +24,9 @@ export default function BikeShowcaseDesktop() {
   const isProgrammaticScroll = useRef(false);
   const stickyRef = useRef<HTMLDivElement>(null);
   const scrollZoneRef = useRef<HTMLDivElement>(null);
-
+  const [focus360, setFocus360] = useState(false);
+  const [activeModel, setActiveModel] = useState("model-1");
+  const [activeColor, setActiveColor] = useState(variants[0].colors[0]);
   const SECTION_HEIGHT = typeof window !== "undefined" ? window.innerHeight : 800;
   const TOTAL_BIKES = BIKES.length;
 
@@ -135,29 +142,42 @@ export default function BikeShowcaseDesktop() {
                         >
                           <div className="w-full h-full flex items-center justify-between">
                             {/* Left large bike + big background word */}
-                            <div className="flex-1 h-full flex items-center px-8">
-                              <div className="relative w-full h-full max-w-full">
-                                {/* big background word (partially visible left) */}
-                                <div className="w-full absolute left-0 right-0 mx-auto top-[12%] pointer-events-none">
-                                  <BikeNameInGradient name={bike.bgWord ?? bike.uiName.toUpperCase()} gradient={bike.colors.bgGradient} />
-                                </div>
+                            {!focus360 ? (
+                              <>
+                                <div className="flex-1 h-full flex items-center pl-8">
+                                  <div className="relative w-full h-full max-w-full">
+                                    {/* big background word (partially visible left) */}
+                                    <div className="w-full absolute left-0 right-0 mx-auto top-[12%] pointer-events-none">
+                                      <BikeNameInGradient name={bike.bgWord ?? bike.uiName.toUpperCase()} gradient={bike.colors.bgGradient} />
+                                    </div>
 
-                                {/* bike image centered */}
-                                <div className="absolute top-[45%] -translate-y-[30%] z-20 w-full h-full">
-                                  <BikeImage image={bike.image} />
+                                    {/* bike image centered */}
+                                    <div className="absolute top-[45%] -translate-y-[30%] z-20 w-full h-full">
+                                      <BikeImage image={bike.image} bike={BIKES[active]} hideHotspots={focus360} />
+                                    </div>
+                                    <div className="absolute left-1/2 -translate-x-1/2 bottom-25 z-30">
+                                      <Button360 open360={() => setFocus360(true)} />
+                                    </div>
+                                    <div className="w-full absolute left-1/2 -translate-x-1/2 bottom-5 z-30">
+                                      <BottomVariantSelector variants={variants}
+                                        activeModel={activeModel}
+                                        setActiveModel={setActiveModel}
+                                        activeColor={activeColor}
+                                        setActiveColor={setActiveColor}
+                                      />
+                                    </div>
+                                  </div>
                                 </div>
-                                <div className="absolute left-1/2 -translate-x-1/2 bottom-[5%] z-30">
-                                  <ViewProductButton link={"/bikes/serow/model-1"} />
+                                {/* Right column: radar + specs + CTA */}
+                                <div className="w-[350px] flex flex-col items-end justify-center gap-10 mr-10">
+                                  <RadarChart stats={bike.stats} color={bike.colors.gradient.split(",")[0]} />
+                                  <BikeSpecsCard bike={bike} />
+
                                 </div>
-                              </div>
-                            </div>
-
-                            {/* Right column: radar + specs + CTA */}
-                            <div className="w-[350px] flex flex-col items-end justify-center gap-10 mr-10">
-                              <RadarChart stats={bike.stats} color={bike.colors.gradient.split(",")[0]} />
-                              <BikeSpecsCard bike={bike} />
-
-                            </div>
+                              </>
+                            ) : (
+                              <Bike3Dcard bike={bike} onclose={() => setFocus360(false)} />
+                            )}
                           </div>
                         </motion.div>
                       ) : (
