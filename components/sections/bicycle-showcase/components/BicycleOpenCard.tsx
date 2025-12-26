@@ -35,7 +35,7 @@ export default function BicycleOpenCard({ bike }: { bike: any }) {
         {/* Left: Bike visual */}
         <div className="flex-1 flex items-center justify-start max-w-[60%]">
           <div className="w-full max-w-[900px] max-h-[600px]">
-            <BikeImage image={bike.image} />
+            <BikeImage image={bike.image} bike={bike}/>
           </div>
         </div>
 
