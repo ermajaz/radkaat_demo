@@ -3,128 +3,135 @@
 import Image from "next/image";
 import { motion, useScroll, useTransform } from "framer-motion";
 import { useRef } from "react";
+import ScrollIndicator from "@/components/common/ScrollIndicator";
 
 export default function HeroMobile() {
-  const heroRef = useRef(null);
+  const heroRef = useRef<HTMLDivElement>(null);
 
-  // Track scroll progress for zoom effect
+  /* ---------------------------------------------
+     Scroll progress (Hero only)
+  --------------------------------------------- */
   const { scrollYProgress } = useScroll({
     target: heroRef,
-    offset: ["start start", "end start"], // zoom ends before leaving viewport
+    offset: ["start start", "end start"],
   });
 
-  // Smooth zoom from 1 → 1.25
-  const bgScale = useTransform(scrollYProgress, [0, 1], [1, 1.22]);
+  /* ---------------------------------------------
+     Background motion (mobile-safe)
+  --------------------------------------------- */
+  const bgScale = useTransform(scrollYProgress, [0, 1], [1, 1.18]);
+  const bgOpacity = useTransform(scrollYProgress, [0, 0.85, 1], [1, 1, 0]);
+
+  /* ---------------------------------------------
+     Content parallax (lighter)
+  --------------------------------------------- */
+  const contentOpacity = useTransform(
+    scrollYProgress,
+    [0, 0.7, 1],
+    [1, 1, 0]
+  );
+
+  const logoY = useTransform(scrollYProgress, [0, 1], [0, -20]);
+  const brandY = useTransform(scrollYProgress, [0, 1], [0, -35]);
+  const taglineY = useTransform(scrollYProgress, [0, 1], [0, -55]);
 
   return (
     <section
       ref={heroRef}
-      className="relative w-full h-screen overflow-hidden md:hidden" // mobile only
+      className="relative w-full h-svh overflow-hidden bg-superblack"
     >
-      {/* BACKGROUND IMAGE WITH ZOOM ON SCROLL */}
+      {/* ======================
+           VIDEO BACKGROUND
+      ====================== */}
       <motion.div
-        initial={{ scale: 1.15, opacity: 0 }}
-        animate={{ scale: 1, opacity: 1 }}
-        transition={{ duration: 1.6, ease: [0.25, 0.1, 0.25, 1] }}
-        style={{ scale: bgScale }}
-        className="absolute inset-0 w-full h-full"
+        style={{ scale: bgScale, opacity: bgOpacity }}
+        className="absolute inset-0 will-change-transform"
       >
-        <Image
-          src="/images/hero/hero-img-1.jpg"
-          alt="Radkaat Hero Background"
-          fill
-          priority
-          quality={100}
-          className="
-            object-cover 
-            object-[30%]
-            saturate-[1.3] 
-            brightness-[0.95]
-          "
+        <video
+          playsInline
+          muted
+          autoPlay
+          loop
+          preload="auto"
+          className="absolute inset-0 w-full h-full object-cover"
+        >
+          <source src="/videos/5.mp4" type="video/mp4" />
+        </video>
+
+        {/* base overlay */}
+        <div className="absolute inset-0 bg-black/35" />
+
+        {/* vignette */}
+        <div
+          className="absolute inset-0"
+          style={{
+            background:
+              "radial-gradient(circle at center, transparent 40%, black 99%)",
+          }}
+        />
+
+        {/* bottom fade */}
+        <div
+          className="absolute inset-x-0 bottom-0 h-[45%] pointer-events-none"
+          style={{
+            background:
+              "linear-gradient(to top, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0.6) 40%, rgba(0,0,0,0.2) 70%, transparent 100%)",
+          }}
         />
       </motion.div>
 
-      {/* OVERLAY CONTENT */}
+      {/* ======================
+           HERO CONTENT
+      ====================== */}
       <motion.div
+        style={{ opacity: contentOpacity }}
         className="
-          absolute 
-          top-[22%]
-          w-full 
-          flex flex-col 
-          items-center 
-          text-center 
-          z-20 px-4
+          absolute
+          top-[26%]
+          w-full
+          z-20
+          flex flex-col
+          items-center
+          text-center
+          px-4
+          will-change-transform
         "
-        initial={{ opacity: 0, y: 50 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{
-          duration: 1.1,
-          ease: [0.25, 0.1, 0.25, 1],
-        }}
       >
         {/* LOGO */}
-        <motion.div
-          initial={{ opacity: 0, y: 15 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.2, duration: 0.8 }}
-        >
+        <motion.div style={{ y: logoY }}>
           <Image
-            src="/images/hero/Radkaat-1.png"
+            src="/images/website-logo.png"
             alt="Radkaat Logo"
-            width={80}
-            height={40}
-            className="mb-1"
+            width={78}
+            height={38}
+            priority
           />
         </motion.div>
 
-        {/* RADKAAT TEXT */}
+        {/* BRAND */}
         <motion.div
-          initial={{ opacity: 0, y: 15 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.35, duration: 0.8 }}
-          className="text-[22px] font-extrabold tracking-wide text-black uppercase"
+          style={{ y: brandY }}
+          className="mt-1 text-[22px] font-extrabold tracking-wide text-white uppercase"
         >
           RADKAAT
         </motion.div>
 
-        {/* MAIN TAGLINE */}
+        {/* TAGLINE */}
         <motion.h1
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.5, duration: 0.9 }}
+          style={{ y: taglineY }}
           className="
-            text-[38px]
+            text-[34px]
             leading-tight
             font-extrabold
-            uppercase 
+            uppercase
             text-sandstorm
             mt-2
-            [text-shadow:2px_2px_0px_black,2px_-2px_0px_black,-2px_2px_0px_black,-2px_-2px_0px_black]
+            [text-shadow:1px_1px_0px_white,1px_-1px_0px_white,-1px_1px_0px_white,-1px_-1px_0px_white]
           "
         >
           #NOTHING BUT NOW
         </motion.h1>
-
-        {/* SUBTEXT */}
-        {/* <motion.div
-          initial={{ opacity: 0, y: 12 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.65, duration: 0.8 }}
-          className="
-            text-[14px] 
-            font-medium 
-            text-black 
-            tracking-wide 
-            mt-3
-            leading-relaxed
-          "
-        >
-          cycling / trekking / hiking / campaign / trail running / paragliding / rafting
-        </motion.div> */}
       </motion.div>
-
-      {/* BLACK GRADIENT FADE AT THE BOTTOM FOR BETTER TEXT VISIBILITY */}
-      <div className="absolute bottom-0 left-0 right-0 h-[120px] bg-linear-to-t from-black/70 to-transparent z-10" />
     </section>
   );
 }
