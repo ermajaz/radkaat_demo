@@ -5,5 +5,5 @@ import BikeIntroMobile from "./BikeIntroMobile";
 import BikeIntroDesktop from "./BikeIntroDesktop";
 
 export default function BikeIntro() {
-  return useResponsiveComponent(<BikeIntroMobile />, <BikeIntroDesktop />);
+  // return useResponsiveComponent(<BikeIntroMobile />, <BikeIntroDesktop />);
 }

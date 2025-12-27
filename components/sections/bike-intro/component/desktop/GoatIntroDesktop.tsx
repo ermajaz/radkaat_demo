@@ -4,8 +4,8 @@ import Image from "next/image";
 
 export default function GoatIntroDesktop() {
   return (
-    <div className="relative w-full h-[785px] overflow-hidden flex justify-center">
-      
+    <div id="bike-showcase" className="relative w-full h-[785px] overflow-hidden flex justify-center">
+
       {/* Background Image */}
       <Image
         src="/images/bikes/goat-intro.jpg"
@@ -20,10 +20,10 @@ export default function GoatIntroDesktop() {
       <div className="absolute bottom-0 left-0 w-full h-[200px] bg-linear-to-t from-black/80 to-transparent pointer-events-none" />
 
       {/* TEXT WRAPPER – Positioned EXACTLY like screenshot */}
-      <div 
+      <div
         className="
           absolute 
-          top-[8%] 
+          top-[10%] 
           w-full 
           flex flex-col 
           items-center 
@@ -36,21 +36,15 @@ export default function GoatIntroDesktop() {
 
         {/* HEADING WITH SHARP STARS */}
         <div className="flex items-center gap-5 mb-4">
-          
-          {/* SHARP STAR */}
           <span className="text-black text-[32px] leading-none drop-shadow-[0_2px_2px_rgba(255,255,255,0.3)]">
             ★
           </span>
-
           <span className="text-[33px] font-extrabold tracking-wide uppercase text-superblack drop-shadow-[0_2px_2px_rgba(255,255,255,0.35)]">
             Introducing Goat Series
           </span>
-
-          {/* SHARP STAR */}
           <span className="text-black text-[32px] leading-none drop-shadow-[0_2px_2px_rgba(255,255,255,0.3)]">
             ★
           </span>
-
         </div>
 
         {/* DESCRIPTION TEXT */}

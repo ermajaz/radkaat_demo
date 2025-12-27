@@ -4,7 +4,7 @@ import Image from "next/image";
 
 export default function GoatIntroMobile() {
   return (
-    <div className="relative w-full h-[730px] overflow-hidden flex justify-center md:hidden">
+    <div id="bike-showcase" className="relative w-full h-[730px] overflow-hidden flex justify-center md:hidden">
       
       {/* BACKGROUND IMAGE */}
       <Image

@@ -63,13 +63,15 @@ export default function CustomHotspot({
         <AnimatePresence>
           {isActive && (
             <>
-              {/* angled line */}
               <motion.div
                 className="absolute bg-white"
                 initial={{ width: 0, opacity: 0 }}
                 animate={{ width: 50, opacity: 1 }}
-                exit={{ width: 0, opacity: 0 }}
-                transition={{ duration: 0.3 }}
+                exit={{ width: 0, opacity: 0 }}            // closes last
+                transition={{
+                  duration: 0.3,
+                  delay: isActive ? 0 : 0.35,               // 👈 exit delay
+                }}
                 style={{
                   height: "2px",
                   top: "-3px",
@@ -79,13 +81,16 @@ export default function CustomHotspot({
                 }}
               />
 
-              {/* straight line */}
+
               <motion.div
                 className="absolute bg-white"
                 initial={{ width: 0, opacity: 0 }}
                 animate={{ width: 100, opacity: 1 }}
-                exit={{ width: 0, opacity: 0 }}
-                transition={{ duration: 0.35, delay: 0.1 }}
+                exit={{ width: 0, opacity: 0 }}          // closes first
+                transition={{
+                  duration: 0.35,
+                  delay: isActive ? 0.3 : 0,              // enter delay only
+                }}
                 style={{
                   height: "2px",
                   top: "-41px",
@@ -93,6 +98,7 @@ export default function CustomHotspot({
                   transformOrigin: "left center",
                 }}
               />
+
 
               {/* text */}
               <motion.div

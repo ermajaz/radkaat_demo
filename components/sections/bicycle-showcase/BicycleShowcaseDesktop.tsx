@@ -17,6 +17,8 @@ import Button360 from "./components/Button360";
 import BikeNameInGradientWide from "./components/BikeNameInGradientWide";
 import Bike3D from "./components/Bike3D";
 import Bike3Dcard from "./components/Bike3Dcard";
+import GoatIntroDesktop from "../bike-intro/component/desktop/GoatIntroDesktop";
+import GoatStickyHeading from "./components/GoatStickyHeading";
 
 
 export default function BikeShowcaseDesktop() {
@@ -94,133 +96,137 @@ export default function BikeShowcaseDesktop() {
 
 
   return (
-    <div
-      ref={scrollZoneRef}
-      className="relative"
-      style={{ height: `${SECTION_HEIGHT * BIKES.length}px` }}
-    >
-      {/* Sticky region */}
+    <div className="relative">
+      {/* Normal scroll section */}
+      <GoatIntroDesktop />
       <div
-        ref={stickyRef}
-        className="sticky top-0 w-full h-screen overflow-hidden bg-black"
+        ref={scrollZoneRef}
+        className="relative"
+        style={{ height: `${SECTION_HEIGHT * BIKES.length}px` }}
       >
-        {/* Top strip */}
-        <div className="absolute top-0 left-0 right-0 z-50">
-          <BikesStrip bike={BIKES[active]} />
-        </div>
+        {/* Sticky region */}
+        <div
+          ref={stickyRef}
+          className="sticky top-0 w-full h-screen overflow-hidden bg-black"
+        >
+          {/* Top strip */}
+          <div className="absolute top-0 left-0 right-0 z-50">
+            <BikesStrip bike={BIKES[active]} />
+          </div>
 
-        {/* Main row */}
-        <div className="absolute inset-0 top-9"> {/* leave space for top strip (9) */}
-          <div className="h-[calc(100vh-36px)] flex flex-row w-full">
-            {BIKES.map((bike, idx) => {
-              const isActive = idx === active;
-              const widthClass = widthFor(idx);
-              // motion animate layout for smooth width
-              return (
-                <motion.div
-                  key={bike.id}
-                  layout
-                  transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
-                  className={`${widthClass} relative shrink-0 h-full`}
-                  style={{ minWidth: 0 }}
-                >
-                  {/* background */}
-                  <ShowcaseBg />
+          {/* Main row */}
+          <div className="absolute inset-0 top-9"> {/* leave space for top strip (9) */}
+            <div className="h-[calc(100vh-36px)] flex flex-row w-full">
+              {BIKES.map((bike, idx) => {
+                const isActive = idx === active;
+                const widthClass = widthFor(idx);
+                // motion animate layout for smooth width
+                return (
+                  <motion.div
+                    key={bike.id}
+                    layout
+                    transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
+                    className={`${widthClass} relative shrink-0 h-full`}
+                    style={{ minWidth: 0 }}
+                  >
+                    {/* background */}
+                    <ShowcaseBg />
 
-                  {/* overlay content */}
-                  <div className="relative z-10 h-full flex flex-col">
-                    {/* center content for OPEN */}
-                    <AnimatePresence mode="popLayout">
-                      {isActive ? (
-                        <motion.div
-                          key={`open-${bike.id}`}
-                          initial={{ opacity: 0, x: 30 }}
-                          animate={{ opacity: 1, x: 0 }}
-                          exit={{ opacity: 0, x: -20 }}
-                          transition={{ duration: 0.7 }}
-                          className="flex-1 flex items-center justify-center"
-                        >
-                          <div className="w-full h-full flex items-center justify-between">
-                            {/* Left large bike + big background word */}
-                            {!focus360 ? (
-                              <>
-                                <div className="flex-1 h-full flex items-center pl-8">
-                                  <div className="relative w-full h-full max-w-full">
-                                    {/* big background word (partially visible left) */}
-                                    <div className="w-full absolute left-0 right-0 mx-auto top-[12%] pointer-events-none">
-                                      <BikeNameInGradient name={bike.bgWord ?? bike.uiName.toUpperCase()} gradient={bike.colors.bgGradient} />
-                                    </div>
+                    {/* overlay content */}
+                    <div className="relative z-10 h-full flex flex-col">
+                      {/* center content for OPEN */}
+                      <AnimatePresence mode="popLayout">
+                        {isActive ? (
+                          <motion.div
+                            key={`open-${bike.id}`}
+                            initial={{ opacity: 0, x: 30 }}
+                            animate={{ opacity: 1, x: 0 }}
+                            exit={{ opacity: 0, x: -20 }}
+                            transition={{ duration: 0.7 }}
+                            className="flex-1 flex items-center justify-center"
+                          >
+                            <div className="w-full h-full flex items-center justify-between">
+                              {/* Left large bike + big background word */}
+                              {!focus360 ? (
+                                <>
+                                  <div className="flex-1 h-full flex items-center pl-8">
+                                    <div className="relative w-full h-full max-w-full">
+                                      {/* big background word (partially visible left) */}
+                                      <div className="w-full absolute left-0 right-0 mx-auto top-[12%] pointer-events-none">
+                                        <BikeNameInGradient name={bike.bgWord ?? bike.uiName.toUpperCase()} gradient={bike.colors.bgGradient} />
+                                      </div>
 
-                                    {/* bike image centered */}
-                                    <div className="absolute top-[45%] -translate-y-[30%] z-20 w-full h-full">
-                                      <BikeImage image={bike.image} bike={BIKES[active]} hideHotspots={focus360} />
-                                    </div>
-                                    <div className="absolute left-1/2 -translate-x-1/2 bottom-25 z-30">
-                                      <Button360 open360={() => setFocus360(true)} />
-                                    </div>
-                                    <div className="w-full absolute left-1/2 -translate-x-1/2 bottom-5 z-30">
-                                      <BottomVariantSelector variants={variants}
-                                        activeModel={activeModel}
-                                        setActiveModel={setActiveModel}
-                                        activeColor={activeColor}
-                                        setActiveColor={setActiveColor}
-                                      />
+                                      {/* bike image centered */}
+                                      <div className="absolute top-[45%] -translate-y-[30%] z-20 w-full h-full">
+                                        <BikeImage image={bike.image} bike={BIKES[active]} hideHotspots={focus360} />
+                                      </div>
+                                      <div className="absolute left-1/2 -translate-x-1/2 bottom-25 z-30">
+                                        <Button360 open360={() => setFocus360(true)} />
+                                      </div>
+                                      <div className="w-full absolute left-1/2 -translate-x-1/2 bottom-5 z-30">
+                                        <BottomVariantSelector variants={variants}
+                                          activeModel={activeModel}
+                                          setActiveModel={setActiveModel}
+                                          activeColor={activeColor}
+                                          setActiveColor={setActiveColor}
+                                        />
+                                      </div>
                                     </div>
                                   </div>
-                                </div>
-                                {/* Right column: radar + specs + CTA */}
-                                <div className="w-[350px] flex flex-col items-end justify-center gap-10 mr-10">
-                                  <RadarChart stats={bike.stats} color={bike.colors.gradient.split(",")[0]} />
-                                  <BikeSpecsCard bike={bike} />
+                                  {/* Right column: radar + specs + CTA */}
+                                  <div className="w-[350px] flex flex-col items-end justify-center gap-10 mr-10">
+                                    <RadarChart stats={bike.stats} color={bike.colors.gradient.split(",")[0]} />
+                                    <BikeSpecsCard bike={bike} />
 
-                                </div>
-                              </>
-                            ) : (
-                              <Bike3Dcard bike={bike} onclose={() => setFocus360(false)} />
-                            )}
-                          </div>
-                        </motion.div>
-                      ) : (
-                        /* CLOSED layout (tiny column): centered logo + name */
-                        <motion.div
-                          key={`closed-${bike.id}`}
-                          initial={{ opacity: 0.6 }}
-                          animate={{ opacity: 1 }}
-                          exit={{ opacity: 0.6 }}
-                          transition={{ duration: 0 }}
-                          className={`flex-1 flex items-center justify-center cursor-pointer`}
-                          onClick={() => setActive(idx)}
-                          role="button"
-                          aria-label={`Open ${bike.uiName}`}
-                        >
-                          <BicycleClosedCard
-                            bike={bike}
-                            onClick={() => {
-                              scrollToBike(idx);
-                              setActive(idx);
-                            }}
-                          />
+                                  </div>
+                                </>
+                              ) : (
+                                <Bike3Dcard bike={bike} onclose={() => setFocus360(false)} />
+                              )}
+                            </div>
+                          </motion.div>
+                        ) : (
+                          /* CLOSED layout (tiny column): centered logo + name */
+                          <motion.div
+                            key={`closed-${bike.id}`}
+                            initial={{ opacity: 0.6 }}
+                            animate={{ opacity: 1 }}
+                            exit={{ opacity: 0.6 }}
+                            transition={{ duration: 0 }}
+                            className={`flex-1 flex items-center justify-center cursor-pointer`}
+                            onClick={() => setActive(idx)}
+                            role="button"
+                            aria-label={`Open ${bike.uiName}`}
+                          >
+                            <BicycleClosedCard
+                              bike={bike}
+                              onClick={() => {
+                                scrollToBike(idx);
+                                setActive(idx);
+                              }}
+                            />
 
-                        </motion.div>
+                          </motion.div>
+                        )}
+                      </AnimatePresence>
+
+                      {/* clickable overlay for closed columns (full height) */}
+                      {!isActive && (
+                        <button
+                          onClick={() => {
+                            scrollToBike(idx);
+                            setActive(idx);
+                          }}
+                          className="absolute cursor-pointer inset-0 w-full h-full bg-transparent"
+                          aria-hidden
+                        />
+
                       )}
-                    </AnimatePresence>
-
-                    {/* clickable overlay for closed columns (full height) */}
-                    {!isActive && (
-                      <button
-                        onClick={() => {
-                          scrollToBike(idx);
-                          setActive(idx);
-                        }}
-                        className="absolute cursor-pointer inset-0 w-full h-full bg-transparent"
-                        aria-hidden
-                      />
-
-                    )}
-                  </div>
-                </motion.div>
-              );
-            })}
+                    </div>
+                  </motion.div>
+                );
+              })}
+            </div>
           </div>
         </div>
       </div>

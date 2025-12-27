@@ -1,65 +1,76 @@
 "use client";
 
-import { useState, useMemo, useRef, useEffect } from "react";
+import { useState, useRef, useEffect } from "react";
+import { motion } from "framer-motion";
 import { BIKES } from "./utils/bicycle-showcase";
 
 import MobileBikesStrip from "./components/mobile/MobileBikesStrip";
 import MobileOpenBikeCard from "./components/mobile/MobileOpenBikeCard";
 import MobileClosedBikeCard from "./components/mobile/MobileClosedBikeCard";
+import GoatIntroMobile from "../bike-intro/component/mobile/GoatIntroMobile";
 
 export default function BicycleShowcaseMobile() {
   const [active, setActive] = useState(0);
   const isProgrammatic = useRef(false);
   const zoneRef = useRef<HTMLDivElement>(null);
 
-  const VIEW_HEIGHT = typeof window !== "undefined"
-  ? window.innerHeight
-  : 800;
+  const VIEW_HEIGHT =
+    typeof window !== "undefined" ? window.innerHeight : 800;
 
-  /** Reorder bikes so active stays on top */
-  const ordered = useMemo(() => {
-    const bikes = [...BIKES];
-    const top = bikes[active];
-    return [top, ...bikes.filter((b) => b.id !== top.id)];
-  }, [active]);
+  /* -----------------------------
+     Height logic (accordion)
+  ----------------------------- */
+  function heightFor(idx: number) {
+    return idx === active ? "calc(100% - 140px)" : "70px";
+  }
 
-  /** Auto-change bike while scrolling */
+  /* -----------------------------
+     Scroll → change active
+  ----------------------------- */
   useEffect(() => {
     const zone = zoneRef.current;
     if (!zone) return;
 
     function onScroll() {
       if (isProgrammatic.current) return;
-      const rect = zone?.getBoundingClientRect();
-      if(!rect) return;
 
+      const rect = zone?.getBoundingClientRect();
+      if (!rect) return;
       const isInside =
         rect.top <= 0 && rect.bottom >= window.innerHeight;
 
-      if (isInside) {
-        const scrollRange = rect.height - window.innerHeight;
-        const progress = Math.min(
-          Math.max((0 - rect.top) / scrollRange, 0),
-          1
-        );
+      if (!isInside) return;
 
-        const newIndex = Math.round(progress * (BIKES.length - 1));
-        if (newIndex !== active) setActive(newIndex);
-      }
+      const scrollRange = rect.height - window.innerHeight;
+      const progress = Math.min(
+        Math.max((0 - rect.top) / scrollRange, 0),
+        1
+      );
+
+      const index = Math.round(progress * (BIKES.length - 1));
+      if (index !== active) setActive(index);
     }
 
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
   }, [active]);
 
-  /** Scroll to bike when selecting closed card */
+  /* -----------------------------
+     Tap → scroll to card
+  ----------------------------- */
   function scrollToBike(idx: number) {
     const zone = zoneRef.current;
     if (!zone) return;
 
     isProgrammatic.current = true;
 
-    const targetY = zone.offsetTop + idx * VIEW_HEIGHT;
+    const zoneRect = zone.getBoundingClientRect();
+    const zoneTop = window.scrollY + zoneRect.top;
+
+    const scrollRange = zone.offsetHeight - window.innerHeight;
+    const step = scrollRange / (BIKES.length - 1);
+
+    const targetY = zoneTop + step * idx;
 
     window.scrollTo({
       top: targetY,
@@ -71,46 +82,63 @@ export default function BicycleShowcaseMobile() {
     }, 700);
   }
 
+
   return (
-    <div
-      ref={zoneRef}
-      className="relative"
-      style={{ height: `calc(100dvh * ${BIKES.length})` }}
+    <div className="relative">
+      {/* Intro section */}
+      <GoatIntroMobile />
 
-    >
-      {/* Top 64px strip stays fixed at screen top */}
-      <div className="sticky top-16 left-0 right-0 z-50">
-        <MobileBikesStrip bike={BIKES[active]} />
-      </div>
-
-      {/* Sticky section starts exactly BELOW the strip */}
+      {/* Scroll zone */}
       <div
-        className="
-          sticky 
-          w-full
-          top-16
-          h-[calc(100dvh-clamp(48px,7vh,64px))]
-          bg-black 
-          overflow-hidden
-        "
+        ref={zoneRef}
+        className="relative"
+        style={{ height: `calc(100dvh * ${BIKES.length})` }}
       >
+        {/* Sticky top strip */}
+        <div className="sticky top-16 z-50">
+          <MobileBikesStrip bike={BIKES[active]} />
+        </div>
 
-        {/* OPEN CARD */}
-        <MobileOpenBikeCard bike={ordered[0]} />
+        {/* Sticky accordion */}
+        <div
+          className="
+            sticky
+            top-24
+            h-[calc(100dvh-clamp(96px,7vh,64px))]
+            bg-black
+            overflow-hidden
+          "
+        >
+          <div className="flex flex-col h-full">
+            {BIKES.map((bike, idx) => {
+              const isActive = idx === active;
 
-        {/* CLOSED CARDS */}
-        <div className="absolute bottom-0 left-0 w-full">
-          {ordered.slice(1).map((bike) => (
-            <MobileClosedBikeCard
-              key={bike.id}
-              bike={bike}
-              onSelect={() => {
-                const index = BIKES.findIndex((b) => b.id === bike.id);
-                scrollToBike(index);
-                setActive(index);
-              }}
-            />
-          ))}
+              return (
+                <motion.div
+                  key={bike.id}
+                  layout
+                  transition={{ duration: 0.55, ease: [0.16, 1, 0.3, 1] }}
+                  className="relative overflow-hidden"
+                  style={{ height: heightFor(idx) }}
+                >
+                  {/* ACTIVE */}
+                  {isActive ? (
+                    <MobileOpenBikeCard bike={bike} />
+                  ) : (
+                    <div
+                      className=""
+                      onClick={() => {
+                        scrollToBike(idx);
+                        setActive(idx);
+                      }}
+                    >
+                      <MobileClosedBikeCard bike={bike} />
+                    </div>
+                  )}
+                </motion.div>
+              );
+            })}
+          </div>
         </div>
       </div>
     </div>

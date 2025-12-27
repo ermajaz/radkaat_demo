@@ -17,25 +17,16 @@ export default function MobileClosedBikeCard({ bike, onSelect }: any) {
       {/* FRONT BIKE IMAGE */}
       <div className="relative w-[55px] h-[55px]">
         <Image
-          src="/images/bike-front.png"
+          src={bike.logo}
           alt={bike.uiName}
           fill
-          className="object-contain opacity-90"
+          className="object-contain opacity-90 p-1.5"
         />
       </div>
 
       {/* LOGO + NAME + DESCRIPTION */}
       <div className="flex-1 flex flex-col justify-center">
         <div className="flex items-center gap-2">
-          {/* BIKE LOGO */}
-          <Image
-            src={bike.logo}
-            alt={`${bike.uiName} logo`}
-            width={20}
-            height={20}
-            className="object-contain"
-          />
-
           {/* NAME */}
           <p className="text-white font-semibold text-[18px] leading-none">
             {bike.uiName}
