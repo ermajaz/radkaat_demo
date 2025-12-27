@@ -78,27 +78,50 @@ export default function BikeShowcaseDesktop() {
   function scrollToBike(index: number) {
     if (!scrollZoneRef.current) return;
 
-    isProgrammaticScroll.current = true; // disable scroll logic temporarily
+    isProgrammaticScroll.current = true;
+
+    const showcaseTop =
+      scrollZoneRef.current.getBoundingClientRect().top + window.scrollY;
 
     const target = index * SECTION_HEIGHT;
 
     window.scrollTo({
-      top: scrollZoneRef.current.offsetTop + target,
+      top: showcaseTop + target,
       behavior: "smooth",
     });
 
-    // re-enable scroll logic AFTER animation
+    // 🔥 IMPORTANT: delay must be LONGER than smooth scroll
     setTimeout(() => {
       isProgrammaticScroll.current = false;
-    }, 700); // duration must match scroll ease
+    }, 900);
   }
+
+
+  const introRef = useRef<HTMLDivElement>(null);
+  const endRef = useRef<HTMLDivElement>(null);
+  const [showBg, setShowBg] = useState(false);
+
+
 
 
 
   return (
     <div className="relative">
-      {/* Normal scroll section */}
-      <GoatIntroDesktop />
+      <div ref={introRef}>
+        <GoatIntroDesktop />
+      </div>
+
+      {/* Sticky heading controller */}
+      <GoatStickyHeading
+        introRef={introRef}
+        endRef={endRef}
+        scrollZoneRef={scrollZoneRef}
+        bike={BIKES[active]}
+        showBg={showBg}
+        setShowBg={setShowBg}
+        isProgrammaticScroll={isProgrammaticScroll}
+      />
+
       <div
         ref={scrollZoneRef}
         className="relative"
@@ -109,14 +132,10 @@ export default function BikeShowcaseDesktop() {
           ref={stickyRef}
           className="sticky top-0 w-full h-screen overflow-hidden bg-black"
         >
-          {/* Top strip */}
-          <div className="absolute top-0 left-0 right-0 z-50">
-            <BikesStrip bike={BIKES[active]} />
-          </div>
 
           {/* Main row */}
-          <div className="absolute inset-0 top-9"> {/* leave space for top strip (9) */}
-            <div className="h-[calc(100vh-36px)] flex flex-row w-full">
+          <div className="absolute inset-0 top-0"> {/* leave space for top strip (9) */}
+            <div className="h-screen flex flex-row w-full">
               {BIKES.map((bike, idx) => {
                 const isActive = idx === active;
                 const widthClass = widthFor(idx);
@@ -230,6 +249,8 @@ export default function BikeShowcaseDesktop() {
           </div>
         </div>
       </div>
+      {/* END MARKER */}
+      <div ref={endRef} className="h-px" />
     </div>
   );
 }
