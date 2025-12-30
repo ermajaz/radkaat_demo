@@ -111,3 +111,30 @@ export interface Tour {
   rightPanelDetails: RightPanelDetail[];
 }
 
+// Enquiry Form Types
+export interface EnquiryFormData {
+  name: string;
+  phone: string;
+  tourId?: number;
+  tourTitle?: string;
+}
+
+export interface EnquiryResponse {
+  success: boolean;
+  message: string;
+  enquiryId?: string;
+}
+
+// Story State Types
+export interface StoryState {
+  tours: Tour[];
+  currentTour: Tour | null;
+  enquiry: {
+    isSubmitting: boolean;
+    error: string | null;
+    success: boolean;
+  };
+  isLoading: boolean;
+  error: string | null;
+}
+

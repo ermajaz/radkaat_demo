@@ -1,0 +1,1 @@
+export { productsSlice, fetchProducts, fetchProductById, clearError, setCurrentProduct } from './productsSlice';

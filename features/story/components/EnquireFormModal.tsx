@@ -12,14 +12,26 @@ import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { motion, AnimatePresence } from "framer-motion";
 import { useState, useEffect } from "react";
+import { useAppDispatch, useAppSelector } from "@/lib/hooks";
+import { submitEnquiry, clearEnquiryState } from "@/features/story";
+import { EnquiryFormData } from "../types/story.types";
+
+interface EnquiryFormModalProps {
+  open: boolean;
+  onClose: () => void;
+  tourId?: number;
+  tourTitle?: string;
+}
 
 export default function EnquiryFormModal({
   open,
   onClose,
-}: {
-  open: boolean;
-  onClose: () => void;
-}) {
+  tourId,
+  tourTitle,
+}: EnquiryFormModalProps) {
+  const dispatch = useAppDispatch();
+  const { isSubmitting, error, success } = useAppSelector(state => state.story.enquiry);
+
   const [name, setName] = useState("");
   const [phone, setPhone] = useState("");
 
@@ -45,14 +57,35 @@ export default function EnquiryFormModal({
     if (clean !== phone) setPhone(clean);
   }, [name, phone]);
 
-  const isFormValid = !nameError && !phoneError;
+  // Handle success state
+  useEffect(() => {
+    if (success) {
+      // Reset form
+      setName("");
+      setPhone("");
+      // Close modal after a delay
+      setTimeout(() => {
+        onClose();
+        dispatch(clearEnquiryState());
+      }, 2000);
+    }
+  }, [success, onClose, dispatch]);
+
+  const isFormValid = !nameError && !phoneError && name.trim() && phone.length === 10;
 
   /* ---------------- SUBMIT HANDLER ---------------- */
 
   const handleSubmit = () => {
-    if (!isFormValid) return;
-    alert(`Enquiry Submitted:\nName: ${name}\nPhone: ${phone}`);
-    onClose();
+    if (!isFormValid || isSubmitting) return;
+
+    const enquiryData: EnquiryFormData = {
+      name: name.trim(),
+      phone,
+      tourId,
+      tourTitle,
+    };
+
+    dispatch(submitEnquiry(enquiryData));
   };
 
   /* ---------------- UI ---------------- */
@@ -61,9 +94,9 @@ export default function EnquiryFormModal({
     <Dialog open={open} onOpenChange={onClose}>
       <DialogContent
         className="
-          max-w-md 
+          max-w-md
           bg-[#111]/85 backdrop-blur-xl
-          border border-[#E4D27C]/20 
+          border border-[#E4D27C]/20
           shadow-[0_0_40px_rgba(228,210,124,0.15)]
           text-white rounded-2xl
           p-8
@@ -78,6 +111,38 @@ export default function EnquiryFormModal({
             Enter your details and our team will reach out shortly.
           </DialogDescription>
         </DialogHeader>
+
+        {/* SUCCESS MESSAGE */}
+        <AnimatePresence>
+          {success && (
+            <motion.div
+              initial={{ opacity: 0, y: -10 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -10 }}
+              className="bg-green-500/20 border border-green-500/30 rounded-lg p-4 mb-4"
+            >
+              <p className="text-green-400 text-sm text-center">
+                Enquiry submitted successfully! We'll contact you soon.
+              </p>
+            </motion.div>
+          )}
+        </AnimatePresence>
+
+        {/* ERROR MESSAGE */}
+        <AnimatePresence>
+          {error && (
+            <motion.div
+              initial={{ opacity: 0, y: -10 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -10 }}
+              className="bg-red-500/20 border border-red-500/30 rounded-lg p-4 mb-4"
+            >
+              <p className="text-red-400 text-sm text-center">
+                {error}
+              </p>
+            </motion.div>
+          )}
+        </AnimatePresence>
 
         {/* FORM */}
         <div className="space-y-7 mt-7">
@@ -97,6 +162,7 @@ export default function EnquiryFormModal({
               "
               value={name}
               onChange={(e) => setName(e.target.value)}
+              disabled={isSubmitting}
             />
 
             <AnimatePresence>
@@ -130,6 +196,7 @@ export default function EnquiryFormModal({
               "
               value={phone}
               onChange={(e) => setPhone(e.target.value)}
+              disabled={isSubmitting}
             />
 
             <AnimatePresence>
@@ -150,17 +217,17 @@ export default function EnquiryFormModal({
         {/* SUBMIT */}
         <DialogFooter>
           <Button
-            disabled={!isFormValid}
+            disabled={!isFormValid || isSubmitting}
             className={`
               w-full py-6 mt-4 text-lg font-semibold cursor-pointer transition-all duration-300
-              ${isFormValid 
+              ${isFormValid && !isSubmitting
                 ? "bg-[#E4D27C] text-black hover:bg-[#d4c068]"
                 : "bg-neutral-700 text-neutral-400 cursor-not-allowed"
               }
             `}
             onClick={handleSubmit}
           >
-            Submit Enquiry
+            {isSubmitting ? "Submitting..." : "Submit Enquiry"}
           </Button>
         </DialogFooter>
       </DialogContent>

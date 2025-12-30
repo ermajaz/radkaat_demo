@@ -6,6 +6,7 @@ import { ReactNode } from "react";
 import { Red_Hat_Display } from "next/font/google";
 import { LoaderProvider } from "@/components/common/LoaderProvider";
 import { LayoutProvider } from "@/components/common/LayoutProvider";
+import { ReduxProvider } from "@/components/common/ReduxProvider";
 
 const redHatDisplay = Red_Hat_Display({
   subsets: ["latin"],
@@ -23,9 +24,11 @@ export default function RootLayout({ children }: { children: ReactNode }) {
   return (
     <html lang="en">
       <body className={`${redHatDisplay.variable} antialiased container max-w-[1440px] min-h-screen bg-(--color-superblack) text-white`}>
-        <LoaderProvider>
-          <LayoutProvider>{children}</LayoutProvider>
-        </LoaderProvider>
+        <ReduxProvider>
+          <LoaderProvider>
+            <LayoutProvider>{children}</LayoutProvider>
+          </LoaderProvider>
+        </ReduxProvider>
       </body>
     </html>
   );

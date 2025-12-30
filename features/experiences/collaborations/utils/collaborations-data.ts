@@ -88,3 +88,42 @@ export const collaborationsData: CollaborationsData = {
   ],
 };
 
+
+export const collaborationsDataMobile: CollaborationsData = {
+  title: "Our Collaborators",
+  shape: "/images/bg/experience-brands-bg.webp",
+  arrow: "/images/experience/collaborations-arrow.png",
+  brands: [
+    {
+      id: "1",
+      image: "/images/experience/hartex.png",
+      bg: "#0B2C55",
+    },
+    {
+      id: "2",
+      image: "/images/experience/herocycle.png",
+      bg: "#C04A3E",
+    },
+    {
+      id: "3",
+      image: "/images/experience/cratoni.png",
+      bg: "#C8C18F",
+    },
+    {
+      id: "4",
+      image: "/images/experience/granite.png",
+      bg: "#2B3A6A",
+    },
+    {
+      id: "5",
+      image: "/images/experience/herocycle.png",
+      bg: "#0B2C55",
+    },
+    {
+      id: "6",
+      image: "/images/experience/hartex.png",
+      bg: "#C04A3E",
+    }
+  ],
+};
+

@@ -1,18 +1,25 @@
 "use client";
 
-import LeftPanel from "./components/LeftPanel";
-import RightTilesScroller from "./components/RightTilesScroller";
+import MobileBrandsScroller from "./components/mobile/MobileBrandsScroller";
+import MobileHeroPanel from "./components/mobile/MobileHeroPanel";
 
 export default function ExperienceCollaborationsMobile() {
   return (
-    <section className="w-full h-screen flex flex-col bg-superblack">
-      <div className="flex-1">
-        <LeftPanel />
+    <section className="relative w-full h-[80dvh] overflow-hidden bg-black">
+      {/* FULL BG */}
+      <div className="absolute inset-0">
+        <img
+          src="/images/bg/experience-brands-bg.webp"
+          alt="background"
+          className="w-full h-full object-cover"
+        />
       </div>
 
-      <div className="flex-1">
-        <RightTilesScroller />
-      </div>
+      {/* HERO */}
+      <MobileHeroPanel />
+
+      {/* BRANDS */}
+      <MobileBrandsScroller />
     </section>
   );
 }
