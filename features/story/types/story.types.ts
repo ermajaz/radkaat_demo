@@ -4,11 +4,6 @@ export interface LocationPoint {
   lng: number;
 }
 
-export interface Review {
-  category: string;
-  rating: number;
-  max: number;
-}
 
 export interface StoryContent {
   type: "story";
@@ -104,21 +99,15 @@ export interface Tour {
   excerpt: string;
   description: string;
   price: number;
-
   leftImage: string;
-  mapImage: string;
-  contourImage: string;
   link: string;
   className?: string;
   video?: string;
+  pdf?: string;
   source: LocationPoint;
   destination: LocationPoint;
-
-  reviews: Review[];
   images: string[];
-
   content: ContentSection[];
-
   rightPanelDetails: RightPanelDetail[];
 }
 

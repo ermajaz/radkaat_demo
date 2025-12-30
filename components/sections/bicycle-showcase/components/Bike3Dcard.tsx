@@ -17,7 +17,7 @@ export default function Bike3Dcard({
         onClick={onclose}
         aria-label="Close"
         className="
-          absolute top-6 right-6 z-50
+          absolute top-16 right-6 z-50
           flex items-center justify-center cursor-pointer
           w-10 h-10
           text-white

@@ -16,22 +16,12 @@ export const stories: Tour[] = [
         price: 74990,
 
         leftImage: "/images/bada-bhangal.webp",
-        mapImage: "/images/tour-map.png",
-        contourImage: "/images/contour.png",
         link: "/stories/1/manali",
         className: "absolute top-20 left-[8%] rotate-[-5deg]",
         video: "/videos/2.webm",
+        pdf: "manali.pdf",
         source: { lat: 32.2432, lng: 77.1890 },
         destination: { lat: 34.1526, lng: 77.5771 },
-
-        reviews: [
-            { category: "Scenery & Views", rating: 5, max: 5 },
-            { category: "Adventure Activities", rating: 5, max: 5 },
-            { category: "Hospitality & Stay", rating: 4, max: 5 },
-            { category: "Food & Local Cuisine", rating: 4, max: 5 },
-            { category: "Travel Convenience", rating: 3, max: 5 }
-        ],
-
         images: [
             "/images/manali/manali1.jpg",
             "/images/manali/manali2.jpeg",
@@ -55,9 +45,6 @@ export const stories: Tour[] = [
             "/images/manali/manali20.webp"
         ],
 
-        // -----------------------------
-        // MAIN CONTENT SECTIONS
-        // -----------------------------
         content: [
             // STORY
             {
@@ -296,22 +283,11 @@ export const stories: Tour[] = [
         price: 1390, // USD, as mentioned on page 24 of PDF
 
         leftImage: "/images/spiti-img.jpg",
-        mapImage: "/images/spiti/spiti-map.png",
-        contourImage: "/images/spiti/spiti-contour.png",
         link: "/stories/2/spiti",
         className: "absolute top-20 left-[8%] rotate-[-5deg]",
         video: "/videos/1.webm",
         source: { lat: 31.633, lng: 76.756 },      // Chandigarh approx
         destination: { lat: 32.2432, lng: 77.189 }, // Manali approx
-
-        reviews: [
-            { category: "Scenery & Views", rating: 5, max: 5 },
-            { category: "Adventure Activities", rating: 5, max: 5 },
-            { category: "Cultural Immersion", rating: 5, max: 5 },
-            { category: "Hospitality & Stay", rating: 4, max: 5 },
-            { category: "Food & Local Cuisine", rating: 4, max: 5 },
-        ],
-
         images: [
             "/images/manali/manali1.jpg",
             "/images/manali/manali2.jpeg",
@@ -543,8 +519,6 @@ export const stories: Tour[] = [
         description: `Bada Bhangal is one of Himachal’s most isolated and culturally rich tribal regions. Connected only by long and challenging trekking routes, this journey takes you across forests, rivers, meadows, glaciers, and two high mountain passes — Thamsar (4875m) and Kalihani (4640m). This expedition reveals the life of the Himalayan shepherds, remote settlements, and untouched natural beauty.`,
 
         leftImage: "/images/bada-bhangal.webp",
-        mapImage: "/images/badabhangal/map.png",
-        contourImage: "/images/badabhangal/contour.png",
         link: "/stories/3/bada-bhangal",
         className: "absolute top-20 left-[8%] rotate-[-5deg]",
         video: "/videos/4.mp4",
@@ -552,14 +526,6 @@ export const stories: Tour[] = [
 
         source: { lat: 32.0893, lng: 76.5534 }, // Kardhar approx
         destination: { lat: 32.2396, lng: 77.1887 }, // Manali approx
-
-        reviews: [
-            { category: "Scenery & Views", rating: 5, max: 5 },
-            { category: "Adventure Difficulty", rating: 5, max: 5 },
-            { category: "Culture & Experience", rating: 5, max: 5 },
-            { category: "Hospitality", rating: 4, max: 5 },
-            { category: "Travel Convenience", rating: 3, max: 5 },
-        ],
 
         images: [
             "/images/manali/manali1.jpg",
@@ -820,25 +786,11 @@ export const stories: Tour[] = [
         price: 69900, // You can update if needed
 
         leftImage: "/images/mcleod.jpg",
-        mapImage: "/images/shimla-bir/map.png",
-        contourImage: "/images/shimla-bir/contour.png",
         link: "/stories/4/shimla-bir-mcleod",
         className: "absolute top-20 left-[8%] rotate-[-5deg]",
         video: "/videos/2.webm",
         source: { lat: 31.1048, lng: 77.1734 }, // Shimla
         destination: { lat: 32.2426, lng: 76.3213 }, // McLeod Ganj
-
-        reviews: [
-            { category: "Scenery & Views", rating: 5, max: 5 },
-            { category: "Adventure Difficulty", rating: 4, max: 5 },
-            { category: "Cultural Experience", rating: 5, max: 5 },
-            { category: "Terrain Variety", rating: 5, max: 5 },
-            { category: "Travel Convenience", rating: 4, max: 5 },
-        ],
-
-        // ----------------------------
-        // IMAGES (placeholder list)
-        // ----------------------------
         images: [
             "/images/manali/manali1.jpg",
             "/images/manali/manali2.jpeg",
@@ -1121,21 +1073,11 @@ export const stories: Tour[] = [
         price: 119000, // placeholder — update if needed
 
         leftImage: "/images/kargil.webp",
-        mapImage: "/images/zanskar/map.png",
-        contourImage: "/images/zanskar/contour.png",
         link: "/stories/5/zanskar",
         className: "absolute top-20 left-[8%] rotate-[-5deg]",
         video: "/videos/5.mp4",
         source: { lat: 32.2432, lng: 77.1890 },    // Manali
         destination: { lat: 34.5563, lng: 76.1320 }, // Kargil
-
-        reviews: [
-            { category: "Scenery & Views", rating: 5, max: 5 },
-            { category: "Adventure Difficulty", rating: 5, max: 5 },
-            { category: "Cultural Experience", rating: 5, max: 5 },
-            { category: "Hospitality", rating: 4, max: 5 },
-            { category: "Terrain Variety", rating: 5, max: 5 },
-        ],
 
         images: [
             "/images/manali/manali1.jpg",
@@ -1160,9 +1102,6 @@ export const stories: Tour[] = [
             "/images/manali/manali20.webp"
         ],
 
-        // -----------------------------------------------------
-        // CONTENT SECTION (STORY + ITINERARY + PACKING + MORE)
-        // -----------------------------------------------------
         content: [
             // STORY
             {
@@ -1426,9 +1365,6 @@ export const stories: Tour[] = [
             { icon: Car, text: "Support Vehicle + Mechanic + Rescue Team" },
         ],
     }
-
-
-
 ];
 
 
