@@ -14,6 +14,11 @@ export const LayoutProvider: React.FC<{ children: React.ReactNode }> = ({ childr
     "/cart/address",
     "/cart/payment",
     "/test-ride",
+    "/preorder",
+    "/preorder/customization",
+    "/preorder/address",
+    "/preorder/payment",
+    "/preorder/confirmation"
   ];
 
   // routes where ONLY footer is hidden (header visible)

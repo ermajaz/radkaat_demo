@@ -1,16 +1,26 @@
 "use client";
 
+import { useAppDispatch, useAppSelector } from "@/lib/hooks";
 import { motion, AnimatePresence } from "framer-motion";
 import { X } from "lucide-react";
 import { useState, useEffect } from "react";
+import { EnquiryFormData } from "../types/story.types";
+import { submitEnquiry } from "../storySlice";
 
 export default function EnquiryFormSheet({
   open,
   onClose,
+  tourId,
+  tourTitle,
 }: {
   open: boolean;
   onClose: () => void;
+  tourId?: string;
+  tourTitle?: string;
 }) {
+  const dispatch = useAppDispatch();
+  const { isSubmitting, error, success } = useAppSelector(state => state.story.enquiry);
+
   const [name, setName] = useState("");
   const [phone, setPhone] = useState("");
 
@@ -37,9 +47,16 @@ export default function EnquiryFormSheet({
 
   /* ---------------- SUBMIT ---------------- */
   const handleSubmit = () => {
-    if (!isFormValid) return;
+    if (!isFormValid || isSubmitting) return;
 
-    alert(`Enquiry Submitted:\nName: ${name}\nPhone: ${phone}`);
+    const enquiryData: EnquiryFormData = {
+      name: name.trim(),
+      phoneNumber: phone,
+      tripId: tourId,
+      tripName: tourTitle,
+    };
+
+    dispatch(submitEnquiry(enquiryData));
     onClose();
 
     // Reset after closing
@@ -162,19 +179,18 @@ export default function EnquiryFormSheet({
 
               {/* SUBMIT */}
               <button
-                disabled={!isFormValid}
+                disabled={!isFormValid || isSubmitting}
                 onClick={handleSubmit}
                 className={`
                   w-full font-semibold py-3 rounded-xl text-lg mt-4
                   transition-all duration-300
-                  ${
-                    isFormValid
-                      ? "bg-[#E4D27C] text-black hover:bg-[#d7c568]"
-                      : "bg-neutral-700 text-neutral-500 cursor-not-allowed"
+                  ${isFormValid && !isSubmitting
+                    ? "bg-[#E4D27C] text-black hover:bg-[#d7c568]"
+                    : "bg-neutral-700 text-neutral-500 cursor-not-allowed"
                   }
                 `}
               >
-                Submit Enquiry
+                {isSubmitting ? "Submitting..." : "Submit Enquiry"}
               </button>
             </div>
           </motion.div>

@@ -11,9 +11,11 @@ import TestimonialSection from "./TestimonialSection";
 import StoryGallerySection from "./StoryGallerySection";
 import InclusionsSection from "./InclusionsSection";
 import ExclusionsSection from "./ExclusionsSection";
+import { Trip } from "../types/story.types";
 
 interface Props {
   section: any;
+  tour: Trip;
   nextTourName?: string;
   onNextTourClick?: () => void;
   homepageLink?: string;
@@ -21,21 +23,22 @@ interface Props {
 
 export const StoryContentRenderer: React.FC<Props> = ({
   section,
+  tour,
   nextTourName = "Next Tour",
   onNextTourClick,
   homepageLink = "/",
 }) => {
   let content: React.ReactNode;
-  const pdfUrl = "/pdfs/zanskar-itinerary.pdf";
+  const pdfUrl = tour?.pdf
+    ? `${process.env.NEXT_PUBLIC_AWS_ASSETS_BASE_URL}${tour.id}/${process.env.NEXT_PUBLIC_ITERNARY_PDF_URL}${tour.pdf}`
+    : null;
+
+
 
   // ✅ Render appropriate section
   switch (section.type) {
     case "story":
-      content = (
-        <StoryContentCard
-          content={section.data}
-        />
-      );
+      content = <StoryContentCard content={section.data} tour={tour} />;
       break;
 
     case "itinerary":
@@ -48,34 +51,42 @@ export const StoryContentRenderer: React.FC<Props> = ({
       );
       break;
 
-    case "testimonial":
+    case "testimonials":
       content = (
         <TestimonialSection
           title={section.title}
+          tour={tour}
           testimonials={section.data}
         />
       );
       break;
 
     case "gallery":
-      content = <StoryGallerySection title={section.title} images={section.data} />;
+      content = (
+        <StoryGallerySection title={section.title} images={section.data} />
+      );
       break;
 
     case "inclusions":
-      content = <InclusionsSection title={section.title} data={section.data} />;
+      content = (
+        <InclusionsSection title={section.title} data={section.data} />
+      );
       break;
 
     case "exclusions":
-      content = <ExclusionsSection title={section.title} data={section.data} />;
+      content = (
+        <ExclusionsSection title={section.title} data={section.data} />
+      );
       break;
 
     default:
       content = (
         <div className="text-gray-400 text-center py-10">
-          Unknown section type: {section.type}
+          Unknown section type
         </div>
       );
   }
+
 
   // ✅ Unified return with Bottom Navigation
   return (
@@ -84,24 +95,26 @@ export const StoryContentRenderer: React.FC<Props> = ({
       {pdfUrl && (
         <motion.a
           href={pdfUrl}
+          target="_blank"
+          rel="noopener noreferrer"
           download
           initial={{ opacity: 0, y: 10 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
           className="
-      md:self-end
-      flex items-center gap-2
-      bg-linear-to-r from-[#E4D27C]/90 to-[#E4D27C]/70
-      text-black font-semibold text-[14px]
-      px-4 py-2
-      hover:scale-[1.03]
-      active:scale-[0.97]
-      transition-all duration-300
-      cursor-pointer
-    "
+            md:self-end
+            flex items-center gap-2
+            bg-linear-to-r from-[#E4D27C]/90 to-[#E4D27C]/70
+            text-black font-semibold text-[14px]
+            px-4 py-2
+            hover:scale-[1.03]
+            active:scale-[0.97]
+            transition-all duration-300
+            cursor-pointer
+          "
         >
           <Download size={18} />
-          Download Itinerary PDF
+          Itinerary Details
         </motion.a>
       )}
 

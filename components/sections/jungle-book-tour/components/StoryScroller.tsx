@@ -1,9 +1,7 @@
 "use client";
 
-import { useIsMobile } from "@/hooks/useIsMobile";
 import StoryCardDesktop from "./StoryCardDesktop";
-import StoryCardMobile from "./StoryCardMobile";
-import { Tour } from "@/features/story/types/story.types";
+import { Tour } from "../types/tours.types";
 
 
 export default function StoryScroller({
@@ -13,18 +11,14 @@ export default function StoryScroller({
   destinations: Tour[];
   activeIndex: number;
 }) {
-  const isMobile = useIsMobile();
   return (
     <>
       {destinations.map((item, index) => (
-        <div key={item.id} onClick={() =>
-          window.open(`${item?.link}`, "_blank")
+        <div key={item._id} onClick={() =>
+          window.open(`${`/stories/${item._id}/${item.trip_name}`}`, "_blank")
         } className="snap-start shrink-0 w-full flex justify-center">
-          {isMobile ? (
-            <StoryCardMobile destination={item} isActive={activeIndex === index} />
-          ) : (
-            <StoryCardDesktop destination={item} isActive={activeIndex === index} />
-          )}
+          <StoryCardDesktop destination={item} isActive={activeIndex === index} />
+
         </div>
       ))}
     </>

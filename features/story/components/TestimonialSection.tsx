@@ -3,6 +3,7 @@
 import { motion } from "framer-motion";
 import Image from "next/image";
 import { Quote } from "lucide-react";
+import { Trip } from "../types/story.types";
 
 interface Testimonial {
   name: string;
@@ -13,10 +14,11 @@ interface Testimonial {
 
 interface Props {
   title: string;
+  tour:Trip;
   testimonials: Testimonial[];
 }
 
-export default function TestimonialSection({ title, testimonials }: Props) {
+export default function TestimonialSection({ title,tour, testimonials }: Props) {
   return (
     <section className="relative w-full text-white overflow-hidden">
       {/* Section Header */}
@@ -57,7 +59,7 @@ export default function TestimonialSection({ title, testimonials }: Props) {
             {/* LEFT: Image + Quote */}
             <div className="relative w-full md:w-[35%] h-60 overflow-hidden group rounded-t-2xl md:rounded-none">
               <Image
-                src={t.image}
+                src={`${process.env.NEXT_PUBLIC_AWS_ASSETS_BASE_URL}${tour.id}/${process.env.NEXT_PUBLIC_ITERNARY_TESTIMONIAL_URL}${t.image}`}
                 alt={t.name}
                 fill
                 quality={100}

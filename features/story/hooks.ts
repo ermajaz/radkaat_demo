@@ -11,7 +11,7 @@ export const useStories = () => {
     dispatch(fetchTours());
   };
 
-  const loadTourById = (tourId: number) => {
+  const loadTourById = (tourId: string) => {
     dispatch(fetchTourById(tourId));
   };
 
@@ -28,7 +28,7 @@ export const useTourDetails = () => {
   const dispatch = useAppDispatch();
   const { currentTour, isLoading, error } = useAppSelector(state => state.story);
 
-  const loadTour = (tourId: number) => {
+  const loadTour = (tourId: string) => {
     dispatch(fetchTourById(tourId));
   };
 

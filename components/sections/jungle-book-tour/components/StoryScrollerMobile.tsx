@@ -2,13 +2,13 @@
 
 import { useEffect, useRef } from "react";
 import StoryCardMobile from "./StoryCardMobile";
-import { Tour } from "@/features/story/types/story.types";
+import { Tour } from "../types/tours.types";
 
 export default function StoryScrollerMobile({
   destinations,
   activeIndex,
 }: {
-  destinations: any[];
+  destinations: Tour[];
   activeIndex: number;
 }) {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -31,7 +31,7 @@ export default function StoryScrollerMobile({
       className="flex snap-x snap-mandatory overflow-x-auto w-full gap-4 px-4 hide-scrollbar"
     >
       {destinations.map((item: Tour, i: number) => (
-        <div key={item.id} className="snap-center shrink-0 w-[88%]">
+        <div key={item._id} className="snap-center shrink-0 w-[88%]">
           <StoryCardMobile destination={item} isActive={activeIndex === i} />
         </div>
       ))}

@@ -3,6 +3,7 @@
 import { motion } from "framer-motion";
 import Image from "next/image";
 import React from "react";
+import { Trip } from "../types/story.types";
 
 interface Props {
   content: {
@@ -12,10 +13,11 @@ interface Props {
     date: string;
     author_img: string;
   };
+  tour:Trip;
 }
 
 export const StoryContentCard: React.FC<Props> = ({
-  content,
+  content,tour
 }) => {
   return (
     <motion.section
@@ -76,7 +78,7 @@ export const StoryContentCard: React.FC<Props> = ({
           <div className="relative w-12 h-12 sm:w-14 sm:h-14 rounded-full overflow-hidden">
             <Image
               quality={100}
-              src={content.author_img}
+              src={`${process.env.NEXT_PUBLIC_AWS_ASSETS_BASE_URL}${tour.id}/${process.env.NEXT_PUBLIC_ITERNARY_AUTHOR_IMAGE_URL}${content.author_img}`}
               alt={content.author}
               fill
               className="object-cover"

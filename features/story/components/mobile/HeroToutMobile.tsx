@@ -3,12 +3,12 @@
 import React, { useEffect, useRef, useState } from "react";
 import { motion, useAnimation } from "framer-motion";
 import Image from "next/image";
-import { Tour } from "@/features/story/types/story.types";
+import { Trip } from "../../types/story.types";
 
 interface HeroToutMobileProps {
   subtitle?: string;
   title: string;
-  tour: Tour;
+  tour: Trip;
 }
 
 export default function HeroToutMobile({
@@ -18,7 +18,6 @@ export default function HeroToutMobile({
 }: HeroToutMobileProps) {
   const controls = useAnimation();
   const sectionRef = useRef<HTMLDivElement>(null);
-
   const [forceFade, setForceFade] = useState(false);
   const [canPlayVideo, setCanPlayVideo] = useState(true);
 
@@ -90,7 +89,7 @@ export default function HeroToutMobile({
           "
           style={{ transform: "none" }}
         >
-          <source src={tour.video} type="video/webm" />
+           <source src={`${process.env.NEXT_PUBLIC_AWS_ASSETS_BASE_URL}${tour.id}/${process.env.NEXT_PUBLIC_ITERNARY_VIDEO_URL}${tour.video}`} type="video/mp4" />
         </motion.video>
       )}
 
@@ -108,7 +107,7 @@ export default function HeroToutMobile({
         style={{ transform: "none" }}
       >
         <Image
-          src={tour.leftImage}
+           src={`${process.env.NEXT_PUBLIC_AWS_ASSETS_BASE_URL}${tour.id}/${process.env.NEXT_PUBLIC_ITERNARY_BG_IMAGE_URL}${tour.leftImage}`}
           alt={title}
           fill
           priority

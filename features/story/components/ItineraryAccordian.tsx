@@ -4,9 +4,9 @@ import { useState } from "react";
 import { ChevronDown } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { cn } from "@/lib/utils";
-import { ItineraryItem } from "../types/story.types";
+import { ItineraryDay } from "../types/story.types";
 interface ItineraryAccordionProps {
-  items: ItineraryItem[];
+  items: ItineraryDay[];
 }
 
 export default function ItineraryAccordion({

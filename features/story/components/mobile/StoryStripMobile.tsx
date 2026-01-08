@@ -7,11 +7,12 @@ import React, { useState } from "react";
 import EnquiryFormSheet from "../EnquireFormSheet";
 
 interface StoryStripMobileProps {
-  name: string;
+  tourName: string;
+  tourId: string;
 }
 
 export const StoryStripMobile: React.FC<StoryStripMobileProps> = ({
-  name,
+  tourName, tourId
 }) => {
   const [open, setOpen] = useState(false);
   return (
@@ -35,7 +36,7 @@ export const StoryStripMobile: React.FC<StoryStripMobileProps> = ({
       {/* Left side: Tour name & price */}
       <div className="flex flex-col justify-center">
         <p className="text-[#E4D27C] text-[15px] font-semibold leading-tight">
-          {name}
+          {tourName}
         </p>
       </div>
 
@@ -56,7 +57,7 @@ export const StoryStripMobile: React.FC<StoryStripMobileProps> = ({
         Enquire Now
       </Button>
 
-      <EnquiryFormSheet open={open} onClose={() => setOpen(false)} />
+      <EnquiryFormSheet open={open} onClose={() => setOpen(false)} tourId={tourId} tourTitle={tourName} />
     </motion.div>
   );
 };

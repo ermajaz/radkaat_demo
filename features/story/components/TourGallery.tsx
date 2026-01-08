@@ -4,9 +4,11 @@ import React, { useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import Image from "next/image";
 import { X } from "lucide-react";
+import { Trip } from "../types/story.types";
 
 interface TourGalleryProps {
   title: string;
+  tours: Trip;
   images: string[];
   open: boolean;
   onClose: () => void;
@@ -14,6 +16,7 @@ interface TourGalleryProps {
 
 export const TourGallery: React.FC<TourGalleryProps> = ({
   title,
+  tours,
   images,
   open,
   onClose,
@@ -72,7 +75,7 @@ export const TourGallery: React.FC<TourGalleryProps> = ({
                   style={{ height: `${200 + (idx % 3) * 80}px` }} // variable heights for Benton
                 >
                   <Image quality={100}
-                    src={img}
+                     src={`${process.env.NEXT_PUBLIC_AWS_ASSETS_BASE_URL}${tours?.id}/${process.env.NEXT_PUBLIC_ITERNARY_GALLERY_IMAGE_URL}${img}`}
                     alt={`Tour image ${idx + 1}`}
                     fill
                     className="object-cover transition-transform duration-500 group-hover:scale-110"

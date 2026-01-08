@@ -2,7 +2,7 @@
 
 import { motion } from "framer-motion";
 import { cn } from "@/lib/utils";
-import { Tour } from "@/features/story/types/story.types";
+import { Tour } from "../types/tours.types";
 
 export default function JungleBookNavMobile({
   destinations,

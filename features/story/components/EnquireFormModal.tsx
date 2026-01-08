@@ -19,7 +19,7 @@ import { EnquiryFormData } from "../types/story.types";
 interface EnquiryFormModalProps {
   open: boolean;
   onClose: () => void;
-  tourId?: number;
+  tourId?: string;
   tourTitle?: string;
 }
 
@@ -80,9 +80,9 @@ export default function EnquiryFormModal({
 
     const enquiryData: EnquiryFormData = {
       name: name.trim(),
-      phone,
-      tourId,
-      tourTitle,
+      phoneNumber: phone,
+      tripId: tourId,
+      tripName: tourTitle,
     };
 
     dispatch(submitEnquiry(enquiryData));

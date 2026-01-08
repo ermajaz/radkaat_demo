@@ -2,18 +2,30 @@
 
 import Image from "next/image";
 import { motion } from "framer-motion";
-import { Tour } from "@/features/story/types/story.types";
+import { Tour } from "../types/tours.types";
+import { BadgeCheck, Bike, Car, MapPin, Mountain, Ruler, UtensilsCrossed } from "lucide-react";
+
+const ICON_MAP = {
+  Bike,
+  Mountain,
+  Ruler,
+  MapPin,
+  UtensilsCrossed,
+  BadgeCheck,
+  Car,
+} as const;
 
 export default function CardImageMobile({ destination }: { destination: Tour }) {
   const title = destination?.title;
   const subtitle = destination?.subtitle;
+  const rightPanelDetails = destination?.rightPanelDetails || [];
 
   return (
     <div className="relative w-full h-[380px] rounded-3xl overflow-hidden shadow-xl">
 
       {/* BG Image */}
       <Image
-        src={destination.leftImage}
+         src={`${process.env.NEXT_PUBLIC_AWS_ASSETS_BASE_URL}${destination?._id}/${process.env.NEXT_PUBLIC_ITERNARY_BG_IMAGE_URL}${destination?.image}`}
         alt={title}
         fill
         quality={100}
@@ -47,8 +59,10 @@ export default function CardImageMobile({ destination }: { destination: Tour }) 
 
         {/* MIDDLE - DETAILS GRID */}
         <div className="grid grid-cols-2 gap-y-2 gap-x-3 mt-2">
-          {destination?.rightPanelDetails?.map((item, i) => {
-            const Icon = item.icon;
+          {rightPanelDetails?.map((item, i) => {
+             const Icon = ICON_MAP[item.icon]; // ✅ SAFE LOOKUP
+
+            if (!Icon) return null; // extra safety
             return (
               <div
                 key={i}
@@ -70,7 +84,7 @@ export default function CardImageMobile({ destination }: { destination: Tour }) 
 
         {/* CTA BUTTON */}
         <button
-          onClick={() => window.open(destination.link, "_blank")}
+          onClick={() => window.open(`${`/stories/${destination._id}/${destination.trip_name}`}`, "_blank")}
           className="
             w-full h-10 rounded-full 
             bg-[radial-gradient(circle,rgba(255,204,102,0.10)_30%,rgba(255,204,102,0.20)_100%)]

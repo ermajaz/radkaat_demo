@@ -101,12 +101,12 @@ export const collaborationsDataMobile: CollaborationsData = {
     },
     {
       id: "2",
-      image: "/images/experience/herocycle.png",
+      image: "/images/experience/cratoni.png",
       bg: "#C04A3E",
     },
     {
       id: "3",
-      image: "/images/experience/cratoni.png",
+      image: "/images/experience/herocycle.png",
       bg: "#C8C18F",
     },
     {

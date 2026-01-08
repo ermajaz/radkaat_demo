@@ -1,6 +1,7 @@
 import { createSlice, createAsyncThunk, PayloadAction } from '@reduxjs/toolkit';
-import { StoryState, Tour, EnquiryFormData, EnquiryResponse } from './types/story.types';
+import {  EnquiryFormData, Trip } from './types/story.types';
 import { storyService } from '@/services/story.service';
+import { StoryState } from '@/components/sections/jungle-book-tour/types/tours.types';
 
 const initialState: StoryState = {
   tours: [],
@@ -29,7 +30,7 @@ export const fetchTours = createAsyncThunk(
 
 export const fetchTourById = createAsyncThunk(
   'story/fetchTourById',
-  async (tourId: number, { rejectWithValue }) => {
+  async (tourId: string, { rejectWithValue }) => {
     try {
       const tour = await storyService.getTourById(tourId);
       return tour;
@@ -78,7 +79,7 @@ export const storySlice = createSlice({
         success: false,
       };
     },
-    setCurrentTour: (state, action: PayloadAction<Tour | null>) => {
+    setCurrentTour: (state, action: PayloadAction<Trip | null>) => {
       state.currentTour = action.payload;
     },
   },

@@ -4,12 +4,12 @@ import React, { useRef, useEffect, useState } from "react";
 import { motion, useAnimation } from "framer-motion";
 import HeroRightOverlay from "./HeroRightOverlay";
 import Image from "next/image";
-import { Tour } from "@/features/story/types/story.types";
+import { Trip } from "../types/story.types";
 
 interface HeroToutProps {
   subtitle?: string;
   title: string;
-  tour: Tour;
+  tour: Trip;
 }
 
 export default function HeroTout({ subtitle = "stories", title, tour }: HeroToutProps) {
@@ -86,7 +86,7 @@ export default function HeroTout({ subtitle = "stories", title, tour }: HeroTout
           autoPlay
           className="absolute inset-0 w-full h-full object-cover z-0"
         >
-          <source src={tour.video} type="video/mp4" />
+          <source src={`${process.env.NEXT_PUBLIC_AWS_ASSETS_BASE_URL}${tour.id}/${process.env.NEXT_PUBLIC_ITERNARY_VIDEO_URL}${tour.video}`} type="video/mp4" />
         </motion.video>
       )}
 
@@ -100,7 +100,7 @@ export default function HeroTout({ subtitle = "stories", title, tour }: HeroTout
         transition={{ ease: "easeOut" }}
       >
         <Image
-          src={tour.leftImage}
+          src={`${process.env.NEXT_PUBLIC_AWS_ASSETS_BASE_URL}${tour.id}/${process.env.NEXT_PUBLIC_ITERNARY_BG_IMAGE_URL}${tour.leftImage}`}
           alt={title}
           fill
           className="object-cover"

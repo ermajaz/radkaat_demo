@@ -5,10 +5,11 @@ import { Button } from "@/components/ui/button";
 import EnquiryFormModal from "./EnquireFormModal";
 
 interface StoryStripProps {
-  name: string;
+  tourName: string;
+  tourId:string;
 }
 
-export default function StoryStrip({ name }: StoryStripProps) {
+export default function StoryStrip({ tourName,tourId }: StoryStripProps) {
   const [open, setOpen] = useState(false);
 
   return (
@@ -22,7 +23,7 @@ export default function StoryStrip({ name }: StoryStripProps) {
         "
       >
         <div className="text-superblack text-[20px] md:text-[22px] font-semibold truncate">
-          {name.toUpperCase()}
+          {tourName.toUpperCase()}
         </div>
 
         <Button
@@ -34,7 +35,7 @@ export default function StoryStrip({ name }: StoryStripProps) {
       </div>
 
       {/* Desktop → ShadCN Modal */}
-      <EnquiryFormModal open={open} onClose={() => setOpen(false)} />
+      <EnquiryFormModal open={open} onClose={() => setOpen(false)} tourId={tourId} tourTitle={tourName} />
     </>
   );
 }

@@ -1,6 +1,7 @@
 "use client";
 
-import { Tour } from "@/features/story/types/story.types";
+import { Tour } from "../types/tours.types";
+
 
 export default function JungleBookNavDesktop({ destinations, activeIndex, onStoryClick }: {
   destinations: Tour[];

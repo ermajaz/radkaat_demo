@@ -1,11 +1,28 @@
+import { BadgeCheck, Bike, Car, MapPin, Mountain, Ruler, UtensilsCrossed } from "lucide-react";
 
 export interface LocationPoint {
   lat: number;
   lng: number;
 }
 
+export type LucideIconName =
+  | "Bike"
+  | "Mountain"
+  | "Ruler"
+  | "MapPin"
+  | "UtensilsCrossed"
+  | "BadgeCheck"
+  | "Car";
 
-export interface StoryContent {
+
+export interface RightPanelDetail {
+  icon: LucideIconName;
+  text: string;
+}
+
+
+
+export interface StoryBlock {
   type: "story";
   title: string;
   data: {
@@ -13,11 +30,13 @@ export interface StoryContent {
     user_experience: string;
     author: string;
     date: string;
-    author_img: string;
+    author_img?: string;
   };
 }
 
-export interface ItineraryItem {
+
+
+export interface ItineraryDay {
   day: string;
   title: string;
   distance?: string;
@@ -25,50 +44,62 @@ export interface ItineraryItem {
   description: string[];
 }
 
-export interface ItineraryContent {
+export interface ItineraryBlock {
   type: "itinerary";
   title: string;
-  data: ItineraryItem[];
+  data: ItineraryDay[];
 }
+
 
 export interface InclusionsContent {
   type: "inclusions";
   title: string;
-  data: { title: string; user_experience: string; author: string; date: string; author_img: string };
+    user_experience: string[];  // ✅ list of points
+    author: string;
+    date: string;
 }
+
 
 export interface ExclusionsContent {
   type: "exclusions";
   title: string;
-  data: { title: string; user_experience: string; author: string; date: string; author_img: string };
+    user_experience: string[];  // ✅ list of points
+    author: string;
+    date: string;
 }
 
 
+
+
+export type PackingCategory = "must" | "recommended" | "optional";
 
 export interface PackingItem {
   name: string;
-  image: string;
-  category?: "must";
+  category: PackingCategory;
 }
 
-export interface PackingContent {
+export interface PackingBlock {
   type: "packing";
   title: string;
   data: PackingItem[];
 }
 
-export interface TestimonialItem {
+
+
+export interface Testimonial {
   name: string;
   role: string;
   comment: string;
-  image: string;
+  image?: string;
 }
 
-export interface TestimonialContent {
-  type: "testimonial";
-  title: string;
-  data: TestimonialItem[];
+export interface TestimonialsBlock {
+  type: "testimonials";
+  title?: string;
+  data: Testimonial[];
 }
+
+
 
 export interface GalleryContent {
   type: "gallery";
@@ -76,47 +107,54 @@ export interface GalleryContent {
   data: string[];
 }
 
-export type ContentSection =
-  | StoryContent
-  | ItineraryContent
-  | InclusionsContent
-  | ExclusionsContent
-  | PackingContent
-  | TestimonialContent
-  | GalleryContent;
-
-export interface RightPanelDetail {
-  icon: React.ElementType;
-  text: string;
+export interface TripContent {
+  story?: StoryBlock[];
+  itinerary?: ItineraryBlock[];
+  packing?: PackingBlock[];
+  testimonials?: Testimonial[];
+  inclusions?: InclusionsContent;
+  exclusions?: ExclusionsContent;
 }
 
-export interface Tour {
-  id: number;
+
+export interface Trip {
+  id: string;
+
   title: string;
   subtitle?: string;
+
   date: string;
   seat?: string;
+
   excerpt: string;
   description: string;
+
   price: number;
-  leftImage: string;
   link: string;
   className?: string;
+
+  leftImage: string;
   video?: string;
   pdf?: string;
+  images: string[];
+
   source: LocationPoint;
   destination: LocationPoint;
-  images: string[];
-  content: ContentSection[];
+
+  content: TripContent;
   rightPanelDetails: RightPanelDetail[];
 }
+
+
+
+
 
 // Enquiry Form Types
 export interface EnquiryFormData {
   name: string;
-  phone: string;
-  tourId?: number;
-  tourTitle?: string;
+  phoneNumber: string;
+  tripName?: string;
+  tripId?: string;
 }
 
 export interface EnquiryResponse {
@@ -125,16 +163,8 @@ export interface EnquiryResponse {
   enquiryId?: string;
 }
 
-// Story State Types
-export interface StoryState {
-  tours: Tour[];
-  currentTour: Tour | null;
-  enquiry: {
-    isSubmitting: boolean;
-    error: string | null;
-    success: boolean;
-  };
-  isLoading: boolean;
-  error: string | null;
-}
+
+
+
+
 

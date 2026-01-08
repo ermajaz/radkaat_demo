@@ -11,9 +11,11 @@ import TestimonialSection from "../TestimonialSection";
 import StoryGallerySection from "../StoryGallerySection";
 import ExclusionsSection from "../ExclusionsSection";
 import InclusionsSection from "../InclusionsSection";
+import { Trip } from "../../types/story.types";
 
 interface Props {
     section: any;
+    tour: Trip;
     nextTourName?: string;
     onNextTourClick?: () => void;
     homepageLink?: string;
@@ -21,11 +23,15 @@ interface Props {
 
 export const StoryContentRendererMobile: React.FC<Props> = ({
     section,
+    tour,
     nextTourName,
     onNextTourClick,
     homepageLink = "/",
 }) => {
-    const pdfUrl = "/pdfs/zanskar-itinerary.pdf";
+    const pdfUrl = tour?.pdf
+        ? `${process.env.NEXT_PUBLIC_AWS_ASSETS_BASE_URL}${tour.id}/${process.env.NEXT_PUBLIC_ITERNARY_PDF_URL}${tour.pdf}`
+        : null;
+
     return (
         <motion.div
             key={section.title}
@@ -39,6 +45,8 @@ export const StoryContentRendererMobile: React.FC<Props> = ({
                 <motion.a
                     href={pdfUrl}
                     download
+                    target="_blank"
+                    rel="noopener noreferrer"
                     initial={{ opacity: 0, y: 10 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.5 }}
@@ -51,20 +59,22 @@ export const StoryContentRendererMobile: React.FC<Props> = ({
     "
                 >
                     <Download size={18} />
-                    Download Itinerary PDF
+                    Itinerary Details
                 </motion.a>
             )}
             {section.type === "story" && (
                 <StoryContentCard
-                    content={section.data}
+                    content={section.data} tour={tour}
                 />
             )}
             {section.type === "itinerary" && <ItineraryAccordion items={section.data} />}
             {section.type === "packing" && (
                 <WhatToPackSection title={section.title} items={section.data} />
             )}
-            {section.type === "testimonial" && (
-                <TestimonialSection title={section.title} testimonials={section.data} />
+            {section.type === "testimonials" && (
+                <TestimonialSection title={section.title}
+                    tour={tour}
+                    testimonials={section.data} />
             )}
             {section.type === "gallery" && (
                 <StoryGallerySection title={section.title} images={section.data} />

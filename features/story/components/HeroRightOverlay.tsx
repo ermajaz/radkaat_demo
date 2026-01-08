@@ -1,13 +1,33 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Tour } from "@/features/story/types/story.types";
+import {
+  Bike,
+  Mountain,
+  Ruler,
+  MapPin,
+  UtensilsCrossed,
+  BadgeCheck,
+  Car,
+} from "lucide-react";
+import { Trip } from "@/features/story/types/story.types";
+
+const ICON_MAP = {
+  Bike,
+  Mountain,
+  Ruler,
+  MapPin,
+  UtensilsCrossed,
+  BadgeCheck,
+  Car,
+} as const;
+
 
 export default function HeroRightOverlay({
   tour,
   controls
 }: {
-  tour: Tour;
+  tour: Trip;
   controls: any; // motion controls
 }) {
   const { subtitle, description, rightPanelDetails } = tour;
@@ -43,7 +63,10 @@ export default function HeroRightOverlay({
       {rightPanelDetails?.length > 0 && (
         <ul className="space-y-2">
           {rightPanelDetails.map((item, i) => {
-            const Icon = item.icon;
+            const Icon = ICON_MAP[item.icon]; // ✅ SAFE LOOKUP
+
+            if (!Icon) return null;
+
             return (
               <li key={i} className="flex items-start gap-3 text-gray-200 text-[14px]">
                 <Icon size={17} className="text-[#E4D27C]" />

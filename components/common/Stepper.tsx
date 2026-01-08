@@ -3,21 +3,31 @@
 import React from "react";
 import { motion } from "framer-motion";
 import Image from "next/image";
-import { useRouter } from "next/navigation";
+import { useRouter, usePathname } from "next/navigation";
 import Logo from "../layout/Header/components/Logo";
 
 interface StepperProps {
-  step: 1 | 2 | 3;
+  step: 1 | 2 | 3 | 4;
 }
 
 export const Stepper: React.FC<StepperProps> = ({ step }) => {
   const router = useRouter();
+  const pathname = usePathname();
 
-  const steps = [
-    { label: "Cart", route: "/cart" },
-    { label: "Address", route: "/cart/address" },
-    { label: "Payment", route: "/cart/payment" },
-  ];
+  // Determine steps based on pathname
+  const isPreorder = pathname.startsWith('/preorder');
+  const steps = isPreorder
+    ? [
+        { label: "Preorder", route: "/preorder" },
+        { label: "Customize", route: "/preorder/customization" },
+        { label: "Address", route: "/preorder/address" },
+        { label: "Payment", route: "/preorder/payment" },
+      ]
+    : [
+        { label: "Cart", route: "/cart" },
+        { label: "Address", route: "/cart/address" },
+        { label: "Payment", route: "/cart/payment" },
+      ];
 
   const handleStepClick = (current: number, route: string) => {
     // ✅ OPTIONAL RULE: Prevent skipping ahead
@@ -51,7 +61,7 @@ export const Stepper: React.FC<StepperProps> = ({ step }) => {
               <div
                 className={`w-9 h-9 rounded-full flex items-center justify-center border-2 text-sm font-medium transition-all duration-300 ${
                   isActive
-                    ? "border-army bg-army text-black shadow-[0_0_10px_rgba(139,169,137,0.5)]"
+                    ? "border-[#E4D27C] bg-[#E4D27C] text-black shadow-[0_0_10px_rgba(228,210,124,0.5)]"
                     : "border-gray-700 text-gray-500"
                 }`}
               >
@@ -60,7 +70,7 @@ export const Stepper: React.FC<StepperProps> = ({ step }) => {
 
               <span
                 className={`text-xs uppercase tracking-widest ${
-                  isActive ? "text-army" : "text-gray-500"
+                  isActive ? "text-[#E4D27C]" : "text-gray-500"
                 }`}
               >
                 {item.label}
@@ -69,7 +79,7 @@ export const Stepper: React.FC<StepperProps> = ({ step }) => {
               {index < steps.length - 1 && (
                 <div
                   className={`w-10 md:w-20 h-0.5 transition-all ${
-                    isActive ? "bg-army" : "bg-gray-700"
+                    isActive ? "bg-[#E4D27C]" : "bg-gray-700"
                   }`}
                 />
               )}

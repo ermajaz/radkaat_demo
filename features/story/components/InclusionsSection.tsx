@@ -16,10 +16,9 @@ interface InclusionsData {
 
 export default function InclusionsSection({ title, data }: InclusionsData) {
   // Convert bullet string into clean array
-  const items = data.user_experience
-    .split("•")
-    .map((item) => item.trim())
-    .filter(Boolean);
+ const items = Array.isArray(data?.user_experience)
+  ? data.user_experience
+  : [];
 
   return (
     <section className="w-full text-white mb-16">

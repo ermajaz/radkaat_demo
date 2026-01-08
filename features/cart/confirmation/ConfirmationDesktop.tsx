@@ -2,7 +2,7 @@
 
 import dynamic from "next/dynamic";
 import { useEffect, useState } from "react";
-import {motion} from "framer-motion";
+import { motion } from "framer-motion";
 import { PaymentStatus } from "./components/PaymentStatus";
 import { OrderSummary } from "./components/OrderSummary";
 import { ConfirmationActions } from "./components/ConfirmationActions";
@@ -11,7 +11,7 @@ import { ConfirmationActions } from "./components/ConfirmationActions";
 const Confetti = dynamic(() => import("react-confetti"), { ssr: false });
 
 export default function ConfirmationDesktop() {
-    const [orderData, setOrderData] = useState<{
+  const [orderData, setOrderData] = useState<{
     orderId: string;
     amount: number;
     discount: number;
@@ -40,8 +40,8 @@ export default function ConfirmationDesktop() {
     return () => clearTimeout(timer);
   }, []);
 
-    return (
- <main className="h-full text-white relative overflow-hidden flex items-center justify-center ">
+  return (
+    <main className="h-full text-white relative overflow-hidden flex items-center justify-center ">
       {/* 🎊 Confetti */}
       {showConfetti && <Confetti recycle={false} numberOfPieces={250} gravity={0.2} />}
 
@@ -78,6 +78,6 @@ export default function ConfirmationDesktop() {
         </div>
       </motion.div>
     </main>
-    )
+  )
 
 }

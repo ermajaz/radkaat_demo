@@ -13,7 +13,7 @@ const brands = [
 
 export default function MobileBrandsScroller() {
   return (
-    <div className="relative z-10 px-6 pt-[260px] pb-24">
+    <div className="relative z-10 px-6 pt-[200px] pb-24">
       <div className="grid grid-cols-2 gap-y-14">
         {brands.map((b, index) => {
           const isRight = index % 2 === 1;

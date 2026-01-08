@@ -2,20 +2,30 @@
 
 import React from "react";
 import { motion } from "framer-motion";
-import { useRouter } from "next/navigation";
+import { useRouter, usePathname } from "next/navigation";
 
 interface StepperMobileProps {
-  step: 1 | 2 | 3;
+  step: 1 | 2 | 3 | 4;
 }
 
 export default function StepperMobile({ step }: StepperMobileProps) {
   const router = useRouter();
+  const pathname = usePathname();
 
-  const steps = [
-    { label: "Cart", route: "/cart" },
-    { label: "Address", route: "/cart/address" },
-    { label: "Payment", route: "/cart/payment" },
-  ];
+  // Determine steps based on pathname
+  const isPreorder = pathname.startsWith('/preorder');
+  const steps = isPreorder
+    ? [
+        { label: "Preorder", route: "/preorder" },
+        { label: "Customize", route: "/preorder/customization" },
+        { label: "Address", route: "/preorder/address" },
+        { label: "Payment", route: "/preorder/payment" },
+      ]
+    : [
+        { label: "Cart", route: "/cart" },
+        { label: "Address", route: "/cart/address" },
+        { label: "Payment", route: "/cart/payment" },
+      ];
 
   const handleClick = (current: number, route: string) => {
     if (current > step) return;
@@ -47,7 +57,7 @@ export default function StepperMobile({ step }: StepperMobileProps) {
                   w-10 h-10 shrink-0 rounded-full text-sm font-semibold
                   transition-all duration-300
                   ${isActive
-                    ? "bg-army text-black"
+                    ? "bg-[#E4D27C] text-black"
                     : "bg-[#1a1a1a] text-gray-500 border border-gray-700"
                   }
                 `}
@@ -59,7 +69,7 @@ export default function StepperMobile({ step }: StepperMobileProps) {
               <span
                 className={`
                   ml-2 text-[12px] uppercase tracking-wide
-                  ${isActive ? "text-army" : "text-gray-600"}
+                  ${isActive ? "text-[#E4D27C]" : "text-gray-600"}
                 `}
               >
                 {item.label}
@@ -70,7 +80,7 @@ export default function StepperMobile({ step }: StepperMobileProps) {
                 <div
                   className={`
                     flex-1 h-0.5 mx-2
-                    ${isActive ? "bg-army" : "bg-gray-700"}
+                    ${isActive ? "bg-[#E4D27C]" : "bg-gray-700"}
                   `}
                 />
               )}
