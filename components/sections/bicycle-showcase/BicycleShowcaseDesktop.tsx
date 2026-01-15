@@ -176,7 +176,7 @@ export default function BikeShowcaseDesktop() {
                                       </div>
 
                                       {/* bike image centered */}
-                                      <div className="absolute top-[45%] -translate-y-[30%] z-20 w-full h-full">
+                                      <div className="absolute top-[45%] -translate-y-[35%] z-20 w-full h-full">
                                         <BikeImage image={bike.image} bike={BIKES[active]} hideHotspots={focus360} />
                                       </div>
                                       <div className="absolute left-1/2 -translate-x-1/2 bottom-25 z-30">

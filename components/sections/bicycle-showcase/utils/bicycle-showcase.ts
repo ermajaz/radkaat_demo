@@ -47,7 +47,7 @@ export const BIKES: Bike[] = [
     id: "serow",
     uiName: "Serow",
     bgWord: "SEROW",
-    image: "/images/bg/serow-new.png",
+    image: "/images/bikes/v1/serow-bike-v2.png",
     logo: "/icons/Serow-white.png",
     description: "A versatile mountain bike designed for all terrains.A versatile mountain bike designed for all terrains.A versatile mountain bike designed for all terrains.A versatile mountain bike designed for all terrains.A versatile mountain bike designed for all terrains.A versatile mountain bike designed for all terrains.A versatile mountain bike designed for all terrains.A versatile mountain bike designed for all terrains.A versatile mountain bike designed for all terrains.",
     colors: {
@@ -117,7 +117,7 @@ export const BIKES: Bike[] = [
     id: "saola",
     uiName: "Saola",
     bgWord: "SAOLA",
-    image: "/images/bg/saola-new.png",
+    image: "/images/bikes/v1/saola-bike-v2.png",
     logo: "/icons/Saola-white.png",
     description: "A versatile mountain bike designed for all terrains.A versatile mountain bike designed for all terrains.A versatile mountain bike designed for all terrains.A versatile mountain bike designed for all terrains.A versatile mountain bike designed for all terrains.A versatile mountain bike designed for all terrains.A versatile mountain bike designed for all terrains.A versatile mountain bike designed for all terrains.A versatile mountain bike designed for all terrains.",
     colors: {
@@ -187,7 +187,7 @@ export const BIKES: Bike[] = [
     id: "takin",
     uiName: "Takin",
     bgWord: "TAKIN",
-    image: "/images/bg/takin-new.png",
+    image: "/images/bikes/v1/takin-bike-v2.png",
     logo: "/icons/Takin-white.png",
     description: "A versatile mountain bike designed for all terrains.A versatile mountain bike designed for all terrains.A versatile mountain bike designed for all terrains.A versatile mountain bike designed for all terrains.A versatile mountain bike designed for all terrains.A versatile mountain bike designed for all terrains.A versatile mountain bike designed for all terrains.A versatile mountain bike designed for all terrains.A versatile mountain bike designed for all terrains.",
     colors: {
