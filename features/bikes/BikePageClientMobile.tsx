@@ -41,7 +41,7 @@ export default function BikePageClientMobile({
                     ]}
                     colors={["black", "var(--color-rust)"]}
                     icon="/icons/Takin-white.png"
-                    image="/images/bikes/hero-bike-mobile.png"
+                    image="/images/bikes/v1/serow-angled.webp"
                 />
             </section>
             <BikeStripMobile

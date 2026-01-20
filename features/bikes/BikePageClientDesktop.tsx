@@ -41,7 +41,7 @@ export default function BikePageClientDesktop(
                     ]}
                     colors={["black", "var(--color-rust)"]}
                     icon="/icons/Takin-white.png"
-                    image="/images/bikes/serow-hero.png"
+                    image="/images/bikes/v1/serow-angled.webp"
                 />
             </section>
             <BikeStrip

@@ -59,7 +59,7 @@ export default function BikeHeroMobile({
                     alt={model}
                     fill
                     priority
-                    className="object-cover pointer-events-none select-none"
+                    className="object-contain scale-120 pointer-events-none select-none"
                 />
             </motion.div>
 
