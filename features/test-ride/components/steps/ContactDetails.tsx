@@ -18,10 +18,11 @@ export interface ContactFormValues {
 
 interface ContactDetailsProps {
   onNext: (contact: ContactFormValues) => void;
+  setShowRideDetails: React.Dispatch<React.SetStateAction<boolean>>;
   onBack: () => void;
 }
 
-export default function ContactDetails({ onNext, onBack }: ContactDetailsProps) {
+export default function ContactDetails({ onNext,setShowRideDetails, onBack }: ContactDetailsProps) {
   const { register, handleSubmit, watch } = useForm<ContactFormValues>();
   const termsChecked = watch("terms", false);
 
@@ -65,6 +66,7 @@ export default function ContactDetails({ onNext, onBack }: ContactDetailsProps) 
     // Simulated delay
     setTimeout(() => {
       setShowPaymentModal(false);
+      setShowRideDetails(true);
       onNext(tempData);
     }, 500);
   };

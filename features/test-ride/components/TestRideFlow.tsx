@@ -7,17 +7,14 @@ import Image from "next/image";
 import gsap from "gsap";
 
 import ChooseStore from "./steps/ChooseStore";
-import ChooseRider from "./steps/ChooseRider";
 import ContactDetails from "./steps/ContactDetails";
-import BookingConfirmation from "./steps/BookingConfirmation";
 import ChooseBikeVariant from "./steps/ChooseBikeVariant";
-import { Bike, Mail, MapPin, UserRound } from "lucide-react";
+import { Mail, MapPin } from "lucide-react";
 import RideDetailsSummary from "./steps/RideDetailsSummary";
 
 const steps = [
   "Choose Bike & Variant",
   "Choose Store",
-  "Choose Rider",
   "Contact Details",
   "Booking Confirmation",
 ];
@@ -33,8 +30,7 @@ export default function TestRideFlow() {
     variantGroup: "",
     color: "",
     variant: { wheelSize: "", frameSize: "" },
-    store: { name: "", date: "" },
-    rider: null as { id: number; name: string; img: string } | null,
+    store: { name: "", date: "", lat: 0, lng: 0 },
     contact: { firstName: "", lastName: "", phone: "", email: "" },
   });
 
@@ -168,75 +164,71 @@ export default function TestRideFlow() {
                 <motion.div
                   key="bikeVariant"
                   layout
-                  initial={{ opacity: 0, x: -15 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  exit={{ opacity: 0, x: -15 }}
-                  className="rounded-sm overflow-hidden border border-white/10 bg-black/30 backdrop-blur-lg shadow-lg hover:shadow-xl transition-all"
+                  initial={{ opacity: 0, y: 12 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: 12 }}
+                  className="
+      rounded-sm overflow-hidden 
+      border border-white/10 
+      bg-black/40 backdrop-blur-xl 
+      shadow-lg hover:shadow-xl 
+      transition-all
+    "
                 >
-                  {/* Bike Image + Variant Overlay */}
-                  <div className="relative">
+                  {/* ===================== HEADER ===================== */}
+                  <div className="
+      px-4 py-3 
+      flex items-center justify-between
+      border-b border-white/10
+    ">
+                    <div>
+                      <p className="text-white font-semibold tracking-wide text-sm">
+                        {selection.bike.name}
+                      </p>
+                      <p className="text-sandstorm text-xs font-medium tracking-wider">
+                        Model {selection.variantGroup}
+                      </p>
+                    </div>
+
+                    <div className="text-[11px] px-2 py-1 rounded-sm border border-white/10 bg-black/60 text-sandstorm font-semibold">
+                      Selected
+                    </div>
+                  </div>
+
+                  {/* ===================== IMAGE ===================== */}
+                  <div className="relative w-full h-40 flex items-center justify-center bg-black/20">
                     <Image
                       src={selection.bike.img}
                       alt={selection.bike.name}
-                      width={320}
-                      height={180}
+                      fill
                       quality={100}
-                      className="object-cover w-full h-48"
+                      className="object-cover p-6"
                     />
-
-                    {/* Badge */}
-                    <div className="absolute top-3 left-3 bg-superblack/70 px-3 py-1 rounded-sm text-xs font-semibold text-sandstorm tracking-wide border border-white/10">
-                      Bike Selected
-                    </div>
-                    <div className="absolute top-3 right-3 flex items-center justify-between mb-1">
-                      <div
-                        className="w-5.5 h-5.5 rounded-full border-[1.5px] border-white/40"
-                        style={{ backgroundColor: selection.color }}
-                      />
-                    </div>
-
-                    {/* VARIANT OVERLAY */}
-                    {selection.variant.wheelSize && (
-                      <div className="
-          absolute bottom-0 left-0 w-full 
-          bg-black/60 backdrop-blur-md 
-          border-t border-white/10 
-          px-4 py-3 
-        ">
-                        <div className="flex items-center justify-between mb-1">
-                          <p className="text-sm text-white/80">Variant</p>
-                          <span className="text-sandstorm font-medium">
-                            {selection.variantGroup}
-                          </span>
-                        </div>
-                        <div className="flex justify-between text-sm">
-                          <span className="text-white/70">Wheel Size:</span>
-                          <span className="text-sandstorm font-medium">
-                            {selection.variant.wheelSize}
-                          </span>
-                        </div>
-
-                        <div className="flex justify-between text-sm mt-1">
-                          <span className="text-white/70">Frame Size:</span>
-                          <span className="text-sandstorm font-medium">
-                            {selection.variant.frameSize}
-                          </span>
-                        </div>
-                      </div>
-                    )}
                   </div>
 
-                  {/* Text Info (bike name only now) */}
-                  <div className="p-4">
-                    <div className="flex items-center justify-between">
-                      <p className="font-semibold text-white text-lg tracking-wide">
-                        {selection.bike.name}
-                      </p>
-                      <Bike className="text-sandstorm" size={22} />
+                  {/* ===================== BOTTOM INFO BAR ===================== */}
+                  <div className="
+      flex items-center justify-between
+      px-5 py-3
+      border-t border-white/10
+      bg-black/50
+      text-sm
+    ">
+                    <div className="flex items-center gap-2">
+                      <span className="text-white/60">Wheel</span>
+                      <span className="text-sandstorm font-semibold">27.5"</span>
+                    </div>
+
+                    <div className="w-px h-5 bg-white/15" />
+
+                    <div className="flex items-center gap-2">
+                      <span className="text-white/60">Frame</span>
+                      <span className="text-sandstorm font-semibold">M</span>
                     </div>
                   </div>
                 </motion.div>
               )}
+
 
 
               {/* STORE */}
@@ -258,30 +250,6 @@ export default function TestRideFlow() {
                 </motion.div>
               )}
 
-              {/* RIDER */}
-              {selection.rider && (
-                <motion.div
-                  key="rider"
-                  layout
-                  initial={{ opacity: 0, x: -15 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  exit={{ opacity: 0, x: -15 }}
-                  className="p-4 rounded-sm border border-white/10 bg-black/30 backdrop-blur-lg shadow-md hover:shadow-lg transition-all flex items-center gap-4"
-                >
-                  <Image
-                    src={selection.rider.img}
-                    alt={selection.rider.name}
-                    width={50}
-                    height={50}
-                    className="rounded-full w-[50px] h-[50px] border object-contain border-white/20"
-                  />
-                  <div className="flex-1">
-                    <p className="font-semibold text-white">{selection.rider.name}</p>
-                    <p className="text-white/60 text-sm">Assigned Rider</p>
-                  </div>
-                  <UserRound className="text-sandstorm" size={22} />
-                </motion.div>
-              )}
 
               {/* CONTACT */}
               {selection.contact.firstName && (
@@ -315,8 +283,8 @@ export default function TestRideFlow() {
             {stepIndex === 0 && !showRideDetails && (
               <ChooseBikeVariant
                 key="step-0"
-                onNext={({ bike, variantGroup, color, variant }) => {
-                  setSelection((prev) => ({ ...prev, bike, variantGroup, color, variant }));
+                onNext={({ bike, variantGroup }) => {
+                  setSelection((prev) => ({ ...prev, bike, variantGroup }));
                   next();
                 }}
               />
@@ -324,10 +292,10 @@ export default function TestRideFlow() {
             {stepIndex === 1 && !showRideDetails && (
               <ChooseStore
                 key="step-1"
-                onNext={({ store, date }) => {
+                onNext={({ store, date, lat, lng }) => {
                   setSelection((prev) => ({
                     ...prev,
-                    store: { ...store, date },
+                    store: { ...store, date, lat, lng },
                   }));
                   next();
                 }}
@@ -335,37 +303,22 @@ export default function TestRideFlow() {
               />
             )}
             {stepIndex === 2 && !showRideDetails && (
-              <ChooseRider
-                key="step-2"
-                onNext={(rider) => {
-                  setSelection((prev) => ({ ...prev, rider }));
-                  next();
-                }}
-                onBack={back}
-              />
-            )}
-            {stepIndex === 3 && !showRideDetails && (
               <ContactDetails
                 key="step-3"
                 onNext={(contact) => {
                   setSelection((prev) => ({ ...prev, contact }));
                   next();
                 }}
+                setShowRideDetails={setShowRideDetails}
                 onBack={back}
               />
-            )}
-            {stepIndex === 4 && !showRideDetails && (
-              <BookingConfirmation key="step-4" contact={selection.contact} setShowRideDetails={setShowRideDetails} />
             )}
             {showRideDetails && (
               <RideDetailsSummary
                 bike={selection.bike}
-                variant={selection.variant}
+                store={selection.store}
                 variantGroup={selection.variantGroup}
-                color={selection.color}
-                rider={selection.rider}
                 date={selection.store.date}
-                onClose={() => setShowRideDetails(false)}
               />
             )}
           </AnimatePresence>
