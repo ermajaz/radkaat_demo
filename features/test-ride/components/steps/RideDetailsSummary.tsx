@@ -11,7 +11,7 @@ import {
     Home,
 } from "lucide-react";
 import { useRouter } from "next/navigation";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 
 import "mapbox-gl/dist/mapbox-gl.css";
 import { useMapboxRoute } from "@/components/sections/jungle-book-tour/hooks/useMapboxRoute";
@@ -35,7 +35,7 @@ interface RideDetailsSummaryProps {
         name: string;
         img: string;
     } | null;
-    store:{ name: string, date: string, lat: number, lng: number };
+    store: { name: string, date: string, lat: number, lng: number };
     variantGroup: string;
     date: string;
     timeWindow?: string;
@@ -57,7 +57,6 @@ export default function RideDetailsSummary({
 
     const ref = useRef<HTMLDivElement>(null);
     const isInView = useInView(ref, { margin: "-120px", once: true });
-
     const [userLocation, setUserLocation] = useState<LatLng | null>(null);
 
     /* ---------------------------------------------
@@ -89,26 +88,44 @@ export default function RideDetailsSummary({
         );
     }, []);
 
-    /* ---------------------------------------------
-       Build destination object
-    --------------------------------------------- */
-    const destination = userLocation
-        ? {
-            source: userLocation,
-            destination: {
-                lat: STORE.lat,
-                lng: STORE.lng,
-            },
-        }
-        : null;
+    const source = useMemo(
+        () =>
+            userLocation
+                ? userLocation
+                : { lat: 32.2432, lng: 77.1890 },
+        [userLocation]
+    );
 
+    const destination = useMemo(
+        () => ({
+            lat: store.lat,
+            lng: store.lng,
+        }),
+        [store.lat, store.lng]
+    );
     /* ---------------------------------------------
        Fetch route
     --------------------------------------------- */
-    const route = useMapboxRoute(
-        userLocation ? userLocation : { lat: 32.2432, lng: 77.1890 },
-        { lat: store.lat, lng: store.lng }
-    );
+    const haversineDistance = (
+        lat1: number,
+        lon1: number,
+        lat2: number,
+        lon2: number
+    ) => {
+        const toRad = (v: number) => (v * Math.PI) / 180;
+        const R = 6371;
+        const dLat = toRad(lat2 - lat1);
+        const dLon = toRad(lon2 - lon1);
+
+        const a =
+            Math.sin(dLat / 2) ** 2 +
+            Math.cos(toRad(lat1)) *
+            Math.cos(toRad(lat2)) *
+            Math.sin(dLon / 2) ** 2;
+
+        return R * 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+    };
+    const route = useMapboxRoute(source, destination);
 
     if (!bike) return null;
 
@@ -193,22 +210,34 @@ export default function RideDetailsSummary({
                     </div>
 
                     {/* Map */}
+                    {/* Map */}
                     <div
                         ref={ref}
                         className="relative w-full h-[280px] rounded-sm overflow-hidden border border-white/10"
                     >
                         {destination && userLocation ? (
-                            <Map
-                                destination={destination}
-                                route={route}
-                                isInView={isInView}
-                            />
+                            <>
+                                <Map
+                                    destination={destination}
+                                    route={route}
+                                    isInView={isInView}
+                                />
+
+                                {/* Distance Badge */}
+                                    <div className="absolute top-3 right-3 bg-black/70 backdrop-blur-md border border-white/10 px-3 py-1.5 rounded-full flex items-center gap-2 shadow-lg">
+                                        <MapPin size={14} className="text-sandstorm" />
+                                        <span className="text-xs font-semibold text-white">
+                                            {haversineDistance(source.lat,source.lng,destination.lat,destination.lng).toFixed(1)} km away
+                                        </span>
+                                    </div>
+                            </>
                         ) : (
                             <div className="w-full h-full flex items-center justify-center text-white/60">
                                 Getting your location...
                             </div>
                         )}
                     </div>
+
 
                     {/* Date + Time */}
                     <div className="bg-white/10 border border-white/10 rounded-sm px-5 py-4 flex flex-col justify-between items-center gap-4">

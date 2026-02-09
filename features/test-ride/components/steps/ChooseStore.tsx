@@ -228,68 +228,119 @@ export default function ChooseStore({ onNext, onBack }: ChooseStoreProps) {
       </h2>
 
       {/* ================= LOCATION MODE ================= */}
-      <div className="w-full flex flex-col gap-4">
+      <div className="w-full flex flex-col gap-3">
 
-        <div className="w-full flex gap-5">
-          {/* Search */}
-          <div className="w-1/2 relative">
-            <Input
-              placeholder="Search city or store..."
-              className="bg-white/10 text-white pl-12"
-              value={search}
-              onChange={(e) => {
-                setSearch(e.target.value);
-                setSelectedState(null);
-                setUseLocationMode(false);
-                setSelectedStore(null);
-              }}
-            />
-            <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-white/70" />
+        {/* ================= SEARCH + LOCATION ================= */}
+        <div className="relative backdrop-blur-xl rounded-xl">
+
+          <div className="flex gap-3 items-center">
+
+            {/* Search */}
+            <div className="relative flex-1 group">
+              <Input
+                placeholder="Search city or store"
+                value={search}
+                onChange={(e) => {
+                  setSearch(e.target.value);
+                  setSelectedState(null);
+                  setUseLocationMode(false);
+                  setSelectedStore(null);
+                }}
+                className="
+            bg-white/10 text-white pl-12 pr-10
+            border border-white/20
+            focus-visible:ring-0 focus:border-sandstorm
+            transition-all
+          "
+              />
+
+              {/* Search icon */}
+              <Search
+                className="
+            absolute left-4 top-1/2 -translate-y-1/2
+            w-5 h-5 text-white/60
+            group-focus-within:text-sandstorm
+            transition-colors
+          "
+              />
+
+              {/* Clear */}
+              {search && (
+                <button
+                  onClick={() => setSearch("")}
+                  className="absolute right-3 top-1/2 cursor-pointer -translate-y-1/2 text-white/50 hover:text-white"
+                >
+                  ✕
+                </button>
+              )}
+            </div>
+
+            {/* Use Location */}
+            <Button
+              onClick={getCurrentLocation}
+              disabled={useLocationMode}
+              className={`
+          relative overflow-hidden
+          bg-army text-white
+          border border-white/20
+          flex gap-2 px-4
+          transition-all
+          ${useLocationMode ? "opacity-80" : "hover:bg-army/90 cursor-pointer"}
+        `}
+            >
+              <LocateFixed size={18} />
+              <span className="hidden sm:inline">Use Location</span>
+
+              {/* Subtle pulse */}
+              {useLocationMode && (
+                <span className="absolute inset-0 bg-white/10 animate-pulse" />
+              )}
+            </Button>
           </div>
 
-          {/* Use location */}
-          <Button
-            onClick={getCurrentLocation}
-            className="bg-army cursor-pointer text-white border border-white/20 hover:bg-white/20 flex gap-2"
-          >
-            <LocateFixed size={18} /> Use My Current Location
-          </Button>
+          {/* Mode hint */}
+          <p className="mt-1 text-xs text-white/50">
+            Search by store name, or pick a state, or use your current location
+          </p>
         </div>
-        {/* State grid */}
-        <div className="grid grid-cols-2 md:grid-cols-5 gap-3">
-          {states.map((state) => (
-            <button
-              key={state}
-              onClick={() => {
-                setSelectedState(state);
-                setUseLocationMode(false);
-                setSearch("");
-                setSelectedStore(null);
-              }}
-              className={`
-                p-2 rounded-sm border text-sm transition-all
-                ${selectedState === state
-                  ? "bg-sandstorm text-black border-sandstorm text-sm"
-                  : "bg-white/10 text-white border-white/20 hover:bg-white/20"
-                }
-              `}
-            >
-              {state}
-            </button>
-          ))}
+
+        {/* ================= STATES ================= */}
+        <div className="relative">
+
+          <div className="flex gap-3 overflow-x-auto py-1 scrollbar-hide">
+            {states.map((state) => (
+              <button
+                key={state}
+                onClick={() => {
+                  setSelectedState(state);
+                  setUseLocationMode(false);
+                  setSearch("");
+                  setSelectedStore(null);
+                }}
+                className={`
+            shrink-0 px-4 py-2 rounded-full cursor-pointer text-sm font-medium
+            border transition-all
+            ${selectedState === state
+                    ? "bg-sandstorm text-black border-sandstorm scale-105"
+                    : "bg-white/10 text-white border-white/20 hover:bg-white/20"
+                  }
+          `}
+              >
+                {state}
+              </button>
+            ))}
+          </div>
         </div>
+
       </div>
+
 
       {/* ================= MAIN ================= */}
       <div className="grid grid-cols-1 md:grid-cols-[1.1fr_0.9fr] gap-8">
 
         {/* ================= STORE LIST ================= */}
-        <div className="bg-black/30 border border-white/10 rounded-sm p-4">
-          {visibleStores.length === 0 ? (
-            <div className="h-[420px] flex items-center justify-center text-white/50 text-sm">
-              Select a state, search, or use your location to see stores.
-            </div>
-          ) : (
+        <div className="p-4">
+          {visibleStores.length !== 0 && (
             <ScrollArea className="h-[420px] pr-2">
               <div className="space-y-4">
                 <AnimatePresence>
@@ -342,10 +393,10 @@ export default function ChooseStore({ onNext, onBack }: ChooseStoreProps) {
         </div>
 
         {/* ================= CALENDAR + TIME ================= */}
-        <div className="bg-black/30 border border-white/10 rounded-sm p-5 flex flex-col gap-6">
+        <div className="p-5 flex flex-col gap-6">
 
           {/* Calendar */}
-          {selectedStore ? (
+          {selectedStore && (
             <Calendar
               mode="single"
               selected={date}
@@ -359,10 +410,6 @@ export default function ChooseStore({ onNext, onBack }: ChooseStoreProps) {
               }}
               className="rounded-sm border border-sandstorm bg-white/5"
             />
-          ) : (
-            <div className="h-[300px] flex items-center justify-center text-white/50 text-sm border border-white/10 rounded-sm">
-              Select a store to see available dates
-            </div>
           )}
 
           {/* Time slots */}
@@ -407,7 +454,7 @@ export default function ChooseStore({ onNext, onBack }: ChooseStoreProps) {
         <Button
           variant="outline"
           onClick={onBack}
-          className="border-white/20 text-black"
+          className="border-white/20 text-black cursor-pointer"
         >
           Back
         </Button>
@@ -418,7 +465,7 @@ export default function ChooseStore({ onNext, onBack }: ChooseStoreProps) {
           className={`
             flex items-center gap-2 px-8
             ${selectedStore && date && selectedTime
-              ? "bg-sandstorm text-black"
+              ? "bg-sandstorm text-black cursor-pointer"
               : "bg-gray-700 text-gray-400"
             }
           `}
